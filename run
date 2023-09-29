@@ -1,0 +1,166 @@
+#!/bin/zsh
+set -euC
+mkdir -p src output
+zmodload zsh/datetime
+
+do_setup() {
+	for f in ./parsers/*.zsh; do
+		name=$f:t:r
+
+		(
+			source $f
+
+			if [[ -n $info[src] ]]; then
+				(
+					cd src
+					if [[ ! -d $name ]]; then
+						git clone $info[src] $name
+					else
+						(cd $name && git pull >/dev/null)
+					fi
+				)
+				cd src/$name
+			fi
+
+			out=$(setup 2>&1)
+			if [[ $? -ne 0 ]]; then
+				print "Error in setup() for $f"
+				print -r -- $out
+				exit 1
+			fi
+		)
+	done
+}
+
+do_run() {
+	for f in ./parsers/*.zsh; do
+		name=$f:t:r
+		out=output/$name
+
+		(
+			print -nf '%-25s' $name
+			source $f
+
+			[[ -z $info[version] ]] && info[version]=$(cd src/$name && git log -n1 --format=%h)
+			print $info[version] >|$out
+
+			dec=$info[decoder]
+			if [[ $dec[1] != '.' ]]; then
+				dec=./src/$name/$dec
+			fi
+
+			start=$EPOCHREALTIME
+			toml-test -color bold $dec >>|$out ||:
+			took=$(print -nf '%.2f' $(( $EPOCHREALTIME - $start )))
+			print "took ${took}s" >>$out
+
+			r=($(grep -a '^toml-test' $out))
+			pass=$r[6] # $(( $r[6] + $r[15] ))
+			fail=$r[8] # $(( $r[8] + $r[17] ))
+
+			print -f 'pass %3d; fail %3d; took %s\n' $pass $fail $took
+		)
+	done
+}
+
+do_gen() {
+	cat >|index.html <<-EOF
+		<!DOCTYPE html>
+		<html>
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>TOML test matrix</title>
+		<style>
+			html   { background-color:#eee; font:18px/1.5em sans-serif; }
+			body   { background-color:#fff; padding:1em; max-width:60em; margin:1em auto; }
+			table  { border-collapse:collapse; }
+			td, th { border:1px solid #d7d7d7; padding:.5em; }
+			th     { font-weight:normal; text-align:left; }
+			.pass  { color:green; }
+			.fail  { font-weight:bold; color:red; }
+			pre    { position:absolute; top:1em; left:1em; display:none; max-width:94vw; max-height:89vh;
+				     overflow:auto; background:#fff; border:1px solid #000; padding:1em; }
+		</style>
+		</head>
+		<body>
+		<p>
+		This tests various parsers agains the <a href="https://github.com/toml-lang/toml-test">toml-test</a> suite.
+		</p>
+		<table>
+		<thead><tr>
+		<th>Name</th>
+		<th>Language</th>
+		<th>TOML</th>
+		<th>Pass</th>
+		<th>Fail</th>
+		<th>Time to run tests</th>
+		<th></th>
+		</tr></thead>
+		<tbody>
+	EOF
+
+	for f in ./parsers/*.zsh; do
+		name=$f:t:r
+		out=output/$name
+
+		source $f
+
+		r=($(grep -a '^toml-test' $out))
+		pass=$r[6] # $(( $r[6] + $r[15] ))
+		fail=$r[8] # $(( $r[8] + $r[17] ))
+		took=$(tail -n1 $out | cut -d' ' -f2)
+		output=$(sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' $out)
+		[[ -z $info[version] ]] && info[version]=$(cd src/$name && git log -n1 --format=%h)
+
+		failclass=""
+		(( $fail > 0 )) && failclass=' class="fail"'
+		cat >>index.html <<-EOF 
+			<tr>
+				<td title="Version $info[version]"><a href="$info[site]">${name#*-}</a></td>
+				<td>$info[lang]</td>
+				<td>$info[toml]</td>
+				<td>$pass</td>
+				<td $failclass>$fail</td>
+				<td>$took</td>
+				<td>
+					<a href="" class="show-full">full output</a>
+					<pre>$output</pre>
+				</td>
+			</tr>
+		EOF
+	done
+
+	cat >>index.html <<-EOF
+		</tbody></table>
+		<script>
+			let v = null
+			document.querySelectorAll('.show-full').forEach((elem) => {
+				elem.addEventListener('click', (e) => {
+					e.preventDefault()
+
+					if (v)
+						v.style.display = 'none'
+
+					v = e.target.nextElementSibling
+					v.style.display = 'block'
+				})
+			})
+			document.addEventListener('keydown', (e) => {
+				if (e.keyCode === 0x1b && v)
+					v.style.display = 'none'
+			})
+		</script>
+		</body></html>
+	EOF
+}
+
+case ${1:-all}; in
+	setup) do_setup ;;
+	run)   do_run   ;;
+	gen)   do_gen   ;;
+	all)   do_setup && do_run && do_gen ;;
+	*)
+		print "unknown step: $1"
+		exit 1
+esac

@@ -1,0 +1,3835 @@
+6fe7fee
+[1mFAIL[0m [1mvalid/array/array[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       ints = [1, 2, 3, ]
+       floats = [1.1, 2.1, 3.1]
+       strings = ["a", "b", "c"]
+       dates = [
+         1987-07-05T17:45:00Z,
+         1979-05-27T07:32:00Z,
+         2006-06-01T11:00:00Z,
+       ]
+       comments = [
+                1,
+                2, #this is ok
+       ]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "comments": {
+           "type": "array",
+           "value": [
+             {
+               "type": "integer",
+               "value": "1"
+             },
+             {
+               "type": "integer",
+               "value": "2"
+             }
+           ]
+         },
+         "dates": {
+           "type": "array",
+           "value": [
+             {
+               "type": "datetime",
+               "value": "1987-07-05T17:45:00Z"
+             },
+             {
+               "type": "datetime",
+               "value": "1979-05-27T07:32:00Z"
+             },
+             {
+               "type": "datetime",
+               "value": "2006-06-01T11:00:00Z"
+             }
+           ]
+         },
+         "floats": {
+           "type": "array",
+           "value": [
+             {
+               "type": "float",
+               "value": "1.1"
+             },
+             {
+               "type": "float",
+               "value": "2.1"
+             },
+             {
+               "type": "float",
+               "value": "3.1"
+             }
+           ]
+         },
+         "ints": {
+           "type": "array",
+           "value": [
+             {
+               "type": "integer",
+               "value": "1"
+             },
+             {
+               "type": "integer",
+               "value": "2"
+             },
+             {
+               "type": "integer",
+               "value": "3"
+             }
+           ]
+         },
+         "strings": {
+           "type": "array",
+           "value": [
+             {
+               "type": "string",
+               "value": "a"
+             },
+             {
+               "type": "string",
+               "value": "b"
+             },
+             {
+               "type": "string",
+               "value": "c"
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "comments": [
+           {
+             "type": "integer",
+             "value": "1"
+           },
+           {
+             "type": "integer",
+             "value": "2"
+           }
+         ],
+         "dates": [
+           {
+             "type": "datetime",
+             "value": "1987-07-05T17:45:00Z"
+           },
+           {
+             "type": "datetime",
+             "value": "1979-05-27T07:32:00Z"
+           },
+           {
+             "type": "datetime",
+             "value": "2006-06-01T11:00:00Z"
+           }
+         ],
+         "floats": [
+           {
+             "type": "float",
+             "value": "1.1"
+           },
+           {
+             "type": "float",
+             "value": "2.1"
+           },
+           {
+             "type": "float",
+             "value": "3.1"
+           }
+         ],
+         "ints": [
+           {
+             "type": "integer",
+             "value": "1"
+           },
+           {
+             "type": "integer",
+             "value": "2"
+           },
+           {
+             "type": "integer",
+             "value": "3"
+           }
+         ],
+         "strings": [
+           {
+             "type": "string",
+             "value": "a"
+           },
+           {
+             "type": "string",
+             "value": "b"
+           },
+           {
+             "type": "string",
+             "value": "c"
+           }
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/bool[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       a = [true, false]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "a": {
+           "type": "array",
+           "value": [
+             {
+               "type": "bool",
+               "value": "true"
+             },
+             {
+               "type": "bool",
+               "value": "false"
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "a": [
+           {
+             "type": "bool",
+             "value": "true"
+           },
+           {
+             "type": "bool",
+             "value": "false"
+           }
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/empty[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       thevoid = [[[[[]]]]]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "thevoid": {
+           "type": "array",
+           "value": [
+             {
+               "type": "array",
+               "value": [
+                 {
+                   "type": "array",
+                   "value": [
+                     {
+                       "type": "array",
+                       "value": [
+                         {
+                           "type": "array",
+                           "value": []
+                         }
+                       ]
+                     }
+                   ]
+                 }
+               ]
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "thevoid": [
+           [
+             [
+               [
+                 []
+               ]
+             ]
+           ]
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/hetergeneous[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       mixed = [[1, 2], ["a", "b"], [1.1, 2.1]]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "mixed": {
+           "type": "array",
+           "value": [
+             {
+               "type": "array",
+               "value": [
+                 {
+                   "type": "integer",
+                   "value": "1"
+                 },
+                 {
+                   "type": "integer",
+                   "value": "2"
+                 }
+               ]
+             },
+             {
+               "type": "array",
+               "value": [
+                 {
+                   "type": "string",
+                   "value": "a"
+                 },
+                 {
+                   "type": "string",
+                   "value": "b"
+                 }
+               ]
+             },
+             {
+               "type": "array",
+               "value": [
+                 {
+                   "type": "float",
+                   "value": "1.1"
+                 },
+                 {
+                   "type": "float",
+                   "value": "2.1"
+                 }
+               ]
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "mixed": [
+           [
+             {
+               "type": "integer",
+               "value": "1"
+             },
+             {
+               "type": "integer",
+               "value": "2"
+             }
+           ],
+           [
+             {
+               "type": "string",
+               "value": "a"
+             },
+             {
+               "type": "string",
+               "value": "b"
+             }
+           ],
+           [
+             {
+               "type": "float",
+               "value": "1.1"
+             },
+             {
+               "type": "float",
+               "value": "2.1"
+             }
+           ]
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/mixed-int-array[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       arrays-and-ints =  [1, ["Arrays are not integers."]]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "arrays-and-ints": {
+           "type": "array",
+           "value": []
+         }
+       }
+
+[1m     want:[0m
+       {
+         "arrays-and-ints": [
+           {
+             "type": "integer",
+             "value": "1"
+           },
+           [
+             {
+               "type": "string",
+               "value": "Arrays are not integers."
+             }
+           ]
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/mixed-int-float[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       ints-and-floats = [1, 1.1]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "ints-and-floats": {
+           "type": "array",
+           "value": [
+             {
+               "type": "integer",
+               "value": "1"
+             },
+             {
+               "type": "float",
+               "value": "1.1"
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "ints-and-floats": [
+           {
+             "type": "integer",
+             "value": "1"
+           },
+           {
+             "type": "float",
+             "value": "1.1"
+           }
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/mixed-int-string[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       strings-and-ints = ["hi", 42]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "strings-and-ints": {
+           "type": "array",
+           "value": [
+             {
+               "type": "string",
+               "value": "hi"
+             },
+             {
+               "type": "integer",
+               "value": "42"
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "strings-and-ints": [
+           {
+             "type": "string",
+             "value": "hi"
+           },
+           {
+             "type": "integer",
+             "value": "42"
+           }
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/mixed-string-table[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       contributors = [
+         "Foo Bar <foo@example.com>",
+         { name = "Baz Qux", email = "bazqux@example.com", url = "https://example.com/bazqux" }
+       ]
+       
+       # Start with a table as the first element. This tests a case that some libraries
+       # might have where they will check if the first entry is a table/map/hash/assoc
+       # array and then encode it as a table array. This was a reasonable thing to do
+       # before TOML 1.0 since arrays could only contain one type, but now it's no
+       # longer.
+       mixed = [{k="a"}, "b", 1]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "contributors": {
+           "type": "array",
+           "value": []
+         },
+         "mixed": {
+           "type": "array",
+           "value": []
+         }
+       }
+
+[1m     want:[0m
+       {
+         "contributors": [
+           {
+             "type": "string",
+             "value": "Foo Bar \u003cfoo@example.com\u003e"
+           },
+           {
+             "email": {
+               "type": "string",
+               "value": "bazqux@example.com"
+             },
+             "name": {
+               "type": "string",
+               "value": "Baz Qux"
+             },
+             "url": {
+               "type": "string",
+               "value": "https://example.com/bazqux"
+             }
+           }
+         ],
+         "mixed": [
+           {
+             "k": {
+               "type": "string",
+               "value": "a"
+             }
+           },
+           {
+             "type": "string",
+             "value": "b"
+           },
+           {
+             "type": "integer",
+             "value": "1"
+           }
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/nested-double[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       nest = [
+       	[
+       		["a"],
+       		[1, 2, [3]]
+       	]
+       ]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "nest": {
+           "type": "array",
+           "value": [
+             {
+               "type": "array",
+               "value": [
+                 {
+                   "type": "array",
+                   "value": [
+                     {
+                       "type": "string",
+                       "value": "a"
+                     }
+                   ]
+                 },
+                 {
+                   "type": "array",
+                   "value": []
+                 }
+               ]
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "nest": [
+           [
+             [
+               {
+                 "type": "string",
+                 "value": "a"
+               }
+             ],
+             [
+               {
+                 "type": "integer",
+                 "value": "1"
+               },
+               {
+                 "type": "integer",
+                 "value": "2"
+               },
+               [
+                 {
+                   "type": "integer",
+                   "value": "3"
+                 }
+               ]
+             ]
+           ]
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/nested[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       nest = [["a"], ["b"]]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "nest": {
+           "type": "array",
+           "value": [
+             {
+               "type": "array",
+               "value": [
+                 {
+                   "type": "string",
+                   "value": "a"
+                 }
+               ]
+             },
+             {
+               "type": "array",
+               "value": [
+                 {
+                   "type": "string",
+                   "value": "b"
+                 }
+               ]
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "nest": [
+           [
+             {
+               "type": "string",
+               "value": "a"
+             }
+           ],
+           [
+             {
+               "type": "string",
+               "value": "b"
+             }
+           ]
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/nospaces[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       ints = [1,2,3]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "ints": {
+           "type": "array",
+           "value": [
+             {
+               "type": "integer",
+               "value": "1"
+             },
+             {
+               "type": "integer",
+               "value": "2"
+             },
+             {
+               "type": "integer",
+               "value": "3"
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "ints": [
+           {
+             "type": "integer",
+             "value": "1"
+           },
+           {
+             "type": "integer",
+             "value": "2"
+           },
+           {
+             "type": "integer",
+             "value": "3"
+           }
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/string-quote-comma-2[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       title = [ " \", ",]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "title": {
+           "type": "array",
+           "value": [
+             {
+               "type": "string",
+               "value": " \", "
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "title": [
+           {
+             "type": "string",
+             "value": " \", "
+           }
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/string-quote-comma[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       title = [
+       "Client: \"XXXX\", Job: XXXX",
+       "Code: XXXX"
+       ]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "title": {
+           "type": "array",
+           "value": [
+             {
+               "type": "string",
+               "value": "Client: \"XXXX\", Job: XXXX"
+             },
+             {
+               "type": "string",
+               "value": "Code: XXXX"
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "title": [
+           {
+             "type": "string",
+             "value": "Client: \"XXXX\", Job: XXXX"
+           },
+           {
+             "type": "string",
+             "value": "Code: XXXX"
+           }
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/string-with-comma-2[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       title = [
+       """Client: XXXX,
+       Job: XXXX""",
+       "Code: XXXX"
+       ]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "title": {
+           "type": "array",
+           "value": [
+             {
+               "type": "string",
+               "value": "Client: XXXX,\nJob: XXXX"
+             },
+             {
+               "type": "string",
+               "value": "Code: XXXX"
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "title": [
+           {
+             "type": "string",
+             "value": "Client: XXXX,\nJob: XXXX"
+           },
+           {
+             "type": "string",
+             "value": "Code: XXXX"
+           }
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/string-with-comma[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       title = [
+       "Client: XXXX, Job: XXXX",
+       "Code: XXXX"
+       ]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "title": {
+           "type": "array",
+           "value": [
+             {
+               "type": "string",
+               "value": "Client: XXXX, Job: XXXX"
+             },
+             {
+               "type": "string",
+               "value": "Code: XXXX"
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "title": [
+           {
+             "type": "string",
+             "value": "Client: XXXX, Job: XXXX"
+           },
+           {
+             "type": "string",
+             "value": "Code: XXXX"
+           }
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/array/strings[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       string_array = [ "all", 'strings', """are the same""", '''type''']
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "string_array": {
+           "type": "array",
+           "value": [
+             {
+               "type": "string",
+               "value": "all"
+             },
+             {
+               "type": "string",
+               "value": "strings"
+             },
+             {
+               "type": "string",
+               "value": "are the same"
+             },
+             {
+               "type": "string",
+               "value": "type"
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "string_array": [
+           {
+             "type": "string",
+             "value": "all"
+           },
+           {
+             "type": "string",
+             "value": "strings"
+           },
+           {
+             "type": "string",
+             "value": "are the same"
+           },
+           {
+             "type": "string",
+             "value": "type"
+           }
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/comment/everywhere[0m
+[1m [0m    Key "group.d" is not "date-local" but "date":
+[1m [0m      Expected:     map[string]any{"type":"date-local", "value":"1979-05-27"}
+[1m [0m      Your encoder: map[string]any{"type":"date", "value":"1979-05-27"}
+
+[1m     input sent to parser-cmd:[0m
+       # Top comment.
+         # Top comment.
+       # Top comment.
+       
+       # [no-extraneous-groups-please]
+       
+       [group] # Comment
+       answer = 42 # Comment
+       # no-extraneous-keys-please = 999
+       # Inbetween comment.
+       more = [ # Comment
+         # What about multiple # comments?
+         # Can you handle it?
+         #
+                 # Evil.
+       # Evil.
+         42, 42, # Comments within arrays are fun.
+         # What about multiple # comments?
+         # Can you handle it?
+         #
+                 # Evil.
+       # Evil.
+       # ] Did I fool you?
+       ] # Hopefully not.
+       
+       # Make sure the space between the datetime and "#" isn't lexed.
+       dt = 1979-05-27T07:32:12-07:00  # c
+       d = 1979-05-27 # Comment
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "group": {
+           "answer": {
+             "type": "integer",
+             "value": "42"
+           },
+           "d": {
+             "type": "date",
+             "value": "1979-05-27"
+           },
+           "dt": {
+             "type": "datetime",
+             "value": "1979-05-27T07:32:12-07:00"
+           },
+           "more": {
+             "type": "array",
+             "value": [
+               {
+                 "type": "integer",
+                 "value": "42"
+               },
+               {
+                 "type": "integer",
+                 "value": "42"
+               }
+             ]
+           }
+         }
+       }
+
+[1m     want:[0m
+       {
+         "group": {
+           "answer": {
+             "type": "integer",
+             "value": "42"
+           },
+           "dt": {
+             "type": "datetime",
+             "value": "1979-05-27T07:32:12-07:00"
+           },
+           "d": {
+             "type": "date-local",
+             "value": "1979-05-27"
+           },
+           "more": [
+             {
+               "type": "integer",
+               "value": "42"
+             },
+             {
+               "type": "integer",
+               "value": "42"
+             }
+           ]
+         }
+       }
+
+[1mFAIL[0m [1mvalid/comment/tricky[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       [section]#attached comment
+       #[notsection]
+       one = "11"#cmt
+       two = "22#"
+       three = '#'
+       
+       four = """# no comment
+       # nor this
+       #also not comment"""#is_comment
+       
+       five = 5.5#66
+       six = 6#7
+       8 = "eight"
+       #nine = 99
+       ten = 10e2#1
+       eleven = 1.11e1#23
+       
+       ["hash#tag"]
+       "#!" = "hash bang"
+       arr3 = [ "#", '#', """###""" ]
+       arr4 = [ 1,# 9, 9,
+       2#,9
+       ,#9
+       3#]
+       ,4]
+       arr5 = [[[[#["#"],
+       ["#"]]]]#]
+       ]
+       tbl1 = { "#" = '}#'}#}}
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "hash#tag": {
+           "#!": {
+             "type": "string",
+             "value": "hash bang"
+           },
+           "arr3": {
+             "type": "array",
+             "value": [
+               {
+                 "type": "string",
+                 "value": "#"
+               },
+               {
+                 "type": "string",
+                 "value": "#"
+               },
+               {
+                 "type": "string",
+                 "value": "###"
+               }
+             ]
+           },
+           "arr4": {
+             "type": "array",
+             "value": [
+               {
+                 "type": "integer",
+                 "value": "1"
+               },
+               {
+                 "type": "integer",
+                 "value": "2"
+               },
+               {
+                 "type": "integer",
+                 "value": "3"
+               },
+               {
+                 "type": "integer",
+                 "value": "4"
+               }
+             ]
+           },
+           "arr5": {
+             "type": "array",
+             "value": [
+               {
+                 "type": "array",
+                 "value": [
+                   {
+                     "type": "array",
+                     "value": [
+                       {
+                         "type": "array",
+                         "value": [
+                           {
+                             "type": "array",
+                             "value": [
+                               {
+                                 "type": "string",
+                                 "value": "#"
+                               }
+                             ]
+                           }
+                         ]
+                       }
+                     ]
+                   }
+                 ]
+               }
+             ]
+           },
+           "tbl1": {
+             "#": {
+               "type": "string",
+               "value": "}#"
+             }
+           }
+         },
+         "section": {
+           "8": {
+             "type": "string",
+             "value": "eight"
+           },
+           "eleven": {
+             "type": "float",
+             "value": "1.11e1"
+           },
+           "five": {
+             "type": "float",
+             "value": "5.5"
+           },
+           "four": {
+             "type": "string",
+             "value": "# no comment\n# nor this\n#also not comment"
+           },
+           "one": {
+             "type": "string",
+             "value": "11"
+           },
+           "six": {
+             "type": "integer",
+             "value": "6"
+           },
+           "ten": {
+             "type": "float",
+             "value": "10e2"
+           },
+           "three": {
+             "type": "string",
+             "value": "#"
+           },
+           "two": {
+             "type": "string",
+             "value": "22#"
+           }
+         }
+       }
+
+[1m     want:[0m
+       {
+         "hash#tag": {
+           "#!": {
+             "type": "string",
+             "value": "hash bang"
+           },
+           "arr3": [
+             {
+               "type": "string",
+               "value": "#"
+             },
+             {
+               "type": "string",
+               "value": "#"
+             },
+             {
+               "type": "string",
+               "value": "###"
+             }
+           ],
+           "arr4": [
+             {
+               "type": "integer",
+               "value": "1"
+             },
+             {
+               "type": "integer",
+               "value": "2"
+             },
+             {
+               "type": "integer",
+               "value": "3"
+             },
+             {
+               "type": "integer",
+               "value": "4"
+             }
+           ],
+           "arr5": [
+             [
+               [
+                 [
+                   [
+                     {
+                       "type": "string",
+                       "value": "#"
+                     }
+                   ]
+                 ]
+               ]
+             ]
+           ],
+           "tbl1": {
+             "#": {
+               "type": "string",
+               "value": "}#"
+             }
+           }
+         },
+         "section": {
+           "8": {
+             "type": "string",
+             "value": "eight"
+           },
+           "eleven": {
+             "type": "float",
+             "value": "11.1"
+           },
+           "five": {
+             "type": "float",
+             "value": "5.5"
+           },
+           "four": {
+             "type": "string",
+             "value": "# no comment\n# nor this\n#also not comment"
+           },
+           "one": {
+             "type": "string",
+             "value": "11"
+           },
+           "six": {
+             "type": "integer",
+             "value": "6"
+           },
+           "ten": {
+             "type": "float",
+             "value": "1000.0"
+           },
+           "three": {
+             "type": "string",
+             "value": "#"
+           },
+           "two": {
+             "type": "string",
+             "value": "22#"
+           }
+         }
+       }
+
+[1mFAIL[0m [1mvalid/datetime/local-date[0m
+[1m [0m    Key "bestdayever" is not "date-local" but "date":
+[1m [0m      Expected:     map[string]any{"type":"date-local", "value":"1987-07-05"}
+[1m [0m      Your encoder: map[string]any{"type":"date", "value":"1987-07-05"}
+
+[1m     input sent to parser-cmd:[0m
+       bestdayever = 1987-07-05
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "bestdayever": {
+           "type": "date",
+           "value": "1987-07-05"
+         }
+       }
+
+[1m     want:[0m
+       {
+         "bestdayever": {
+           "type": "date-local",
+           "value": "1987-07-05"
+         }
+       }
+
+[1mFAIL[0m [1mvalid/datetime/local-time[0m
+[1m [0m    Key "besttimeever" is not "time-local" but "time":
+[1m [0m      Expected:     map[string]any{"type":"time-local", "value":"17:45:00"}
+[1m [0m      Your encoder: map[string]any{"type":"time", "value":"17:45:00"}
+
+[1m     input sent to parser-cmd:[0m
+       besttimeever = 17:45:00
+       milliseconds = 10:32:00.555
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "besttimeever": {
+           "type": "time",
+           "value": "17:45:00"
+         },
+         "milliseconds": {
+           "type": "time",
+           "value": "10:32:00.555"
+         }
+       }
+
+[1m     want:[0m
+       {
+         "besttimeever": {
+           "type": "time-local",
+           "value": "17:45:00"
+         },
+         "milliseconds": {
+           "type": "time-local",
+           "value": "10:32:00.555"
+         }
+       }
+
+[1mFAIL[0m [1mvalid/datetime/local[0m
+[1m [0m    Key "local" is not "datetime-local" but "datetime":
+[1m [0m      Expected:     map[string]any{"type":"datetime-local", "value":"1987-07-05T17:45:00"}
+[1m [0m      Your encoder: map[string]any{"type":"datetime", "value":"1987-07-05T17:45:00"}
+
+[1m     input sent to parser-cmd:[0m
+       local = 1987-07-05T17:45:00
+       milli = 1977-12-21T10:32:00.555
+       space = 1987-07-05 17:45:00
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "local": {
+           "type": "datetime",
+           "value": "1987-07-05T17:45:00"
+         },
+         "milli": {
+           "type": "datetime",
+           "value": "1977-12-21T10:32:00.555"
+         },
+         "space": {
+           "type": "datetime",
+           "value": "1987-07-05T17:45:00"
+         }
+       }
+
+[1m     want:[0m
+       {
+         "local": {
+           "type": "datetime-local",
+           "value": "1987-07-05T17:45:00"
+         },
+         "milli": {
+           "type": "datetime-local",
+           "value": "1977-12-21T10:32:00.555"
+         },
+         "space": {
+           "type": "datetime-local",
+           "value": "1987-07-05T17:45:00"
+         }
+       }
+
+[1mFAIL[0m [1mvalid/example[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       best-day-ever = 1987-07-05T17:45:00Z
+       
+       [numtheory]
+       boring = false
+       perfection = [6, 28, 496]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "best-day-ever": {
+           "type": "datetime",
+           "value": "1987-07-05T17:45:00Z"
+         },
+         "numtheory": {
+           "boring": {
+             "type": "bool",
+             "value": "false"
+           },
+           "perfection": {
+             "type": "array",
+             "value": [
+               {
+                 "type": "integer",
+                 "value": "6"
+               },
+               {
+                 "type": "integer",
+                 "value": "28"
+               },
+               {
+                 "type": "integer",
+                 "value": "496"
+               }
+             ]
+           }
+         }
+       }
+
+[1m     want:[0m
+       {
+         "best-day-ever": {
+           "type": "datetime",
+           "value": "1987-07-05T17:45:00Z"
+         },
+         "numtheory": {
+           "boring": {
+             "type": "bool",
+             "value": "false"
+           },
+           "perfection": [
+             {
+               "type": "integer",
+               "value": "6"
+             },
+             {
+               "type": "integer",
+               "value": "28"
+             },
+             {
+               "type": "integer",
+               "value": "496"
+             }
+           ]
+         }
+       }
+
+[1mFAIL[0m [1mvalid/float/inf-and-nan[0m
+[1m [0m    Values for key 'nan_neg' don't match:
+[1m [0m      Expected:     nan
+[1m [0m      Your encoder: -nan
+
+[1m     input sent to parser-cmd:[0m
+       # We don't encode +nan and -nan back with the signs; many languages don't
+       # support a sign on NaN (it doesn't really make much sense).
+       nan = nan
+       nan_neg = -nan
+       nan_plus = +nan
+       infinity = inf
+       infinity_neg = -inf
+       infinity_plus = +inf
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "infinity": {
+           "type": "float",
+           "value": "inf"
+         },
+         "infinity_neg": {
+           "type": "float",
+           "value": "-inf"
+         },
+         "infinity_plus": {
+           "type": "float",
+           "value": "+inf"
+         },
+         "nan": {
+           "type": "float",
+           "value": "nan"
+         },
+         "nan_neg": {
+           "type": "float",
+           "value": "-nan"
+         },
+         "nan_plus": {
+           "type": "float",
+           "value": "+nan"
+         }
+       }
+
+[1m     want:[0m
+       {
+         "infinity": {
+           "type": "float",
+           "value": "inf"
+         },
+         "infinity_neg": {
+           "type": "float",
+           "value": "-inf"
+         },
+         "infinity_plus": {
+           "type": "float",
+           "value": "+inf"
+         },
+         "nan": {
+           "type": "float",
+           "value": "nan"
+         },
+         "nan_neg": {
+           "type": "float",
+           "value": "nan"
+         },
+         "nan_plus": {
+           "type": "float",
+           "value": "nan"
+         }
+       }
+
+[1mFAIL[0m [1mvalid/inline-table/nest[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       tbl_tbl_empty = { tbl_0 = {} }
+       tbl_tbl_val   = { tbl_1 = { one = 1 } }
+       tbl_arr_tbl   = { arr_tbl = [ { one = 1 } ] }
+       arr_tbl_tbl   = [ { tbl = { one = 1 } } ]
+       
+       # Array-of-array-of-table is interesting because it can only
+       # be represented in inline form.
+       arr_arr_tbl_empty = [ [ {} ] ]
+       arr_arr_tbl_val = [ [ { one = 1 } ] ]
+       arr_arr_tbls  = [ [ { one = 1 }, { two = 2 } ] ]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "arr_arr_tbl_empty": {
+           "type": "array",
+           "value": [
+             [
+               {}
+             ]
+           ]
+         },
+         "arr_arr_tbl_val": {
+           "type": "array",
+           "value": [
+             [
+               {
+                 "one": {
+                   "type": "integer",
+                   "value": "1"
+                 }
+               }
+             ]
+           ]
+         },
+         "arr_arr_tbls": {
+           "type": "array",
+           "value": [
+             [
+               {
+                 "one": {
+                   "type": "integer",
+                   "value": "1"
+                 }
+               },
+               {
+                 "two": {
+                   "type": "integer",
+                   "value": "2"
+                 }
+               }
+             ]
+           ]
+         },
+         "arr_tbl_tbl": [
+           {
+             "tbl": {
+               "one": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           }
+         ],
+         "tbl_arr_tbl": {
+           "arr_tbl": [
+             {
+               "one": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           ]
+         },
+         "tbl_tbl_empty": {
+           "tbl_0": {}
+         },
+         "tbl_tbl_val": {
+           "tbl_1": {
+             "one": {
+               "type": "integer",
+               "value": "1"
+             }
+           }
+         }
+       }
+
+[1m     want:[0m
+       {
+         "arr_arr_tbl_empty": [
+           [
+             {}
+           ]
+         ],
+         "arr_arr_tbl_val": [
+           [
+             {
+               "one": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           ]
+         ],
+         "arr_arr_tbls": [
+           [
+             {
+               "one": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             },
+             {
+               "two": {
+                 "type": "integer",
+                 "value": "2"
+               }
+             }
+           ]
+         ],
+         "arr_tbl_tbl": [
+           {
+             "tbl": {
+               "one": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           }
+         ],
+         "tbl_arr_tbl": {
+           "arr_tbl": [
+             {
+               "one": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           ]
+         },
+         "tbl_tbl_empty": {
+           "tbl_0": {}
+         },
+         "tbl_tbl_val": {
+           "tbl_1": {
+             "one": {
+               "type": "integer",
+               "value": "1"
+             }
+           }
+         }
+       }
+
+[1mFAIL[0m [1mvalid/key/escapes[0m
+[1m [0m    ERROR: line 1: bad key
+[1m [0m    
+[1m [0m    Exit 1
+
+[1m     input sent to parser-cmd:[0m
+       "\n" = "newline"
+       "\u00c0" = "latin capital letter A with grave"
+       "\"" = "just a quote"
+       
+       ["backsp\b\b"]
+       
+       ["\"quoted\""]
+       quote = true
+       
+       ["a.b"."\u00c0"]
+
+[1m     output from parser-cmd (stderr):[0m
+       ERROR: line 1: bad key
+       
+       Exit 1
+
+[1m     want:[0m
+          <empty>
+
+[1mFAIL[0m [1mvalid/key/quoted-unicode[0m
+[1m [0m    ERROR: line 4: expect hex char
+[1m [0m    
+[1m [0m    Exit 1
+
+[1m     input sent to parser-cmd:[0m
+       
+       "\u0000" = "null"
+       '\u0000' = "different key"
+       "\u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff" = "escaped key"
+       
+       "~  ÿ ퟿  ￿ 𐀀 􏿿" = "basic key"
+       'l ~  ÿ ퟿  ￿ 𐀀 􏿿' = "literal key"
+
+[1m     output from parser-cmd (stderr):[0m
+       ERROR: line 4: expect hex char
+       
+       Exit 1
+
+[1m     want:[0m
+          <empty>
+
+[1mFAIL[0m [1mvalid/spec/array-0[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       integers = [ 1, 2, 3 ]
+       colors = [ "red", "yellow", "green" ]
+       nested_arrays_of_ints = [ [ 1, 2 ], [3, 4, 5] ]
+       nested_mixed_array = [ [ 1, 2 ], ["a", "b", "c"] ]
+       string_array = [ "all", 'strings', """are the same""", '''type''' ]
+       
+       # Mixed-type arrays are allowed
+       numbers = [ 0.1, 0.2, 0.5, 1, 2, 5 ]
+       contributors = [
+         "Foo Bar <foo@example.com>",
+         { name = "Baz Qux", email = "bazqux@example.com", url = "https://example.com/bazqux" }
+       ]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "colors": {
+           "type": "array",
+           "value": [
+             {
+               "type": "string",
+               "value": "red"
+             },
+             {
+               "type": "string",
+               "value": "yellow"
+             },
+             {
+               "type": "string",
+               "value": "green"
+             }
+           ]
+         },
+         "contributors": {
+           "type": "array",
+           "value": []
+         },
+         "integers": {
+           "type": "array",
+           "value": [
+             {
+               "type": "integer",
+               "value": "1"
+             },
+             {
+               "type": "integer",
+               "value": "2"
+             },
+             {
+               "type": "integer",
+               "value": "3"
+             }
+           ]
+         },
+         "nested_arrays_of_ints": {
+           "type": "array",
+           "value": [
+             {
+               "type": "array",
+               "value": [
+                 {
+                   "type": "integer",
+                   "value": "1"
+                 },
+                 {
+                   "type": "integer",
+                   "value": "2"
+                 }
+               ]
+             },
+             {
+               "type": "array",
+               "value": [
+                 {
+                   "type": "integer",
+                   "value": "3"
+                 },
+                 {
+                   "type": "integer",
+                   "value": "4"
+                 },
+                 {
+                   "type": "integer",
+                   "value": "5"
+                 }
+               ]
+             }
+           ]
+         },
+         "nested_mixed_array": {
+           "type": "array",
+           "value": [
+             {
+               "type": "array",
+               "value": [
+                 {
+                   "type": "integer",
+                   "value": "1"
+                 },
+                 {
+                   "type": "integer",
+                   "value": "2"
+                 }
+               ]
+             },
+             {
+               "type": "array",
+               "value": [
+                 {
+                   "type": "string",
+                   "value": "a"
+                 },
+                 {
+                   "type": "string",
+                   "value": "b"
+                 },
+                 {
+                   "type": "string",
+                   "value": "c"
+                 }
+               ]
+             }
+           ]
+         },
+         "numbers": {
+           "type": "array",
+           "value": [
+             {
+               "type": "float",
+               "value": "0.1"
+             },
+             {
+               "type": "float",
+               "value": "0.2"
+             },
+             {
+               "type": "float",
+               "value": "0.5"
+             },
+             {
+               "type": "integer",
+               "value": "1"
+             },
+             {
+               "type": "integer",
+               "value": "2"
+             },
+             {
+               "type": "integer",
+               "value": "5"
+             }
+           ]
+         },
+         "string_array": {
+           "type": "array",
+           "value": [
+             {
+               "type": "string",
+               "value": "all"
+             },
+             {
+               "type": "string",
+               "value": "strings"
+             },
+             {
+               "type": "string",
+               "value": "are the same"
+             },
+             {
+               "type": "string",
+               "value": "type"
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "colors": [
+           {
+             "type": "string",
+             "value": "red"
+           },
+           {
+             "type": "string",
+             "value": "yellow"
+           },
+           {
+             "type": "string",
+             "value": "green"
+           }
+         ],
+         "contributors": [
+           {
+             "type": "string",
+             "value": "Foo Bar \u003cfoo@example.com\u003e"
+           },
+           {
+             "email": {
+               "type": "string",
+               "value": "bazqux@example.com"
+             },
+             "name": {
+               "type": "string",
+               "value": "Baz Qux"
+             },
+             "url": {
+               "type": "string",
+               "value": "https://example.com/bazqux"
+             }
+           }
+         ],
+         "integers": [
+           {
+             "type": "integer",
+             "value": "1"
+           },
+           {
+             "type": "integer",
+             "value": "2"
+           },
+           {
+             "type": "integer",
+             "value": "3"
+           }
+         ],
+         "nested_arrays_of_ints": [
+           [
+             {
+               "type": "integer",
+               "value": "1"
+             },
+             {
+               "type": "integer",
+               "value": "2"
+             }
+           ],
+           [
+             {
+               "type": "integer",
+               "value": "3"
+             },
+             {
+               "type": "integer",
+               "value": "4"
+             },
+             {
+               "type": "integer",
+               "value": "5"
+             }
+           ]
+         ],
+         "nested_mixed_array": [
+           [
+             {
+               "type": "integer",
+               "value": "1"
+             },
+             {
+               "type": "integer",
+               "value": "2"
+             }
+           ],
+           [
+             {
+               "type": "string",
+               "value": "a"
+             },
+             {
+               "type": "string",
+               "value": "b"
+             },
+             {
+               "type": "string",
+               "value": "c"
+             }
+           ]
+         ],
+         "numbers": [
+           {
+             "type": "float",
+             "value": "0.1"
+           },
+           {
+             "type": "float",
+             "value": "0.2"
+           },
+           {
+             "type": "float",
+             "value": "0.5"
+           },
+           {
+             "type": "integer",
+             "value": "1"
+           },
+           {
+             "type": "integer",
+             "value": "2"
+           },
+           {
+             "type": "integer",
+             "value": "5"
+           }
+         ],
+         "string_array": [
+           {
+             "type": "string",
+             "value": "all"
+           },
+           {
+             "type": "string",
+             "value": "strings"
+           },
+           {
+             "type": "string",
+             "value": "are the same"
+           },
+           {
+             "type": "string",
+             "value": "type"
+           }
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/spec/array-1[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       integers2 = [
+         1, 2, 3
+       ]
+       
+       integers3 = [
+         1,
+         2, # this is ok
+       ]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "integers2": {
+           "type": "array",
+           "value": [
+             {
+               "type": "integer",
+               "value": "1"
+             },
+             {
+               "type": "integer",
+               "value": "2"
+             },
+             {
+               "type": "integer",
+               "value": "3"
+             }
+           ]
+         },
+         "integers3": {
+           "type": "array",
+           "value": [
+             {
+               "type": "integer",
+               "value": "1"
+             },
+             {
+               "type": "integer",
+               "value": "2"
+             }
+           ]
+         }
+       }
+
+[1m     want:[0m
+       {
+         "integers2": [
+           {
+             "type": "integer",
+             "value": "1"
+           },
+           {
+             "type": "integer",
+             "value": "2"
+           },
+           {
+             "type": "integer",
+             "value": "3"
+           }
+         ],
+         "integers3": [
+           {
+             "type": "integer",
+             "value": "1"
+           },
+           {
+             "type": "integer",
+             "value": "2"
+           }
+         ]
+       }
+
+[1mFAIL[0m [1mvalid/spec/float-2[0m
+[1m [0m    Values for key 'sf5' don't match:
+[1m [0m      Expected:     nan
+[1m [0m      Your encoder: +nan
+
+[1m     input sent to parser-cmd:[0m
+       # infinity
+       sf1 = inf  # positive infinity
+       sf2 = +inf # positive infinity
+       sf3 = -inf # negative infinity
+       
+       # not a number
+       sf4 = nan  # actual sNaN/qNaN encoding is implementation-specific
+       sf5 = +nan # same as `nan`
+       sf6 = -nan # valid, actual encoding is implementation-specific
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "sf1": {
+           "type": "float",
+           "value": "inf"
+         },
+         "sf2": {
+           "type": "float",
+           "value": "+inf"
+         },
+         "sf3": {
+           "type": "float",
+           "value": "-inf"
+         },
+         "sf4": {
+           "type": "float",
+           "value": "nan"
+         },
+         "sf5": {
+           "type": "float",
+           "value": "+nan"
+         },
+         "sf6": {
+           "type": "float",
+           "value": "-nan"
+         }
+       }
+
+[1m     want:[0m
+       {
+         "sf1": {
+           "type": "float",
+           "value": "+Inf"
+         },
+         "sf2": {
+           "type": "float",
+           "value": "+Inf"
+         },
+         "sf3": {
+           "type": "float",
+           "value": "-Inf"
+         },
+         "sf4": {
+           "type": "float",
+           "value": "nan"
+         },
+         "sf5": {
+           "type": "float",
+           "value": "nan"
+         },
+         "sf6": {
+           "type": "float",
+           "value": "nan"
+         }
+       }
+
+[1mFAIL[0m [1mvalid/spec/local-date-0[0m
+[1m [0m    Key "ld1" is not "date-local" but "date":
+[1m [0m      Expected:     map[string]any{"type":"date-local", "value":"1979-05-27"}
+[1m [0m      Your encoder: map[string]any{"type":"date", "value":"1979-05-27"}
+
+[1m     input sent to parser-cmd:[0m
+       ld1 = 1979-05-27
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "ld1": {
+           "type": "date",
+           "value": "1979-05-27"
+         }
+       }
+
+[1m     want:[0m
+       {
+         "ld1": {
+           "type": "date-local",
+           "value": "1979-05-27"
+         }
+       }
+
+[1mFAIL[0m [1mvalid/spec/local-date-time-0[0m
+[1m [0m    Key "ldt1" is not "datetime-local" but "datetime":
+[1m [0m      Expected:     map[string]any{"type":"datetime-local", "value":"1979-05-27T07:32:00"}
+[1m [0m      Your encoder: map[string]any{"type":"datetime", "value":"1979-05-27T07:32:00"}
+
+[1m     input sent to parser-cmd:[0m
+       ldt1 = 1979-05-27T07:32:00
+       ldt2 = 1979-05-27T00:32:00.999999
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "ldt1": {
+           "type": "datetime",
+           "value": "1979-05-27T07:32:00"
+         },
+         "ldt2": {
+           "type": "datetime",
+           "value": "1979-05-27T00:32:00.999"
+         }
+       }
+
+[1m     want:[0m
+       {
+         "ldt1": {
+           "type": "datetime-local",
+           "value": "1979-05-27T07:32:00"
+         },
+         "ldt2": {
+           "type": "datetime-local",
+           "value": "1979-05-27T00:32:00.999999"
+         }
+       }
+
+[1mFAIL[0m [1mvalid/spec/local-time-0[0m
+[1m [0m    Key "lt1" is not "time-local" but "time":
+[1m [0m      Expected:     map[string]any{"type":"time-local", "value":"07:32:00"}
+[1m [0m      Your encoder: map[string]any{"type":"time", "value":"07:32:00"}
+
+[1m     input sent to parser-cmd:[0m
+       lt1 = 07:32:00
+       lt2 = 00:32:00.999999
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "lt1": {
+           "type": "time",
+           "value": "07:32:00"
+         },
+         "lt2": {
+           "type": "time",
+           "value": "00:32:00.999"
+         }
+       }
+
+[1m     want:[0m
+       {
+         "lt1": {
+           "type": "time-local",
+           "value": "07:32:00"
+         },
+         "lt2": {
+           "type": "time-local",
+           "value": "00:32:00.999999"
+         }
+       }
+
+[1mFAIL[0m [1mvalid/spec/string-7[0m
+[1m [0m    ERROR: line 4: triple-s-quote inside string lit
+[1m [0m    
+[1m [0m    Exit 1
+
+[1m     input sent to parser-cmd:[0m
+       quot15 = '''Here are fifteen quotation marks: """""""""""""""'''
+       
+       # apos15 = '''Here are fifteen apostrophes: ''''''''''''''''''  # INVALID
+       apos15 = "Here are fifteen apostrophes: '''''''''''''''"
+       
+       # 'That,' she said, 'is still pointless.'
+       str = ''''That,' she said, 'is still pointless.''''
+
+[1m     output from parser-cmd (stderr):[0m
+       ERROR: line 4: triple-s-quote inside string lit
+       
+       Exit 1
+
+[1m     want:[0m
+          <empty>
+
+[1mFAIL[0m [1mvalid/spec/table-7[0m
+[1m [0m    Key "owner.member_since" is not "date-local" but "date":
+[1m [0m      Expected:     map[string]any{"type":"date-local", "value":"1999-08-04"}
+[1m [0m      Your encoder: map[string]any{"type":"date", "value":"1999-08-04"}
+
+[1m     input sent to parser-cmd:[0m
+       # Top-level table begins.
+       name = "Fido"
+       breed = "pug"
+       
+       # Top-level table ends.
+       [owner]
+       name = "Regina Dogman"
+       member_since = 1999-08-04
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "breed": {
+           "type": "string",
+           "value": "pug"
+         },
+         "name": {
+           "type": "string",
+           "value": "Fido"
+         },
+         "owner": {
+           "member_since": {
+             "type": "date",
+             "value": "1999-08-04"
+           },
+           "name": {
+             "type": "string",
+             "value": "Regina Dogman"
+           }
+         }
+       }
+
+[1m     want:[0m
+       {
+         "breed": {
+           "type": "string",
+           "value": "pug"
+         },
+         "name": {
+           "type": "string",
+           "value": "Fido"
+         },
+         "owner": {
+           "member_since": {
+             "type": "date-local",
+             "value": "1999-08-04"
+           },
+           "name": {
+             "type": "string",
+             "value": "Regina Dogman"
+           }
+         }
+       }
+
+[1mFAIL[0m [1mvalid/spec-example-1-compact[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       #Useless spaces eliminated.
+       title="TOML Example"
+       [owner]
+       name="Lance Uppercut"
+       dob=1979-05-27T07:32:00-08:00#First class dates
+       [database]
+       server="192.168.1.1"
+       ports=[8001,8001,8002]
+       connection_max=5000
+       enabled=true
+       [servers]
+       [servers.alpha]
+       ip="10.0.0.1"
+       dc="eqdc10"
+       [servers.beta]
+       ip="10.0.0.2"
+       dc="eqdc10"
+       [clients]
+       data=[["gamma","delta"],[1,2]]
+       hosts=[
+       "alpha",
+       "omega"
+       ]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "clients": {
+           "data": {
+             "type": "array",
+             "value": [
+               {
+                 "type": "array",
+                 "value": [
+                   {
+                     "type": "string",
+                     "value": "gamma"
+                   },
+                   {
+                     "type": "string",
+                     "value": "delta"
+                   }
+                 ]
+               },
+               {
+                 "type": "array",
+                 "value": [
+                   {
+                     "type": "integer",
+                     "value": "1"
+                   },
+                   {
+                     "type": "integer",
+                     "value": "2"
+                   }
+                 ]
+               }
+             ]
+           },
+           "hosts": {
+             "type": "array",
+             "value": [
+               {
+                 "type": "string",
+                 "value": "alpha"
+               },
+               {
+                 "type": "string",
+                 "value": "omega"
+               }
+             ]
+           }
+         },
+         "database": {
+           "connection_max": {
+             "type": "integer",
+             "value": "5000"
+           },
+           "enabled": {
+             "type": "bool",
+             "value": "true"
+           },
+           "ports": {
+             "type": "array",
+             "value": [
+               {
+                 "type": "integer",
+                 "value": "8001"
+               },
+               {
+                 "type": "integer",
+                 "value": "8001"
+               },
+               {
+                 "type": "integer",
+                 "value": "8002"
+               }
+             ]
+           },
+           "server": {
+             "type": "string",
+             "value": "192.168.1.1"
+           }
+         },
+         "owner": {
+           "dob": {
+             "type": "datetime",
+             "value": "1979-05-27T07:32:00-08:00"
+           },
+           "name": {
+             "type": "string",
+             "value": "Lance Uppercut"
+           }
+         },
+         "servers": {
+           "alpha": {
+             "dc": {
+               "type": "string",
+               "value": "eqdc10"
+             },
+             "ip": {
+               "type": "string",
+               "value": "10.0.0.1"
+             }
+           },
+           "beta": {
+             "dc": {
+               "type": "string",
+               "value": "eqdc10"
+             },
+             "ip": {
+               "type": "string",
+               "value": "10.0.0.2"
+             }
+           }
+         },
+         "title": {
+           "type": "string",
+           "value": "TOML Example"
+         }
+       }
+
+[1m     want:[0m
+       {
+         "clients": {
+           "data": [
+             [
+               {
+                 "type": "string",
+                 "value": "gamma"
+               },
+               {
+                 "type": "string",
+                 "value": "delta"
+               }
+             ],
+             [
+               {
+                 "type": "integer",
+                 "value": "1"
+               },
+               {
+                 "type": "integer",
+                 "value": "2"
+               }
+             ]
+           ],
+           "hosts": [
+             {
+               "type": "string",
+               "value": "alpha"
+             },
+             {
+               "type": "string",
+               "value": "omega"
+             }
+           ]
+         },
+         "database": {
+           "connection_max": {
+             "type": "integer",
+             "value": "5000"
+           },
+           "enabled": {
+             "type": "bool",
+             "value": "true"
+           },
+           "ports": [
+             {
+               "type": "integer",
+               "value": "8001"
+             },
+             {
+               "type": "integer",
+               "value": "8001"
+             },
+             {
+               "type": "integer",
+               "value": "8002"
+             }
+           ],
+           "server": {
+             "type": "string",
+             "value": "192.168.1.1"
+           }
+         },
+         "owner": {
+           "dob": {
+             "type": "datetime",
+             "value": "1979-05-27T07:32:00-08:00"
+           },
+           "name": {
+             "type": "string",
+             "value": "Lance Uppercut"
+           }
+         },
+         "servers": {
+           "alpha": {
+             "dc": {
+               "type": "string",
+               "value": "eqdc10"
+             },
+             "ip": {
+               "type": "string",
+               "value": "10.0.0.1"
+             }
+           },
+           "beta": {
+             "dc": {
+               "type": "string",
+               "value": "eqdc10"
+             },
+             "ip": {
+               "type": "string",
+               "value": "10.0.0.2"
+             }
+           }
+         },
+         "title": {
+           "type": "string",
+           "value": "TOML Example"
+         }
+       }
+
+[1mFAIL[0m [1mvalid/spec-example-1[0m
+[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+
+[1m     input sent to parser-cmd:[0m
+       # This is a TOML document. Boom.
+       
+       title = "TOML Example"
+       
+       [owner]
+       name = "Lance Uppercut"
+       dob = 1979-05-27T07:32:00-08:00 # First class dates? Why not?
+       
+       [database]
+       server = "192.168.1.1"
+       ports = [ 8001, 8001, 8002 ]
+       connection_max = 5000
+       enabled = true
+       
+       [servers]
+       
+         # You can indent as you please. Tabs or spaces. TOML don't care.
+         [servers.alpha]
+         ip = "10.0.0.1"
+         dc = "eqdc10"
+       
+         [servers.beta]
+         ip = "10.0.0.2"
+         dc = "eqdc10"
+       
+       [clients]
+       data = [ ["gamma", "delta"], [1, 2] ]
+       
+       # Line breaks are OK when inside arrays
+       hosts = [
+         "alpha",
+         "omega"
+       ]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "clients": {
+           "data": {
+             "type": "array",
+             "value": [
+               {
+                 "type": "array",
+                 "value": [
+                   {
+                     "type": "string",
+                     "value": "gamma"
+                   },
+                   {
+                     "type": "string",
+                     "value": "delta"
+                   }
+                 ]
+               },
+               {
+                 "type": "array",
+                 "value": [
+                   {
+                     "type": "integer",
+                     "value": "1"
+                   },
+                   {
+                     "type": "integer",
+                     "value": "2"
+                   }
+                 ]
+               }
+             ]
+           },
+           "hosts": {
+             "type": "array",
+             "value": [
+               {
+                 "type": "string",
+                 "value": "alpha"
+               },
+               {
+                 "type": "string",
+                 "value": "omega"
+               }
+             ]
+           }
+         },
+         "database": {
+           "connection_max": {
+             "type": "integer",
+             "value": "5000"
+           },
+           "enabled": {
+             "type": "bool",
+             "value": "true"
+           },
+           "ports": {
+             "type": "array",
+             "value": [
+               {
+                 "type": "integer",
+                 "value": "8001"
+               },
+               {
+                 "type": "integer",
+                 "value": "8001"
+               },
+               {
+                 "type": "integer",
+                 "value": "8002"
+               }
+             ]
+           },
+           "server": {
+             "type": "string",
+             "value": "192.168.1.1"
+           }
+         },
+         "owner": {
+           "dob": {
+             "type": "datetime",
+             "value": "1979-05-27T07:32:00-08:00"
+           },
+           "name": {
+             "type": "string",
+             "value": "Lance Uppercut"
+           }
+         },
+         "servers": {
+           "alpha": {
+             "dc": {
+               "type": "string",
+               "value": "eqdc10"
+             },
+             "ip": {
+               "type": "string",
+               "value": "10.0.0.1"
+             }
+           },
+           "beta": {
+             "dc": {
+               "type": "string",
+               "value": "eqdc10"
+             },
+             "ip": {
+               "type": "string",
+               "value": "10.0.0.2"
+             }
+           }
+         },
+         "title": {
+           "type": "string",
+           "value": "TOML Example"
+         }
+       }
+
+[1m     want:[0m
+       {
+         "clients": {
+           "data": [
+             [
+               {
+                 "type": "string",
+                 "value": "gamma"
+               },
+               {
+                 "type": "string",
+                 "value": "delta"
+               }
+             ],
+             [
+               {
+                 "type": "integer",
+                 "value": "1"
+               },
+               {
+                 "type": "integer",
+                 "value": "2"
+               }
+             ]
+           ],
+           "hosts": [
+             {
+               "type": "string",
+               "value": "alpha"
+             },
+             {
+               "type": "string",
+               "value": "omega"
+             }
+           ]
+         },
+         "database": {
+           "connection_max": {
+             "type": "integer",
+             "value": "5000"
+           },
+           "enabled": {
+             "type": "bool",
+             "value": "true"
+           },
+           "ports": [
+             {
+               "type": "integer",
+               "value": "8001"
+             },
+             {
+               "type": "integer",
+               "value": "8001"
+             },
+             {
+               "type": "integer",
+               "value": "8002"
+             }
+           ],
+           "server": {
+             "type": "string",
+             "value": "192.168.1.1"
+           }
+         },
+         "owner": {
+           "dob": {
+             "type": "datetime",
+             "value": "1979-05-27T07:32:00-08:00"
+           },
+           "name": {
+             "type": "string",
+             "value": "Lance Uppercut"
+           }
+         },
+         "servers": {
+           "alpha": {
+             "dc": {
+               "type": "string",
+               "value": "eqdc10"
+             },
+             "ip": {
+               "type": "string",
+               "value": "10.0.0.1"
+             }
+           },
+           "beta": {
+             "dc": {
+               "type": "string",
+               "value": "eqdc10"
+             },
+             "ip": {
+               "type": "string",
+               "value": "10.0.0.2"
+             }
+           }
+         },
+         "title": {
+           "type": "string",
+           "value": "TOML Example"
+         }
+       }
+
+[1mFAIL[0m [1mvalid/string/escape-tricky[0m
+[1m [0m    ERROR: line 4: expect hex char
+[1m [0m    
+[1m [0m    Exit 1
+
+[1m     input sent to parser-cmd:[0m
+       end_esc = "String does not end here\" but ends here\\"
+       lit_end_esc = 'String ends here\'
+       
+       multiline_unicode = """
+       \u00a0"""
+       
+       multiline_not_unicode = """
+       \\u0041"""
+       
+       multiline_end_esc = """When will it end? \"""...""\" should be here\""""
+       
+       lit_multiline_not_unicode = '''
+       \u007f'''
+       
+       lit_multiline_end = '''There is no escape\'''
+
+[1m     output from parser-cmd (stderr):[0m
+       ERROR: line 4: expect hex char
+       
+       Exit 1
+
+[1m     want:[0m
+          <empty>
+
+[1mFAIL[0m [1mvalid/string/escapes[0m
+[1m [0m    decode JSON output from parser:
+[1m [0m      invalid character '\x1f' in string literal
+
+[1m     input sent to parser-cmd:[0m
+       backspace = "This string has a \b backspace character."
+       tab = "This string has a \t tab character."
+       newline = "This string has a \n new line character."
+       formfeed = "This string has a \f form feed character."
+       carriage = "This string has a \r carriage return character."
+       quote = "This string has a \" quote character."
+       backslash = "This string has a \\ backslash character."
+       notunicode1 = "This string does not have a unicode \\u escape."
+       notunicode2 = "This string does not have a unicode \u005Cu escape."
+       notunicode3 = "This string does not have a unicode \\u0075 escape."
+       notunicode4 = "This string does not have a unicode \\\u0075 escape."
+       delete = "This string has a \u007F delete control code."
+       unitseparator = "This string has a \u001F unit separator control code."
+
+[1m     output from parser-cmd (stdout):[0m
+       {"backspace":{"type":"string","value":"This string has a \b backspace character."},"tab":{"type":"string","value":"This string has a \t tab character."},"newline":{"type":"string","value":"This string has a \n new line character."},"formfeed":{"type":"string","value":"This string has a \f form feed character."},"carriage":{"type":"string","value":"This string has a \r carriage return character."},"quote":{"type":"string","value":"This string has a \" quote character."},"backslash":{"type":"string","value":"This string has a \\ backslash character."},"notunicode1":{"type":"string","value":"This string does not have a unicode \\u escape."},"notunicode2":{"type":"string","value":"This string does not have a unicode \\u escape."},"notunicode3":{"type":"string","value":"This string does not have a unicode \\u0075 escape."},"notunicode4":{"type":"string","value":"This string does not have a unicode \\u escape."},"delete":{"type":"string","value":"This string has a  delete control code."},"unitseparator":{"type":"string","value":"This string has a  unit separator control code."}}
+
+[1m     want:[0m
+       {
+         "backslash": {
+           "type": "string",
+           "value": "This string has a \\ backslash character."
+         },
+         "backspace": {
+           "type": "string",
+           "value": "This string has a \u0008 backspace character."
+         },
+         "carriage": {
+           "type": "string",
+           "value": "This string has a \r carriage return character."
+         },
+         "delete": {
+           "type": "string",
+           "value": "This string has a  delete control code."
+         },
+         "formfeed": {
+           "type": "string",
+           "value": "This string has a \u000c form feed character."
+         },
+         "newline": {
+           "type": "string",
+           "value": "This string has a \n new line character."
+         },
+         "notunicode1": {
+           "type": "string",
+           "value": "This string does not have a unicode \\u escape."
+         },
+         "notunicode2": {
+           "type": "string",
+           "value": "This string does not have a unicode \\u escape."
+         },
+         "notunicode3": {
+           "type": "string",
+           "value": "This string does not have a unicode \\u0075 escape."
+         },
+         "notunicode4": {
+           "type": "string",
+           "value": "This string does not have a unicode \\u escape."
+         },
+         "quote": {
+           "type": "string",
+           "value": "This string has a \" quote character."
+         },
+         "tab": {
+           "type": "string",
+           "value": "This string has a \t tab character."
+         },
+         "unitseparator": {
+           "type": "string",
+           "value": "This string has a \u001f unit separator control code."
+         }
+       }
+
+[1mFAIL[0m [1mvalid/string/quoted-unicode[0m
+[1m [0m    ERROR: line 2: expect hex char
+[1m [0m    
+[1m [0m    Exit 1
+
+[1m     input sent to parser-cmd:[0m
+       
+       escaped_string = "\u0000 \u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff"
+       not_escaped_string = '\u0000 \u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff'
+       
+       basic_string = "~  ÿ ퟿  ￿ 𐀀 􏿿"
+       literal_string = '~  ÿ ퟿  ￿ 𐀀 􏿿'
+
+[1m     output from parser-cmd (stderr):[0m
+       ERROR: line 2: expect hex char
+       
+       Exit 1
+
+[1m     want:[0m
+          <empty>
+
+[1mFAIL[0m [1minvalid/array/extending-table[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       a = [{ b = 1 }]
+       
+       # Cannot extend tables within static arrays
+       # https://github.com/toml-lang/toml/issues/908
+       [a.c]
+       foo = 1
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "a": [
+           {
+             "b": {
+               "type": "integer",
+               "value": "1"
+             },
+             "c": {
+               "foo": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           }
+         ]
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/control/bare-cr[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # The following line contains a single carriage return control character
+       
+
+[1m     output from parser-cmd (stdout):[0m
+       {}
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/control/bare-null[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       bare-null = "some value"  
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "bare-null": {
+           "type": "string",
+           "value": "some value"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/control/comment-cr[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       comment-cr = "Carriage return in comment" # a=1
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "comment-cr": {
+           "type": "string",
+           "value": "Carriage return in comment"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/control/comment-del[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       comment-del = "0x7f" # 
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "comment-del": {
+           "type": "string",
+           "value": "0x7f"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/control/comment-lf[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       comment-lf = "ctrl-P" # 
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "comment-lf": {
+           "type": "string",
+           "value": "ctrl-P"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/control/comment-null[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       comment-null = "null" #  
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "comment-null": {
+           "type": "string",
+           "value": "null"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/control/comment-us[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       comment-us = "ctrl-_" # 
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "comment-us": {
+           "type": "string",
+           "value": "ctrl-_"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/datetime/hour-over[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # time-hour       = 2DIGIT  ; 00-23
+       d = 2006-01-01T24:00:00-00:00
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "d": {
+           "type": "datetime",
+           "value": "2006-01-01T24:00:00-00:00"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/datetime/mday-over[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # date-mday       = 2DIGIT  ; 01-28, 01-29, 01-30, 01-31 based on
+       #                           ; month/year
+       d = 2006-01-32T00:00:00-00:00
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "d": {
+           "type": "datetime",
+           "value": "2006-01-32T00:00:00-00:00"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/datetime/mday-under[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # date-mday       = 2DIGIT  ; 01-28, 01-29, 01-30, 01-31 based on
+       #                           ; month/year
+       d = 2006-01-00T00:00:00-00:00
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "d": {
+           "type": "datetime",
+           "value": "2006-01-00T00:00:00-00:00"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/datetime/minute-over[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # time-minute     = 2DIGIT  ; 00-59
+       d = 2006-01-01T00:60:00-00:00
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "d": {
+           "type": "datetime",
+           "value": "2006-01-01T00:60:00-00:00"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/datetime/month-over[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # date-month      = 2DIGIT  ; 01-12
+       d = 2006-13-01T00:00:00-00:00
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "d": {
+           "type": "datetime",
+           "value": "2006-13-01T00:00:00-00:00"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/datetime/month-under[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # date-month      = 2DIGIT  ; 01-12
+       d = 2007-00-01T00:00:00-00:00
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "d": {
+           "type": "datetime",
+           "value": "2007-00-01T00:00:00-00:00"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/datetime/second-over[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # time-second     = 2DIGIT  ; 00-58, 00-59, 00-60 based on leap second
+       #                           ; rules
+       d = 2006-01-01T00:00:61-00:00
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "d": {
+           "type": "datetime",
+           "value": "2006-01-01T00:00:61-00:00"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/encoding/bad-codepoint[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # Invalid codepoint U+D800 : ���
+
+[1m     output from parser-cmd (stdout):[0m
+       {}
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/encoding/bad-utf8-in-comment[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # �
+
+[1m     output from parser-cmd (stdout):[0m
+       {}
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/encoding/bad-utf8-in-multiline-literal[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # The following line contains an invalid UTF-8 sequence.
+       bad = '''�'''
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "bad": {
+           "type": "string",
+           "value": "�"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/encoding/bad-utf8-in-multiline[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # The following line contains an invalid UTF-8 sequence.
+       bad = """�"""
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "bad": {
+           "type": "string",
+           "value": "�"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/encoding/bad-utf8-in-string-literal[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # The following line contains an invalid UTF-8 sequence.
+       bad = '�'
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "bad": {
+           "type": "string",
+           "value": "�"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/encoding/bad-utf8-in-string[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # The following line contains an invalid UTF-8 sequence.
+       bad = "�"
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "bad": {
+           "type": "string",
+           "value": "�"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/encoding/utf16[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+        #   U T F - 1 6   w i t h o u t   B O M 
+
+[1m     output from parser-cmd (stdout):[0m
+       {}
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/float/exp-leading-us[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       exp-leading-us = 1e_23
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "exp-leading-us": {
+           "type": "float",
+           "value": "1e23"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/float/inf-capital[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       v = Inf
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "v": {
+           "type": "float",
+           "value": "Inf"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/float/inf_underscore[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       inf_underscore = in_f
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "inf_underscore": {
+           "type": "float",
+           "value": "inf"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/float/nan-capital[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       v = NaN
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "v": {
+           "type": "float",
+           "value": "NaN"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/float/nan_underscore[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       nan_underscore = na_n
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "nan_underscore": {
+           "type": "float",
+           "value": "nan"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/float/trailing-us-exp-1[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       trailing-us-exp-1 = 1_e2
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "trailing-us-exp-1": {
+           "type": "float",
+           "value": "1e2"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/float/trailing-us-exp-2[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       trailing-us-exp-2 = 1.2_e2
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "trailing-us-exp-2": {
+           "type": "float",
+           "value": "1.2e2"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/inline-table/add[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       a={}
+       # Inline tables are immutable and can't be extended
+       [a.b]
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "a": {
+           "b": {}
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/inline-table/trailing-comma[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # A terminating comma (also called trailing comma) is not permitted after the
+       # last key/value pair in an inline table
+       abc = { abc = 123, }
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "abc": {
+           "abc": {
+             "type": "integer",
+             "value": "123"
+           }
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/integer/incomplete-bin[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       incomplete-bin = 0b
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "incomplete-bin": {
+           "type": "integer",
+           "value": "0"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/integer/incomplete-hex[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       incomplete-hex = 0x
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "incomplete-hex": {
+           "type": "integer",
+           "value": "0"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/integer/incomplete-oct[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       incomplete-oct = 0o
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "incomplete-oct": {
+           "type": "integer",
+           "value": "0"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/integer/negative-bin[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       negative-bin = -0b11010110
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "negative-bin": {
+           "type": "integer",
+           "value": "-214"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/integer/negative-hex[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       negative-hex = -0xff
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "negative-hex": {
+           "type": "integer",
+           "value": "-255"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/integer/positive-bin[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       positive-bin = +0b11010110
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "positive-bin": {
+           "type": "integer",
+           "value": "214"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/integer/positive-hex[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       positive-hex = +0xff
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "positive-hex": {
+           "type": "integer",
+           "value": "255"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/integer/us-after-bin[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       us-after-bin = 0b_1
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "us-after-bin": {
+           "type": "integer",
+           "value": "1"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/integer/us-after-hex[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       us-after-hex = 0x_1
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "us-after-hex": {
+           "type": "integer",
+           "value": "1"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/integer/us-after-oct[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       us-after-oct = 0o_1
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "us-after-oct": {
+           "type": "integer",
+           "value": "1"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/string/basic-multiline-out-of-range-unicode-escape-2[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       a = """\U00D80000"""
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "a": {
+           "type": "string",
+           "value": "�����"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/string/basic-out-of-range-unicode-escape-2[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       a = "\U00D80000"
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "a": {
+           "type": "string",
+           "value": "�����"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/string/literal-multiline-quotes-1[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       a = '''6 apostrophes: ''''''
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "a": {
+           "type": "string",
+           "value": "6 apostrophes: '''"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/string/literal-multiline-quotes-2[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       a = '''15 apostrophes: ''''''''''''''''''
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "a": {
+           "type": "string",
+           "value": "15 apostrophes: '''''''''''''''"
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/string/multiline-quotes-1[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       a = """6 quotes: """"""
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "a": {
+           "type": "string",
+           "value": "6 quotes: \"\"\""
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/table/append-with-dotted-keys-1[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # First a.b.c defines a table: a.b.c = {z=9}
+       #
+       # Then we define a.b.c.t = "str" to add a str to the above table, making it:
+       #
+       #   a.b.c = {z=9, t="..."}
+       #
+       # While this makes sense, logically, it was decided this is not valid TOML as
+       # it's too confusing/convoluted.
+       # 
+       # See: https://github.com/toml-lang/toml/issues/846
+       #      https://github.com/toml-lang/toml/pull/859
+       
+       [a.b.c]
+         z = 9
+       
+       [a]
+         b.c.t = "Using dotted keys to add to [a.b.c] after explicitly defining it above is not allowed"
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "a": {
+           "b": {
+             "c": {
+               "t": {
+                 "type": "string",
+                 "value": "Using dotted keys to add to [a.b.c] after explicitly defining it above is not allowed"
+               },
+               "z": {
+                 "type": "integer",
+                 "value": "9"
+               }
+             }
+           }
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+[1mFAIL[0m [1minvalid/table/append-with-dotted-keys-2[0m
+[1m [0m    Expected an error, but no error was reported.
+
+[1m     input sent to parser-cmd:[0m
+       # This is the same issue as in injection-1.toml, except that nests one level
+       # deeper. See that file for a more complete description.
+       
+       [a.b.c.d]
+         z = 9
+       
+       [a]
+         b.c.d.k.t = "Using dotted keys to add to [a.b.c.d] after explicitly defining it above is not allowed"
+
+[1m     output from parser-cmd (stdout):[0m
+       {
+         "a": {
+           "b": {
+             "c": {
+               "d": {
+                 "k": {
+                   "t": {
+                     "type": "string",
+                     "value": "Using dotted keys to add to [a.b.c.d] after explicitly defining it above is not allowed"
+                   }
+                 },
+                 "z": {
+                   "type": "integer",
+                   "value": "9"
+                 }
+               }
+             }
+           }
+         }
+       }
+
+[1m     want:[0m
+       Exit code 1
+
+toml-test [./src/c-tomlc99/toml_json]: using embedded tests: 328 passed, 87 failed
+took 0.24s

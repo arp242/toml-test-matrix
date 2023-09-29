@@ -1,0 +1,3 @@
+941341f
+toml-test [./src/c++-toml++/build_tt/toml-test/tt_decoder]: using embedded tests: 415 passed,  0 failed
+took 0.59s
