@@ -1,8 +1,9 @@
+<pre>
 6fe7fee
-[1mFAIL[0m [1mvalid/array/array[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/array</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        ints = [1, 2, 3, ]
        floats = [1.1, 2.1, 3.1]
        strings = ["a", "b", "c"]
@@ -16,7 +17,7 @@
                 2, #this is ok
        ]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "comments": {
            "type": "array",
@@ -101,7 +102,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "comments": [
            {
@@ -171,13 +172,13 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/bool[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/bool</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        a = [true, false]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "a": {
            "type": "array",
@@ -194,7 +195,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "a": [
            {
@@ -208,13 +209,13 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/empty[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/empty</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        thevoid = [[[[[]]]]]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "thevoid": {
            "type": "array",
@@ -242,7 +243,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "thevoid": [
            [
@@ -255,13 +256,13 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/hetergeneous[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/hetergeneous</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        mixed = [[1, 2], ["a", "b"], [1.1, 2.1]]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "mixed": {
            "type": "array",
@@ -309,7 +310,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "mixed": [
            [
@@ -345,13 +346,13 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/mixed-int-array[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/mixed-int-array</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        arrays-and-ints =  [1, ["Arrays are not integers."]]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "arrays-and-ints": {
            "type": "array",
@@ -359,7 +360,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "arrays-and-ints": [
            {
@@ -375,13 +376,13 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/mixed-int-float[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/mixed-int-float</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        ints-and-floats = [1, 1.1]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "ints-and-floats": {
            "type": "array",
@@ -398,7 +399,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "ints-and-floats": [
            {
@@ -412,13 +413,13 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/mixed-int-string[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/mixed-int-string</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        strings-and-ints = ["hi", 42]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "strings-and-ints": {
            "type": "array",
@@ -435,7 +436,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "strings-and-ints": [
            {
@@ -449,10 +450,10 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/mixed-string-table[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/mixed-string-table</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        contributors = [
          "Foo Bar <foo@example.com>",
          { name = "Baz Qux", email = "bazqux@example.com", url = "https://example.com/bazqux" }
@@ -465,7 +466,7 @@
        # longer.
        mixed = [{k="a"}, "b", 1]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "contributors": {
            "type": "array",
@@ -477,7 +478,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "contributors": [
            {
@@ -517,10 +518,10 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/nested-double[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/nested-double</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        nest = [
        	[
        		["a"],
@@ -528,7 +529,7 @@
        	]
        ]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "nest": {
            "type": "array",
@@ -555,7 +556,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "nest": [
            [
@@ -585,13 +586,13 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/nested[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/nested</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        nest = [["a"], ["b"]]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "nest": {
            "type": "array",
@@ -618,7 +619,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "nest": [
            [
@@ -636,13 +637,13 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/nospaces[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/nospaces</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        ints = [1,2,3]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "ints": {
            "type": "array",
@@ -663,7 +664,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "ints": [
            {
@@ -681,13 +682,13 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/string-quote-comma-2[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/string-quote-comma-2</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        title = [ " \", ",]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "title": {
            "type": "array",
@@ -700,7 +701,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "title": [
            {
@@ -710,16 +711,16 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/string-quote-comma[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/string-quote-comma</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        title = [
        "Client: \"XXXX\", Job: XXXX",
        "Code: XXXX"
        ]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "title": {
            "type": "array",
@@ -736,7 +737,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "title": [
            {
@@ -750,17 +751,17 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/string-with-comma-2[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/string-with-comma-2</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        title = [
        """Client: XXXX,
        Job: XXXX""",
        "Code: XXXX"
        ]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "title": {
            "type": "array",
@@ -777,7 +778,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "title": [
            {
@@ -791,16 +792,16 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/string-with-comma[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/string-with-comma</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        title = [
        "Client: XXXX, Job: XXXX",
        "Code: XXXX"
        ]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "title": {
            "type": "array",
@@ -817,7 +818,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "title": [
            {
@@ -831,13 +832,13 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/array/strings[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/array/strings</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        string_array = [ "all", 'strings', """are the same""", '''type''']
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "string_array": {
            "type": "array",
@@ -862,7 +863,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "string_array": [
            {
@@ -884,12 +885,10 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/comment/everywhere[0m
-[1m [0m    Key "group.d" is not "date-local" but "date":
-[1m [0m      Expected:     map[string]any{"type":"date-local", "value":"1979-05-27"}
-[1m [0m      Your encoder: map[string]any{"type":"date", "value":"1979-05-27"}
+<b>FAIL</b> <b>valid/comment/everywhere</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # Top comment.
          # Top comment.
        # Top comment.
@@ -919,7 +918,7 @@
        dt = 1979-05-27T07:32:12-07:00  # c
        d = 1979-05-27 # Comment
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "group": {
            "answer": {
@@ -950,7 +949,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "group": {
            "answer": {
@@ -978,10 +977,10 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/comment/tricky[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/comment/tricky</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        [section]#attached comment
        #[notsection]
        one = "11"#cmt
@@ -1012,7 +1011,7 @@
        ]
        tbl1 = { "#" = '}#'}#}}
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "hash#tag": {
            "#!": {
@@ -1133,7 +1132,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "hash#tag": {
            "#!": {
@@ -1233,15 +1232,15 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/datetime/local-date[0m
-[1m [0m    Key "bestdayever" is not "date-local" but "date":
-[1m [0m      Expected:     map[string]any{"type":"date-local", "value":"1987-07-05"}
-[1m [0m      Your encoder: map[string]any{"type":"date", "value":"1987-07-05"}
+<b>FAIL</b> <b>valid/datetime/local-date</b>
+<b> </b>    Key "bestdayever" is not "date-local" but "date":
+<b> </b>      Expected:     map[string]any{"type":"date-local", "value":"1987-07-05"}
+<b> </b>      Your encoder: map[string]any{"type":"date", "value":"1987-07-05"}
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        bestdayever = 1987-07-05
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "bestdayever": {
            "type": "date",
@@ -1249,7 +1248,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "bestdayever": {
            "type": "date-local",
@@ -1257,16 +1256,16 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/datetime/local-time[0m
-[1m [0m    Key "besttimeever" is not "time-local" but "time":
-[1m [0m      Expected:     map[string]any{"type":"time-local", "value":"17:45:00"}
-[1m [0m      Your encoder: map[string]any{"type":"time", "value":"17:45:00"}
+<b>FAIL</b> <b>valid/datetime/local-time</b>
+<b> </b>    Key "besttimeever" is not "time-local" but "time":
+<b> </b>      Expected:     map[string]any{"type":"time-local", "value":"17:45:00"}
+<b> </b>      Your encoder: map[string]any{"type":"time", "value":"17:45:00"}
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        besttimeever = 17:45:00
        milliseconds = 10:32:00.555
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "besttimeever": {
            "type": "time",
@@ -1278,7 +1277,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "besttimeever": {
            "type": "time-local",
@@ -1290,17 +1289,17 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/datetime/local[0m
-[1m [0m    Key "local" is not "datetime-local" but "datetime":
-[1m [0m      Expected:     map[string]any{"type":"datetime-local", "value":"1987-07-05T17:45:00"}
-[1m [0m      Your encoder: map[string]any{"type":"datetime", "value":"1987-07-05T17:45:00"}
+<b>FAIL</b> <b>valid/datetime/local</b>
+<b> </b>    Key "local" is not "datetime-local" but "datetime":
+<b> </b>      Expected:     map[string]any{"type":"datetime-local", "value":"1987-07-05T17:45:00"}
+<b> </b>      Your encoder: map[string]any{"type":"datetime", "value":"1987-07-05T17:45:00"}
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        local = 1987-07-05T17:45:00
        milli = 1977-12-21T10:32:00.555
        space = 1987-07-05 17:45:00
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "local": {
            "type": "datetime",
@@ -1316,7 +1315,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "local": {
            "type": "datetime-local",
@@ -1332,17 +1331,17 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/example[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/example</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        best-day-ever = 1987-07-05T17:45:00Z
        
        [numtheory]
        boring = false
        perfection = [6, 28, 496]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "best-day-ever": {
            "type": "datetime",
@@ -1373,7 +1372,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "best-day-ever": {
            "type": "datetime",
@@ -1401,12 +1400,12 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/float/inf-and-nan[0m
-[1m [0m    Values for key 'nan_neg' don't match:
-[1m [0m      Expected:     nan
-[1m [0m      Your encoder: -nan
+<b>FAIL</b> <b>valid/float/inf-and-nan</b>
+<b> </b>    Values for key 'nan_neg' don't match:
+<b> </b>      Expected:     nan
+<b> </b>      Your encoder: -nan
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # We don't encode +nan and -nan back with the signs; many languages don't
        # support a sign on NaN (it doesn't really make much sense).
        nan = nan
@@ -1416,7 +1415,7 @@
        infinity_neg = -inf
        infinity_plus = +inf
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "infinity": {
            "type": "float",
@@ -1444,7 +1443,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "infinity": {
            "type": "float",
@@ -1472,10 +1471,10 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/inline-table/nest[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/inline-table/nest</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        tbl_tbl_empty = { tbl_0 = {} }
        tbl_tbl_val   = { tbl_1 = { one = 1 } }
        tbl_arr_tbl   = { arr_tbl = [ { one = 1 } ] }
@@ -1487,7 +1486,7 @@
        arr_arr_tbl_val = [ [ { one = 1 } ] ]
        arr_arr_tbls  = [ [ { one = 1 }, { two = 2 } ] ]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "arr_arr_tbl_empty": {
            "type": "array",
@@ -1562,7 +1561,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "arr_arr_tbl_empty": [
            [
@@ -1628,12 +1627,12 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/key/escapes[0m
-[1m [0m    ERROR: line 1: bad key
-[1m [0m    
-[1m [0m    Exit 1
+<b>FAIL</b> <b>valid/key/escapes</b>
+<b> </b>    ERROR: line 1: bad key
+<b> </b>    
+<b> </b>    Exit 1
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        "\n" = "newline"
        "\u00c0" = "latin capital letter A with grave"
        "\"" = "just a quote"
@@ -1645,20 +1644,20 @@
        
        ["a.b"."\u00c0"]
 
-[1m     output from parser-cmd (stderr):[0m
+<b>     output from parser-cmd (stderr):</b>
        ERROR: line 1: bad key
        
        Exit 1
 
-[1m     want:[0m
+<b>     want:</b>
           <empty>
 
-[1mFAIL[0m [1mvalid/key/quoted-unicode[0m
-[1m [0m    ERROR: line 4: expect hex char
-[1m [0m    
-[1m [0m    Exit 1
+<b>FAIL</b> <b>valid/key/quoted-unicode</b>
+<b> </b>    ERROR: line 4: expect hex char
+<b> </b>    
+<b> </b>    Exit 1
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        
        "\u0000" = "null"
        '\u0000' = "different key"
@@ -1667,18 +1666,18 @@
        "~  ÿ ퟿  ￿ 𐀀 􏿿" = "basic key"
        'l ~  ÿ ퟿  ￿ 𐀀 􏿿' = "literal key"
 
-[1m     output from parser-cmd (stderr):[0m
+<b>     output from parser-cmd (stderr):</b>
        ERROR: line 4: expect hex char
        
        Exit 1
 
-[1m     want:[0m
+<b>     want:</b>
           <empty>
 
-[1mFAIL[0m [1mvalid/spec/array-0[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/spec/array-0</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        integers = [ 1, 2, 3 ]
        colors = [ "red", "yellow", "green" ]
        nested_arrays_of_ints = [ [ 1, 2 ], [3, 4, 5] ]
@@ -1692,7 +1691,7 @@
          { name = "Baz Qux", email = "bazqux@example.com", url = "https://example.com/bazqux" }
        ]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "colors": {
            "type": "array",
@@ -1854,7 +1853,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "colors": [
            {
@@ -2002,10 +2001,10 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/spec/array-1[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/spec/array-1</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        integers2 = [
          1, 2, 3
        ]
@@ -2015,7 +2014,7 @@
          2, # this is ok
        ]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "integers2": {
            "type": "array",
@@ -2049,7 +2048,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "integers2": [
            {
@@ -2077,12 +2076,12 @@
          ]
        }
 
-[1mFAIL[0m [1mvalid/spec/float-2[0m
-[1m [0m    Values for key 'sf5' don't match:
-[1m [0m      Expected:     nan
-[1m [0m      Your encoder: +nan
+<b>FAIL</b> <b>valid/spec/float-2</b>
+<b> </b>    Values for key 'sf5' don't match:
+<b> </b>      Expected:     nan
+<b> </b>      Your encoder: +nan
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # infinity
        sf1 = inf  # positive infinity
        sf2 = +inf # positive infinity
@@ -2093,7 +2092,7 @@
        sf5 = +nan # same as `nan`
        sf6 = -nan # valid, actual encoding is implementation-specific
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "sf1": {
            "type": "float",
@@ -2121,7 +2120,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "sf1": {
            "type": "float",
@@ -2149,15 +2148,15 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/spec/local-date-0[0m
-[1m [0m    Key "ld1" is not "date-local" but "date":
-[1m [0m      Expected:     map[string]any{"type":"date-local", "value":"1979-05-27"}
-[1m [0m      Your encoder: map[string]any{"type":"date", "value":"1979-05-27"}
+<b>FAIL</b> <b>valid/spec/local-date-0</b>
+<b> </b>    Key "ld1" is not "date-local" but "date":
+<b> </b>      Expected:     map[string]any{"type":"date-local", "value":"1979-05-27"}
+<b> </b>      Your encoder: map[string]any{"type":"date", "value":"1979-05-27"}
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        ld1 = 1979-05-27
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "ld1": {
            "type": "date",
@@ -2165,7 +2164,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "ld1": {
            "type": "date-local",
@@ -2173,16 +2172,16 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/spec/local-date-time-0[0m
-[1m [0m    Key "ldt1" is not "datetime-local" but "datetime":
-[1m [0m      Expected:     map[string]any{"type":"datetime-local", "value":"1979-05-27T07:32:00"}
-[1m [0m      Your encoder: map[string]any{"type":"datetime", "value":"1979-05-27T07:32:00"}
+<b>FAIL</b> <b>valid/spec/local-date-time-0</b>
+<b> </b>    Key "ldt2" is not "datetime-local" but "datetime":
+<b> </b>      Expected:     map[string]any{"type":"datetime-local", "value":"1979-05-27T00:32:00.999999"}
+<b> </b>      Your encoder: map[string]any{"type":"datetime", "value":"1979-05-27T00:32:00.999"}
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        ldt1 = 1979-05-27T07:32:00
        ldt2 = 1979-05-27T00:32:00.999999
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "ldt1": {
            "type": "datetime",
@@ -2194,7 +2193,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "ldt1": {
            "type": "datetime-local",
@@ -2206,16 +2205,16 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/spec/local-time-0[0m
-[1m [0m    Key "lt1" is not "time-local" but "time":
-[1m [0m      Expected:     map[string]any{"type":"time-local", "value":"07:32:00"}
-[1m [0m      Your encoder: map[string]any{"type":"time", "value":"07:32:00"}
+<b>FAIL</b> <b>valid/spec/local-time-0</b>
+<b> </b>    Key "lt1" is not "time-local" but "time":
+<b> </b>      Expected:     map[string]any{"type":"time-local", "value":"07:32:00"}
+<b> </b>      Your encoder: map[string]any{"type":"time", "value":"07:32:00"}
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        lt1 = 07:32:00
        lt2 = 00:32:00.999999
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "lt1": {
            "type": "time",
@@ -2227,7 +2226,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "lt1": {
            "type": "time-local",
@@ -2239,12 +2238,12 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/spec/string-7[0m
-[1m [0m    ERROR: line 4: triple-s-quote inside string lit
-[1m [0m    
-[1m [0m    Exit 1
+<b>FAIL</b> <b>valid/spec/string-7</b>
+<b> </b>    ERROR: line 4: triple-s-quote inside string lit
+<b> </b>    
+<b> </b>    Exit 1
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        quot15 = '''Here are fifteen quotation marks: """""""""""""""'''
        
        # apos15 = '''Here are fifteen apostrophes: ''''''''''''''''''  # INVALID
@@ -2253,20 +2252,20 @@
        # 'That,' she said, 'is still pointless.'
        str = ''''That,' she said, 'is still pointless.''''
 
-[1m     output from parser-cmd (stderr):[0m
+<b>     output from parser-cmd (stderr):</b>
        ERROR: line 4: triple-s-quote inside string lit
        
        Exit 1
 
-[1m     want:[0m
+<b>     want:</b>
           <empty>
 
-[1mFAIL[0m [1mvalid/spec/table-7[0m
-[1m [0m    Key "owner.member_since" is not "date-local" but "date":
-[1m [0m      Expected:     map[string]any{"type":"date-local", "value":"1999-08-04"}
-[1m [0m      Your encoder: map[string]any{"type":"date", "value":"1999-08-04"}
+<b>FAIL</b> <b>valid/spec/table-7</b>
+<b> </b>    Key "owner.member_since" is not "date-local" but "date":
+<b> </b>      Expected:     map[string]any{"type":"date-local", "value":"1999-08-04"}
+<b> </b>      Your encoder: map[string]any{"type":"date", "value":"1999-08-04"}
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # Top-level table begins.
        name = "Fido"
        breed = "pug"
@@ -2276,7 +2275,7 @@
        name = "Regina Dogman"
        member_since = 1999-08-04
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "breed": {
            "type": "string",
@@ -2298,7 +2297,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "breed": {
            "type": "string",
@@ -2320,10 +2319,10 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/spec-example-1-compact[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/spec-example-1-compact</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        #Useless spaces eliminated.
        title="TOML Example"
        [owner]
@@ -2348,7 +2347,7 @@
        "omega"
        ]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "clients": {
            "data": {
@@ -2465,7 +2464,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "clients": {
            "data": [
@@ -2567,10 +2566,10 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/spec-example-1[0m
-[1m [0m    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
+<b>FAIL</b> <b>valid/spec-example-1</b>
+<b> </b>    Malformed output from your encoder: 'value' is not a JSON array: map[string]any
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # This is a TOML document. Boom.
        
        title = "TOML Example"
@@ -2605,7 +2604,7 @@
          "omega"
        ]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "clients": {
            "data": {
@@ -2722,7 +2721,7 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "clients": {
            "data": [
@@ -2824,12 +2823,12 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/string/escape-tricky[0m
-[1m [0m    ERROR: line 4: expect hex char
-[1m [0m    
-[1m [0m    Exit 1
+<b>FAIL</b> <b>valid/string/escape-tricky</b>
+<b> </b>    ERROR: line 4: expect hex char
+<b> </b>    
+<b> </b>    Exit 1
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        end_esc = "String does not end here\" but ends here\\"
        lit_end_esc = 'String ends here\'
        
@@ -2846,19 +2845,19 @@
        
        lit_multiline_end = '''There is no escape\'''
 
-[1m     output from parser-cmd (stderr):[0m
+<b>     output from parser-cmd (stderr):</b>
        ERROR: line 4: expect hex char
        
        Exit 1
 
-[1m     want:[0m
+<b>     want:</b>
           <empty>
 
-[1mFAIL[0m [1mvalid/string/escapes[0m
-[1m [0m    decode JSON output from parser:
-[1m [0m      invalid character '\x1f' in string literal
+<b>FAIL</b> <b>valid/string/escapes</b>
+<b> </b>    decode JSON output from parser:
+<b> </b>      invalid character '\x1f' in string literal
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        backspace = "This string has a \b backspace character."
        tab = "This string has a \t tab character."
        newline = "This string has a \n new line character."
@@ -2873,10 +2872,10 @@
        delete = "This string has a \u007F delete control code."
        unitseparator = "This string has a \u001F unit separator control code."
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {"backspace":{"type":"string","value":"This string has a \b backspace character."},"tab":{"type":"string","value":"This string has a \t tab character."},"newline":{"type":"string","value":"This string has a \n new line character."},"formfeed":{"type":"string","value":"This string has a \f form feed character."},"carriage":{"type":"string","value":"This string has a \r carriage return character."},"quote":{"type":"string","value":"This string has a \" quote character."},"backslash":{"type":"string","value":"This string has a \\ backslash character."},"notunicode1":{"type":"string","value":"This string does not have a unicode \\u escape."},"notunicode2":{"type":"string","value":"This string does not have a unicode \\u escape."},"notunicode3":{"type":"string","value":"This string does not have a unicode \\u0075 escape."},"notunicode4":{"type":"string","value":"This string does not have a unicode \\u escape."},"delete":{"type":"string","value":"This string has a  delete control code."},"unitseparator":{"type":"string","value":"This string has a  unit separator control code."}}
 
-[1m     want:[0m
+<b>     want:</b>
        {
          "backslash": {
            "type": "string",
@@ -2932,12 +2931,12 @@
          }
        }
 
-[1mFAIL[0m [1mvalid/string/quoted-unicode[0m
-[1m [0m    ERROR: line 2: expect hex char
-[1m [0m    
-[1m [0m    Exit 1
+<b>FAIL</b> <b>valid/string/quoted-unicode</b>
+<b> </b>    ERROR: line 2: expect hex char
+<b> </b>    
+<b> </b>    Exit 1
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        
        escaped_string = "\u0000 \u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff"
        not_escaped_string = '\u0000 \u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff'
@@ -2945,18 +2944,18 @@
        basic_string = "~  ÿ ퟿  ￿ 𐀀 􏿿"
        literal_string = '~  ÿ ퟿  ￿ 𐀀 􏿿'
 
-[1m     output from parser-cmd (stderr):[0m
+<b>     output from parser-cmd (stderr):</b>
        ERROR: line 2: expect hex char
        
        Exit 1
 
-[1m     want:[0m
+<b>     want:</b>
           <empty>
 
-[1mFAIL[0m [1minvalid/array/extending-table[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/array/extending-table</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        a = [{ b = 1 }]
        
        # Cannot extend tables within static arrays
@@ -2964,7 +2963,7 @@
        [a.c]
        foo = 1
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "a": [
            {
@@ -2982,29 +2981,29 @@
          ]
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/control/bare-cr[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/control/bare-cr</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # The following line contains a single carriage return control character
        
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {}
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/control/bare-null[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/control/bare-null</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        bare-null = "some value"  
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "bare-null": {
            "type": "string",
@@ -3012,16 +3011,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/control/comment-cr[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/control/comment-cr</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        comment-cr = "Carriage return in comment" # a=1
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "comment-cr": {
            "type": "string",
@@ -3029,16 +3028,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/control/comment-del[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/control/comment-del</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        comment-del = "0x7f" # 
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "comment-del": {
            "type": "string",
@@ -3046,16 +3045,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/control/comment-lf[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/control/comment-lf</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        comment-lf = "ctrl-P" # 
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "comment-lf": {
            "type": "string",
@@ -3063,16 +3062,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/control/comment-null[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/control/comment-null</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        comment-null = "null" #  
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "comment-null": {
            "type": "string",
@@ -3080,16 +3079,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/control/comment-us[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/control/comment-us</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        comment-us = "ctrl-_" # 
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "comment-us": {
            "type": "string",
@@ -3097,17 +3096,17 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/datetime/hour-over[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/datetime/hour-over</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # time-hour       = 2DIGIT  ; 00-23
        d = 2006-01-01T24:00:00-00:00
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "d": {
            "type": "datetime",
@@ -3115,18 +3114,18 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/datetime/mday-over[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/datetime/mday-over</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # date-mday       = 2DIGIT  ; 01-28, 01-29, 01-30, 01-31 based on
        #                           ; month/year
        d = 2006-01-32T00:00:00-00:00
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "d": {
            "type": "datetime",
@@ -3134,18 +3133,18 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/datetime/mday-under[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/datetime/mday-under</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # date-mday       = 2DIGIT  ; 01-28, 01-29, 01-30, 01-31 based on
        #                           ; month/year
        d = 2006-01-00T00:00:00-00:00
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "d": {
            "type": "datetime",
@@ -3153,17 +3152,17 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/datetime/minute-over[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/datetime/minute-over</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # time-minute     = 2DIGIT  ; 00-59
        d = 2006-01-01T00:60:00-00:00
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "d": {
            "type": "datetime",
@@ -3171,17 +3170,17 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/datetime/month-over[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/datetime/month-over</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # date-month      = 2DIGIT  ; 01-12
        d = 2006-13-01T00:00:00-00:00
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "d": {
            "type": "datetime",
@@ -3189,17 +3188,17 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/datetime/month-under[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/datetime/month-under</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # date-month      = 2DIGIT  ; 01-12
        d = 2007-00-01T00:00:00-00:00
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "d": {
            "type": "datetime",
@@ -3207,18 +3206,18 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/datetime/second-over[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/datetime/second-over</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # time-second     = 2DIGIT  ; 00-58, 00-59, 00-60 based on leap second
        #                           ; rules
        d = 2006-01-01T00:00:61-00:00
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "d": {
            "type": "datetime",
@@ -3226,41 +3225,41 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/encoding/bad-codepoint[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/encoding/bad-codepoint</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # Invalid codepoint U+D800 : ���
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {}
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/encoding/bad-utf8-in-comment[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/encoding/bad-utf8-in-comment</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # �
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {}
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/encoding/bad-utf8-in-multiline-literal[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/encoding/bad-utf8-in-multiline-literal</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # The following line contains an invalid UTF-8 sequence.
        bad = '''�'''
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "bad": {
            "type": "string",
@@ -3268,17 +3267,17 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/encoding/bad-utf8-in-multiline[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/encoding/bad-utf8-in-multiline</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # The following line contains an invalid UTF-8 sequence.
        bad = """�"""
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "bad": {
            "type": "string",
@@ -3286,17 +3285,17 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/encoding/bad-utf8-in-string-literal[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/encoding/bad-utf8-in-string-literal</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # The following line contains an invalid UTF-8 sequence.
        bad = '�'
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "bad": {
            "type": "string",
@@ -3304,17 +3303,17 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/encoding/bad-utf8-in-string[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/encoding/bad-utf8-in-string</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # The following line contains an invalid UTF-8 sequence.
        bad = "�"
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "bad": {
            "type": "string",
@@ -3322,28 +3321,28 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/encoding/utf16[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/encoding/utf16</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
         #   U T F - 1 6   w i t h o u t   B O M 
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {}
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/float/exp-leading-us[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/float/exp-leading-us</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        exp-leading-us = 1e_23
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "exp-leading-us": {
            "type": "float",
@@ -3351,16 +3350,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/float/inf-capital[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/float/inf-capital</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        v = Inf
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "v": {
            "type": "float",
@@ -3368,16 +3367,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/float/inf_underscore[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/float/inf_underscore</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        inf_underscore = in_f
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "inf_underscore": {
            "type": "float",
@@ -3385,16 +3384,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/float/nan-capital[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/float/nan-capital</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        v = NaN
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "v": {
            "type": "float",
@@ -3402,16 +3401,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/float/nan_underscore[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/float/nan_underscore</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        nan_underscore = na_n
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "nan_underscore": {
            "type": "float",
@@ -3419,16 +3418,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/float/trailing-us-exp-1[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/float/trailing-us-exp-1</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        trailing-us-exp-1 = 1_e2
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "trailing-us-exp-1": {
            "type": "float",
@@ -3436,16 +3435,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/float/trailing-us-exp-2[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/float/trailing-us-exp-2</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        trailing-us-exp-2 = 1.2_e2
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "trailing-us-exp-2": {
            "type": "float",
@@ -3453,36 +3452,36 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/inline-table/add[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/inline-table/add</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        a={}
        # Inline tables are immutable and can't be extended
        [a.b]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "a": {
            "b": {}
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/inline-table/trailing-comma[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/inline-table/trailing-comma</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # A terminating comma (also called trailing comma) is not permitted after the
        # last key/value pair in an inline table
        abc = { abc = 123, }
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "abc": {
            "abc": {
@@ -3492,16 +3491,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/integer/incomplete-bin[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/integer/incomplete-bin</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        incomplete-bin = 0b
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "incomplete-bin": {
            "type": "integer",
@@ -3509,16 +3508,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/integer/incomplete-hex[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/integer/incomplete-hex</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        incomplete-hex = 0x
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "incomplete-hex": {
            "type": "integer",
@@ -3526,16 +3525,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/integer/incomplete-oct[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/integer/incomplete-oct</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        incomplete-oct = 0o
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "incomplete-oct": {
            "type": "integer",
@@ -3543,16 +3542,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/integer/negative-bin[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/integer/negative-bin</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        negative-bin = -0b11010110
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "negative-bin": {
            "type": "integer",
@@ -3560,16 +3559,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/integer/negative-hex[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/integer/negative-hex</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        negative-hex = -0xff
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "negative-hex": {
            "type": "integer",
@@ -3577,16 +3576,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/integer/positive-bin[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/integer/positive-bin</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        positive-bin = +0b11010110
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "positive-bin": {
            "type": "integer",
@@ -3594,16 +3593,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/integer/positive-hex[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/integer/positive-hex</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        positive-hex = +0xff
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "positive-hex": {
            "type": "integer",
@@ -3611,16 +3610,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/integer/us-after-bin[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/integer/us-after-bin</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        us-after-bin = 0b_1
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "us-after-bin": {
            "type": "integer",
@@ -3628,16 +3627,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/integer/us-after-hex[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/integer/us-after-hex</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        us-after-hex = 0x_1
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "us-after-hex": {
            "type": "integer",
@@ -3645,16 +3644,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/integer/us-after-oct[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/integer/us-after-oct</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        us-after-oct = 0o_1
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "us-after-oct": {
            "type": "integer",
@@ -3662,16 +3661,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/string/basic-multiline-out-of-range-unicode-escape-2[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/string/basic-multiline-out-of-range-unicode-escape-2</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        a = """\U00D80000"""
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "a": {
            "type": "string",
@@ -3679,16 +3678,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/string/basic-out-of-range-unicode-escape-2[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/string/basic-out-of-range-unicode-escape-2</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        a = "\U00D80000"
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "a": {
            "type": "string",
@@ -3696,16 +3695,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/string/literal-multiline-quotes-1[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/string/literal-multiline-quotes-1</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        a = '''6 apostrophes: ''''''
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "a": {
            "type": "string",
@@ -3713,16 +3712,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/string/literal-multiline-quotes-2[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/string/literal-multiline-quotes-2</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        a = '''15 apostrophes: ''''''''''''''''''
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "a": {
            "type": "string",
@@ -3730,16 +3729,16 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/string/multiline-quotes-1[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/string/multiline-quotes-1</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        a = """6 quotes: """"""
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "a": {
            "type": "string",
@@ -3747,13 +3746,13 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/table/append-with-dotted-keys-1[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/table/append-with-dotted-keys-1</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # First a.b.c defines a table: a.b.c = {z=9}
        #
        # Then we define a.b.c.t = "str" to add a str to the above table, making it:
@@ -3772,7 +3771,7 @@
        [a]
          b.c.t = "Using dotted keys to add to [a.b.c] after explicitly defining it above is not allowed"
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "a": {
            "b": {
@@ -3790,13 +3789,13 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/table/append-with-dotted-keys-2[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/table/append-with-dotted-keys-2</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # This is the same issue as in injection-1.toml, except that nests one level
        # deeper. See that file for a more complete description.
        
@@ -3806,7 +3805,7 @@
        [a]
          b.c.d.k.t = "Using dotted keys to add to [a.b.c.d] after explicitly defining it above is not allowed"
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "a": {
            "b": {
@@ -3828,8 +3827,9 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
 toml-test [./src/c-tomlc99/toml_json]: using embedded tests: 328 passed, 87 failed
-took 0.24s
+took 0.31s
+</pre>

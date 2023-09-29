@@ -33,16 +33,21 @@ do_setup() {
 }
 
 do_run() {
+	: >|output/index.html
+
 	for f in ./parsers/*.zsh; do
 		name=$f:t:r
-		out=output/$name
+		out=output/$name.html
 
 		(
 			print -nf '%-25s' $name
 			source $f
 
+			print "<a href='$name.html'>$name.html</a><br>" >>output/index.html
+
 			[[ -z $info[version] ]] && info[version]=$(cd src/$name && git log -n1 --format=%h)
-			print $info[version] >|$out
+			print '<pre>'        >|$out
+			print $info[version] >>$out
 
 			dec=$info[decoder]
 			if [[ $dec[1] != '.' ]]; then
@@ -50,9 +55,11 @@ do_run() {
 			fi
 
 			start=$EPOCHREALTIME
-			toml-test -color bold $dec >>|$out ||:
+
+			toml-test -color bold $dec |& sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' >>$out
 			took=$(print -nf '%.2f' $(( $EPOCHREALTIME - $start )))
 			print "took ${took}s" >>$out
+			print '</pre>'        >>$out
 
 			r=($(grep -a '^toml-test' $out))
 			pass=$r[6] # $(( $r[6] + $r[15] ))
@@ -79,13 +86,11 @@ do_gen() {
 			th     { font-weight:normal; text-align:left; }
 			.pass  { color:green; }
 			.fail  { font-weight:bold; color:red; }
-			pre    { position:absolute; top:1em; left:1em; display:none; max-width:94vw; max-height:89vh;
-				     overflow:auto; background:#fff; border:1px solid #000; padding:1em; }
 		</style>
 		</head>
 		<body>
-		<p>
-		This tests various parsers agains the <a href="https://github.com/toml-lang/toml-test">toml-test</a> suite.
+		<p>This tests various parsers agains the <a href="https://github.com/toml-lang/toml-test">toml-test</a> suite.
+			<a href="https://github.com/arp242/toml-test-matrix">Source</a>.
 		</p>
 		<table>
 		<thead><tr>
@@ -102,15 +107,14 @@ do_gen() {
 
 	for f in ./parsers/*.zsh; do
 		name=$f:t:r
-		out=output/$name
+		out=output/$name.html
 
 		source $f
 
 		r=($(grep -a '^toml-test' $out))
 		pass=$r[6] # $(( $r[6] + $r[15] ))
 		fail=$r[8] # $(( $r[8] + $r[17] ))
-		took=$(tail -n1 $out | cut -d' ' -f2)
-		output=$(sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' $out)
+		took=$(tail -n2 $out | grep '^took' | cut -d' ' -f2)
 		[[ -z $info[version] ]] && info[version]=$(cd src/$name && git log -n1 --format=%h)
 
 		failclass=""
@@ -123,34 +127,13 @@ do_gen() {
 				<td>$pass</td>
 				<td $failclass>$fail</td>
 				<td>$took</td>
-				<td>
-					<a href="" class="show-full">full output</a>
-					<pre>$output</pre>
-				</td>
+				<td><a href="output/$name.html">full output</a></td>
 			</tr>
 		EOF
 	done
 
 	cat >>index.html <<-EOF
 		</tbody></table>
-		<script>
-			let v = null
-			document.querySelectorAll('.show-full').forEach((elem) => {
-				elem.addEventListener('click', (e) => {
-					e.preventDefault()
-
-					if (v)
-						v.style.display = 'none'
-
-					v = e.target.nextElementSibling
-					v.style.display = 'block'
-				})
-			})
-			document.addEventListener('keydown', (e) => {
-				if (e.keyCode === 0x1b && v)
-					v.style.display = 'none'
-			})
-		</script>
 		</body></html>
 	EOF
 }

@@ -1,12 +1,13 @@
+<pre>
 61d6a9c
-[1mFAIL[0m [1minvalid/datetime/time-no-leads[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/datetime/time-no-leads</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # Leading 0 is always required.
        d = 1:32:00
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "d": {
            "type": "time-local",
@@ -14,34 +15,34 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/inline-table/add[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/inline-table/add</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        a={}
        # Inline tables are immutable and can't be extended
        [a.b]
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "a": {
            "b": {}
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/inline-table/nested_key_conflict[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/inline-table/nested_key_conflict</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        tbl = { fruit = { apple.color = "red" }, fruit.apple.texture = { smooth = true } }
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "tbl": {
            "fruit": {
@@ -61,18 +62,18 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/spec/inline-table-2-0[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/spec/inline-table-2-0</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        [product]
        type = { name = "Nail" }
        type.edible = false  # INVALID
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "product": {
            "type": {
@@ -88,13 +89,13 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/spec/table-9-1[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/spec/table-9-1</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        [fruit]
        apple.color = "red"
        apple.taste.sweet = true
@@ -105,7 +106,7 @@
        [fruit.apple.texture]  # you can add sub-tables
        smooth = true
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "fruit": {
            "apple": {
@@ -129,19 +130,19 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/table/append-to-array-with-dotted-keys[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/table/append-to-array-with-dotted-keys</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        [[a.b]]
        
        [a]
        b.y = 2
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "a": {
            "b": [
@@ -155,13 +156,13 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/table/append-with-dotted-keys-1[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/table/append-with-dotted-keys-1</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # First a.b.c defines a table: a.b.c = {z=9}
        #
        # Then we define a.b.c.t = "str" to add a str to the above table, making it:
@@ -180,7 +181,7 @@
        [a]
          b.c.t = "Using dotted keys to add to [a.b.c] after explicitly defining it above is not allowed"
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "a": {
            "b": {
@@ -198,13 +199,13 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/table/append-with-dotted-keys-2[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/table/append-with-dotted-keys-2</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        # This is the same issue as in injection-1.toml, except that nests one level
        # deeper. See that file for a more complete description.
        
@@ -214,7 +215,7 @@
        [a]
          b.c.d.k.t = "Using dotted keys to add to [a.b.c.d] after explicitly defining it above is not allowed"
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "a": {
            "b": {
@@ -236,19 +237,19 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/table/duplicate-key-dotted-table[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/table/duplicate-key-dotted-table</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        [fruit]
        apple.color = "red"
        
        [fruit.apple] # INVALID
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "fruit": {
            "apple": {
@@ -260,19 +261,19 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
-[1mFAIL[0m [1minvalid/table/duplicate-key-dotted-table2[0m
-[1m [0m    Expected an error, but no error was reported.
+<b>FAIL</b> <b>invalid/table/duplicate-key-dotted-table2</b>
+<b> </b>    Expected an error, but no error was reported.
 
-[1m     input sent to parser-cmd:[0m
+<b>     input sent to parser-cmd:</b>
        [fruit]
        apple.taste.sweet = true
        
        [fruit.apple.taste] # INVALID
 
-[1m     output from parser-cmd (stdout):[0m
+<b>     output from parser-cmd (stdout):</b>
        {
          "fruit": {
            "apple": {
@@ -286,8 +287,9 @@
          }
        }
 
-[1m     want:[0m
+<b>     want:</b>
        Exit code 1
 
 toml-test [./src/go-toml/toml-test-decoder]: using embedded tests: 405 passed, 10 failed
 took 0.55s
+</pre>
