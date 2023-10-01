@@ -5,13 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TOML test matrix</title>
 <style>
-html   { background-color:#eee; font:18px/1.5em sans-serif; }
-body   { background-color:#fff; padding:1em; max-width:60em; margin:1em auto; }
-table  { border-collapse:collapse; }
-td, th { border:1px solid #d7d7d7; padding:.5em; }
-th     { font-weight:normal; text-align:left; }
-.pass  { color:green; }
-.fail  { font-weight:bold; color:red; }
+html         { background-color:#eee; font:18px/1.5em sans-serif; }
+body         { background-color:#fff; padding:1em; max-width:80em; margin:1em auto; }
+small        { font-size:.75em; }
+table        { border-collapse:collapse; }
+td, th       { border:1px solid #d7d7d7; padding:.5em; vertical-align:top; }
+th           { font-weight:normal; text-align:left; }
+.pass        { }
+.fail        { float:right; }
+.didfail     { font-weight:bold; color:red; }
+.bench       { text-align:right; }
+a            { text-decoration:none; }
+a:hover      { text-decoration:underline; }
+.ui:visited  { color:LinkText; text-decoration:none; }
+.bars        { height:.5em; line-height:0; }
+.barp, .barf { display:inline-block; height:.5em; }
+.barp        { background:#c6c6c6; color:#fff; }
+.barf        { background:red; color:#fff; text-align:right;}
 </style>
 </head>
 <body>
@@ -19,73 +29,148 @@ th     { font-weight:normal; text-align:left; }
 <a href="https://github.com/arp242/toml-test-matrix">Source</a>.
 </p>
 
-<p>The benchmark includes launching the process, reading file from disk,
-etc. The file is also fairly a-typical (no comments and very "dense").
-It's a pretty rough figure mostly intended for comparative purposes.</p>
+<p>The benchmark is a simple decode of a 5M file. Results aren't
+necessarily fair, as some implementations won't do thing such as
+parsing number upon retrieval of the data.</p>
+
+<p>"Valid tests" are valid TOML documents given to parse. "Invalid
+tests" are invalid TOML documents the parser should reject. Failing
+invalid tests is usually less of a deal than failing valid tests.</p>
+
 <table>
 <thead><tr>
 <th>Name</th>
-<th>Language</th>
-<th>TOML version</th>
-<th>Pass</th>
-<th>Fail</th>
-<th>Time to parse 5M file</th>
+<th>Valid tests</th>
+<th>Invalid tests</th>
+<th>Benchmark</th>
 <th></th>
 </tr></thead>
 <tbody>
 <tr>
-<td title="Version 941341f"><a href="https://github.com/marzer/tomlplusplus">toml++</a></td>
-<td>C++</td>
-<td>1.0</td>
-<td>415</td>
-<td >0</td>
-<td>0.21s</td>
-<td><a href="output/c++-toml++.html">full output</a></td>
+<td title="Version 941341f"><a href="https://github.com/marzer/tomlplusplus">toml++</a><br>
+<small>C++</small>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 156</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 259</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td class="bench">0.22s</td>
+<td><a href="output/c++-toml++.html" class="ui">output</a></td>
 </tr>
 <tr>
-<td title="Version 087408a"><a href="https://github.com/ToruNiina/toml11">toml11</a></td>
-<td>C++</td>
-<td>1.0</td>
-<td>414</td>
-<td  class="fail">1</td>
-<td>3.20s</td>
-<td><a href="output/c++-toml11.html">full output</a></td>
+<td title="Version 087408a"><a href="https://github.com/ToruNiina/toml11">toml11</a><br>
+<small>C++</small>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp" style="width:99.358974358974365%"></span><span class="barf" style="width:0.64102564102564097%"></span>
+</div>
+<small class="pass">pass: 155</small>
+<span class="fail didfail">fail: 1</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 259</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td class="bench">3.13s</td>
+<td><a href="output/c++-toml11.html" class="ui">output</a></td>
 </tr>
 <tr>
-<td title="Version 10c886b"><a href="https://github.com/cktan/tomlc99">tomlc99</a></td>
-<td>C</td>
-<td>1.0</td>
-<td>389</td>
-<td  class="fail">26</td>
-<td>11.95s</td>
-<td><a href="output/c-tomlc99.html">full output</a></td>
+<td title="Version 10c886b"><a href="https://github.com/cktan/tomlc99">tomlc99</a><br>
+<small>C</small>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp" style="width:97.435897435897431%"></span><span class="barf" style="width:2.5641025641025639%"></span>
+</div>
+<small class="pass">pass: 152</small>
+<span class="fail didfail">fail: 4</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp" style="width:91.505791505791507%"></span><span class="barf" style="width:8.4942084942084932%"></span>
+</div>
+<small class="pass">pass: 237</small>
+<span class="fail didfail">fail: 22</span>
+</td>
+<td class="bench">11.62s</td>
+<td><a href="output/c-tomlc99.html" class="ui">output</a></td>
 </tr>
 <tr>
-<td title="Version dff0c12"><a href="https://github.com/pelletier/go-toml">go-toml</a></td>
-<td>Go</td>
-<td>1.0</td>
-<td>415</td>
-<td >0</td>
-<td>1.50s</td>
-<td><a href="output/go-go-toml.html">full output</a></td>
+<td title="Version dff0c12"><a href="https://github.com/pelletier/go-toml">go-toml</a><br>
+<small>Go</small>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 156</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 259</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td class="bench">1.47s</td>
+<td><a href="output/go-go-toml.html" class="ui">output</a></td>
 </tr>
 <tr>
-<td title="Version d17285a"><a href="https://github.com/burntSushi/toml">toml</a></td>
-<td>Go</td>
-<td>1.0</td>
-<td>405</td>
-<td  class="fail">10</td>
-<td>0.40s</td>
-<td><a href="output/go-toml.html">full output</a></td>
+<td title="Version d17285a"><a href="https://github.com/burntSushi/toml">toml</a><br>
+<small>Go</small>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 156</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp" style="width:96.138996138996134%"></span><span class="barf" style="width:3.8610038610038608%"></span>
+</div>
+<small class="pass">pass: 249</small>
+<span class="fail didfail">fail: 10</span>
+</td>
+<td class="bench">0.41s</td>
+<td><a href="output/go-toml.html" class="ui">output</a></td>
 </tr>
 <tr>
-<td title="Version Python 3.11.5"><a href="https://docs.python.org/3/library/tomllib.html">tomllib</a></td>
-<td>Python</td>
-<td>1.0</td>
-<td>415</td>
-<td >0</td>
-<td>1.14s</td>
-<td><a href="output/python-tomllib.html">full output</a></td>
+<td title="Version Python 3.11.5"><a href="https://docs.python.org/3/library/tomllib.html">tomllib</a><br>
+<small>Python</small>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 156</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 259</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td class="bench">1.18s</td>
+<td><a href="output/python-tomllib.html" class="ui">output</a></td>
 </tr>
 </tbody></table>
 </body></html>
