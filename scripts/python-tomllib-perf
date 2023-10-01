@@ -1,0 +1,4 @@
+#!/usr/bin/env python
+
+import tomllib, sys
+tomllib.load(open(sys.argv[1], 'rb'))

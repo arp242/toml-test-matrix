@@ -1,5 +1,8 @@
 setup() {
-	c++ -I. -O2 tests/check_toml_test.cpp -o check_toml_test
+	c++ -I. -std=c++17 -O2 tests/check_toml_test.cpp -o check_toml_test
+
+	cp ../../scripts/c++-toml11-perf.cpp .
+	c++ -I. -std=c++17 -O2 c++-toml11-perf.cpp -o perf
 }
 
 typeset -A info=(
@@ -10,5 +13,5 @@ typeset -A info=(
 	version ''
 	decoder 'check_toml_test'
 	encoder 'N/A'
+	perf    'perf'
 )
-

@@ -10,4 +10,5 @@ typeset -A info=(
 	version "$(python -V)"
 	decoder './scripts/python-tomllib-decoder'
 	encoder 'N/A'
+	perf    './scripts/python-tomllib-perf'
 )

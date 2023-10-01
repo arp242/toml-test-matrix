@@ -2,10 +2,13 @@
 set -euC
 mkdir -p src output
 zmodload zsh/datetime
+TIMEFMT='%*E'%K
+only=
 
 do_setup() {
 	for f in ./parsers/*.zsh; do
 		name=$f:t:r
+		[[ -n $only && $name != $only ]] && continue
 
 		(
 			source $f
@@ -35,9 +38,12 @@ do_setup() {
 do_run() {
 	: >|output/index.html
 
+	toml-test -cat $(( 1024 * 5 )) >|/tmp/5M.toml  # TODO: proper tmpfile
+
 	for f in ./parsers/*.zsh; do
 		name=$f:t:r
 		out=output/$name.html
+		[[ -n $only && $name != $only ]] && continue
 
 		(
 			print -nf '%-25s' $name
@@ -50,24 +56,32 @@ do_run() {
 			print $info[version] >>$out
 
 			dec=$info[decoder]
-			if [[ $dec[1] != '.' ]]; then
-				dec=./src/$name/$dec
-			fi
+			[[ $dec[1] != '.' ]] && dec=./src/$name/$dec
 
 			start=$EPOCHREALTIME
-
 			toml-test -color bold $dec |& sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' >>$out
 			took=$(print -nf '%.2f' $(( $EPOCHREALTIME - $start )))
-			print "took ${took}s" >>$out
+
+			perf=$info[perf]
+			[[ $perf[1] != '.' ]] && perf=./src/$name/$perf
+			if [[ -n $info[perf] ]]; then
+				took_perf=$(2>&1 time $perf /tmp/5M.toml)
+				took_perf=$(print -nf '%.2f' $took_perf)
+			else
+				took_perf=N/A
+			fi
+
+			print "took $took $took_perf" >>$out
 			print '</pre>'        >>$out
 
 			r=($(grep -a '^toml-test' $out))
 			pass=$r[6] # $(( $r[6] + $r[15] ))
 			fail=$r[8] # $(( $r[8] + $r[17] ))
 
-			print -f 'pass %3d; fail %3d; took %s\n' $pass $fail $took
+			print -f 'pass %3d; fail %3d; took %5ss; perf %ss\n' $pass $fail $took $took_perf
 		)
 	done
+	rm -f /tmp/5M.toml
 }
 
 do_gen() {
@@ -92,14 +106,18 @@ do_gen() {
 		<p>This tests various parsers agains the <a href="https://github.com/toml-lang/toml-test">toml-test</a> suite.
 			<a href="https://github.com/arp242/toml-test-matrix">Source</a>.
 		</p>
+
+		<p>The benchmark includes launching the process, reading file from disk,
+		etc. The file is also fairly a-typical (no comments and very "dense").
+		It's a pretty rough figure mostly intended for comparative purposes.</p>
 		<table>
 		<thead><tr>
 		<th>Name</th>
 		<th>Language</th>
-		<th>TOML</th>
+		<th>TOML version</th>
 		<th>Pass</th>
 		<th>Fail</th>
-		<th>Time to run tests</th>
+		<th>Time to parse 5M file</th>
 		<th></th>
 		</tr></thead>
 		<tbody>
@@ -114,7 +132,8 @@ do_gen() {
 		r=($(grep -a '^toml-test' $out))
 		pass=$r[6] # $(( $r[6] + $r[15] ))
 		fail=$r[8] # $(( $r[8] + $r[17] ))
-		took=$(tail -n2 $out | grep '^took' | cut -d' ' -f2)
+		took=$(tail -n2 $out | grep '^took' | cut -d' ' -f3)
+		[[ $took != 'N/A' ]] && took+=s
 		[[ -z $info[version] ]] && info[version]=$(cd src/$name && git log -n1 --format=%h)
 
 		failclass=""
@@ -138,6 +157,7 @@ do_gen() {
 	EOF
 }
 
+only=${2:-}
 case ${1:-all}; in
 	setup) do_setup ;;
 	run)   do_run   ;;

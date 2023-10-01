@@ -1,6 +1,7 @@
 setup() {
 	go build ./cmd/toml-test-decoder
 	go build ./cmd/toml-test-encoder
+	go build ./cmd/tomlv
 }
 
 typeset -A info=(
@@ -11,4 +12,5 @@ typeset -A info=(
 	version ''
 	decoder 'toml-test-decoder'
 	encoder 'toml-test-encoder'
+	perf    'tomlv'
 )
