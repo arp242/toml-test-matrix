@@ -7,5 +7,5 @@ fn main() {
     let value = raw.parse::<toml::Table>();
     let delta = timer.elapsed().as_secs_f32();
     value.unwrap();
-    print!("{delta}\n");
+    println!("{delta}");
 }

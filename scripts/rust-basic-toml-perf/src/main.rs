@@ -7,5 +7,5 @@ fn main() {
     let value: Result<toml::Value, _> = basic_toml::from_str(&raw);
     let delta = timer.elapsed().as_secs_f32();
     value.unwrap();
-    print!("{delta}\n");
+    println!("{delta}");
 }

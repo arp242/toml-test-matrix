@@ -65,8 +65,12 @@ do_run() {
 			perf=$info[perf]
 			[[ $perf[1] != '.' ]] && perf=./src/$name/$perf
 			if [[ -n $info[perf] ]]; then
-				took_perf=$($=perf /tmp/5M.toml)
-				took_perf=$(print -nf '%.2f' $took_perf)
+				took_perf=$($=perf /tmp/5M.toml || print -1)
+				if (( $took_perf == -1 )); then
+					took_perf='(error)'
+				else
+					took_perf=$(print -nf '%.2f' $took_perf)
+				fi
 			else
 				took_perf=N/A
 			fi
