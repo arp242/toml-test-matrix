@@ -9,7 +9,7 @@ typeset -A info=(
 	site    'https://github.com/toml-rs/toml'
 	src     '' # We use the Cargo.toml for now 'git@github.com:toml-rs/toml.git'
 	version '0.8.1'
-	decoder 'scripts/target/release/toml-decoder'
-	encoder 'scripts/target/release/toml-encoder'
-	perf    'scripts/target/release/rust-toml-perf'
+	decoder './scripts/target/release/toml-decoder'
+	encoder './scripts/target/release/toml-encoder'
+	perf    './scripts/target/release/rust-toml-perf'
 )
