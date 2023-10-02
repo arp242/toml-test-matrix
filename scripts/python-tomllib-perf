@@ -6,4 +6,4 @@ with open(sys.argv[1], 'rb') as fp:
     data = fp.read().decode()
 start = datetime.datetime.now()
 tomllib.loads(data)
-print((datetime.datetime.now() - start).total_seconds())
+print(f'{(datetime.datetime.now() - start).total_seconds():f}')
