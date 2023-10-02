@@ -1,7 +1,10 @@
 setup() {
 	go build ./cmd/gotoml-test-decoder
-	#go build ./cmd/toml-test-encoder
-	
+
+	mkdir -p ./cmd/gotoml-test-encoder
+	cp ../../scripts/gotoml-test-encoder.go ./cmd/gotoml-test-encoder
+	go build ./cmd/gotoml-test-encoder
+
 	mkdir -p ./cmd/perf
 	cp ../../scripts/go-go-toml.go ./cmd/perf
 	go build ./cmd/perf
@@ -14,6 +17,6 @@ typeset -A info=(
 	src     'git@github.com:pelletier/go-toml.git'
 	version ''
 	decoder 'gotoml-test-decoder'
-	encoder 'N/A' # No program for this?
+	encoder 'gotoml-test-encoder'
 	perf    'perf'
 )

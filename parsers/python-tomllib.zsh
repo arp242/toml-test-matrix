@@ -9,6 +9,6 @@ typeset -A info=(
 	src     ''
 	version "$(python -V)"
 	decoder './scripts/python-tomllib-decoder'
-	encoder 'N/A'
+	encoder ''
 	perf    './scripts/python-tomllib-perf'
 )

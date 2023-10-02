@@ -57,9 +57,17 @@ do_run() {
 
 			dec=$info[decoder]
 			[[ $dec[1] != '.' ]] && dec=./src/$name/$dec
+			enc=$info[encoder]
+			[[ $enc[1] != '.' ]] && enc=./src/$name/$enc
 
 			start=$EPOCHREALTIME
 			toml-test -color bold $dec |& sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' >>$out
+			print $'\n==> ENCODER TESTS' >>$out
+			if [[ -n $info[encoder] ]]; then
+				toml-test -color bold -encoder $enc |& sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' >>$out
+			else
+				print '(not supported)' >>$out
+			fi
 			took=$(print -nf '%.2f' $(( $EPOCHREALTIME - $start )))
 
 			perf=$info[perf]
@@ -80,9 +88,10 @@ do_run() {
 
 			v=($(grep -a '^  valid tests:' $out))
 			iv=($(grep -a '^invalid tests:' $out))
+			e=($(grep -a '^encoder tests:' $out || print 'encoder tests:   0 passed,  0 failed'))
 
 			print -f 'pass %3d; fail %3d; took %5ss; perf %ss\n' \
-				$(( $v[3] + $iv[3] )) $(( $v[5] + $iv[5] )) $took $took_perf
+				$(( $v[3] + $iv[3] + $e[3] )) $(( $v[5] + $iv[5] + $e[5] )) $took $took_perf
 		)
 	done
 	rm -f /tmp/5M.toml
@@ -102,6 +111,7 @@ do_gen() {
 			small        { font-size:.75em; }
 			table        { border-collapse:collapse; }
 			td, th       { border:1px solid #d7d7d7; padding:.5em; vertical-align:top; }
+			td:nth-child(1) { white-space:nowrap; }
 			th           { font-weight:normal; text-align:left; }
 			.pass        { }
 			.fail        { float:right; }
@@ -114,6 +124,7 @@ do_gen() {
 			.barp, .barf { display:inline-block; height:.5em; }
 			.barp        { background:#c6c6c6; color:#fff; }
 			.barf        { background:red; color:#fff; text-align:right;}
+			.allpass     {  }
 		</style>
 		</head>
 		<body>
@@ -134,6 +145,7 @@ do_gen() {
 		<th>Name</th>
 		<th>Valid tests</th>
 		<th>Invalid tests</th>
+		<th>Encoder tests</th>
 		<th>Benchmark</th>
 		<th></th>
 		</tr></thead>
@@ -148,8 +160,7 @@ do_gen() {
 
 		v=($(grep -a '^  valid tests:' $out))
 		iv=($(grep -a '^invalid tests:' $out))
-
-		# $(( $v[3] + $iv[3] )) $(( $v[5] + $iv[5] ))
+		e=($(grep -a '^encoder tests:' $out || print 'encoder tests:   0 passed,  0 failed'))
 
 		took=$(tail -n2 $out | grep '^took' | cut -d' ' -f3)
 		[[ $took != 'N/A' ]] && took+=s
@@ -159,39 +170,71 @@ do_gen() {
 		(( $v[5] > 0 ))  && vfail='didfail'
 		ifail=""
 		(( $iv[5] > 0 )) && ifail='didfail'
+		efail=""
+		(( $e[5] > 0 ))  && efail='didfail'
 
-		failvw=0; failiw=0; passvw=100; passiw=100
+		failvw=0; failiw=0; faile=0;
+		passvw=100; passiw=100; passe=100
+		allv=allpass; alli=allpass; alle=allpass
 
 		if (( $v[5] > 0 )); then
 			failvw=$(( $v[5].0 / ($v[3] + $v[5]) * 100 ))
 			passvw=$(( 100 - $failvw ))
+			allv=
 		fi
-
 		if (( $iv[5] > 0 )); then
 			failiw=$(( $iv[5].0 / ($iv[3] + $iv[5]) * 100 ))
 			passiw=$(( 100 - $failiw ))
+			alli=
+		fi
+		if (( $e[5] > 0 )); then
+			faile=$(( $e[5].0 / ($e[3] + $e[5]) * 100 ))
+			passe=$(( 100 - $faile ))
+			alle=
 		fi
 		cat >>index.html <<-EOF 
-			<tr>
+			<tr data-lang="$info[lang]">
 				<td title="Version $info[version]"><a href="$info[site]">${name#*-}</a><br>
 				<small>$info[lang]</small>
 				</td>
 				<td style="width:30em">
 					<div class="bars">
-						<span class="barp" style="width:$passvw%"></span><span class="barf" style="width:$failvw%"></span>
+						<span class="barp $allv" style="width:$passvw%"></span><span class="barf" style="width:$failvw%"></span>
 					</div>
 					<small class="pass">pass: $v[3]</small>
 					<span class="fail $vfail">fail: $v[5]</span>
 				</td>
 				<td style="width:30em">
 					<div class="bars">
-						<span class="barp" style="width:$passiw%"></span><span class="barf" style="width:$failiw%"></span>
+						<span class="barp $alli" style="width:$passiw%"></span><span class="barf" style="width:$failiw%"></span>
 					</div>
 					<small class="pass">pass: $iv[3]</small>
 					<span class="fail $ifail">fail: $iv[5]</span>
 				</td>
-				<td class="bench">$took</td>
-				<td><a href="output/$name.html" class="ui">output</a></td>
+		EOF
+		if (( $e[3] > 0 || $e[5] > 0 )); then
+			cat >>index.html <<-EOF 
+				<td style="width:30em">
+					<div class="bars">
+						<span class="barp $alle" style="width:$passe%"></span><span class="barf" style="width:$faile%"></span>
+					</div>
+					<small class="pass">pass: $e[3]</small>
+					<span class="fail $efail">fail: $e[5]</span>
+				</td>
+			EOF
+		else
+			cat >>index.html <<-EOF 
+				<td style="width:30em"><em>(doesn't include encoder)</em></td>
+			EOF
+		fi
+		if [[ $took = "(error)s" ]]; then
+			print "<td class='bench'><em>(error)</em></td>" >>index.html
+		else
+			print "<td class='bench'>$took</td>" >>index.html
+		fi
+
+		cat >>index.html <<-EOF 
+			<td><a href="output/$name.html" class="ui">output</a></td>
 			</tr>
 		EOF
 	done

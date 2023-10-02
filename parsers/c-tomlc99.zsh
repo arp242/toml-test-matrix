@@ -11,6 +11,6 @@ typeset -A info=(
 	src     'git@github.com:cktan/tomlc99.git'
 	version ''
 	decoder 'toml_json'
-	encoder 'N/A'
+	encoder ''
 	perf    'perf'
 )

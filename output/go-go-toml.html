@@ -1,7 +1,270 @@
 <pre>
-dff0c12
+a76e18e
 toml-test [./src/go-go-toml/gotoml-test-decoder]: using embedded tests
   valid tests: 156 passed,  0 failed
 invalid tests: 283 passed,  0 failed
-took 0.61 1.62
+
+==> ENCODER TESTS
+<b>FAIL</b> <b>valid/comment/everywhere</b>
+<b> </b>    Values for key 'group.d' differ:
+<b> </b>      Expected:     1979-05-27 00:00:00 +0100 date-local (time.Time)
+<b> </b>      Your encoder: 1979-05-27 00:00:00 +0100 IST (time.Time)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "group": {
+           "answer": {
+             "type": "integer",
+             "value": "42"
+           },
+           "dt": {
+             "type": "datetime",
+             "value": "1979-05-27T07:32:12-07:00"
+           },
+           "d": {
+             "type": "date-local",
+             "value": "1979-05-27"
+           },
+           "more": [
+             {
+               "type": "integer",
+               "value": "42"
+             },
+             {
+               "type": "integer",
+               "value": "42"
+             }
+           ]
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       [group]
+       answer = 42
+       d = 1979-05-27T00:00:00+01:00
+       dt = 1979-05-27T07:32:12-07:00
+       more = [42, 42]
+
+<b>     want:</b>
+       # Top comment.
+         # Top comment.
+       # Top comment.
+       
+       # [no-extraneous-groups-please]
+       
+       [group] # Comment
+       answer = 42 # Comment
+       # no-extraneous-keys-please = 999
+       # Inbetween comment.
+       more = [ # Comment
+         # What about multiple # comments?
+         # Can you handle it?
+         #
+                 # Evil.
+       # Evil.
+         42, 42, # Comments within arrays are fun.
+         # What about multiple # comments?
+         # Can you handle it?
+         #
+                 # Evil.
+       # Evil.
+       # ] Did I fool you?
+       ] # Hopefully not.
+       
+       # Make sure the space between the datetime and "#" isn't lexed.
+       dt = 1979-05-27T07:32:12-07:00  # c
+       d = 1979-05-27 # Comment
+
+<b>FAIL</b> <b>valid/datetime/local-date</b>
+<b> </b>    Values for key 'bestdayever' differ:
+<b> </b>      Expected:     1987-07-05 00:00:00 +0100 date-local (time.Time)
+<b> </b>      Your encoder: 1987-07-05 00:00:00 +0100 IST (time.Time)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "bestdayever": {
+           "type": "date-local",
+           "value": "1987-07-05"
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       bestdayever = 1987-07-05T00:00:00+01:00
+
+<b>     want:</b>
+       bestdayever = 1987-07-05
+
+<b>FAIL</b> <b>valid/datetime/local-time</b>
+<b> </b>    Values for key 'besttimeever' differ:
+<b> </b>      Expected:     0000-01-01 17:45:00 +0100 time-local (time.Time)
+<b> </b>      Your encoder: 0000-01-01 17:45:00 -0025 -0025 (time.Time)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "besttimeever": {
+           "type": "time-local",
+           "value": "17:45:00"
+         },
+         "milliseconds": {
+           "type": "time-local",
+           "value": "10:32:00.555"
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       besttimeever = 0000-01-01T17:45:00-00:25
+       milliseconds = 0000-01-01T10:32:00.555-00:25
+
+<b>     want:</b>
+       besttimeever = 17:45:00
+       milliseconds = 10:32:00.555
+
+<b>FAIL</b> <b>valid/datetime/local</b>
+<b> </b>    Values for key 'space' differ:
+<b> </b>      Expected:     1987-07-05 17:45:00 +0100 datetime-local (time.Time)
+<b> </b>      Your encoder: 1987-07-05 17:45:00 +0100 IST (time.Time)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "local": {
+           "type": "datetime-local",
+           "value": "1987-07-05T17:45:00"
+         },
+         "milli": {
+           "type": "datetime-local",
+           "value": "1977-12-21T10:32:00.555"
+         },
+         "space": {
+           "type": "datetime-local",
+           "value": "1987-07-05T17:45:00"
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       local = 1987-07-05T17:45:00+01:00
+       milli = 1977-12-21T10:32:00.555Z
+       space = 1987-07-05T17:45:00+01:00
+
+<b>     want:</b>
+       local = 1987-07-05T17:45:00
+       milli = 1977-12-21T10:32:00.555
+       space = 1987-07-05 17:45:00
+
+<b>FAIL</b> <b>valid/spec/local-date-0</b>
+<b> </b>    Values for key 'ld1' differ:
+<b> </b>      Expected:     1979-05-27 00:00:00 +0100 date-local (time.Time)
+<b> </b>      Your encoder: 1979-05-27 00:00:00 +0100 IST (time.Time)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "ld1": {
+           "type": "date-local",
+           "value": "1979-05-27"
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       ld1 = 1979-05-27T00:00:00+01:00
+
+<b>     want:</b>
+       ld1 = 1979-05-27
+
+<b>FAIL</b> <b>valid/spec/local-date-time-0</b>
+<b> </b>    Values for key 'ldt1' differ:
+<b> </b>      Expected:     1979-05-27 07:32:00 +0100 datetime-local (time.Time)
+<b> </b>      Your encoder: 1979-05-27 07:32:00 +0100 IST (time.Time)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "ldt1": {
+           "type": "datetime-local",
+           "value": "1979-05-27T07:32:00"
+         },
+         "ldt2": {
+           "type": "datetime-local",
+           "value": "1979-05-27T00:32:00.999999"
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       ldt1 = 1979-05-27T07:32:00+01:00
+       ldt2 = 1979-05-27T00:32:00.999999+01:00
+
+<b>     want:</b>
+       ldt1 = 1979-05-27T07:32:00
+       ldt2 = 1979-05-27T00:32:00.999999
+
+<b>FAIL</b> <b>valid/spec/local-time-0</b>
+<b> </b>    Values for key 'lt1' differ:
+<b> </b>      Expected:     0000-01-01 07:32:00 +0100 time-local (time.Time)
+<b> </b>      Your encoder: 0000-01-01 07:32:00 -0025 -0025 (time.Time)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "lt1": {
+           "type": "time-local",
+           "value": "07:32:00"
+         },
+         "lt2": {
+           "type": "time-local",
+           "value": "00:32:00.999999"
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       lt1 = 0000-01-01T07:32:00-00:25
+       lt2 = 0000-01-01T00:32:00.999999-00:25
+
+<b>     want:</b>
+       lt1 = 07:32:00
+       lt2 = 00:32:00.999999
+
+<b>FAIL</b> <b>valid/spec/table-7</b>
+<b> </b>    Values for key 'owner.member_since' differ:
+<b> </b>      Expected:     1999-08-04 00:00:00 +0100 date-local (time.Time)
+<b> </b>      Your encoder: 1999-08-04 00:00:00 +0100 IST (time.Time)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "breed": {
+           "type": "string",
+           "value": "pug"
+         },
+         "name": {
+           "type": "string",
+           "value": "Fido"
+         },
+         "owner": {
+           "member_since": {
+             "type": "date-local",
+             "value": "1999-08-04"
+           },
+           "name": {
+             "type": "string",
+             "value": "Regina Dogman"
+           }
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       breed = 'pug'
+       name = 'Fido'
+       
+       [owner]
+       member_since = 1999-08-04T00:00:00+01:00
+       name = 'Regina Dogman'
+
+<b>     want:</b>
+       # Top-level table begins.
+       name = "Fido"
+       breed = "pug"
+       
+       # Top-level table ends.
+       [owner]
+       name = "Regina Dogman"
+       member_since = 1999-08-04
+
+toml-test [./src/go-go-toml/gotoml-test-encoder]: using embedded tests
+encoder tests: 148 passed,  8 failed
+took 0.83 1.66
 </pre>
