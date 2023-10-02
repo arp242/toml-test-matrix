@@ -65,7 +65,7 @@ do_run() {
 			perf=$info[perf]
 			[[ $perf[1] != '.' ]] && perf=./src/$name/$perf
 			if [[ -n $info[perf] ]]; then
-				took_perf=$(2>&1 time $perf /tmp/5M.toml)
+				took_perf=$($=perf /tmp/5M.toml)
 				took_perf=$(print -nf '%.2f' $took_perf)
 			else
 				took_perf=N/A
@@ -118,7 +118,7 @@ do_gen() {
 		</p>
 
 		<p>The benchmark is a simple decode of a 5M file. Results aren't
-		necessarily fair, as some implementations won't do thing such as
+		necessarily fair (yet), as some implementations won't do thing such as
 		parsing number upon retrieval of the data.</p>
 
 		<p>"Valid tests" are valid TOML documents given to parse. "Invalid

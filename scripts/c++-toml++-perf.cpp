@@ -73,7 +73,10 @@ int main(int argc, char** argv) {
 
 	toml::table tbl;
 	try {
+		const auto start = std::chrono::steady_clock::now();
 		tbl = toml::parse_file(path);
+		printf("%f\n", std::chrono::duration_cast<std::chrono::duration<double>>(
+					std::chrono::steady_clock::now() - start).count());
 	}
 	catch (const toml::parse_error& err) {
 		std::cerr << err << "\n";

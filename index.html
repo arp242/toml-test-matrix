@@ -30,7 +30,7 @@ a:hover      { text-decoration:underline; }
 </p>
 
 <p>The benchmark is a simple decode of a 5M file. Results aren't
-necessarily fair, as some implementations won't do thing such as
+necessarily fair (yet), as some implementations won't do thing such as
 parsing number upon retrieval of the data.</p>
 
 <p>"Valid tests" are valid TOML documents given to parse. "Invalid
@@ -64,7 +64,7 @@ invalid tests is usually less of a deal than failing valid tests.</p>
 <small class="pass">pass: 259</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class="bench">0.22s</td>
+<td class="bench">0.18s</td>
 <td><a href="output/c++-toml++.html" class="ui">output</a></td>
 </tr>
 <tr>
@@ -85,7 +85,7 @@ invalid tests is usually less of a deal than failing valid tests.</p>
 <small class="pass">pass: 259</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class="bench">3.13s</td>
+<td class="bench">3.15s</td>
 <td><a href="output/c++-toml11.html" class="ui">output</a></td>
 </tr>
 <tr>
@@ -127,11 +127,11 @@ invalid tests is usually less of a deal than failing valid tests.</p>
 <small class="pass">pass: 259</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class="bench">1.47s</td>
+<td class="bench">1.48s</td>
 <td><a href="output/go-go-toml.html" class="ui">output</a></td>
 </tr>
 <tr>
-<td title="Version d17285a"><a href="https://github.com/burntSushi/toml">toml</a><br>
+<td title="Version fb576ca"><a href="https://github.com/burntSushi/toml">toml</a><br>
 <small>Go</small>
 </td>
 <td style="width:30em">
@@ -148,7 +148,7 @@ invalid tests is usually less of a deal than failing valid tests.</p>
 <small class="pass">pass: 249</small>
 <span class="fail didfail">fail: 10</span>
 </td>
-<td class="bench">0.41s</td>
+<td class="bench">0.40s</td>
 <td><a href="output/go-toml.html" class="ui">output</a></td>
 </tr>
 <tr>
@@ -169,7 +169,7 @@ invalid tests is usually less of a deal than failing valid tests.</p>
 <small class="pass">pass: 259</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class="bench">1.18s</td>
+<td class="bench">1.14s</td>
 <td><a href="output/python-tomllib.html" class="ui">output</a></td>
 </tr>
 </tbody></table>
