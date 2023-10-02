@@ -5,7 +5,7 @@ fn main() {
     let raw = std::fs::read_to_string(&path).unwrap();
     let timer = std::time::Instant::now();
     let value: Result<toml::Value, _> = basic_toml::from_str(&raw);
-    let delta = timer.elapsed().as_nanos();
+    let delta = timer.elapsed().as_secs_f32();
     value.unwrap();
-    print!("{delta}");
+    print!("{delta}\n");
 }
