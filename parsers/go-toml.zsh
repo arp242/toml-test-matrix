@@ -12,5 +12,5 @@ typeset -A info=(
 	version ''
 	decoder 'toml-test-decoder'
 	encoder 'toml-test-encoder'
-	perf    'tomlv'
+	perf    'tomlv -time'
 )

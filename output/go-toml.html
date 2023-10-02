@@ -1,17 +1,17 @@
 <pre>
-d17285a
+fb576ca
 <b>FAIL</b> <b>invalid/datetime/time-no-leads</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
        # Leading 0 is always required.
-       d = 1:32:00
+       d = 2023-10-01T1:32:00Z
 
 <b>     output from parser-cmd (stdout):</b>
        {
          "d": {
-           "type": "time-local",
-           "value": "01:32:00"
+           "type": "datetime",
+           "value": "2023-10-01T01:32:00Z"
          }
        }
 
@@ -59,6 +59,42 @@ d17285a
                }
              }
            }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-datetime/time-no-leads</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # Leading 0 is always required.
+       d = 2023-10-01T1:32:00Z
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "d": {
+           "type": "datetime",
+           "value": "2023-10-01T01:32:00Z"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-time/time-no-leads</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # Leading 0 is always required.
+       d = 1:32:00
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "d": {
+           "type": "time-local",
+           "value": "01:32:00"
          }
        }
 
@@ -292,6 +328,6 @@ d17285a
 
 toml-test [./src/go-toml/toml-test-decoder]: using embedded tests
   valid tests: 156 passed,  0 failed
-invalid tests: 249 passed, 10 failed
-took 0.56 0.41
+invalid tests: 271 passed, 12 failed
+took 0.63 0.40
 </pre>
