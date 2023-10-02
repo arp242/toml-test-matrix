@@ -1,0 +1,119 @@
+<pre>
+0.8.1
+<b>FAIL</b> <b>valid/spec/float-0</b>
+<b> </b>    Values for key 'flt7' don't match:
+<b> </b>      Expected:     6.626e-34
+<b> </b>      Your encoder: 0
+
+<b>     input sent to parser-cmd:</b>
+       # fractional
+       flt1 = +1.0
+       flt2 = 3.1415
+       flt3 = -0.01
+       
+       # exponent
+       flt4 = 5e+22
+       flt5 = 1e06
+       flt6 = -2E-2
+       
+       # both
+       flt7 = 6.626e-34
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "flt1": {
+           "type": "float",
+           "value": "1.0"
+         },
+         "flt2": {
+           "type": "float",
+           "value": "3.1415"
+         },
+         "flt3": {
+           "type": "float",
+           "value": "-0.01"
+         },
+         "flt4": {
+           "type": "float",
+           "value": "49999999999999995805696.0"
+         },
+         "flt5": {
+           "type": "float",
+           "value": "1000000.0"
+         },
+         "flt6": {
+           "type": "float",
+           "value": "-0.02"
+         },
+         "flt7": {
+           "type": "float",
+           "value": "0.0"
+         }
+       }
+
+<b>     want:</b>
+       {
+         "flt1": {
+           "type": "float",
+           "value": "1"
+         },
+         "flt2": {
+           "type": "float",
+           "value": "3.1415"
+         },
+         "flt3": {
+           "type": "float",
+           "value": "-0.01"
+         },
+         "flt4": {
+           "type": "float",
+           "value": "5e+22"
+         },
+         "flt5": {
+           "type": "float",
+           "value": "1e+06"
+         },
+         "flt6": {
+           "type": "float",
+           "value": "-0.02"
+         },
+         "flt7": {
+           "type": "float",
+           "value": "6.626e-34"
+         }
+       }
+
+<b>FAIL</b> <b>invalid/inline-table/nested_key_conflict</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       tbl = { fruit = { apple.color = "red" }, fruit.apple.texture = { smooth = true } }
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "tbl": {
+           "fruit": {
+             "apple": {
+               "color": {
+                 "type": "string",
+                 "value": "red"
+               },
+               "texture": {
+                 "smooth": {
+                   "type": "bool",
+                   "value": "true"
+                 }
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+toml-test [./scripts/target/release/toml-decoder]: using embedded tests
+  valid tests: 155 passed,  1 failed
+invalid tests: 282 passed,  1 failed
+took 0.36 0.16
+</pre>
