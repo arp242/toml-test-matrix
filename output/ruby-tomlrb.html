@@ -1,0 +1,121 @@
+<pre>
+db2eddb
+<b>FAIL</b> <b>invalid/array/double-comma-1</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       array = [1,,2]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "array": [
+           {
+             "type": "integer",
+             "value": "1"
+           },
+           {
+             "type": "integer",
+             "value": "2"
+           }
+         ]
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/array/double-comma-2</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       array = [1,2,,]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "array": [
+           {
+             "type": "integer",
+             "value": "1"
+           },
+           {
+             "type": "integer",
+             "value": "2"
+           }
+         ]
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/nested_key_conflict</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       tbl = { fruit = { apple.color = "red" }, fruit.apple.texture = { smooth = true } }
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "tbl": {
+           "fruit": {
+             "apple": {
+               "color": {
+                 "type": "string",
+                 "value": "red"
+               },
+               "texture": {
+                 "smooth": {
+                   "type": "bool",
+                   "value": "true"
+                 }
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-datetime/hour-over</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # time-hour       = 2DIGIT  ; 00-23
+       d = 2006-01-01T24:00:00
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "d": {
+           "type": "datetime-local",
+           "value": "2006-01-02T00:00:00"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-time/hour-over</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # time-hour       = 2DIGIT  ; 00-23
+       d = 24:00:00
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "d": {
+           "type": "time-local",
+           "value": "00:00:00"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+toml-test [./src/ruby-tomlrb/ruby-tomlrb-decoder]: using embedded tests
+  valid tests: 156 passed,  0 failed
+invalid tests: 278 passed,  5 failed
+
+==> ENCODER TESTS
+(not supported)
+took 34.26 4.31
+</pre>

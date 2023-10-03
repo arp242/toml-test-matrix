@@ -196,89 +196,6 @@
 <b>     want:</b>
           <empty>
 
-<b>FAIL</b> <b>valid/spec/float-0</b>
-<b> </b>    Values for key 'flt7' don't match:
-<b> </b>      Expected:     6.626e-34
-<b> </b>      Your encoder: 0
-
-<b>     input sent to parser-cmd:</b>
-       # fractional
-       flt1 = +1.0
-       flt2 = 3.1415
-       flt3 = -0.01
-       
-       # exponent
-       flt4 = 5e+22
-       flt5 = 1e06
-       flt6 = -2E-2
-       
-       # both
-       flt7 = 6.626e-34
-
-<b>     output from parser-cmd (stdout):</b>
-       {
-         "flt1": {
-           "type": "float",
-           "value": "1.0"
-         },
-         "flt2": {
-           "type": "float",
-           "value": "3.1415"
-         },
-         "flt3": {
-           "type": "float",
-           "value": "-0.01"
-         },
-         "flt4": {
-           "type": "float",
-           "value": "49999999999999995805696.0"
-         },
-         "flt5": {
-           "type": "float",
-           "value": "1000000.0"
-         },
-         "flt6": {
-           "type": "float",
-           "value": "-0.02"
-         },
-         "flt7": {
-           "type": "float",
-           "value": "0.0"
-         }
-       }
-
-<b>     want:</b>
-       {
-         "flt1": {
-           "type": "float",
-           "value": "1"
-         },
-         "flt2": {
-           "type": "float",
-           "value": "3.1415"
-         },
-         "flt3": {
-           "type": "float",
-           "value": "-0.01"
-         },
-         "flt4": {
-           "type": "float",
-           "value": "5e+22"
-         },
-         "flt5": {
-           "type": "float",
-           "value": "1e+06"
-         },
-         "flt6": {
-           "type": "float",
-           "value": "-0.02"
-         },
-         "flt7": {
-           "type": "float",
-           "value": "6.626e-34"
-         }
-       }
-
 <b>FAIL</b> <b>valid/spec/local-date-0</b>
 <b> </b>    Error: Error { message: "invalid number at line 1 column 7" }
 <b> </b>    
@@ -568,7 +485,7 @@
        Exit code 1
 
 toml-test [./scripts/target/release/basic-toml-decoder]: using embedded tests
-  valid tests: 136 passed, 20 failed
+  valid tests: 137 passed, 19 failed
 invalid tests: 280 passed,  3 failed
 
 ==> ENCODER TESTS
@@ -842,7 +759,7 @@ invalid tests: 280 passed,  3 failed
        milliseconds = 10:32:00.555
 
 <b>FAIL</b> <b>valid/datetime/local</b>
-<b> </b>    Type for key 'space' differs:
+<b> </b>    Type for key 'local' differs:
 <b> </b>      Expected:     1987-07-05 17:45:00 +0100 datetime-local (time.Time)
 <b> </b>      Your encoder: map[$__toml_private_datetime:1987-07-05T17:45:00] (map[string]any)
 
@@ -878,9 +795,9 @@ invalid tests: 280 passed,  3 failed
        space = 1987-07-05 17:45:00
 
 <b>FAIL</b> <b>valid/datetime/milliseconds</b>
-<b> </b>    Type for key 'wita2' differs:
-<b> </b>      Expected:     1987-07-05 17:45:56.6 +0800 +0800 (time.Time)
-<b> </b>      Your encoder: map[$__toml_private_datetime:1987-07-05T17:45:56.6+08:00] (map[string]any)
+<b> </b>    Type for key 'utc1' differs:
+<b> </b>      Expected:     1987-07-05 17:45:56.123 +0000 UTC (time.Time)
+<b> </b>      Your encoder: map[$__toml_private_datetime:1987-07-05T17:45:56.123Z] (map[string]any)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -1586,9 +1503,9 @@ invalid tests: 280 passed,  3 failed
        lt2 = 00:32:00.999999
 
 <b>FAIL</b> <b>valid/spec/offset-date-time-0</b>
-<b> </b>    Type for key 'odt1' differs:
-<b> </b>      Expected:     1979-05-27 07:32:00 +0000 UTC (time.Time)
-<b> </b>      Your encoder: map[$__toml_private_datetime:1979-05-27T07:32:00Z] (map[string]any)
+<b> </b>    Type for key 'odt2' differs:
+<b> </b>      Expected:     1979-05-27 00:32:00 -0700 -0700 (time.Time)
+<b> </b>      Your encoder: map[$__toml_private_datetime:1979-05-27T00:32:00-07:00] (map[string]any)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -1908,5 +1825,5 @@ invalid tests: 280 passed,  3 failed
 
 toml-test [./scripts/target/release/basic-toml-encoder]: using embedded tests
 encoder tests: 131 passed, 25 failed
-took 0.55 (error)
+took 0.48 (error)
 </pre>

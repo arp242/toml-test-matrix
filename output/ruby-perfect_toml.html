@@ -1,0 +1,29 @@
+<pre>
+ee9461d
+<b>FAIL</b> <b>invalid/local-time/hour-over</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # time-hour       = 2DIGIT  ; 00-23
+       d = 24:00:00
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "d": {
+           "type": "time-local",
+           "value": "24:00:00"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+toml-test [./src/ruby-perfect_toml/tool/decoder.rb]: using embedded tests
+  valid tests: 156 passed,  0 failed
+invalid tests: 282 passed,  1 failed
+
+==> ENCODER TESTS
+toml-test [./src/ruby-perfect_toml/tool/encoder.rb]: using embedded tests
+encoder tests: 156 passed,  0 failed
+took 42.50 0.68
+</pre>
