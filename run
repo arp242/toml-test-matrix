@@ -38,6 +38,7 @@ do_setup() {
 
 do_run() {
 	toml-test -cat $(( 1024 * 5 )) >|/tmp/5M.toml  # TODO: proper tmpfile
+	toml-test -cat 10              >|/tmp/10k.toml
 
 	for f in ./parsers/*.zsh; do
 		name=$f:t:r
@@ -73,26 +74,29 @@ do_run() {
 
 			perf=$info[perf]
 			[[ $perf[1] != '.' ]] && perf=./src/$name/$perf
-			if [[ -n $info[perf] ]]; then
-				took_perf=$($=perf /tmp/5M.toml || print -1)
-				if (( $took_perf == -1 )); then
-					took_perf='(error)'
-				else
-					took_perf=$(print -nf '%.2f' $took_perf)
-				fi
+
+			took_perf10k=$($=perf /tmp/10k.toml || print -1)
+			took_perf5M=$($=perf /tmp/5M.toml || print -1)
+			if (( $took_perf10k == -1 )); then
+				took_perf10k='(error)'
 			else
-				took_perf=N/A
+				took_perf10k=$(print -nf '%.1f' $(( $took_perf10k * 1000 )))
+			fi
+			if (( $took_perf5M == -1 )); then
+				took_perf5M='(error)'
+			else
+				took_perf5M=$(print -nf '%.2f' $took_perf5M)
 			fi
 
-			print "took $took $took_perf" >>$out
+			print "took $took $took_perf10k $took_perf5M" >>$out
 			print '</pre>'        >>$out
 
 			v=($(grep -a '^  valid tests:' $out))
 			iv=($(grep -a '^invalid tests:' $out))
 			e=($(grep -a '^encoder tests:' $out || print 'encoder tests:   0 passed,  0 failed'))
 
-			print -f 'pass %3d; fail %3d; took %5ss; perf %ss\n' \
-				$(( $v[3] + $iv[3] + $e[3] )) $(( $v[5] + $iv[5] + $e[5] )) $took $took_perf
+			print -f 'pass %3d; fail %3d; took %5ss; perf %sms/%ss\n' \
+				$(( $v[3] + $iv[3] + $e[3] )) $(( $v[5] + $iv[5] + $e[5] )) $took $took_perf10k $took_perf5M
 		)
 	done
 	rm -f /tmp/5M.toml
@@ -109,11 +113,11 @@ do_gen() {
 		<style>
 			html         { background-color:#eee; font:18px/1.5em sans-serif; }
 			body         { background-color:#fff; padding:1em; max-width:80em; margin:1em auto; overflow-y:scroll; }
-			small        { font-size:.75em; }
+			small, em    { font-size:.75em; }
 			table        { border-collapse:collapse; }
-			td, th       { border:1px solid #d7d7d7; padding:.5em; vertical-align:top; }
+			td, th       { border:1px solid #d7d7d7; padding:.5em;  }
 			td:nth-child(1) { white-space:nowrap; }
-			th           { font-weight:normal; text-align:left; }
+			th           { background:#f3f3f3; font-weight:normal; text-align:left; white-space:nowrap; }
 			.pass        { }
 			.fail        { float:right; }
 			.didfail     { font-weight:bold; color:red; }
@@ -123,7 +127,7 @@ do_gen() {
 			.ui:visited  { color:LinkText; text-decoration:none; }
 			.bars        { height:.5em; line-height:0; }
 			.barp, .barf { display:inline-block; height:.5em; }
-			.barp        { background:#c6c6c6; color:#fff; }
+			.barp        { background:#e1e1e1; color:#fff; }
 			.barf        { background:red; color:#fff; text-align:right;}
 			.allpass     {  }
 			#langs       { text-align:right; margin-bottom:.5em; display:none; }
@@ -136,10 +140,10 @@ do_gen() {
 		doesn't include all parsers (yet), see <a href="https://github.com/toml-lang/toml/wiki">the wiki</a>
 		for a full list.</p>
 
-		<p>The benchmark is a simple decode of a 5M file. Results aren't
-		necessarily fair, as some implementations will parse numbers, dates,
-		etc. when reading the file, and others when the data is used. Still, it
-		should be a decent rough comparison.</p>
+		<p>The benchmarks are a simple decode of a 10k and 5M file. Results
+		aren't necessarily fair, as some implementations will parse numbers,
+		dates, etc. when reading the file, and others when the data is used.
+		Still, it should be a decent rough comparison.</p>
 
 		<p>"Valid tests" are valid TOML documents given to parse. "Invalid
 		tests" are invalid TOML documents the parser should reject. Failing
@@ -164,11 +168,13 @@ do_gen() {
 		</div>
 		<table>
 		<thead><tr>
+		<th></th>
 		<th>Name</th>
 		<th>Valid tests</th>
 		<th>Invalid tests</th>
 		<th>Encoder tests</th>
-		<th>Benchmark</th>
+		<th>10k file</th>
+		<th>5M file</th>
 		<th></th>
 		</tr></thead>
 		<tbody>
@@ -187,8 +193,11 @@ do_gen() {
 		iv=($(grep -a '^invalid tests:' $out))
 		e=($(grep -a '^encoder tests:' $out || print 'encoder tests:   0 passed,  0 failed'))
 
-		took=$(tail -n2 $out | grep '^took' | cut -d' ' -f3)
-		[[ $took != 'N/A' ]] && took+=s
+		took10k=$(tail -n2 $out | grep '^took' | cut -d' ' -f3)
+		[[ $took10k != '(error)' ]] && took10k+=ms
+		took5M=$(tail -n2 $out | grep '^took' | cut -d' ' -f4)
+		[[ $took5M != '(error)' ]] && took5M+=s
+
 		[[ -z $info[version] ]] && info[version]=$(cd src/$name && git log -n1 --format=%h)
 
 		vfail=""
@@ -219,9 +228,8 @@ do_gen() {
 		fi
 		cat >>index.html <<-EOF 
 			<tr data-lang="$info[lang]">
-				<td title="Version $info[version]"><a href="$info[site]">${name#*-}</a><br>
-				<small>$info[lang]</small>
-				</td>
+				<td>$info[lang]</td>
+				<td title="Version $info[version]"><a href="$info[site]">${name#*-}</a></td>
 				<td style="width:30em">
 					<div class="bars">
 						<span class="barp $allv" style="width:$passvw%"></span><span class="barf" style="width:$failvw%"></span>
@@ -252,11 +260,8 @@ do_gen() {
 				<td style="width:30em"><em>(doesn't include encoder)</em></td>
 			EOF
 		fi
-		if [[ $took = "(error)s" ]]; then
-			print "<td class='bench'><em>(error)</em></td>" >>index.html
-		else
-			print "<td class='bench'>$took</td>" >>index.html
-		fi
+		print "<td class='bench'>$took10k</td>" >>index.html
+		print "<td class='bench'>$took5M</td>"  >>index.html
 
 		cat >>index.html <<-EOF 
 			<td><a href="output/$name.html" class="ui">output</a></td>

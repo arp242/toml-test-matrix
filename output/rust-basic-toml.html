@@ -795,9 +795,9 @@ invalid tests: 280 passed,  3 failed
        space = 1987-07-05 17:45:00
 
 <b>FAIL</b> <b>valid/datetime/milliseconds</b>
-<b> </b>    Type for key 'utc1' differs:
-<b> </b>      Expected:     1987-07-05 17:45:56.123 +0000 UTC (time.Time)
-<b> </b>      Your encoder: map[$__toml_private_datetime:1987-07-05T17:45:56.123Z] (map[string]any)
+<b> </b>    Type for key 'utc2' differs:
+<b> </b>      Expected:     1987-07-05 17:45:56.6 +0000 UTC (time.Time)
+<b> </b>      Your encoder: map[$__toml_private_datetime:1987-07-05T17:45:56.6Z] (map[string]any)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -839,9 +839,9 @@ invalid tests: 280 passed,  3 failed
        wita2 = 1987-07-05T17:45:56.6+08:00
 
 <b>FAIL</b> <b>valid/datetime/timezone</b>
-<b> </b>    Type for key 'utc' differs:
-<b> </b>      Expected:     1987-07-05 17:45:56 +0000 UTC (time.Time)
-<b> </b>      Your encoder: map[$__toml_private_datetime:1987-07-05T17:45:56Z] (map[string]any)
+<b> </b>    Type for key 'pdt' differs:
+<b> </b>      Expected:     1987-07-05 17:45:56 -0500 -0500 (time.Time)
+<b> </b>      Your encoder: map[$__toml_private_datetime:1987-07-05T17:45:56-05:00] (map[string]any)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -1447,9 +1447,9 @@ invalid tests: 280 passed,  3 failed
        ld1 = 1979-05-27
 
 <b>FAIL</b> <b>valid/spec/local-date-time-0</b>
-<b> </b>    Type for key 'ldt1' differs:
-<b> </b>      Expected:     1979-05-27 07:32:00 +0100 datetime-local (time.Time)
-<b> </b>      Your encoder: map[$__toml_private_datetime:1979-05-27T07:32:00] (map[string]any)
+<b> </b>    Type for key 'ldt2' differs:
+<b> </b>      Expected:     1979-05-27 00:32:00.999999 +0100 datetime-local (time.Time)
+<b> </b>      Your encoder: map[$__toml_private_datetime:1979-05-27T00:32:00.999999] (map[string]any)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -1475,9 +1475,9 @@ invalid tests: 280 passed,  3 failed
        ldt2 = 1979-05-27T00:32:00.999999
 
 <b>FAIL</b> <b>valid/spec/local-time-0</b>
-<b> </b>    Type for key 'lt1' differs:
-<b> </b>      Expected:     0000-01-01 07:32:00 +0100 time-local (time.Time)
-<b> </b>      Your encoder: map[$__toml_private_datetime:07:32:00] (map[string]any)
+<b> </b>    Type for key 'lt2' differs:
+<b> </b>      Expected:     0000-01-01 00:32:00.999999 +0100 time-local (time.Time)
+<b> </b>      Your encoder: map[$__toml_private_datetime:00:32:00.999999] (map[string]any)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -1503,9 +1503,9 @@ invalid tests: 280 passed,  3 failed
        lt2 = 00:32:00.999999
 
 <b>FAIL</b> <b>valid/spec/offset-date-time-0</b>
-<b> </b>    Type for key 'odt2' differs:
-<b> </b>      Expected:     1979-05-27 00:32:00 -0700 -0700 (time.Time)
-<b> </b>      Your encoder: map[$__toml_private_datetime:1979-05-27T00:32:00-07:00] (map[string]any)
+<b> </b>    Type for key 'odt3' differs:
+<b> </b>      Expected:     1979-05-27 00:32:00.999999 -0700 -0700 (time.Time)
+<b> </b>      Your encoder: map[$__toml_private_datetime:1979-05-27T00:32:00.999999-07:00] (map[string]any)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -1825,5 +1825,5 @@ invalid tests: 280 passed,  3 failed
 
 toml-test [./scripts/target/release/basic-toml-encoder]: using embedded tests
 encoder tests: 131 passed, 25 failed
-took 0.48 (error)
+took 0.48 (error) (error)
 </pre>
