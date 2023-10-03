@@ -83,41 +83,12 @@
          }
        }
 
-<b>FAIL</b> <b>invalid/inline-table/nested_key_conflict</b>
-<b> </b>    Expected an error, but no error was reported.
-
-<b>     input sent to parser-cmd:</b>
-       tbl = { fruit = { apple.color = "red" }, fruit.apple.texture = { smooth = true } }
-
-<b>     output from parser-cmd (stdout):</b>
-       {
-         "tbl": {
-           "fruit": {
-             "apple": {
-               "color": {
-                 "type": "string",
-                 "value": "red"
-               },
-               "texture": {
-                 "smooth": {
-                   "type": "bool",
-                   "value": "true"
-                 }
-               }
-             }
-           }
-         }
-       }
-
-<b>     want:</b>
-       Exit code 1
-
 toml-test [./scripts/target/release/toml_edit-decoder]: using embedded tests
   valid tests: 155 passed,  1 failed
-invalid tests: 282 passed,  1 failed
+invalid tests: 283 passed,  0 failed
 
 ==> ENCODER TESTS
 toml-test [./scripts/target/release/toml_edit-encoder]: using embedded tests
 encoder tests: 156 passed,  0 failed
-took 0.56 0.16
+took 0.59 0.16
 </pre>
