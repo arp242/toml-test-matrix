@@ -10,8 +10,9 @@ body         { background-color:#fff; padding:1em; max-width:80em; margin:1em au
 small, em    { font-size:.75em; }
 table        { border-collapse:collapse; }
 td, th       { border:1px solid #d7d7d7; padding:.5em;  }
-td:nth-child(1) { white-space:nowrap; }
+td:nth-child(2) { white-space:nowrap; }
 th           { background:#f3f3f3; font-weight:normal; text-align:left; white-space:nowrap; }
+tr:hover     { background-color:#fffef1; }
 .pass        { }
 .fail        { float:right; }
 .didfail     { font-weight:bold; color:red; }
@@ -47,11 +48,12 @@ invalid tests are usually less of a deal than failing valid tests.</p>
 <label><input type='checkbox' value='C'>C (1)</label>
 <label><input type='checkbox' value='C++'>C++ (2)</label>
 <label><input type='checkbox' value='Go'>Go (2)</label>
-<label><input type='checkbox' value='Python'>Python (1)</label>
+<label><input type='checkbox' value='JS'>JS (1)</label>
+<label><input type='checkbox' value='Python'>Python (2)</label>
 <label><input type='checkbox' value='Ruby'>Ruby (2)</label>
 <label><input type='checkbox' value='Rust'>Rust (3)</label>
 </div>
-<table>
+<table class="tsort">
 <thead><tr>
 <th></th>
 <th>Name</th>
@@ -87,8 +89,8 @@ invalid tests are usually less of a deal than failing valid tests.</p>
 <small class="pass">pass: 153</small>
 <span class="fail didfail">fail: 3</span>
 </td>
-<td class='bench'>0.7ms</td>
-<td class='bench'>0.19s</td>
+<td class='bench'>0.6ms</td>
+<td class='bench'>0.18s</td>
 <td><a href="output/c++-toml++.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="C++">
@@ -108,9 +110,9 @@ invalid tests are usually less of a deal than failing valid tests.</p>
 <small class="pass">pass: 283</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td style="width:30em"><em>(doesn't include encoder)</em></td>
-<td class='bench'>11.2ms</td>
-<td class='bench'>3.15s</td>
+<td style='width:30em'><em>(TODO)</em></td>
+<td class='bench'>10.3ms</td>
+<td class='bench'>3.22s</td>
 <td><a href="output/c++-toml11.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="C">
@@ -130,9 +132,9 @@ invalid tests are usually less of a deal than failing valid tests.</p>
 <small class="pass">pass: 261</small>
 <span class="fail didfail">fail: 22</span>
 </td>
-<td style="width:30em"><em>(doesn't include encoder)</em></td>
+<td style='width:30em'><em>(doesn't include encoder)</em></td>
 <td class='bench'>0.3ms</td>
-<td class='bench'>11.50s</td>
+<td class='bench'>12.55s</td>
 <td><a href="output/c-tomlc99.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Go">
@@ -187,9 +189,65 @@ invalid tests are usually less of a deal than failing valid tests.</p>
 <small class="pass">pass: 156</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>1.2ms</td>
-<td class='bench'>0.39s</td>
+<td class='bench'>1.1ms</td>
+<td class='bench'>0.40s</td>
 <td><a href="output/go-toml.html" class="ui">output</a></td>
+</tr>
+<tr data-lang="JS">
+<td>JS</td>
+<td title="Version b843be0"><a href="https://github.com/LongTengDao/j-toml">j-toml</a></td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp allpass" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 156</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:95.759717314487631%"></span><span class="barf" style="width:4.2402826855123674%"></span>
+</div>
+<small class="pass">pass: 271</small>
+<span class="fail didfail">fail: 12</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:96.15384615384616%"></span><span class="barf" style="width:3.8461538461538463%"></span>
+</div>
+<small class="pass">pass: 150</small>
+<span class="fail didfail">fail: 6</span>
+</td>
+<td class='bench'>10.0ms</td>
+<td class='bench'>0.86s</td>
+<td><a href="output/js-j-toml.html" class="ui">output</a></td>
+</tr>
+<tr data-lang="Python">
+<td>Python</td>
+<td title="Version cfc9976"><a href="https://github.com/sdispater/tomlkit">tomlkit</a></td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp allpass" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 156</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:98.586572438162548%"></span><span class="barf" style="width:1.4134275618374559%"></span>
+</div>
+<small class="pass">pass: 279</small>
+<span class="fail didfail">fail: 4</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp allpass" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 156</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td class='bench'>130.3ms</td>
+<td class='bench'>57.54s</td>
+<td><a href="output/python-tomlkit.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Python">
 <td>Python</td>
@@ -208,9 +266,9 @@ invalid tests are usually less of a deal than failing valid tests.</p>
 <small class="pass">pass: 283</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td style="width:30em"><em>(doesn't include encoder)</em></td>
-<td class='bench'>2.8ms</td>
-<td class='bench'>1.15s</td>
+<td style='width:30em'><em>(doesn't include encoder)</em></td>
+<td class='bench'>2.9ms</td>
+<td class='bench'>1.13s</td>
 <td><a href="output/python-tomllib.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Ruby">
@@ -237,8 +295,8 @@ invalid tests are usually less of a deal than failing valid tests.</p>
 <small class="pass">pass: 156</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>1.6ms</td>
-<td class='bench'>0.69s</td>
+<td class='bench'>1.7ms</td>
+<td class='bench'>0.67s</td>
 <td><a href="output/ruby-perfect_toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Ruby">
@@ -258,9 +316,9 @@ invalid tests are usually less of a deal than failing valid tests.</p>
 <small class="pass">pass: 278</small>
 <span class="fail didfail">fail: 5</span>
 </td>
-<td style="width:30em"><em>(doesn't include encoder)</em></td>
-<td class='bench'>8.5ms</td>
-<td class='bench'>4.44s</td>
+<td style='width:30em'><em>(doesn't include encoder)</em></td>
+<td class='bench'>8.1ms</td>
+<td class='bench'>4.37s</td>
 <td><a href="output/ruby-tomlrb.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Rust">
@@ -315,7 +373,7 @@ invalid tests are usually less of a deal than failing valid tests.</p>
 <small class="pass">pass: 156</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>0.5ms</td>
+<td class='bench'>0.6ms</td>
 <td class='bench'>0.17s</td>
 <td><a href="output/rust-toml.html" class="ui">output</a></td>
 </tr>
@@ -343,8 +401,8 @@ invalid tests are usually less of a deal than failing valid tests.</p>
 <small class="pass">pass: 156</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>0.4ms</td>
-<td class='bench'>0.15s</td>
+<td class='bench'>0.6ms</td>
+<td class='bench'>0.16s</td>
 <td><a href="output/rust-toml_edit.html" class="ui">output</a></td>
 </tr>
 <script>

@@ -12,6 +12,6 @@ typeset -A info=(
 	src     'git@github.com:ToruNiina/toml11.git'
 	version ''
 	decoder 'check_toml_test'
-	encoder '' # TODO: nothing for this in the repo, need to write something
+	encoder 'TODO'
 	perf    'perf'
 )

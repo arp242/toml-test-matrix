@@ -65,7 +65,7 @@ do_run() {
 			start=$EPOCHREALTIME
 			toml-test -color bold $dec |& sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' >>$out
 			print $'\n==> ENCODER TESTS' >>$out
-			if [[ -n $info[encoder] ]]; then
+			if [[ -n $info[encoder] ]] && [[ $info[encoder] != 'TODO' ]]; then
 				toml-test -color bold -encoder $enc |& sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' >>$out
 			else
 				print '(not supported)' >>$out
@@ -75,8 +75,8 @@ do_run() {
 			perf=$info[perf]
 			[[ $perf[1] != '.' ]] && perf=./src/$name/$perf
 
-			took_perf10k=$($=perf /tmp/10k.toml || print -1)
-			took_perf5M=$($=perf /tmp/5M.toml || print -1)
+			took_perf10k=$($=perf /tmp/10k.toml 2>&/dev/null || print -1)
+			took_perf5M=$($=perf /tmp/5M.toml   2>&/dev/null || print -1)
 			if (( $took_perf10k == -1 )); then
 				took_perf10k='(error)'
 			else
@@ -116,8 +116,9 @@ do_gen() {
 			small, em    { font-size:.75em; }
 			table        { border-collapse:collapse; }
 			td, th       { border:1px solid #d7d7d7; padding:.5em;  }
-			td:nth-child(1) { white-space:nowrap; }
+			td:nth-child(2) { white-space:nowrap; }
 			th           { background:#f3f3f3; font-weight:normal; text-align:left; white-space:nowrap; }
+			tr:hover     { background-color:#fffef1; }
 			.pass        { }
 			.fail        { float:right; }
 			.didfail     { font-weight:bold; color:red; }
@@ -256,9 +257,12 @@ do_gen() {
 				</td>
 			EOF
 		else
-			cat >>index.html <<-EOF 
-				<td style="width:30em"><em>(doesn't include encoder)</em></td>
-			EOF
+			# TODO: quick hack to ensure we don't lie.
+			if [[ $info[encoder] = 'TODO' ]]; then
+				echo "<td style='width:30em'><em>(TODO)</em></td>" >>index.html
+			else
+				echo "<td style='width:30em'><em>(doesn't include encoder)</em></td>" >>index.html
+			fi
 		fi
 		print "<td class='bench'>$took10k</td>" >>index.html
 		print "<td class='bench'>$took5M</td>"  >>index.html
