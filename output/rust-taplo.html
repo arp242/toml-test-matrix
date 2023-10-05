@@ -1,0 +1,69 @@
+<pre>
+0.12.1
+<b>FAIL</b> <b>valid/comment/nonascii</b>
+<b> </b>    Error: Error { message: "invalid character in comment (4..4)\n" }
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       # ~  ÿ ퟿  ￿ 𐀀 􏿿
+
+<b>     output from parser-cmd (stderr):</b>
+       Error: Error { message: "invalid character in comment (4..4)\n" }
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>valid/key/quoted-unicode</b>
+<b> </b>    Error: Error { message: "invalid control character in string literal (205..205)\n" }
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       
+       "\u0000" = "null"
+       '\u0000' = "different key"
+       "\u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff" = "escaped key"
+       
+       "~  ÿ ퟿  ￿ 𐀀 􏿿" = "basic key"
+       'l ~  ÿ ퟿  ￿ 𐀀 􏿿' = "literal key"
+
+<b>     output from parser-cmd (stderr):</b>
+       Error: Error { message: "invalid control character in string literal (205..205)\n" }
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>valid/string/quoted-unicode</b>
+<b> </b>    Error: Error { message: "invalid control character in string literal (303..303)\n" }
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       
+       escaped_string = "\u0000 \u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff"
+       not_escaped_string = '\u0000 \u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff'
+       
+       basic_string = "~  ÿ ퟿  ￿ 𐀀 􏿿"
+       literal_string = '~  ÿ ퟿  ￿ 𐀀 􏿿'
+
+<b>     output from parser-cmd (stderr):</b>
+       Error: Error { message: "invalid control character in string literal (303..303)\n" }
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+toml-test [./scripts/target/release/taplo-decoder]: using embedded tests
+  valid tests: 153 passed,  3 failed
+invalid tests: 283 passed,  0 failed
+
+==> ENCODER TESTS
+(not supported)
+took 0.46 1.6 45.16
+</pre>

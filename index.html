@@ -61,7 +61,7 @@ real-world use case in any case.</p>
 <label><input type='checkbox' value='JS'>JS (1)</label>
 <label><input type='checkbox' value='Python'>Python (2)</label>
 <label><input type='checkbox' value='Ruby'>Ruby (2)</label>
-<label><input type='checkbox' value='Rust'>Rust (3)</label>
+<label><input type='checkbox' value='Rust'>Rust (4)</label>
 </div>
 <table>
 <thead><tr>
@@ -124,8 +124,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 283</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>10.3ms</td>
-<td class='bench'>3.22s</td>
+<td class='bench'>9.1ms</td>
+<td class='bench'>3.17s</td>
 <td><a href="output/c++-toml11.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="C">
@@ -147,8 +147,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 261</small>
 <span class="fail didfail">fail: 22</span>
 </td>
-<td class='bench'>0.3ms</td>
-<td class='bench'>12.55s</td>
+<td class='bench'>0.4ms</td>
+<td class='bench'>13.32s</td>
 <td><a href="output/c-tomlc99.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Go">
@@ -177,7 +177,7 @@ real-world use case in any case.</p>
 <span class="fail ">fail: 0</span>
 </td>
 <td class='bench'>0.4ms</td>
-<td class='bench'>1.46s</td>
+<td class='bench'>1.66s</td>
 <td><a href="output/go-go-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Go">
@@ -234,8 +234,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 271</small>
 <span class="fail didfail">fail: 12</span>
 </td>
-<td class='bench'>10.0ms</td>
-<td class='bench'>0.86s</td>
+<td class='bench'>11.0ms</td>
+<td class='bench'>0.80s</td>
 <td><a href="output/js-j-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Python">
@@ -263,8 +263,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 279</small>
 <span class="fail didfail">fail: 4</span>
 </td>
-<td class='bench'>130.3ms</td>
-<td class='bench'>57.54s</td>
+<td class='bench'>122.2ms</td>
+<td class='bench'>54.70s</td>
 <td><a href="output/python-tomlkit.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Python">
@@ -287,7 +287,7 @@ real-world use case in any case.</p>
 <span class="fail ">fail: 0</span>
 </td>
 <td class='bench'>2.9ms</td>
-<td class='bench'>1.13s</td>
+<td class='bench'>1.12s</td>
 <td><a href="output/python-tomllib.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Ruby">
@@ -338,8 +338,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 278</small>
 <span class="fail didfail">fail: 5</span>
 </td>
-<td class='bench'>8.1ms</td>
-<td class='bench'>4.37s</td>
+<td class='bench'>8.2ms</td>
+<td class='bench'>4.58s</td>
 <td><a href="output/ruby-tomlrb.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Rust">
@@ -372,6 +372,29 @@ real-world use case in any case.</p>
 <td><a href="output/rust-basic-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Rust">
+<td><span title="Non-compliant">❌</span></td>
+<td>Rust</td>
+<td title="Version 0.12.1"><a href="https://github.com/tamasfe/taplo/tree/master/crates/taplo">taplo</a></td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:98.07692307692308%"></span><span class="barf" style="width:1.9230769230769231%"></span>
+</div>
+<small class="pass">pass: 153</small>
+<span class="fail didfail">fail: 3</span>
+</td>
+<td style='width:30em'><em>(TODO)</em></td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp allpass" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 283</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td class='bench'>1.6ms</td>
+<td class='bench'>45.16s</td>
+<td><a href="output/rust-taplo.html" class="ui">output</a></td>
+</tr>
+<tr data-lang="Rust">
 <td><span title="Compliant">✅</span></td>
 <td>Rust</td>
 <td title="Version 0.8.1"><a href="https://github.com/toml-rs/toml/tree/main/crates/toml">toml</a></td>
@@ -396,8 +419,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 283</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>0.6ms</td>
-<td class='bench'>0.17s</td>
+<td class='bench'>1.1ms</td>
+<td class='bench'>0.16s</td>
 <td><a href="output/rust-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Rust">
@@ -425,7 +448,7 @@ real-world use case in any case.</p>
 <small class="pass">pass: 283</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>0.6ms</td>
+<td class='bench'>0.7ms</td>
 <td class='bench'>0.16s</td>
 <td><a href="output/rust-toml_edit.html" class="ui">output</a></td>
 </tr>

@@ -10,6 +10,6 @@ typeset -A info=(
 	src     '' # We use the Cargo.toml for now 'git@github.com:tamasfes/taplo.git'
 	version '0.12.1'
 	decoder './scripts/target/release/taplo-decoder'
-	encoder './scripts/target/release/taplo-encoder'
+	encoder 'TODO'  # './scripts/target/release/taplo-encoder'
 	perf    './scripts/target/release/rust-taplo-perf'
 )
