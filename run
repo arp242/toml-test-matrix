@@ -37,8 +37,15 @@ do_setup() {
 }
 
 do_run() {
-	toml-test -cat $(( 1024 * 5 )) >|/tmp/5M.toml  # TODO: proper tmpfile
-	toml-test -cat 10              >|/tmp/10k.toml
+	skip=(
+		-skip valid/key/escapes.toml
+		-skip valid/key/quoted-unicode.toml
+		-skip valid/spec/string-7.toml
+		-skip valid/string/multiline-quotes.toml
+		-skip valid/string/quoted-unicode.toml
+	)
+	toml-test -cat $(( 1024 * 5 )) $skip >|/tmp/5M.toml  # TODO: proper tmpfile
+	toml-test -cat 10              $skip >|/tmp/10k.toml
 
 	for f in ./parsers/*.zsh; do
 		name=$f:t:r
@@ -149,16 +156,16 @@ do_gen() {
 		if both the "valid" and "encoder" tests pass, otherwise they're marked
 		as non-compliant (❌). Usually it's not a huge deal to accept some
 		technically invalid TOML, especially since almost all failing "invalid"
-		tests are obscure edge cases.</p>
+		tests are uncommon edge cases.</p>
 
 		<p>The benchmarks are a simple decode of a 10k and 5M file. Results
 		aren't necessarily fair as some implementations will parse numbers,
 		dates, etc. when reading the file, and others when the data is used. The
 		benchmarks are also simplistic: it just runs once on my laptop. The
-		results are roughly consistent, but do have some margin of error (±25%
-		or so). Still, it should be a decent rough comparison. If performance is
-		of prime concern you should run your own benchmarks based on your
-		real-world use case in any case.</p>
+		results are roughly consistent, but do have some margin of error (±20%
+		or so for the 10k file). Still, it should be a decent rough comparison.
+		If performance is of prime concern you should run your own benchmarks
+		based on your real-world use case in any case.</p>
 
 		<div id="langs">Only show:
 	EOF

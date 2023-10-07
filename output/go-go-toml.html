@@ -1,7 +1,7 @@
 <pre>
 a76e18e
 toml-test [./src/go-go-toml/gotoml-test-decoder]: using embedded tests
-  valid tests: 156 passed,  0 failed
+  valid tests: 157 passed,  0 failed
 invalid tests: 283 passed,  0 failed
 
 ==> ENCODER TESTS
@@ -17,13 +17,13 @@ invalid tests: 283 passed,  0 failed
              "type": "integer",
              "value": "42"
            },
-           "dt": {
-             "type": "datetime",
-             "value": "1979-05-27T07:32:12-07:00"
-           },
            "d": {
              "type": "date-local",
              "value": "1979-05-27"
+           },
+           "dt": {
+             "type": "datetime",
+             "value": "1979-05-27T07:32:12-07:00"
            },
            "more": [
              {
@@ -95,9 +95,9 @@ invalid tests: 283 passed,  0 failed
        bestdayever = 1987-07-05
 
 <b>FAIL</b> <b>valid/datetime/local-time</b>
-<b> </b>    Values for key 'milliseconds' differ:
-<b> </b>      Expected:     0000-01-01 10:32:00.555 +0100 time-local (time.Time)
-<b> </b>      Your encoder: 0000-01-01 10:32:00.555 -0025 -0025 (time.Time)
+<b> </b>    Values for key 'besttimeever' differ:
+<b> </b>      Expected:     0000-01-01 17:45:00 +0100 time-local (time.Time)
+<b> </b>      Your encoder: 0000-01-01 17:45:00 -0025 -0025 (time.Time)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -120,9 +120,9 @@ invalid tests: 283 passed,  0 failed
        milliseconds = 10:32:00.555
 
 <b>FAIL</b> <b>valid/datetime/local</b>
-<b> </b>    Values for key 'local' differ:
-<b> </b>      Expected:     1987-07-05 17:45:00 +0100 datetime-local (time.Time)
-<b> </b>      Your encoder: 1987-07-05 17:45:00 +0100 IST (time.Time)
+<b> </b>    Values for key 'milli' differ:
+<b> </b>      Expected:     1977-12-21 10:32:00.555 +0100 datetime-local (time.Time)
+<b> </b>      Your encoder: 1977-12-21 10:32:00.555 +0000 UTC (time.Time)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -265,6 +265,6 @@ invalid tests: 283 passed,  0 failed
        member_since = 1999-08-04
 
 toml-test [./src/go-go-toml/gotoml-test-encoder]: using embedded tests
-encoder tests: 148 passed,  8 failed
-took 0.84 0.4 1.66
+encoder tests: 149 passed,  8 failed
+took 0.91 1.1 1.62
 </pre>
