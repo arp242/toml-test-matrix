@@ -16,11 +16,12 @@ do_setup() {
 
 			if [[ -n $info[src] ]]; then
 				(
+					print -n "$name: "
 					cd src
 					if [[ ! -d $name ]]; then
 						git clone $info[src] $name
 					else
-						(cd $name && git pull >/dev/null)
+						(cd $name && git pull ||:)
 					fi
 				)
 				cd src/$name
@@ -111,8 +112,8 @@ do_perf() {
 				print '(skip)'
 				continue
 			fi
-			if [[ -z ${info[perf]:-} ]]; then
-				print '(perf undefined)'
+			if [[ ${info[perf]:-TODO} = 'TODO' ]]; then
+				print '(TODO)'
 				continue
 			fi
 
@@ -131,7 +132,7 @@ do_perf() {
 			fi
 			if [[ $took_perf10k != '(error)' ]]; then
 				all=($took_perf10k)
-				for (( i=0; i<10; i++ )); do
+				for (( i=0; i<50; i++ )); do
 					r=$($=perf /tmp/10k.toml 2>&/dev/null || print -1)
 					if (( $r == -1 )); then
 						took_perf10k='(error)'; dist_10k=(0 0)
@@ -361,8 +362,20 @@ do_gen() {
 					<span class="fail $ifail">fail: $iv[5]</span>
 				</td>
 		EOF
-		print "<td class='bench'>$took10k</td>" >>index.html
-		print "<td class='bench'>$took5M</td>"  >>index.html
+		if [[ $took10k = '0.0ms' ]]; then
+			print "<td class='bench'><em>(TODO)</em></td>" >>index.html
+		elif [[ $took10k = '(error)' ]]; then
+			print "<td class='bench'><em>$took10k</em></td>" >>index.html
+		else
+			print "<td class='bench'>$took10k</td>" >>index.html
+		fi
+		if [[ $took5M = '0.0s' ]]; then
+			print "<td class='bench'><em>(TODO)</em></td>" >>index.html
+		elif [[ $took5M = '(error)' ]]; then
+			print "<td class='bench'><em>$took5M</em></td>" >>index.html
+		else
+			print "<td class='bench'>$took5M</td>"  >>index.html
+		fi
 
 		cat >>index.html <<-EOF
 			<td><a href="output/$name.html" class="ui">output</a></td>

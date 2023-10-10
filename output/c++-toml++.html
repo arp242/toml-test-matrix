@@ -1,66 +1,11 @@
 <pre>
-be30d11
+cc1962e
 toml-test [./src/c++-toml++/build_tt/toml-test/tt_decoder]: using embedded tests
   valid tests: 157 passed,  0 failed
 invalid tests: 283 passed,  0 failed
 
 ==> ENCODER TESTS
-<b>FAIL</b> <b>valid/key/escapes</b>
-<b> </b>    decode TOML from encoder:
-<b> </b>      toml: line 1: strings cannot contain newlines
-
-<b>     input sent to parser-cmd:</b>
-       {
-         "\n": {
-           "type": "string",
-           "value": "newline"
-         },
-         "\"": {
-           "type": "string",
-           "value": "just a quote"
-         },
-         "\"quoted\"": {
-           "quote": {
-             "type": "bool",
-             "value": "true"
-           }
-         },
-         "a.b": {
-           "À": {}
-         },
-         "backsp\u0008\u0008": {},
-         "À": {
-           "type": "string",
-           "value": "latin capital letter A with grave"
-         }
-       }
-
-<b>     output from parser-cmd (stdout):</b>
-       '
-       ' = 'newline'
-       '"' = 'just a quote'
-       'À' = 'latin capital letter A with grave'
-       
-       ['"quoted"']
-       quote = true
-       
-       ['a.b'.'À']
-       
-       ["backsp\b\b"]
-
-<b>     want:</b>
-       "\n" = "newline"
-       "\u00c0" = "latin capital letter A with grave"
-       "\"" = "just a quote"
-       
-       ["backsp\b\b"]
-       
-       ["\"quoted\""]
-       quote = true
-       
-       ["a.b"."\u00c0"]
-
 toml-test [./src/c++-toml++/build_tt/toml-test/tt_encoder]: using embedded tests
-encoder tests: 156 passed,  1 failed
-took 0.20 0.6 0.19
+encoder tests: 157 passed,  0 failed
+took 0.23 0.6 0.19
 </pre>

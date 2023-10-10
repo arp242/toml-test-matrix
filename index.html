@@ -57,10 +57,11 @@ based on your real-world use case in any case.</p>
 <div id="langs">Only show:
 <label><input type='checkbox' value='C'>C (1)</label>
 <label><input type='checkbox' value='C++'>C++ (2)</label>
+<label><input type='checkbox' value='Fortran'>Fortran (1)</label>
 <label><input type='checkbox' value='Go'>Go (2)</label>
 <label><input type='checkbox' value='JS'>JS (1)</label>
-<label><input type='checkbox' value='Python'>Python (2)</label>
-<label><input type='checkbox' value='Ruby'>Ruby (2)</label>
+<label><input type='checkbox' value='Python'>Python (4)</label>
+<label><input type='checkbox' value='Ruby'>Ruby (3)</label>
 <label><input type='checkbox' value='Rust'>Rust (4)</label>
 </div>
 <table>
@@ -77,9 +78,9 @@ based on your real-world use case in any case.</p>
 </tr></thead>
 <tbody>
 <tr data-lang="C++">
-<td><span title="Non-compliant">❌</span></td>
+<td><span title="Compliant">✅</span></td>
 <td>C++</td>
-<td title="Version be30d11"><a href="https://github.com/marzer/tomlplusplus">toml++</a></td>
+<td title="Version cc1962e"><a href="https://github.com/marzer/tomlplusplus">toml++</a></td>
 <td style="width:30em">
 <div class="bars">
 <span class="barp allpass" style="width:100%"></span><span class="barf" style="width:0%"></span>
@@ -89,10 +90,10 @@ based on your real-world use case in any case.</p>
 </td>
 <td style="width:30em">
 <div class="bars">
-<span class="barp " style="width:99.363057324840767%"></span><span class="barf" style="width:0.63694267515923575%"></span>
+<span class="barp allpass" style="width:100%"></span><span class="barf" style="width:0%"></span>
 </div>
-<small class="pass">pass: 156</small>
-<span class="fail didfail">fail: 1</span>
+<small class="pass">pass: 157</small>
+<span class="fail ">fail: 0</span>
 </td>
 <td style="width:30em">
 <div class="bars">
@@ -101,20 +102,20 @@ based on your real-world use case in any case.</p>
 <small class="pass">pass: 283</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>1.0ms</td>
-<td class='bench'>0.20s</td>
+<td class='bench'>0.6ms</td>
+<td class='bench'>0.19s</td>
 <td><a href="output/c++-toml++.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="C++">
-<td><span title="Non-compliant">❌</span></td>
+<td><span title="Compliant">✅</span></td>
 <td>C++</td>
-<td title="Version 087408a"><a href="https://github.com/ToruNiina/toml11">toml11</a></td>
+<td title="Version 22d96ed"><a href="https://github.com/ToruNiina/toml11">toml11</a></td>
 <td style="width:30em">
 <div class="bars">
-<span class="barp " style="width:99.363057324840767%"></span><span class="barf" style="width:0.63694267515923575%"></span>
+<span class="barp allpass" style="width:100%"></span><span class="barf" style="width:0%"></span>
 </div>
-<small class="pass">pass: 156</small>
-<span class="fail didfail">fail: 1</span>
+<small class="pass">pass: 157</small>
+<span class="fail ">fail: 0</span>
 </td>
 <td style='width:30em'><em>(TODO)</em></td>
 <td style="width:30em">
@@ -124,8 +125,8 @@ based on your real-world use case in any case.</p>
 <small class="pass">pass: 283</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>10.1ms</td>
-<td class='bench'>3.19s</td>
+<td class='bench'>10.0ms</td>
+<td class='bench'>3.30s</td>
 <td><a href="output/c++-toml11.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="C">
@@ -148,11 +149,40 @@ based on your real-world use case in any case.</p>
 <span class="fail didfail">fail: 22</span>
 </td>
 <td class='bench'>0.3ms</td>
-<td class='bench'>4.42s</td>
+<td class='bench'>4.55s</td>
 <td><a href="output/c-tomlc99.html" class="ui">output</a></td>
 </tr>
-<tr data-lang="Go">
+<tr data-lang="Fortran">
 <td><span title="Non-compliant">❌</span></td>
+<td>Fortran</td>
+<td title="Version f4f1cc7"><a href="https://github.com/toml-f/toml-f">toml-f</a></td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:94.904458598726109%"></span><span class="barf" style="width:5.095541401273886%"></span>
+</div>
+<small class="pass">pass: 149</small>
+<span class="fail didfail">fail: 8</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:93.630573248407643%"></span><span class="barf" style="width:6.369426751592357%"></span>
+</div>
+<small class="pass">pass: 147</small>
+<span class="fail didfail">fail: 10</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:92.932862190812727%"></span><span class="barf" style="width:7.0671378091872796%"></span>
+</div>
+<small class="pass">pass: 263</small>
+<span class="fail didfail">fail: 20</span>
+</td>
+<td class='bench'><em>(TODO)</em></td>
+<td class='bench'><em>(TODO)</em></td>
+<td><a href="output/fortran-toml-f.html" class="ui">output</a></td>
+</tr>
+<tr data-lang="Go">
+<td><span title="Compliant">✅</span></td>
 <td>Go</td>
 <td title="Version a76e18e"><a href="https://github.com/pelletier/go-toml">go-toml</a></td>
 <td style="width:30em">
@@ -164,10 +194,10 @@ based on your real-world use case in any case.</p>
 </td>
 <td style="width:30em">
 <div class="bars">
-<span class="barp " style="width:94.904458598726109%"></span><span class="barf" style="width:5.095541401273886%"></span>
+<span class="barp allpass" style="width:100%"></span><span class="barf" style="width:0%"></span>
 </div>
-<small class="pass">pass: 149</small>
-<span class="fail didfail">fail: 8</span>
+<small class="pass">pass: 157</small>
+<span class="fail ">fail: 0</span>
 </td>
 <td style="width:30em">
 <div class="bars">
@@ -177,13 +207,13 @@ based on your real-world use case in any case.</p>
 <span class="fail ">fail: 0</span>
 </td>
 <td class='bench'>0.4ms</td>
-<td class='bench'>1.50s</td>
+<td class='bench'>1.53s</td>
 <td><a href="output/go-go-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Go">
 <td><span title="Compliant">✅</span></td>
 <td>Go</td>
-<td title="Version 4f8abaa"><a href="https://github.com/burntSushi/toml">toml</a></td>
+<td title="Version c0a26cb"><a href="https://github.com/burntSushi/toml">toml</a></td>
 <td style="width:30em">
 <div class="bars">
 <span class="barp allpass" style="width:100%"></span><span class="barf" style="width:0%"></span>
@@ -205,8 +235,8 @@ based on your real-world use case in any case.</p>
 <small class="pass">pass: 274</small>
 <span class="fail didfail">fail: 9</span>
 </td>
-<td class='bench'>1.3ms</td>
-<td class='bench'>0.41s</td>
+<td class='bench'>0.9ms</td>
+<td class='bench'>0.35s</td>
 <td><a href="output/go-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="JS">
@@ -234,9 +264,67 @@ based on your real-world use case in any case.</p>
 <small class="pass">pass: 271</small>
 <span class="fail didfail">fail: 12</span>
 </td>
-<td class='bench'>10.6ms</td>
-<td class='bench'>0.84s</td>
+<td class='bench'>12.8ms</td>
+<td class='bench'>0.92s</td>
 <td><a href="output/js-j-toml.html" class="ui">output</a></td>
+</tr>
+<tr data-lang="Python">
+<td><span title="Non-compliant">❌</span></td>
+<td>Python</td>
+<td title="Version 08c6ca2"><a href="https://github.com/uiri/toml">toml</a></td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:88.535031847133752%"></span><span class="barf" style="width:11.464968152866243%"></span>
+</div>
+<small class="pass">pass: 139</small>
+<span class="fail didfail">fail: 18</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:92.99363057324841%"></span><span class="barf" style="width:7.0063694267515926%"></span>
+</div>
+<small class="pass">pass: 146</small>
+<span class="fail didfail">fail: 11</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:81.272084805653719%"></span><span class="barf" style="width:18.727915194346288%"></span>
+</div>
+<small class="pass">pass: 230</small>
+<span class="fail didfail">fail: 53</span>
+</td>
+<td class='bench'><em>(error)</em></td>
+<td class='bench'><em>(error)</em></td>
+<td><a href="output/python-toml.html" class="ui">output</a></td>
+</tr>
+<tr data-lang="Python">
+<td><span title="Non-compliant">❌</span></td>
+<td>Python</td>
+<td title="Version git@github.com:hukkin/tomli-w.git"><a href="">tomli</a></td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp allpass" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 157</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:95.541401273885356%"></span><span class="barf" style="width:4.4585987261146496%"></span>
+</div>
+<small class="pass">pass: 150</small>
+<span class="fail didfail">fail: 7</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp allpass" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 283</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td class='bench'>2.9ms</td>
+<td class='bench'>1.15s</td>
+<td><a href="output/python-tomli.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Python">
 <td><span title="Compliant">✅</span></td>
@@ -263,8 +351,8 @@ based on your real-world use case in any case.</p>
 <small class="pass">pass: 279</small>
 <span class="fail didfail">fail: 4</span>
 </td>
-<td class='bench'>(error)</td>
-<td class='bench'>(error)</td>
+<td class='bench'>122.8ms</td>
+<td class='bench'>49.71s</td>
 <td><a href="output/python-tomlkit.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Python">
@@ -286,8 +374,8 @@ based on your real-world use case in any case.</p>
 <small class="pass">pass: 283</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>3.0ms</td>
-<td class='bench'>1.15s</td>
+<td class='bench'>3.1ms</td>
+<td class='bench'>1.19s</td>
 <td><a href="output/python-tomllib.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Ruby">
@@ -316,8 +404,37 @@ based on your real-world use case in any case.</p>
 <span class="fail didfail">fail: 1</span>
 </td>
 <td class='bench'>1.7ms</td>
-<td class='bench'>0.70s</td>
+<td class='bench'>0.71s</td>
 <td><a href="output/ruby-perfect_toml.html" class="ui">output</a></td>
+</tr>
+<tr data-lang="Ruby">
+<td><span title="Non-compliant">❌</span></td>
+<td>Ruby</td>
+<td title="Version 34ad28e"><a href="https://github.com/emancu/toml-rb">toml-rb</a></td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:85.98726114649682%"></span><span class="barf" style="width:14.012738853503185%"></span>
+</div>
+<small class="pass">pass: 135</small>
+<span class="fail didfail">fail: 22</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:81.528662420382162%"></span><span class="barf" style="width:18.471337579617835%"></span>
+</div>
+<small class="pass">pass: 128</small>
+<span class="fail didfail">fail: 29</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:74.911660777385151%"></span><span class="barf" style="width:25.088339222614842%"></span>
+</div>
+<small class="pass">pass: 212</small>
+<span class="fail didfail">fail: 71</span>
+</td>
+<td class='bench'><em>(TODO)</em></td>
+<td class='bench'><em>(TODO)</em></td>
+<td><a href="output/ruby-toml-rb.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Ruby">
 <td><span title="Compliant">✅</span></td>
@@ -338,8 +455,8 @@ based on your real-world use case in any case.</p>
 <small class="pass">pass: 278</small>
 <span class="fail didfail">fail: 5</span>
 </td>
-<td class='bench'>8.1ms</td>
-<td class='bench'>4.49s</td>
+<td class='bench'>8.9ms</td>
+<td class='bench'>4.52s</td>
 <td><a href="output/ruby-tomlrb.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Rust">
@@ -367,8 +484,8 @@ based on your real-world use case in any case.</p>
 <small class="pass">pass: 279</small>
 <span class="fail didfail">fail: 4</span>
 </td>
-<td class='bench'>(error)</td>
-<td class='bench'>(error)</td>
+<td class='bench'><em>(error)</em></td>
+<td class='bench'><em>(error)</em></td>
 <td><a href="output/rust-basic-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Rust">
@@ -390,8 +507,8 @@ based on your real-world use case in any case.</p>
 <small class="pass">pass: 283</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>1.6ms</td>
-<td class='bench'>44.89s</td>
+<td class='bench'>1.7ms</td>
+<td class='bench'>44.93s</td>
 <td><a href="output/rust-taplo.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Rust">
