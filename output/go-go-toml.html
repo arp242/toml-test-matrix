@@ -75,6 +75,37 @@ invalid tests: 283 passed,  0 failed
        dt = 1979-05-27T07:32:12-07:00  # c
        d = 1979-05-27 # Comment
 
+<b>FAIL</b> <b>valid/datetime/local</b>
+<b> </b>    Values for key 'milli' differ:
+<b> </b>      Expected:     1977-12-21 10:32:00.555 +0100 datetime-local (time.Time)
+<b> </b>      Your encoder: 1977-12-21 10:32:00.555 +0000 UTC (time.Time)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "local": {
+           "type": "datetime-local",
+           "value": "1987-07-05T17:45:00"
+         },
+         "milli": {
+           "type": "datetime-local",
+           "value": "1977-12-21T10:32:00.555"
+         },
+         "space": {
+           "type": "datetime-local",
+           "value": "1987-07-05T17:45:00"
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       local = 1987-07-05T17:45:00+01:00
+       milli = 1977-12-21T10:32:00.555Z
+       space = 1987-07-05T17:45:00+01:00
+
+<b>     want:</b>
+       local = 1987-07-05T17:45:00
+       milli = 1977-12-21T10:32:00.555
+       space = 1987-07-05 17:45:00
+
 <b>FAIL</b> <b>valid/datetime/local-date</b>
 <b> </b>    Values for key 'bestdayever' differ:
 <b> </b>      Expected:     1987-07-05 00:00:00 +0100 date-local (time.Time)
@@ -118,37 +149,6 @@ invalid tests: 283 passed,  0 failed
 <b>     want:</b>
        besttimeever = 17:45:00
        milliseconds = 10:32:00.555
-
-<b>FAIL</b> <b>valid/datetime/local</b>
-<b> </b>    Values for key 'local' differ:
-<b> </b>      Expected:     1987-07-05 17:45:00 +0100 datetime-local (time.Time)
-<b> </b>      Your encoder: 1987-07-05 17:45:00 +0100 IST (time.Time)
-
-<b>     input sent to parser-cmd:</b>
-       {
-         "local": {
-           "type": "datetime-local",
-           "value": "1987-07-05T17:45:00"
-         },
-         "milli": {
-           "type": "datetime-local",
-           "value": "1977-12-21T10:32:00.555"
-         },
-         "space": {
-           "type": "datetime-local",
-           "value": "1987-07-05T17:45:00"
-         }
-       }
-
-<b>     output from parser-cmd (stdout):</b>
-       local = 1987-07-05T17:45:00+01:00
-       milli = 1977-12-21T10:32:00.555Z
-       space = 1987-07-05T17:45:00+01:00
-
-<b>     want:</b>
-       local = 1987-07-05T17:45:00
-       milli = 1977-12-21T10:32:00.555
-       space = 1987-07-05 17:45:00
 
 <b>FAIL</b> <b>valid/spec/local-date-0</b>
 <b> </b>    Values for key 'ld1' differ:
@@ -195,9 +195,9 @@ invalid tests: 283 passed,  0 failed
        ldt2 = 1979-05-27T00:32:00.999999
 
 <b>FAIL</b> <b>valid/spec/local-time-0</b>
-<b> </b>    Values for key 'lt2' differ:
-<b> </b>      Expected:     0000-01-01 00:32:00.999999 +0100 time-local (time.Time)
-<b> </b>      Your encoder: 0000-01-01 00:32:00.999999 -0025 -0025 (time.Time)
+<b> </b>    Values for key 'lt1' differ:
+<b> </b>      Expected:     0000-01-01 07:32:00 +0100 time-local (time.Time)
+<b> </b>      Your encoder: 0000-01-01 07:32:00 -0025 -0025 (time.Time)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -266,5 +266,5 @@ invalid tests: 283 passed,  0 failed
 
 toml-test [./src/go-go-toml/gotoml-test-encoder]: using embedded tests
 encoder tests: 149 passed,  8 failed
-took 0.81 0.4 1.47
+took 0.24 0.4 1.58
 </pre>

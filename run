@@ -37,16 +37,6 @@ do_setup() {
 }
 
 do_run() {
-	skip=(
-		-skip valid/key/escapes.toml
-		-skip valid/key/quoted-unicode.toml
-		-skip valid/spec/string-7.toml
-		-skip valid/string/multiline-quotes.toml
-		-skip valid/string/quoted-unicode.toml
-	)
-	toml-test -cat $(( 1024 * 5 )) $skip >|/tmp/5M.toml  # TODO: proper tmpfile
-	toml-test -cat 10              $skip >|/tmp/10k.toml
-
 	for f in ./parsers/*.zsh; do
 		name=$f:t:r
 		out=output/$name.html
@@ -61,6 +51,11 @@ do_run() {
 			fi
 
 			[[ -z $info[version] ]] && info[version]=$(cd src/$name && git log -n1 --format=%h)
+			perf=(0.0 0.0)
+			if grep -aqs '^took ' $out; then
+				perf=($(grep -a '^took ' $out))
+				perf=($perf[3] $perf[4])
+			fi
 			print '<pre>'        >|$out
 			print $info[version] >>$out
 
@@ -79,34 +74,112 @@ do_run() {
 			fi
 			took=$(print -nf '%.2f' $(( $EPOCHREALTIME - $start )))
 
-			perf=$info[perf]
-			[[ $perf[1] != '.' ]] && perf=./src/$name/$perf
-
-			took_perf10k=$($=perf /tmp/10k.toml 2>&/dev/null || print -1)
-			took_perf5M=$($=perf /tmp/5M.toml   2>&/dev/null || print -1)
-			if (( $took_perf10k == -1 )); then
-				took_perf10k='(error)'
-			else
-				took_perf10k=$(print -nf '%.1f' $(( $took_perf10k * 1000 )))
-			fi
-			if (( $took_perf5M == -1 )); then
-				took_perf5M='(error)'
-			else
-				took_perf5M=$(print -nf '%.2f' $took_perf5M)
-			fi
-
-			print "took $took $took_perf10k $took_perf5M" >>$out
+			print "took $took $perf[1] $perf[2]" >>$out
 			print '</pre>'        >>$out
 
 			v=($(grep -a '^  valid tests:' $out))
 			iv=($(grep -a '^invalid tests:' $out))
 			e=($(grep -a '^encoder tests:' $out || print 'encoder tests:   0 passed,  0 failed'))
 
-			print -f 'pass %3d; fail %3d; took %5ss; perf %sms/%ss\n' \
-				$(( $v[3] + $iv[3] + $e[3] )) $(( $v[5] + $iv[5] + $e[5] )) $took $took_perf10k $took_perf5M
+			print -f 'pass %3d; fail %3d; took %5ss\n' \
+				$(( $v[3] + $iv[3] + $e[3] )) $(( $v[5] + $iv[5] + $e[5] )) $took
 		)
 	done
-	rm -f /tmp/5M.toml
+}
+
+do_perf() {
+	skip=(
+		-skip valid/key/escapes.toml
+		-skip valid/key/quoted-unicode.toml
+		-skip valid/spec/string-7.toml
+		-skip valid/string/multiline-quotes.toml
+		-skip valid/string/quoted-unicode.toml
+	)
+	toml-test -cat $(( 1024 * 5 )) $skip >|/tmp/5M.toml  # TODO: proper tmpfile
+	toml-test -cat 10              $skip >|/tmp/10k.toml
+
+	print -f '%-27s %-27s %s\n' '' '10k' '5M'
+	for f in ./parsers/*.zsh; do
+		name=$f:t:r
+		out=output/$name.html
+		[[ -n $only && $name != $only ]] && continue
+
+		(
+			print -nf '%-25s' $name
+			source $f
+			if (( ${info[skip]:-0} )); then
+				print '(skip)'
+				continue
+			fi
+			if [[ -z ${info[perf]:-} ]]; then
+				print '(perf undefined)'
+				continue
+			fi
+
+			perf=$info[perf]
+			[[ $perf[1] != '.' ]] && perf=./src/$name/$perf
+
+			dist_10k=(9999 0)
+			dist_5M=(9999 0)
+			took_perf10k=$($=perf /tmp/10k.toml 2>&/dev/null || print -1)
+			took_perf5M=$($=perf /tmp/5M.toml   2>&/dev/null || print -1)
+			if (( $took_perf10k == -1 )); then
+				took_perf10k='(error)'; dist_10k=(0 0)
+			fi
+			if (( $took_perf5M == -1 )); then
+				took_perf5M='(error)'; dist_5M=(0 0)
+			fi
+			if [[ $took_perf10k != '(error)' ]]; then
+				all=($took_perf10k)
+				for (( i=0; i<10; i++ )); do
+					r=$($=perf /tmp/10k.toml 2>&/dev/null || print -1)
+					if (( $r == -1 )); then
+						took_perf10k='(error)'; dist_10k=(0 0)
+						break
+					fi
+					all+=($r)
+					(( $r < $dist_10k[1] )) && dist_10k[1]=$r
+					(( $r > $dist_10k[2] )) && dist_10k[2]=$r
+				done
+				if [[ $took_perf10k != '(error)' ]]; then
+					float sum
+					for a in $all; sum+=$a
+					took_perf10k=$(print -nf '%.1f' $(( $sum / $#all * 1000 )))
+					dist_10k[1]=$(print -nf '%.2f' $(( $dist_10k[1] * 1000 )))
+					dist_10k[2]=$(print -nf '%.2f' $(( $dist_10k[2] * 1000 )))
+				fi
+			fi
+			if [[ $took_perf5M != '(error)' ]]; then
+				all=($took_perf5M)
+				for (( i=0; i<2; i++ )); do
+					r=$($=perf /tmp/5M.toml 2>&/dev/null || print -1)
+					if (( $r == -1 )); then
+						took_perf5M='(error)'; dist_5M=(0 0)
+						break
+					fi
+					all+=($r)
+					(( $r < $dist_5M[1] )) && dist_5M[1]=$r
+					(( $r > $dist_5M[2] )) && dist_5M[2]=$r
+				done
+				if [[ $took_perf5M != '(error)' ]]; then
+					float sum
+					for a in $all; sum+=$a
+					took_perf5M=$(print -nf '%.2f' $(( $sum / $#all )))
+					dist_5M[1]=$(print -nf '%.2f' $dist_5M[1])
+					dist_5M[2]=$(print -nf '%.2f' $dist_5M[2])
+				fi
+			fi
+
+			# TODO: tmpfile
+			sed -E "s/^took ([0-9.]+) [0-9.]+ [0-9.]+$/took \1 $took_perf10k $took_perf5M/" $out >/tmp/tmp.sed
+			mv /tmp/tmp.sed $out
+
+			print -f '%6sms %-18s  %6ss %s\n' $took_perf10k "($dist_10k[1]ms $dist_10k[2]ms)" \
+				$took_perf5M "($dist_5M[1]s $dist_5M[2]s)"
+		)
+	done
+
+	rm -f /tmp/10k.toml /tmp/5M.toml
 }
 
 do_gen() {
@@ -329,6 +402,7 @@ only=${2:-}
 case ${1:-all}; in
 	setup) do_setup ;;
 	run)   do_run   ;;
+	perf)  do_perf  ;;
 	gen)   do_gen   ;;
 	all)   do_setup && do_run && do_gen ;;
 	*)
