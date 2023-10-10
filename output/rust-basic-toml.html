@@ -683,7 +683,7 @@ invalid tests: 280 passed,  3 failed
           <empty>
 
 <b>FAIL</b> <b>valid/datetime/datetime</b>
-<b> </b>    Type for key 'lower' differs:
+<b> </b>    Type for key 'space' differs:
 <b> </b>      Expected:     1987-07-05 17:45:00 +0000 UTC (time.Time)
 <b> </b>      Your encoder: map[$__toml_private_datetime:1987-07-05T17:45:00Z] (map[string]any)
 
@@ -795,9 +795,9 @@ invalid tests: 280 passed,  3 failed
        space = 1987-07-05 17:45:00
 
 <b>FAIL</b> <b>valid/datetime/milliseconds</b>
-<b> </b>    Type for key 'wita1' differs:
-<b> </b>      Expected:     1987-07-05 17:45:56.123 +0800 +0800 (time.Time)
-<b> </b>      Your encoder: map[$__toml_private_datetime:1987-07-05T17:45:56.123+08:00] (map[string]any)
+<b> </b>    Type for key 'utc1' differs:
+<b> </b>      Expected:     1987-07-05 17:45:56.123 +0000 UTC (time.Time)
+<b> </b>      Your encoder: map[$__toml_private_datetime:1987-07-05T17:45:56.123Z] (map[string]any)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -1447,9 +1447,9 @@ invalid tests: 280 passed,  3 failed
        ld1 = 1979-05-27
 
 <b>FAIL</b> <b>valid/spec/local-date-time-0</b>
-<b> </b>    Type for key 'ldt2' differs:
-<b> </b>      Expected:     1979-05-27 00:32:00.999999 +0100 datetime-local (time.Time)
-<b> </b>      Your encoder: map[$__toml_private_datetime:1979-05-27T00:32:00.999999] (map[string]any)
+<b> </b>    Type for key 'ldt1' differs:
+<b> </b>      Expected:     1979-05-27 07:32:00 +0100 datetime-local (time.Time)
+<b> </b>      Your encoder: map[$__toml_private_datetime:1979-05-27T07:32:00] (map[string]any)
 
 <b>     input sent to parser-cmd:</b>
        {
