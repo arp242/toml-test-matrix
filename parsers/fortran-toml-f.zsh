@@ -3,6 +3,11 @@ setup() {
 	meson compile -C _build
 }
 
+# Remove the memory address of the backtraces so output is stable.
+after-run() {
+	sed -Ei 's/(    #[0-9]+ ) 0x[0-9a-f]{6,12} in /\1 0x… in /' output/fortran-toml-f.html
+}
+
 typeset -A info=(
 	lang    'Fortran'
 	toml    '1.0'

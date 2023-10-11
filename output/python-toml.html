@@ -803,7 +803,7 @@
           <empty>
 
 <b>FAIL</b> <b>valid/key/escapes</b>
-<b> </b>    Could not find key "backsp\b\b" in parser output.
+<b> </b>    Could not find key "\"quoted\"" in parser output.
 
 <b>     input sent to parser-cmd:</b>
        "\n" = "newline"
@@ -2677,9 +2677,9 @@ invalid tests: 230 passed, 53 failed
        answer = "\\x64"
 
 <b>FAIL</b> <b>valid/string/escapes</b>
-<b> </b>    Values for key "delete" differ:
-<b> </b>      Expected:     This string has a  delete control code. (string)
-<b> </b>      Your encoder: This string has a x7f delete control code. (string)
+<b> </b>    Values for key "backspace" differ:
+<b> </b>      Expected:     This string has a  backspace character. (string)
+<b> </b>      Your encoder: This string has a x08 backspace character. (string)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -2768,9 +2768,9 @@ invalid tests: 230 passed, 53 failed
        unitseparator = "This string has a \u001F unit separator control code."
 
 <b>FAIL</b> <b>valid/string/quoted-unicode</b>
-<b> </b>    Values for key "escaped_string" differ:
-<b> </b>      Expected:         A   ÿ ퟿  ￿ 𐀀 􏿿 (string)
-<b> </b>      Your encoder: 00 x08 x0c A x7f x80 ÿ ퟿  ￿ 𐀀 􏿿 (string)
+<b> </b>    Values for key "basic_string" differ:
+<b> </b>      Expected:     ~  ÿ ퟿  ￿ 𐀀 􏿿 (string)
+<b> </b>      Your encoder: ~ x80 ÿ ퟿  ￿ 𐀀 􏿿 (string)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -2808,5 +2808,5 @@ invalid tests: 230 passed, 53 failed
 
 toml-test [./src/python-toml/tests/encoding_test.py]: using embedded tests
 encoder tests: 146 passed, 11 failed
-took 4.59 5.2 2.44
+took 5.2 2.44
 </pre>

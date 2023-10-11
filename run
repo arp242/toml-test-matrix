@@ -55,7 +55,7 @@ do_run() {
 			perf=(0.0 0.0)
 			if grep -aqs '^took ' $out; then
 				perf=($(grep -a '^took ' $out))
-				perf=($perf[3] $perf[4])
+				perf=($perf[2] $perf[3])
 			fi
 			print '<pre>'        >|$out
 			print $info[version] >>$out
@@ -75,12 +75,14 @@ do_run() {
 			fi
 			took=$(print -nf '%.2f' $(( $EPOCHREALTIME - $start )))
 
-			print "took $took $perf[1] $perf[2]" >>$out
+			print "took $perf[1] $perf[2]" >>$out
 			print '</pre>'        >>$out
 
 			v=($(grep -a '^  valid tests:' $out))
 			iv=($(grep -a '^invalid tests:' $out))
 			e=($(grep -a '^encoder tests:' $out || print 'encoder tests:   0 passed,  0 failed'))
+
+			typeset -f after-run >/dev/null && after-run
 
 			print -f 'pass %3d; fail %3d; took %5ss\n' \
 				$(( $v[3] + $iv[3] + $e[3] )) $(( $v[5] + $iv[5] + $e[5] )) $took
@@ -185,7 +187,7 @@ do_perf() {
 			fi
 
 			copy=$(mktemp)
-			sed -E "s/^took ([0-9.]+) [0-9.]+ [0-9.]+$/took \1 $took_perf10k $took_perf5M/" $out >|$copy
+			sed -E "s/^took [0-9.]+ [0-9.]+$/took $took_perf10k $took_perf5M/" $out >|$copy
 			mv $copy $out
 
 			print -f '%6sms %-18s  %6ss %s\n' $took_perf10k "($dist_10k[1]ms $dist_10k[2]ms)" \
@@ -289,18 +291,18 @@ do_gen() {
 		name=$f:t:r
 		out=output/$name.html
 
-		print "<a href='$name.html'>$name.html</a><br>" >>output/index.html
-
 		source $f
 		(( ${info[skip]:-0} )) && continue
+
+		print "<a href='$name.html'>$name.html</a><br>" >>output/index.html
 
 		v=($(grep -a '^  valid tests:' $out))
 		iv=($(grep -a '^invalid tests:' $out))
 		e=($(grep -a '^encoder tests:' $out || print 'encoder tests:   0 passed,  0 failed'))
 
-		took10k=$(tail -n2 $out | grep '^took' | cut -d' ' -f3)
+		took10k=$(tail -n2 $out | grep '^took' | cut -d' ' -f2)
 		[[ $took10k != '(error)' ]] && took10k+=ms
-		took5M=$(tail -n2 $out | grep '^took' | cut -d' ' -f4)
+		took5M=$(tail -n2 $out | grep '^took' | cut -d' ' -f3)
 		[[ $took5M != '(error)' ]] && took5M+=s
 
 		[[ -z $info[version] ]] && info[version]=$(cd src/$name && git log -n1 --format=%h)

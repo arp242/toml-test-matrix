@@ -875,7 +875,7 @@ invalid tests: 270 passed, 13 failed
        tbl1 = { "#" = '}#'}#}}
 
 <b>FAIL</b> <b>valid/float/exponent</b>
-<b> </b>    Values for key "upper" differ:
+<b> </b>    Values for key "lower" differ:
 <b> </b>      Expected:     300 (float64)
 <b> </b>      Your encoder: 300 (int64)
 
@@ -1022,9 +1022,9 @@ invalid tests: 270 passed, 13 failed
        exponent-signed-neg = -0e0
 
 <b>FAIL</b> <b>valid/spec/float-0</b>
-<b> </b>    Values for key "flt5" differ:
-<b> </b>      Expected:     1e+06 (float64)
-<b> </b>      Your encoder: 1000000 (int64)
+<b> </b>    Values for key "flt1" differ:
+<b> </b>      Expected:     1 (float64)
+<b> </b>      Your encoder: 1 (int64)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -1202,5 +1202,5 @@ invalid tests: 270 passed, 13 failed
 
 toml-test [./src/js-iarna-toml/js-iarna-toml-encode]: using embedded tests
 encoder tests: 147 passed, 10 failed
-took 6.64 12.6 0.66
+took 0.0 0.0
 </pre>

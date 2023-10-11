@@ -597,9 +597,9 @@
        }
 
 <b>FAIL</b> <b>valid/datetime/local-time</b>
-<b> </b>    Key "milliseconds" is not "time-local" but "datetime":
-<b> </b>      Expected:     map[string]any{"type":"time-local", "value":"10:32:00.555"}
-<b> </b>      Your encoder: map[string]any{"type":"datetime", "value":"1970-01-01T11:32:00.5550+01:00"}
+<b> </b>    Key "besttimeever" is not "time-local" but "datetime":
+<b> </b>      Expected:     map[string]any{"type":"time-local", "value":"17:45:00"}
+<b> </b>      Your encoder: map[string]any{"type":"datetime", "value":"1970-01-01T18:45:00+01:00"}
 
 <b>     input sent to parser-cmd:</b>
        besttimeever = 17:45:00
@@ -4273,5 +4273,5 @@ invalid tests: 212 passed, 71 failed
 
 toml-test [./src/ruby-toml-rb/ruby-toml-rb-encoder]: using embedded tests
 encoder tests: 128 passed, 29 failed
-took 30.43 81.8 205.06
+took 81.8 205.06
 </pre>
