@@ -17,7 +17,7 @@ cfc9976
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       comment-cr = "Carriage return in comment" # a=1
+       comment-cr   = "Carriage return in comment" # a=1
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -28,6 +28,40 @@ cfc9976
          "comment-cr": {
            "type": "string",
            "value": "Carriage return in comment"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/control/multi-cr</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       multi-cr   = """null"""
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "multi-cr": {
+           "type": "string",
+           "value": "null\r"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/control/rawmulti-cd</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       rawmulti-cd   = '''null'''
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "rawmulti-cd": {
+           "type": "string",
+           "value": "null\r"
          }
        }
 
@@ -116,11 +150,11 @@ cfc9976
        Exit code 1
 
 toml-test [./scripts/python-tomlkit-decoder]: using embedded tests
-  valid tests: 157 passed,  0 failed
-invalid tests: 279 passed,  4 failed
+  valid tests: 162 passed,  0 failed
+invalid tests: 349 passed,  6 failed
 
 ==> ENCODER TESTS
 toml-test [./scripts/python-tomlkit-encoder]: using embedded tests
-encoder tests: 157 passed,  0 failed
+encoder tests: 162 passed,  0 failed
 took 115.5 52.04
 </pre>

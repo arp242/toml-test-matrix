@@ -1,4 +1,13 @@
 setup() {
+	cp ../../scripts/fortran-toml-f-perf.f90 ./test/compliance/
+
+	grep perf_exe ./test/compliance/meson.build || cat >./test/compliance/meson.build <<-EOF
+		perf_exe = executable('perf',
+			sources: files('fortran-toml-f-perf.f90'),
+			dependencies: tomlf_dep,
+		)
+	EOF
+
 	meson setup _build
 	meson compile -C _build
 }
@@ -16,5 +25,5 @@ typeset -A info=(
 	version ''
 	decoder '_build/test/compliance/toml2json'
 	encoder '_build/test/compliance/json2toml'
-	perf    'TODO'
+	perf    '_build/test/compliance/perf'
 )

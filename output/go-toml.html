@@ -1,24 +1,31 @@
 <pre>
 c0a26cb
-<b>FAIL</b> <b>invalid/inline-table/add</b>
+<b>FAIL</b> <b>invalid/array/extend-defined-aot</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       a={}
-       # Inline tables are immutable and can't be extended
-       [a.b]
+       [[tab.arr]]
+       [tab]
+       arr.val1=1
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "a": {
-           "b": {}
+         "tab": {
+           "arr": [
+             {
+               "val1": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           ]
          }
        }
 
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/inline-table/nested_key_conflict</b>
+<b>FAIL</b> <b>invalid/inline-table/duplicate-key-3</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
@@ -39,6 +46,72 @@ c0a26cb
                    "value": "true"
                  }
                }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-2</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       a={}
+       # Inline tables are immutable and can't be extended
+       [a.b]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "a": {
+           "b": {}
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-7</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       tab = { inner.table = [{}], inner.table.val = "bad" }
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "tab": {
+           "inner": {
+             "table": {
+               "val": {
+                 "type": "string",
+                 "value": "bad"
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-8</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       tab = { inner = { dog = "best" }, inner.cat = "worst" }
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "tab": {
+           "inner": {
+             "cat": {
+               "type": "string",
+               "value": "worst"
+             },
+             "dog": {
+               "type": "string",
+               "value": "best"
              }
            }
          }
@@ -272,12 +345,62 @@ c0a26cb
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/table/redefine-2</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [t1]
+       t2.t3.v = 0
+       [t1.t2]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "t1": {
+           "t2": {
+             "t3": {
+               "v": {
+                 "type": "integer",
+                 "value": "0"
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/redefine-3</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [t1]
+       t2.t3.v = 0
+       [t1.t2.t3]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "t1": {
+           "t2": {
+             "t3": {
+               "v": {
+                 "type": "integer",
+                 "value": "0"
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 toml-test [./src/go-toml/toml-test-decoder]: using embedded tests
-  valid tests: 157 passed,  0 failed
-invalid tests: 274 passed,  9 failed
+  valid tests: 162 passed,  0 failed
+invalid tests: 341 passed, 14 failed
 
 ==> ENCODER TESTS
 toml-test [./src/go-toml/toml-test-encoder]: using embedded tests
-encoder tests: 157 passed,  0 failed
+encoder tests: 162 passed,  0 failed
 took 0.9 0.34
 </pre>

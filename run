@@ -119,7 +119,7 @@ do_perf() {
 			n_10k=50
 			n_5M=3
 			# Rather slow
-			if [[ $name = python-tomlkit ]]; then
+			if [[ $name = python-tomlkit ]] || [[ $name = fortran-toml-f ]]; then
 				n_10k=20
 				n_5M=1
 			fi

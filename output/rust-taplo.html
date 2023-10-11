@@ -59,9 +59,43 @@
 <b>     want:</b>
           <empty>
 
+<b>FAIL</b> <b>invalid/control/multi-cr</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       multi-cr   = """null"""
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "multi-cr": {
+           "type": "string",
+           "value": "null\r"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/control/rawmulti-cd</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       rawmulti-cd   = '''null'''
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "rawmulti-cd": {
+           "type": "string",
+           "value": "null\r"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 toml-test [./scripts/target/release/taplo-decoder]: using embedded tests
-  valid tests: 154 passed,  3 failed
-invalid tests: 283 passed,  0 failed
+  valid tests: 159 passed,  3 failed
+invalid tests: 353 passed,  2 failed
 
 ==> ENCODER TESTS
 (not supported)

@@ -188,6 +188,39 @@ f4f1cc7
          }
        }
 
+<b>FAIL</b> <b>valid/string/ends-in-whitespace-escape</b>
+<b> </b>    Values for key "beee" don't match:
+<b> </b>      Expected:     heeee
+<b> </b>    geeee
+<b> </b>      Your encoder: heeee
+<b> </b>    geeee
+<b> </b>    
+<b> </b>          
+
+<b>     input sent to parser-cmd:</b>
+       beee = """
+       heeee
+       geeee\  
+       
+       
+             """
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "beee": {
+           "type": "string",
+           "value": "heeee\ngeeee\n\n      "
+         }
+       }
+
+<b>     want:</b>
+       {
+         "beee": {
+           "type": "string",
+           "value": "heeee\ngeeee"
+         }
+       }
+
 <b>FAIL</b> <b>valid/string/escape-tricky</b>
 <b> </b>    error: Invalid expression for value
 <b> </b>     --> stdin:4:21-33
@@ -562,6 +595,89 @@ f4f1cc7
 <b>     want:</b>
           <empty>
 
+<b>FAIL</b> <b>invalid/array/extend-defined-aot</b>
+<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       [[tab.arr]]
+       [tab]
+       arr.val1=1
+
+<b>     output from parser-cmd (stderr):</b>
+       Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+       
+       Backtrace for this error:
+       #0  0x… in ???
+       #1  0x… in ???
+       #2  0x… in ???
+       	at ./signal/../sysdeps/unix/sysv/linux/x86_64/libc_sigaction.c:0
+       #3  0x… in parse_keyval
+       	at ../src/tomlf/de/parser.f90:440
+       #4  0x… in parse_root
+       	at ../src/tomlf/de/parser.f90:134
+       #5  0x… in __tomlf_de_parser_MOD_parse
+       	at ../src/tomlf/de/parser.f90:105
+       #6  0x… in __tomlf_de_MOD_toml_load_unit
+       	at ../src/tomlf/de.f90:124
+       #7  0x… in toml2json
+       	at ../test/compliance/toml2json.f90:55
+       #8  0x… in main
+       	at ../test/compliance/toml2json.f90:17
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/array/extending-table</b>
+<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       a = [{ b = 1 }]
+       
+       # Cannot extend tables within static arrays
+       # https://github.com/toml-lang/toml/issues/908
+       [a.c]
+       foo = 1
+
+<b>     output from parser-cmd (stderr):</b>
+       double free or corruption (out)
+       
+       Program received signal SIGABRT: Process abort signal.
+       
+       Backtrace for this error:
+       #0  0x… in ???
+       #1  0x… in ???
+       #2  0x… in ???
+       	at ./signal/../sysdeps/unix/sysv/linux/x86_64/libc_sigaction.c:0
+       #3  0x… in __pthread_kill_implementation
+       	at ./nptl/pthread_kill.c:44
+       #4  0x… in __GI_raise
+       	at ../sysdeps/posix/raise.c:26
+       #5  0x… in __GI_abort
+       	at ./stdlib/abort.c:79
+       #6  0x… in __libc_message
+       	at ../sysdeps/posix/libc_fatal.c:155
+       #7  0x… in malloc_printerr
+       	at ./malloc/malloc.c:5660
+       #8  0x… in _int_free
+       	at ./malloc/malloc.c:4584
+       #9  0x… in __GI___libc_free
+       	at ./malloc/malloc.c:3385
+       #10  0x… in __tomlf_diagnostic_MOD_render_diagnostic
+       	at ../src/tomlf/diagnostic.f90:160
+       #11  0x… in make_error
+       	at ../src/tomlf/de/parser.f90:748
+       #12  0x… in __tomlf_de_parser_MOD_parse
+       	at ../src/tomlf/de/parser.f90:107
+       #13  0x… in __tomlf_de_MOD_toml_load_unit
+       	at ../src/tomlf/de.f90:124
+       #14  0x… in toml2json
+       	at ../test/compliance/toml2json.f90:55
+       #15  0x… in main
+       	at ../test/compliance/toml2json.f90:17
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/control/bare-cr</b>
 <b> </b>    Expected an error, but no error was reported.
 
@@ -579,7 +695,7 @@ f4f1cc7
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       comment-cr = "Carriage return in comment" # a=1
+       comment-cr   = "Carriage return in comment" # a=1
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -600,7 +716,7 @@ f4f1cc7
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       comment-del = "0x7f" # 
+       comment-del  = "0x7f"   # 
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -613,11 +729,28 @@ f4f1cc7
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/control/comment-ff</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       comment-ff   = "0x7f"   # 
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "comment-ff": {
+           "type": "string",
+           "value": "0x7f"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/control/comment-lf</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       comment-lf = "ctrl-P" # 
+       comment-lf   = "ctrl-P" # 
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -634,7 +767,7 @@ f4f1cc7
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       comment-null = "null" #  
+       comment-null = "null"   #  
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -651,13 +784,47 @@ f4f1cc7
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       comment-us = "ctrl-_" # 
+       comment-us   = "ctrl-_" # 
 
 <b>     output from parser-cmd (stdout):</b>
        {
          "comment-us": {
            "type": "string",
            "value": "ctrl-_"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/control/multi-cr</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       multi-cr   = """null"""
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "multi-cr": {
+           "type": "string",
+           "value": "null\n"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/control/rawmulti-cd</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       rawmulti-cd   = '''null'''
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "rawmulti-cd": {
+           "type": "string",
+           "value": "null\n"
          }
        }
 
@@ -778,6 +945,184 @@ f4f1cc7
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/inline-table/duplicate-key-4</b>
+<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       tbl = { a.b = "a_b", a.b.c = "a_b_c" }
+
+<b>     output from parser-cmd (stderr):</b>
+       Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+       
+       Backtrace for this error:
+       #0  0x… in ???
+       #1  0x… in ???
+       #2  0x… in ???
+       	at ./signal/../sysdeps/unix/sysv/linux/x86_64/libc_sigaction.c:0
+       #3  0x… in parse_keyval
+       	at ../src/tomlf/de/parser.f90:440
+       #4  0x… in parse_keyval
+       	at ../src/tomlf/de/parser.f90:456
+       #5  0x… in parse_inline_table
+       	at ../src/tomlf/de/parser.f90:595
+       #6  0x… in parse_inline_table
+       	at ../src/tomlf/de/parser.f90:565
+       #7  0x… in parse_keyval
+       	at ../src/tomlf/de/parser.f90:494
+       #8  0x… in parse_root
+       	at ../src/tomlf/de/parser.f90:134
+       #9  0x… in __tomlf_de_parser_MOD_parse
+       	at ../src/tomlf/de/parser.f90:105
+       #10  0x… in __tomlf_de_MOD_toml_load_unit
+       	at ../src/tomlf/de.f90:124
+       #11  0x… in toml2json
+       	at ../test/compliance/toml2json.f90:55
+       #12  0x… in main
+       	at ../test/compliance/toml2json.f90:17
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-6</b>
+<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       a = { b = 1, b.c = 2 }
+
+<b>     output from parser-cmd (stderr):</b>
+       Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+       
+       Backtrace for this error:
+       #0  0x… in ???
+       #1  0x… in ???
+       #2  0x… in ???
+       	at ./signal/../sysdeps/unix/sysv/linux/x86_64/libc_sigaction.c:0
+       #3  0x… in parse_keyval
+       	at ../src/tomlf/de/parser.f90:440
+       #4  0x… in parse_inline_table
+       	at ../src/tomlf/de/parser.f90:595
+       #5  0x… in parse_inline_table
+       	at ../src/tomlf/de/parser.f90:565
+       #6  0x… in parse_keyval
+       	at ../src/tomlf/de/parser.f90:494
+       #7  0x… in parse_root
+       	at ../src/tomlf/de/parser.f90:134
+       #8  0x… in __tomlf_de_parser_MOD_parse
+       	at ../src/tomlf/de/parser.f90:105
+       #9  0x… in __tomlf_de_MOD_toml_load_unit
+       	at ../src/tomlf/de.f90:124
+       #10  0x… in toml2json
+       	at ../test/compliance/toml2json.f90:55
+       #11  0x… in main
+       	at ../test/compliance/toml2json.f90:17
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-7</b>
+<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       tab = { inner.table = [{}], inner.table.val = "bad" }
+
+<b>     output from parser-cmd (stderr):</b>
+       Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+       
+       Backtrace for this error:
+       #0  0x… in ???
+       #1  0x… in ???
+       #2  0x… in ???
+       	at ./signal/../sysdeps/unix/sysv/linux/x86_64/libc_sigaction.c:0
+       #3  0x… in parse_keyval
+       	at ../src/tomlf/de/parser.f90:440
+       #4  0x… in parse_keyval
+       	at ../src/tomlf/de/parser.f90:456
+       #5  0x… in parse_inline_table
+       	at ../src/tomlf/de/parser.f90:595
+       #6  0x… in parse_inline_table
+       	at ../src/tomlf/de/parser.f90:565
+       #7  0x… in parse_keyval
+       	at ../src/tomlf/de/parser.f90:494
+       #8  0x… in parse_root
+       	at ../src/tomlf/de/parser.f90:134
+       #9  0x… in __tomlf_de_parser_MOD_parse
+       	at ../src/tomlf/de/parser.f90:105
+       #10  0x… in __tomlf_de_MOD_toml_load_unit
+       	at ../src/tomlf/de.f90:124
+       #11  0x… in toml2json
+       	at ../test/compliance/toml2json.f90:55
+       #12  0x… in main
+       	at ../test/compliance/toml2json.f90:17
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/dotted-redefine-table-1</b>
+<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       a = false
+       a.b = true
+
+<b>     output from parser-cmd (stderr):</b>
+       Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+       
+       Backtrace for this error:
+       #0  0x… in ???
+       #1  0x… in ???
+       #2  0x… in ???
+       	at ./signal/../sysdeps/unix/sysv/linux/x86_64/libc_sigaction.c:0
+       #3  0x… in parse_keyval
+       	at ../src/tomlf/de/parser.f90:440
+       #4  0x… in parse_root
+       	at ../src/tomlf/de/parser.f90:134
+       #5  0x… in __tomlf_de_parser_MOD_parse
+       	at ../src/tomlf/de/parser.f90:105
+       #6  0x… in __tomlf_de_MOD_toml_load_unit
+       	at ../src/tomlf/de.f90:124
+       #7  0x… in toml2json
+       	at ../test/compliance/toml2json.f90:55
+       #8  0x… in main
+       	at ../test/compliance/toml2json.f90:17
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/dotted-redefine-table-2</b>
+<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       # Defined a.b as int
+       a.b = 1
+       # Tries to access it as table: error
+       a.b.c = 2
+
+<b>     output from parser-cmd (stderr):</b>
+       Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+       
+       Backtrace for this error:
+       #0  0x… in ???
+       #1  0x… in ???
+       #2  0x… in ???
+       	at ./signal/../sysdeps/unix/sysv/linux/x86_64/libc_sigaction.c:0
+       #3  0x… in parse_keyval
+       	at ../src/tomlf/de/parser.f90:440
+       #4  0x… in parse_keyval
+       	at ../src/tomlf/de/parser.f90:456
+       #5  0x… in parse_root
+       	at ../src/tomlf/de/parser.f90:134
+       #6  0x… in __tomlf_de_parser_MOD_parse
+       	at ../src/tomlf/de/parser.f90:105
+       #7  0x… in __tomlf_de_MOD_toml_load_unit
+       	at ../src/tomlf/de.f90:124
+       #8  0x… in toml2json
+       	at ../test/compliance/toml2json.f90:55
+       #9  0x… in main
+       	at ../test/compliance/toml2json.f90:17
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/local-datetime/hour-over</b>
 <b> </b>    Expected an error, but no error was reported.
 
@@ -865,6 +1210,51 @@ f4f1cc7
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/string/multiline-bad-escape-4</b>
+<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       backslash = """\"""
+
+<b>     output from parser-cmd (stdout):</b>
+       
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/append-to-array-with-dotted-keys</b>
+<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       [[a.b]]
+       
+       [a]
+       b.y = 2
+
+<b>     output from parser-cmd (stderr):</b>
+       Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+       
+       Backtrace for this error:
+       #0  0x… in ???
+       #1  0x… in ???
+       #2  0x… in ???
+       	at ./signal/../sysdeps/unix/sysv/linux/x86_64/libc_sigaction.c:0
+       #3  0x… in parse_keyval
+       	at ../src/tomlf/de/parser.f90:440
+       #4  0x… in parse_root
+       	at ../src/tomlf/de/parser.f90:134
+       #5  0x… in __tomlf_de_parser_MOD_parse
+       	at ../src/tomlf/de/parser.f90:105
+       #6  0x… in __tomlf_de_MOD_toml_load_unit
+       	at ../src/tomlf/de.f90:124
+       #7  0x… in toml2json
+       	at ../test/compliance/toml2json.f90:55
+       #8  0x… in main
+       	at ../test/compliance/toml2json.f90:17
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/table/append-with-dotted-keys-1</b>
 <b> </b>    Expected an error, but no error was reported.
 
@@ -947,8 +1337,8 @@ f4f1cc7
        Exit code 1
 
 toml-test [./src/fortran-toml-f/_build/test/compliance/toml2json]: using embedded tests
-  valid tests: 149 passed,  8 failed
-invalid tests: 263 passed, 20 failed
+  valid tests: 153 passed,  9 failed
+invalid tests: 323 passed, 32 failed
 
 ==> ENCODER TESTS
 <b>FAIL</b> <b>valid/array/mixed-string-table</b>
@@ -1148,21 +1538,21 @@ invalid tests: 263 passed, 20 failed
            "type": "string",
            "value": "null"
          },
+         "\u0008 \u000c A   ÿ ퟿  ￿ 𐀀 􏿿": {
+           "type": "string",
+           "value": "escaped key"
+         },
          "\\u0000": {
            "type": "string",
            "value": "different key"
          },
-         "\b \f A \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff": {
-           "type": "string",
-           "value": "escaped key"
-         },
-         "~ \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff": {
-           "type": "string",
-           "value": "basic key"
-         },
-         "l ~ \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff": {
+         "l ~  ÿ ퟿  ￿ 𐀀 􏿿": {
            "type": "string",
            "value": "literal key"
+         },
+         "~  ÿ ퟿  ￿ 𐀀 􏿿": {
+           "type": "string",
+           "value": "basic key"
          }
        }
 
@@ -1615,21 +2005,21 @@ invalid tests: 263 passed, 20 failed
 
 <b>     input sent to parser-cmd:</b>
        {
+         "basic_string": {
+           "type": "string",
+           "value": "~  ÿ ퟿  ￿ 𐀀 􏿿"
+         },
          "escaped_string": {
            "type": "string",
-           "value": "\u0000 \b \f A \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff"
+           "value": "\u0000 \u0008 \u000c A   ÿ ퟿  ￿ 𐀀 􏿿"
+         },
+         "literal_string": {
+           "type": "string",
+           "value": "~  ÿ ퟿  ￿ 𐀀 􏿿"
          },
          "not_escaped_string": {
            "type": "string",
            "value": "\\u0000 \\u0008 \\u000c \\U00000041 \\u007f \\u0080 \\u00ff \\ud7ff \\ue000 \\uffff \\U00010000 \\U0010ffff"
-         },
-         "basic_string": {
-           "type": "string",
-           "value": "~ \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff"
-         },
-         "literal_string": {
-           "type": "string",
-           "value": "~ \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff"
          }
        }
 
@@ -1651,6 +2041,6 @@ invalid tests: 263 passed, 20 failed
           <empty>
 
 toml-test [./src/fortran-toml-f/_build/test/compliance/json2toml]: using embedded tests
-encoder tests: 147 passed, 10 failed
-took 0.0 0.0
+encoder tests: 152 passed, 10 failed
+took 1.5 158.58
 </pre>

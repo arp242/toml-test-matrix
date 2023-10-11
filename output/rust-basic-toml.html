@@ -87,6 +87,28 @@
 <b>     want:</b>
           <empty>
 
+<b>FAIL</b> <b>valid/datetime/leap-year</b>
+<b> </b>    Error: Error { message: "invalid number at line 1 column 23" }
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       2000-datetime       = 2000-02-29 15:15:15Z
+       2000-datetime-local = 2000-02-29 15:15:15
+       2000-date           = 2000-02-29
+       
+       2024-datetime       = 2024-02-29 15:15:15Z
+       2024-datetime-local = 2024-02-29 15:15:15
+       2024-date           = 2024-02-29
+
+<b>     output from parser-cmd (stderr):</b>
+       Error: Error { message: "invalid number at line 1 column 23" }
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
 <b>FAIL</b> <b>valid/datetime/local</b>
 <b> </b>    Error: Error { message: "invalid number at line 1 column 9" }
 <b> </b>    
@@ -437,7 +459,7 @@
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       comment-del = "0x7f" # 
+       comment-del  = "0x7f"   # 
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -502,8 +524,8 @@
        Exit code 1
 
 toml-test [./scripts/target/release/basic-toml-decoder]: using embedded tests
-  valid tests: 138 passed, 19 failed
-invalid tests: 279 passed,  4 failed
+  valid tests: 142 passed, 20 failed
+invalid tests: 351 passed,  4 failed
 
 ==> ENCODER TESTS
 (not supported)

@@ -4,11 +4,11 @@ db2eddb
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       array = [1,,2]
+       double-comma-1 = [1,,2]
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "array": [
+         "double-comma-1": [
            {
              "type": "integer",
              "value": "1"
@@ -27,11 +27,11 @@ db2eddb
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       array = [1,2,,]
+       double-comma-2 = [1,2,,]
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "array": [
+         "double-comma-2": [
            {
              "type": "integer",
              "value": "1"
@@ -46,7 +46,103 @@ db2eddb
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/inline-table/nested_key_conflict</b>
+<b>FAIL</b> <b>invalid/array/only-comma-1</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       only-comma-1 = [,]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only-comma-1": []
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/array/only-comma-2</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       only-comma-2 = [,,]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only-comma-2": []
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/control/multi-cr</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       multi-cr   = """null"""
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "multi-cr": {
+           "type": "string",
+           "value": "null\r"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/control/rawmulti-cd</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       rawmulti-cd   = '''null'''
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "rawmulti-cd": {
+           "type": "string",
+           "value": "null\r"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/datetime/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29T15:15:15Z
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "datetime",
+           "value": "2100-03-01T15:15:15Z"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/datetime/feb-30</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "only 28 or 29 days in february" = 1988-02-30T15:15:15Z
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only 28 or 29 days in february": {
+           "type": "datetime",
+           "value": "1988-03-01T15:15:15Z"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/duplicate-key-3</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
@@ -69,6 +165,139 @@ db2eddb
                }
              }
            }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-3</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       a = { b = 1 }
+       a.b = 2
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "a": {
+           "b": {
+             "type": "integer",
+             "value": "2"
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-8</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       tab = { inner = { dog = "best" }, inner.cat = "worst" }
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "tab": {
+           "inner": {
+             "cat": {
+               "type": "string",
+               "value": "worst"
+             },
+             "dog": {
+               "type": "string",
+               "value": "best"
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/dotted-redefine-table-1</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       a = false
+       a.b = true
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "a": {
+           "b": {
+             "type": "bool",
+             "value": "true"
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-date/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "date-local",
+           "value": "2100-03-01"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-date/feb-30</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "only 28 or 29 days in february" = 1988-02-30
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only 28 or 29 days in february": {
+           "type": "date-local",
+           "value": "1988-03-01"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-datetime/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29T15:15:15
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "datetime-local",
+           "value": "2100-03-01T15:15:15"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-datetime/feb-30</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "only 28 or 29 days in february" = 1988-02-30T15:15:15
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only 28 or 29 days in february": {
+           "type": "datetime-local",
+           "value": "1988-03-01T15:15:15"
          }
        }
 
@@ -111,9 +340,26 @@ db2eddb
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/string/bad-escape-3</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       backslash = "\"
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "backslash": {
+           "type": "string",
+           "value": "\\"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 toml-test [./src/ruby-tomlrb/ruby-tomlrb-decoder]: using embedded tests
-  valid tests: 157 passed,  0 failed
-invalid tests: 278 passed,  5 failed
+  valid tests: 162 passed,  0 failed
+invalid tests: 336 passed, 19 failed
 
 ==> ENCODER TESTS
 (not supported)

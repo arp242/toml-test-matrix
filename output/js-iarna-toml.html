@@ -370,6 +370,74 @@ d4a7bed
 <b>     want:</b>
           <empty>
 
+<b>FAIL</b> <b>invalid/control/multi-cr</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       multi-cr   = """null"""
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "multi-cr": {
+           "type": "string",
+           "value": "null\r"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/control/rawmulti-cd</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       rawmulti-cd   = '''null'''
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "rawmulti-cd": {
+           "type": "string",
+           "value": "null\r"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/datetime/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29T15:15:15Z
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "datetime",
+           "value": "2100-03-01T15:15:15.000Z"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/datetime/feb-30</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "only 28 or 29 days in february" = 1988-02-30T15:15:15Z
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only 28 or 29 days in february": {
+           "type": "datetime",
+           "value": "1988-03-01T15:15:15.000Z"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/datetime/hour-over</b>
 <b> </b>    Expected an error, but no error was reported.
 
@@ -484,6 +552,40 @@ d4a7bed
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/local-date/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "date-local",
+           "value": "2100-03-01"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-date/feb-30</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "only 28 or 29 days in february" = 1988-02-30
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only 28 or 29 days in february": {
+           "type": "date-local",
+           "value": "1988-03-01"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/local-date/no-leads-with-milli</b>
 <b> </b>    Expected an error, but no error was reported.
 
@@ -514,6 +616,40 @@ d4a7bed
          "d": {
            "type": "date-local",
            "value": "2006-01-30"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-datetime/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29T15:15:15
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "datetime-local",
+           "value": "2100-03-01T15:15:15.000"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-datetime/feb-30</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "only 28 or 29 days in february" = 1988-02-30T15:15:15
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only 28 or 29 days in february": {
+           "type": "datetime-local",
+           "value": "1988-03-01T15:15:15.000"
          }
        }
 
@@ -637,9 +773,34 @@ d4a7bed
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/table/redefine-2</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [t1]
+       t2.t3.v = 0
+       [t1.t2]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "t1": {
+           "t2": {
+             "t3": {
+               "v": {
+                 "type": "integer",
+                 "value": "0"
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 toml-test [./src/js-iarna-toml/js-iarna-toml-decode]: using embedded tests
-  valid tests: 152 passed,  5 failed
-invalid tests: 270 passed, 13 failed
+  valid tests: 157 passed,  5 failed
+invalid tests: 333 passed, 22 failed
 
 ==> ENCODER TESTS
 <b>FAIL</b> <b>valid/array/mixed-string-table</b>
@@ -1164,33 +1325,33 @@ invalid tests: 270 passed, 13 failed
 
 <b>FAIL</b> <b>valid/string/quoted-unicode</b>
 <b> </b>    decode TOML from encoder:
-<b> </b>      toml: line 1 (last key "escaped_string"): TOML files cannot contain control characters: '0x7f'
+<b> </b>      toml: line 2 (last key "escaped_string"): TOML files cannot contain control characters: '0x7f'
 
 <b>     input sent to parser-cmd:</b>
        {
+         "basic_string": {
+           "type": "string",
+           "value": "~  ÿ ퟿  ￿ 𐀀 􏿿"
+         },
          "escaped_string": {
            "type": "string",
-           "value": "\u0000 \b \f A \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff"
+           "value": "\u0000 \u0008 \u000c A   ÿ ퟿  ￿ 𐀀 􏿿"
+         },
+         "literal_string": {
+           "type": "string",
+           "value": "~  ÿ ퟿  ￿ 𐀀 􏿿"
          },
          "not_escaped_string": {
            "type": "string",
            "value": "\\u0000 \\u0008 \\u000c \\U00000041 \\u007f \\u0080 \\u00ff \\ud7ff \\ue000 \\uffff \\U00010000 \\U0010ffff"
-         },
-         "basic_string": {
-           "type": "string",
-           "value": "~ \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff"
-         },
-         "literal_string": {
-           "type": "string",
-           "value": "~ \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff"
          }
        }
 
 <b>     output from parser-cmd (stdout):</b>
-       escaped_string = "\u0000 \b \f A   ÿ ퟿  ￿ 𐀀 􏿿"
-       not_escaped_string = "\\u0000 \\u0008 \\u000c \\U00000041 \\u007f \\u0080 \\u00ff \\ud7ff \\ue000 \\uffff \\U00010000 \\U0010ffff"
        basic_string = "~  ÿ ퟿  ￿ 𐀀 􏿿"
+       escaped_string = "\u0000 \b \f A   ÿ ퟿  ￿ 𐀀 􏿿"
        literal_string = "~  ÿ ퟿  ￿ 𐀀 􏿿"
+       not_escaped_string = "\\u0000 \\u0008 \\u000c \\U00000041 \\u007f \\u0080 \\u00ff \\ud7ff \\ue000 \\uffff \\U00010000 \\U0010ffff"
 
 <b>     want:</b>
        
@@ -1201,6 +1362,6 @@ invalid tests: 270 passed, 13 failed
        literal_string = '~  ÿ ퟿  ￿ 𐀀 􏿿'
 
 toml-test [./src/js-iarna-toml/js-iarna-toml-encode]: using embedded tests
-encoder tests: 147 passed, 10 failed
-took 0.0 0.0
+encoder tests: 152 passed, 10 failed
+took 13.3 0.66
 </pre>

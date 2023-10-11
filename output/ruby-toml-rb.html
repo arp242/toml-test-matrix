@@ -530,6 +530,76 @@
 <b>     want:</b>
           <empty>
 
+<b>FAIL</b> <b>valid/datetime/leap-year</b>
+<b> </b>    Key "2000-date" is not "date-local" but "datetime":
+<b> </b>      Expected:     map[string]any{"type":"date-local", "value":"2000-02-29"}
+<b> </b>      Your encoder: map[string]any{"type":"datetime", "value":"2000-02-29T00:00:00Z"}
+
+<b>     input sent to parser-cmd:</b>
+       2000-datetime       = 2000-02-29 15:15:15Z
+       2000-datetime-local = 2000-02-29 15:15:15
+       2000-date           = 2000-02-29
+       
+       2024-datetime       = 2024-02-29 15:15:15Z
+       2024-datetime-local = 2024-02-29 15:15:15
+       2024-date           = 2024-02-29
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "2000-date": {
+           "type": "datetime",
+           "value": "2000-02-29T00:00:00Z"
+         },
+         "2000-datetime": {
+           "type": "datetime",
+           "value": "2000-02-29T15:15:15Z"
+         },
+         "2000-datetime-local": {
+           "type": "datetime",
+           "value": "2000-02-29T15:15:15Z"
+         },
+         "2024-date": {
+           "type": "datetime",
+           "value": "2024-02-29T00:00:00Z"
+         },
+         "2024-datetime": {
+           "type": "datetime",
+           "value": "2024-02-29T15:15:15Z"
+         },
+         "2024-datetime-local": {
+           "type": "datetime",
+           "value": "2024-02-29T15:15:15Z"
+         }
+       }
+
+<b>     want:</b>
+       {
+         "2000-date": {
+           "type": "date-local",
+           "value": "2000-02-29"
+         },
+         "2000-datetime": {
+           "type": "datetime",
+           "value": "2000-02-29T15:15:15Z"
+         },
+         "2000-datetime-local": {
+           "type": "datetime-local",
+           "value": "2000-02-29T15:15:15"
+         },
+         "2024-date": {
+           "type": "date-local",
+           "value": "2024-02-29"
+         },
+         "2024-datetime": {
+           "type": "datetime",
+           "value": "2024-02-29T15:15:15Z"
+         },
+         "2024-datetime-local": {
+           "type": "datetime-local",
+           "value": "2024-02-29T15:15:15"
+         }
+       }
+
 <b>FAIL</b> <b>valid/datetime/local</b>
 <b> </b>    Key "local" is not "datetime-local" but "datetime":
 <b> </b>      Expected:     map[string]any{"type":"datetime-local", "value":"1987-07-05T17:45:00"}
@@ -959,6 +1029,47 @@
          }
        }
 
+<b>FAIL</b> <b>valid/string/ends-in-whitespace-escape</b>
+<b> </b>    /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:38:in `parse_error': Escape sequence \  is reserved (TomlRB::ParseError)
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:30:in `block in transform_escaped_chars'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:28:in `gsub'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:28:in `transform_escaped_chars'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:56:in `value'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/keyvalue.rb:55:in `value'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:14:in `map'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:14:in `initialize'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `new'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `parse'
+<b> </b>    	from ./src/ruby-toml-rb/ruby-toml-rb-decoder:38:in `<main>'
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       beee = """
+       heeee
+       geeee\  
+       
+       
+             """
+
+<b>     output from parser-cmd (stderr):</b>
+       /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:38:in `parse_error': Escape sequence \  is reserved (TomlRB::ParseError)
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:30:in `block in transform_escaped_chars'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:28:in `gsub'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:28:in `transform_escaped_chars'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:56:in `value'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/keyvalue.rb:55:in `value'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:14:in `map'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:14:in `initialize'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `new'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `parse'
+       	from ./src/ruby-toml-rb/ruby-toml-rb-decoder:38:in `<main>'
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
 <b>FAIL</b> <b>valid/string/escape-tricky</b>
 <b> </b>    /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:16:in `rescue in initialize': Failed to parse input on line 10 at offset 45 (TomlRB::ParseError)
 <b> </b>    multiline_end_esc = """When will it end? \"""...""\" should be here\""""
@@ -1182,6 +1293,20 @@
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/array/only-comma-1</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       only-comma-1 = [,]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only-comma-1": []
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/array/tables-1</b>
 <b> </b>    Expected an error, but no error was reported.
 
@@ -1205,7 +1330,7 @@
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       comment-cr = "Carriage return in comment" # a=1
+       comment-cr   = "Carriage return in comment" # a=1
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1222,7 +1347,7 @@
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       comment-del = "0x7f" # 
+       comment-del  = "0x7f"   # 
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1235,11 +1360,28 @@
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/control/comment-ff</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       comment-ff   = "0x7f"   # 
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "comment-ff": {
+           "type": "string",
+           "value": "0x7f"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/control/comment-lf</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       comment-lf = "ctrl-P" # 
+       comment-lf   = "ctrl-P" # 
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1256,7 +1398,7 @@
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       comment-null = "null" #  
+       comment-null = "null"   #  
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1273,7 +1415,7 @@
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       comment-us = "ctrl-_" # 
+       comment-us   = "ctrl-_" # 
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1286,11 +1428,28 @@
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/control/multi-cr</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       multi-cr   = """null"""
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "multi-cr": {
+           "type": "string",
+           "value": "null\r"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/control/multi-del</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       multi-del = """null"""
+       multi-del  = """null"""
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1307,7 +1466,7 @@
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       multi-lf = """null"""
+       multi-lf   = """null"""
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1341,7 +1500,7 @@
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       multi-us = """null"""
+       multi-us   = """null"""
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1354,11 +1513,28 @@
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/control/rawmulti-cd</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       rawmulti-cd   = '''null'''
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "rawmulti-cd": {
+           "type": "string",
+           "value": "null\r"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/control/rawmulti-del</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       rawmulti-del = '''null'''
+       rawmulti-del  = '''null'''
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1375,7 +1551,7 @@
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       rawmulti-lf = '''null'''
+       rawmulti-lf   = '''null'''
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1409,7 +1585,7 @@
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       rawmulti-us = '''null'''
+       rawmulti-us   = '''null'''
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1422,11 +1598,28 @@
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/control/rawstring-cr</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       rawstring-cr   = 'null'
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "rawstring-cr": {
+           "type": "string",
+           "value": "null\r"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/control/rawstring-del</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       rawstring-del = 'null'
+       rawstring-del  = 'null'
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1443,7 +1636,7 @@
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       rawstring-lf = 'null'
+       rawstring-lf   = 'null'
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1477,7 +1670,7 @@
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       rawstring-us = 'null'
+       rawstring-us   = 'null'
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1494,7 +1687,7 @@
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       string-bs = "backspace"
+       string-bs   = "backspace"
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1507,11 +1700,28 @@
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/control/string-cr</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       string-cr   = "null"
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "string-cr": {
+           "type": "string",
+           "value": "null\r"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/control/string-del</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       string-del = "null"
+       string-del  = "null"
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1528,7 +1738,7 @@
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       string-lf = "null"
+       string-lf   = "null"
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1562,13 +1772,47 @@
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
-       string-us = "null"
+       string-us   = "null"
 
 <b>     output from parser-cmd (stdout):</b>
        {
          "string-us": {
            "type": "string",
            "value": "null\u001f"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/datetime/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29T15:15:15Z
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "datetime",
+           "value": "2100-03-01T15:15:15Z"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/datetime/feb-30</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "only 28 or 29 days in february" = 1988-02-30T15:15:15Z
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only 28 or 29 days in february": {
+           "type": "datetime",
+           "value": "1988-03-01T15:15:15Z"
          }
        }
 
@@ -1797,7 +2041,7 @@
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/inline-table/add</b>
+<b>FAIL</b> <b>invalid/inline-table/overwrite-2</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
@@ -1809,6 +2053,24 @@
        {
          "a": {
            "b": {}
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-5</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       inline-t = { nest = {} }
+       
+       [inline-t.nest]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "inline-t": {
+           "nest": {}
          }
        }
 
@@ -2152,6 +2414,74 @@
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/local-date/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "datetime",
+           "value": "2100-03-01T00:00:00Z"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-date/feb-30</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "only 28 or 29 days in february" = 1988-02-30
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only 28 or 29 days in february": {
+           "type": "datetime",
+           "value": "1988-03-01T00:00:00Z"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-datetime/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29T15:15:15
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "datetime",
+           "value": "2100-03-01T15:15:15Z"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-datetime/feb-30</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "only 28 or 29 days in february" = 1988-02-30T15:15:15
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only 28 or 29 days in february": {
+           "type": "datetime",
+           "value": "1988-03-01T15:15:15Z"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/local-datetime/hour-over</b>
 <b> </b>    Expected an error, but no error was reported.
 
@@ -2307,6 +2637,23 @@
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/string/bad-escape-3</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       backslash = "\"
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "backslash": {
+           "type": "string",
+           "value": ""
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/string/literal-multiline-quotes-1</b>
 <b> </b>    Expected an error, but no error was reported.
 
@@ -2335,6 +2682,23 @@
          "a": {
            "type": "string",
            "value": "15 apostrophes: '''''''''''''''"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/string/multiline-bad-escape-4</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       backslash = """\"""
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "backslash": {
+           "type": "string",
+           "value": "\\"
          }
        }
 
@@ -2506,9 +2870,59 @@
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/table/redefine-2</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [t1]
+       t2.t3.v = 0
+       [t1.t2]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "t1": {
+           "t2": {
+             "t3": {
+               "v": {
+                 "type": "integer",
+                 "value": "0"
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/redefine-3</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [t1]
+       t2.t3.v = 0
+       [t1.t2.t3]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "t1": {
+           "t2": {
+             "t3": {
+               "v": {
+                 "type": "integer",
+                 "value": "0"
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 toml-test [./src/ruby-toml-rb/ruby-toml-rb-decoder]: using embedded tests
-  valid tests: 135 passed, 22 failed
-invalid tests: 212 passed, 71 failed
+  valid tests: 138 passed, 24 failed
+invalid tests: 267 passed, 88 failed
 
 ==> ENCODER TESTS
 <b>FAIL</b> <b>valid/array/array</b>
@@ -2827,6 +3241,67 @@ invalid tests: 212 passed, 71 failed
        
            when "datetime" then Time.iso8601(val)
                                     ^^^^^^^^
+       	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:39:in `block in convert'
+       	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:39:in `to_h'
+       	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:39:in `convert'
+       	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:43:in `<main>'
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>valid/datetime/leap-year</b>
+<b> </b>    ./src/ruby-toml-rb/ruby-toml-rb-encoder:10:in `convert': undefined method `key?' for "date-local":String (NoMethodError)
+<b> </b>    
+<b> </b>      if json.key?("type")
+<b> </b>             ^^^^^
+<b> </b>    	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:36:in `block in convert'
+<b> </b>    	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:36:in `to_h'
+<b> </b>    	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:36:in `convert'
+<b> </b>    	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:39:in `block in convert'
+<b> </b>    	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:39:in `to_h'
+<b> </b>    	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:39:in `convert'
+<b> </b>    	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:43:in `<main>'
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "2000-date": {
+           "type": "date-local",
+           "value": "2000-02-29"
+         },
+         "2000-datetime": {
+           "type": "datetime",
+           "value": "2000-02-29T15:15:15Z"
+         },
+         "2000-datetime-local": {
+           "type": "datetime-local",
+           "value": "2000-02-29T15:15:15"
+         },
+         "2024-date": {
+           "type": "date-local",
+           "value": "2024-02-29"
+         },
+         "2024-datetime": {
+           "type": "datetime",
+           "value": "2024-02-29T15:15:15Z"
+         },
+         "2024-datetime-local": {
+           "type": "datetime-local",
+           "value": "2024-02-29T15:15:15"
+         }
+       }
+
+<b>     output from parser-cmd (stderr):</b>
+       ./src/ruby-toml-rb/ruby-toml-rb-encoder:10:in `convert': undefined method `key?' for "date-local":String (NoMethodError)
+       
+         if json.key?("type")
+                ^^^^^
+       	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:36:in `block in convert'
+       	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:36:in `to_h'
+       	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:36:in `convert'
        	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:39:in `block in convert'
        	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:39:in `to_h'
        	from ./src/ruby-toml-rb/ruby-toml-rb-encoder:39:in `convert'
@@ -3387,21 +3862,21 @@ invalid tests: 212 passed, 71 failed
            "type": "string",
            "value": "null"
          },
+         "\u0008 \u000c A   ÿ ퟿  ￿ 𐀀 􏿿": {
+           "type": "string",
+           "value": "escaped key"
+         },
          "\\u0000": {
            "type": "string",
            "value": "different key"
          },
-         "\b \f A \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff": {
-           "type": "string",
-           "value": "escaped key"
-         },
-         "~ \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff": {
-           "type": "string",
-           "value": "basic key"
-         },
-         "l ~ \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff": {
+         "l ~  ÿ ퟿  ￿ 𐀀 􏿿": {
            "type": "string",
            "value": "literal key"
+         },
+         "~  ÿ ퟿  ￿ 𐀀 􏿿": {
+           "type": "string",
+           "value": "basic key"
          }
        }
 
@@ -3874,11 +4349,11 @@ invalid tests: 212 passed, 71 failed
        {
          "sf1": {
            "type": "float",
-           "value": "inf"
+           "value": "+inf"
          },
          "sf2": {
            "type": "float",
-           "value": "inf"
+           "value": "+inf"
          },
          "sf3": {
            "type": "float",
@@ -4193,21 +4668,21 @@ invalid tests: 212 passed, 71 failed
 
 <b>     input sent to parser-cmd:</b>
        {
+         "basic_string": {
+           "type": "string",
+           "value": "~  ÿ ퟿  ￿ 𐀀 􏿿"
+         },
          "escaped_string": {
            "type": "string",
-           "value": "\u0000 \b \f A \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff"
+           "value": "\u0000 \u0008 \u000c A   ÿ ퟿  ￿ 𐀀 􏿿"
+         },
+         "literal_string": {
+           "type": "string",
+           "value": "~  ÿ ퟿  ￿ 𐀀 􏿿"
          },
          "not_escaped_string": {
            "type": "string",
            "value": "\\u0000 \\u0008 \\u000c \\U00000041 \\u007f \\u0080 \\u00ff \\ud7ff \\ue000 \\uffff \\U00010000 \\U0010ffff"
-         },
-         "basic_string": {
-           "type": "string",
-           "value": "~ \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff"
-         },
-         "literal_string": {
-           "type": "string",
-           "value": "~ \u0080 \u00ff \ud7ff \ue000 \uffff \ud800\udc00 \udbff\udfff"
          }
        }
 
@@ -4272,6 +4747,6 @@ invalid tests: 212 passed, 71 failed
        x = 3
 
 toml-test [./src/ruby-toml-rb/ruby-toml-rb-encoder]: using embedded tests
-encoder tests: 128 passed, 29 failed
+encoder tests: 132 passed, 30 failed
 took 81.8 205.06
 </pre>
