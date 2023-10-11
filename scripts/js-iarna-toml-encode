@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 
-let fs   = require('fs');
-let toml = require('./dist/NPM/index.js')
+let fs                  = require('fs');
+let toml                = require('./stringify.js')
+let createDateTime      = require('./lib/create-datetime.js')
+let createDateTimeFloat = require('./lib/create-datetime-float.js')
+let createDate          = require('./lib/create-date.js')
+let createTime          = require('./lib/create-time.js')
 
 let convert = (v) => {
 	if (typeof(v) === 'object' && v.constructor && v.constructor.name === 'Array')
@@ -17,10 +21,10 @@ let convert = (v) => {
 	case 'integer':        return BigInt(v.value)
 	case 'float':          return parseFloat(v.value.replace('inf', 'Infinity'))
     case 'bool':           return v.value === 'true' ? true : false
-	case 'datetime':       return new toml.OffsetDateTime(v.value)
-	case 'datetime-local': return new toml.LocalDateTime(v.value)
-	case 'date-local':     return new toml.LocalDate(v.value)
-	case 'time-local':     return new toml.LocalTime(v.value)
+	case 'datetime':       return createDateTime(v.value)
+	case 'datetime-local': return createDateTimeFloat(v.value)
+	case 'date-local':     return createDate(v.value)
+	case 'time-local':     return createTime(v.value)
 	default:               throw(`unknown type: ${v}`)
 	}
 }
@@ -28,4 +32,4 @@ let convert = (v) => {
 let j = JSON.parse(fs.readFileSync(0, 'utf-8'))
 for (k in j)
 	j[k] = convert(j[k])
-process.stdout.write(toml.stringify(j, {}).join('\n'))
+process.stdout.write(toml(j, {}))

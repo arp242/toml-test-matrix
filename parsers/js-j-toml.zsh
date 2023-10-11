@@ -1,7 +1,9 @@
 setup() {
-	:
+	cp ../../scripts/js-toml-j-* .
 }
 
+# TODO: the failing tests on this one are mostly because toml-test doesn't
+# compare deeply nested inline arrays/tables properly
 typeset -A info=(
 	lang    'JS'
 	toml    '1.0'

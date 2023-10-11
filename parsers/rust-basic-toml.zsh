@@ -10,6 +10,11 @@ typeset -A info=(
 	src     '' # We use the Cargo.toml for now 'git@github.com:dtolnay/basic-toml.git'
 	version '0.1.4'
 	decoder './scripts/target/release/basic-toml-decoder'
-	encoder './scripts/target/release/basic-toml-encoder'
+	# TODO: doesn't encode at least dates correctly; e.g. for
+	#   lower = 1987-07-05t17:45:00z
+	# It outputs:
+	#   [lower]
+	#   "$__toml_private_datetime" = "1987-07-05T17:45:00Z"
+	encoder 'TODO' # ./scripts/target/release/basic-toml-encoder'
 	perf    './scripts/target/release/rust-basic-toml-perf'
 )

@@ -89,16 +89,6 @@ do_run() {
 }
 
 do_perf() {
-	skip=(
-		-skip valid/key/escapes.toml
-		-skip valid/key/quoted-unicode.toml
-		-skip valid/spec/string-7.toml
-		-skip valid/string/multiline-quotes.toml
-		-skip valid/string/quoted-unicode.toml
-	)
-	toml-test -cat $(( 1024 * 5 )) $skip >|/tmp/5M.toml  # TODO: proper tmpfile
-	toml-test -cat 10              $skip >|/tmp/10k.toml
-
 	print -f '%-27s %-27s %s\n' '' '10k' '5M'
 	for f in ./parsers/*.zsh; do
 		name=$f:t:r
@@ -117,13 +107,33 @@ do_perf() {
 				continue
 			fi
 
+			skip=($(sed '/==> ENCODER TESTS/q; /FAIL/p; d;' $out | grep -Eo '>valid/.*?<' | sed 's/>/-skip /; s/</.toml/'))
+			[[ $name = 'c-tomlc99' ]] && skip+=(-skip valid/string/multiline-quotes.toml)
+			tmp5M=$(mktemp)
+			tmp10k=$(mktemp)
+			toml-test -cat 10              $skip >|$tmp10k
+			toml-test -cat $(( 1024 * 5 )) $skip >|$tmp5M
+
+			n_10k=50
+			n_5M=3
+			# Rather slow
+			if [[ $name = python-tomlkit ]]; then
+				n_10k=20
+				n_5M=1
+			fi
+			# Ridiculously slow
+			if [[ $name = ruby-toml-rb ]]; then
+				n_10k=10
+				n_5M=1
+			fi
+
 			perf=$info[perf]
 			[[ $perf[1] != '.' ]] && perf=./src/$name/$perf
 
 			dist_10k=(9999 0)
 			dist_5M=(9999 0)
-			took_perf10k=$($=perf /tmp/10k.toml 2>&/dev/null || print -1)
-			took_perf5M=$($=perf /tmp/5M.toml   2>&/dev/null || print -1)
+			took_perf10k=$($=perf $tmp10k 2>&/dev/null || print -1)
+			took_perf5M=$($=perf $tmp5M   2>&/dev/null || print -1)
 			if (( $took_perf10k == -1 )); then
 				took_perf10k='(error)'; dist_10k=(0 0)
 			fi
@@ -132,8 +142,11 @@ do_perf() {
 			fi
 			if [[ $took_perf10k != '(error)' ]]; then
 				all=($took_perf10k)
-				for (( i=0; i<50; i++ )); do
-					r=$($=perf /tmp/10k.toml 2>&/dev/null || print -1)
+				# Warmup
+				for (( i=0; i<$n_10k; i++ )); $=perf $tmp10k 2>&1 >/dev/null
+
+				for (( i=0; i<$n_10k; i++ )); do
+					r=$($=perf $tmp10k 2>&/dev/null || print -1)
 					if (( $r == -1 )); then
 						took_perf10k='(error)'; dist_10k=(0 0)
 						break
@@ -152,8 +165,8 @@ do_perf() {
 			fi
 			if [[ $took_perf5M != '(error)' ]]; then
 				all=($took_perf5M)
-				for (( i=0; i<2; i++ )); do
-					r=$($=perf /tmp/5M.toml 2>&/dev/null || print -1)
+				for (( i=0; i<$n_5M; i++ )); do
+					r=$($=perf $tmp5M 2>&/dev/null || print -1)
 					if (( $r == -1 )); then
 						took_perf5M='(error)'; dist_5M=(0 0)
 						break
@@ -171,16 +184,15 @@ do_perf() {
 				fi
 			fi
 
-			# TODO: tmpfile
-			sed -E "s/^took ([0-9.]+) [0-9.]+ [0-9.]+$/took \1 $took_perf10k $took_perf5M/" $out >/tmp/tmp.sed
-			mv /tmp/tmp.sed $out
+			copy=$(mktemp)
+			sed -E "s/^took ([0-9.]+) [0-9.]+ [0-9.]+$/took \1 $took_perf10k $took_perf5M/" $out >|$copy
+			mv $copy $out
 
 			print -f '%6sms %-18s  %6ss %s\n' $took_perf10k "($dist_10k[1]ms $dist_10k[2]ms)" \
 				$took_perf5M "($dist_5M[1]s $dist_5M[2]s)"
+			rm -f $tmp10k $tmp5M
 		)
 	done
-
-	rm -f /tmp/10k.toml /tmp/5M.toml
 }
 
 do_gen() {
