@@ -12,7 +12,6 @@ typeset -A info=(
 	toml    '1.0'
 	site    'https://github.com/emancu/toml-rb'
 	src     'git@github.com:emancu/toml-rb.git'
-	version ''
 	decoder 'ruby-toml-rb-decoder'
 	encoder 'ruby-toml-rb-encoder'
 	perf    'ruby-toml-rb-perf'

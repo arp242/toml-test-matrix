@@ -16,7 +16,6 @@ typeset -A info=(
 	toml    '1.0'
 	site    'https://github.com/hukkin/tomli-w'
 	src     'git@github.com:hukkin/tomli-w.git'
-	version ''
 	decoder './scripts/python-tomli-decoder'
 	encoder './scripts/python-tomli-encoder'
 	perf    './scripts/python-tomli-perf'

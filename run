@@ -51,7 +51,7 @@ do_run() {
 				continue
 			fi
 
-			[[ -z $info[version] ]] && info[version]=$(cd src/$name && git log -n1 --format=%h)
+			[[ -z ${info[version]:-} ]] && info[version]=$(cd src/$name && git log -n1 --format=%h)
 			perf=(0.0 0.0)
 			if grep -aqs '^took ' $out; then
 				perf=($(grep -a '^took ' $out))
@@ -61,12 +61,12 @@ do_run() {
 			print $info[version] >>$out
 
 			dec=$info[decoder]
-			[[ $dec[1] != '.' ]] && dec=./src/$name/$dec
+			[[ $dec[1] != '.' && ! $dec =~ ' ' ]] && dec=./src/$name/$dec
 			enc=$info[encoder]
-			[[ $enc[1] != '.' ]] && enc=./src/$name/$enc
+			[[ $enc[1] != '.' && ! $enc =~ ' ' ]] && enc=./src/$name/$enc
 
 			start=$EPOCHREALTIME
-			toml-test -color bold $dec |& sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' >>$out
+			toml-test -color bold $=dec |& sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' >>$out
 			print $'\n==> ENCODER TESTS' >>$out
 			if [[ -n $info[encoder] ]] && [[ $info[encoder] != 'TODO' ]]; then
 				toml-test -color bold -encoder $enc |& sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' >>$out
@@ -212,15 +212,16 @@ do_test() {
 			fi
 
 			dec=$info[decoder]
-			[[ $dec[1] != '.' ]] && dec=./src/$name/$dec
+			[[ $dec[1] != '.' && ! $dec =~ ' ' ]] && dec=./src/$name/$dec
 			enc=$info[encoder]
-			[[ $enc[1] != '.' ]] && enc=./src/$name/$enc
+			[[ $enc[1] != '.' && ! $enc =~ ' ' ]] && enc=./src/$name/$enc
 
-			out=$($dec </dev/stdin 2>&1 ||:)
+			out=$($=dec </dev/stdin 2>&1 ||:)
 			out=${out//$'\n'/}
 			c=$(tput cols || print 80)
 			if [[ $out[1] = '{' ]]; then
 				out=${out// /}
+				# TODO: encode it back too
 			else
 				out="ERROR: ${out[1,$(( $c - 37 ))]}"
 			fi
@@ -287,6 +288,10 @@ do_gen() {
 		If performance is of prime concern you should run your own benchmarks
 		based on your real-world use case in any case.</p>
 
+		<p><strong>Not yet finished!</strong> Some parsers may show false test
+		failures due to bugs in the integration with toml-test. This is still a
+		work in progress.</p>
+
 		<div id="langs">Only show:
 	EOF
 
@@ -337,7 +342,7 @@ do_gen() {
 		took5M=$(tail -n2 $out | grep '^took' | cut -d' ' -f3)
 		[[ $took5M != '(error)' ]] && took5M+=s
 
-		[[ -z $info[version] ]] && info[version]=$(cd src/$name && git log -n1 --format=%h)
+		[[ -z ${info[version]:-} ]] && info[version]=$(cd src/$name && git log -n1 --format=%h)
 
 		vfail=""
 		(( $v[5] > 0 ))  && vfail='didfail'
