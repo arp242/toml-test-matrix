@@ -22,6 +22,7 @@ f4f1cc7
 
 <b>     input sent to parser-cmd:</b>
        "\n" = "newline"
+       "\b" = "bell"
        "\u00c0" = "latin capital letter A with grave"
        "\"" = "just a quote"
        
@@ -595,8 +596,68 @@ f4f1cc7
 <b>     want:</b>
           <empty>
 
+<b>FAIL</b> <b>valid/string/unicode-escape</b>
+<b> </b>    error: Invalid expression for value
+<b> </b>     --> stdin:6:11-18
+<b> </b>      |
+<b> </b>    6 | null-1  = "\u0000"
+<b> </b>      |           ^^^^^^^^ unexpected invalid sequence
+<b> </b>      |
+<b> </b>    ERROR STOP 
+<b> </b>    
+<b> </b>    Error termination. Backtrace:
+<b> </b>    #0  0x… in ???
+<b> </b>    #1  0x… in ???
+<b> </b>    #2  0x… in ???
+<b> </b>    #3  0x… in toml2json
+<b> </b>    	at ../test/compliance/toml2json.f90:63
+<b> </b>    #4  0x… in main
+<b> </b>    	at ../test/compliance/toml2json.f90:17
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       delta-1 = "\u03B4"
+       delta-2 = "\U000003B4"
+       a       = "\u0061"
+       b       = "\u0062"
+       c       = "\U00000063"
+       null-1  = "\u0000"
+       null-2  = "\U00000000"
+       
+       ml-delta-1 = """\u03B4"""
+       ml-delta-2 = """\U000003B4"""
+       ml-a       = """\u0061"""
+       ml-b       = """\u0062"""
+       ml-c       = """\U00000063"""
+       ml-null-1  = """\u0000"""
+       ml-null-2  = """\U00000000"""
+
+<b>     output from parser-cmd (stderr):</b>
+       error: Invalid expression for value
+        --> stdin:6:11-18
+         |
+       6 | null-1  = "\u0000"
+         |           ^^^^^^^^ unexpected invalid sequence
+         |
+       ERROR STOP 
+       
+       Error termination. Backtrace:
+       #0  0x… in ???
+       #1  0x… in ???
+       #2  0x… in ???
+       #3  0x… in toml2json
+       	at ../test/compliance/toml2json.f90:63
+       #4  0x… in main
+       	at ../test/compliance/toml2json.f90:17
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
 <b>FAIL</b> <b>invalid/array/extend-defined-aot</b>
-<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+<b> </b>    signal: segmentation fault
 
 <b>     input sent to parser-cmd:</b>
        [[tab.arr]]
@@ -628,7 +689,7 @@ f4f1cc7
        Exit code 1
 
 <b>FAIL</b> <b>invalid/array/extending-table</b>
-<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+<b> </b>    signal: aborted
 
 <b>     input sent to parser-cmd:</b>
        a = [{ b = 1 }]
@@ -946,7 +1007,7 @@ f4f1cc7
        Exit code 1
 
 <b>FAIL</b> <b>invalid/inline-table/duplicate-key-4</b>
-<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+<b> </b>    signal: segmentation fault
 
 <b>     input sent to parser-cmd:</b>
        tbl = { a.b = "a_b", a.b.c = "a_b_c" }
@@ -984,7 +1045,7 @@ f4f1cc7
        Exit code 1
 
 <b>FAIL</b> <b>invalid/inline-table/overwrite-6</b>
-<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+<b> </b>    signal: segmentation fault
 
 <b>     input sent to parser-cmd:</b>
        a = { b = 1, b.c = 2 }
@@ -1020,7 +1081,7 @@ f4f1cc7
        Exit code 1
 
 <b>FAIL</b> <b>invalid/inline-table/overwrite-7</b>
-<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+<b> </b>    signal: segmentation fault
 
 <b>     input sent to parser-cmd:</b>
        tab = { inner.table = [{}], inner.table.val = "bad" }
@@ -1058,7 +1119,7 @@ f4f1cc7
        Exit code 1
 
 <b>FAIL</b> <b>invalid/key/dotted-redefine-table-1</b>
-<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+<b> </b>    signal: segmentation fault
 
 <b>     input sent to parser-cmd:</b>
        a = false
@@ -1089,7 +1150,7 @@ f4f1cc7
        Exit code 1
 
 <b>FAIL</b> <b>invalid/key/dotted-redefine-table-2</b>
-<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+<b> </b>    signal: segmentation fault
 
 <b>     input sent to parser-cmd:</b>
        # Defined a.b as int
@@ -1223,7 +1284,7 @@ f4f1cc7
        Exit code 1
 
 <b>FAIL</b> <b>invalid/table/append-to-array-with-dotted-keys</b>
-<b> </b>    command timed out after 1s; increase -timeout if this isn't an infinite loop or pathological behaviour
+<b> </b>    signal: segmentation fault
 
 <b>     input sent to parser-cmd:</b>
        [[a.b]]
@@ -1336,8 +1397,8 @@ f4f1cc7
 <b>     want:</b>
        Exit code 1
 
-toml-test [./src/fortran-toml-f/_build/test/compliance/toml2json]: using embedded tests
-  valid tests: 153 passed,  9 failed
+toml-test v2023-10-13 [./src/fortran-toml-f/_build/test/compliance/toml2json]: using embedded tests
+  valid tests: 156 passed, 10 failed
 invalid tests: 323 passed, 32 failed
 
 ==> ENCODER TESTS
@@ -1477,6 +1538,10 @@ invalid tests: 323 passed, 32 failed
 
 <b>     input sent to parser-cmd:</b>
        {
+         "\u0008": {
+           "type": "string",
+           "value": "bell"
+         },
          "\n": {
            "type": "string",
            "value": "newline"
@@ -2040,7 +2105,98 @@ invalid tests: 323 passed, 32 failed
 <b>     want:</b>
           <empty>
 
-toml-test [./src/fortran-toml-f/_build/test/compliance/json2toml]: using embedded tests
-encoder tests: 152 passed, 10 failed
+<b>FAIL</b> <b>valid/string/unicode-escape</b>
+<b> </b>    ERROR STOP 
+<b> </b>    
+<b> </b>    Error termination. Backtrace:
+<b> </b>    #0  0x… in ???
+<b> </b>    #1  0x… in ???
+<b> </b>    #2  0x… in ???
+<b> </b>    #3  0x… in json2toml
+<b> </b>    	at ../test/compliance/json2toml.f90:53
+<b> </b>    #4  0x… in main
+<b> </b>    	at ../test/compliance/json2toml.f90:17
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "a": {
+           "type": "string",
+           "value": "a"
+         },
+         "b": {
+           "type": "string",
+           "value": "b"
+         },
+         "c": {
+           "type": "string",
+           "value": "c"
+         },
+         "delta-1": {
+           "type": "string",
+           "value": "δ"
+         },
+         "delta-2": {
+           "type": "string",
+           "value": "δ"
+         },
+         "ml-a": {
+           "type": "string",
+           "value": "a"
+         },
+         "ml-b": {
+           "type": "string",
+           "value": "b"
+         },
+         "ml-c": {
+           "type": "string",
+           "value": "c"
+         },
+         "ml-delta-1": {
+           "type": "string",
+           "value": "δ"
+         },
+         "ml-delta-2": {
+           "type": "string",
+           "value": "δ"
+         },
+         "ml-null-1": {
+           "type": "string",
+           "value": "\u0000"
+         },
+         "ml-null-2": {
+           "type": "string",
+           "value": "\u0000"
+         },
+         "null-1": {
+           "type": "string",
+           "value": "\u0000"
+         },
+         "null-2": {
+           "type": "string",
+           "value": "\u0000"
+         }
+       }
+
+<b>     output from parser-cmd (stderr):</b>
+       ERROR STOP 
+       
+       Error termination. Backtrace:
+       #0  0x… in ???
+       #1  0x… in ???
+       #2  0x… in ???
+       #3  0x… in json2toml
+       	at ../test/compliance/json2toml.f90:53
+       #4  0x… in main
+       	at ../test/compliance/json2toml.f90:17
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+toml-test v2023-10-13 [./src/fortran-toml-f/_build/test/compliance/json2toml]: using embedded tests
+encoder tests: 155 passed, 11 failed
 took 1.5 158.58
 </pre>

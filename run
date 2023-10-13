@@ -197,6 +197,38 @@ do_perf() {
 	done
 }
 
+do_test() {
+	for f in ./parsers/*.zsh; do
+		name=$f:t:r
+		out=output/$name.html
+		[[ -n $only && $name != $only ]] && continue
+
+		(
+			print -nf '%-25s' $name
+			source $f
+			if (( ${info[skip]:-0} )); then
+				print '(skip)'
+				continue
+			fi
+
+			dec=$info[decoder]
+			[[ $dec[1] != '.' ]] && dec=./src/$name/$dec
+			enc=$info[encoder]
+			[[ $enc[1] != '.' ]] && enc=./src/$name/$enc
+
+			out=$($dec </dev/stdin 2>&1 ||:)
+			out=${out//$'\n'/}
+			c=$(tput cols || print 80)
+			if [[ $out[1] = '{' ]]; then
+				out=${out// /}
+			else
+				out="ERROR: ${out[1,$(( $c - 37 ))]}"
+			fi
+			print -r -- '    ' ${out}
+		)
+	done
+}
+
 do_gen() {
 	cat >|index.html <<-EOF
 		<!DOCTYPE html>
@@ -431,6 +463,7 @@ case ${1:-all}; in
 	run)   do_run   ;;
 	perf)  do_perf  ;;
 	gen)   do_gen   ;;
+	test)  do_test  ;;
 	all)   do_setup && do_run && do_gen ;;
 	*)
 		print "unknown step: $1"

@@ -807,6 +807,7 @@
 
 <b>     input sent to parser-cmd:</b>
        "\n" = "newline"
+       "\b" = "bell"
        "\u00c0" = "latin capital letter A with grave"
        "\"" = "just a quote"
        
@@ -819,6 +820,10 @@
 
 <b>     output from parser-cmd (stdout):</b>
        {
+         "\u0008": {
+           "type": "string",
+           "value": "bell"
+         },
          "\n": {
            "type": "string",
            "value": "newline"
@@ -845,6 +850,10 @@
 
 <b>     want:</b>
        {
+         "\u0008": {
+           "type": "string",
+           "value": "bell"
+         },
          "\n": {
            "type": "string",
            "value": "newline"
@@ -2459,8 +2468,8 @@
 <b>     want:</b>
        Exit code 1
 
-toml-test [./src/python-toml/tests/decoding_test.py]: using embedded tests
-  valid tests: 146 passed, 16 failed
+toml-test v2023-10-13 [./src/python-toml/tests/decoding_test.py]: using embedded tests
+  valid tests: 150 passed, 16 failed
 invalid tests: 286 passed, 69 failed
 
 ==> ENCODER TESTS
@@ -2688,10 +2697,29 @@ invalid tests: 286 passed, 69 failed
        arr_arr_tbls  = [ [ { one = 1 }, { two = 2 } ] ]
 
 <b>FAIL</b> <b>valid/key/escapes</b>
-<b> </b>    Could not find key "backsp\b\b" in encoder output
+<b> </b>    Traceback (most recent call last):
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+<b> </b>        print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
+<b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+<b> </b>        addtoretval, sections = encoder.dump_sections(o, "")
+<b> </b>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 192, in dump_sections
+<b> </b>        qsection = _dump_str(section)
+<b> </b>                   ^^^^^^^^^^^^^^^^^^
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
+<b> </b>        v = [v[0] + joiner + v[1]] + v[2:]
+<b> </b>                             ~^^^
+<b> </b>    IndexError: list index out of range
+<b> </b>    
+<b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
        {
+         "\u0008": {
+           "type": "string",
+           "value": "bell"
+         },
          "\n": {
            "type": "string",
            "value": "newline"
@@ -2716,29 +2744,26 @@ invalid tests: 286 passed, 69 failed
          }
        }
 
-<b>     output from parser-cmd (stdout):</b>
-       "\n" = "newline"
-       "\"" = "just a quote"
-       "À" = "latin capital letter A with grave"
+<b>     output from parser-cmd (stderr):</b>
+       Traceback (most recent call last):
+         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+           print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+           addtoretval, sections = encoder.dump_sections(o, "")
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 192, in dump_sections
+           qsection = _dump_str(section)
+                      ^^^^^^^^^^^^^^^^^^
+         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
+           v = [v[0] + joiner + v[1]] + v[2:]
+                                ~^^^
+       IndexError: list index out of range
        
-       ["\"quoted\""]
-       quote = true
-       
-       ["backspx08x08"]
-       
-       ["a.b"."À"]
+       Exit 1
 
 <b>     want:</b>
-       "\n" = "newline"
-       "\u00c0" = "latin capital letter A with grave"
-       "\"" = "just a quote"
-       
-       ["backsp\b\b"]
-       
-       ["\"quoted\""]
-       quote = true
-       
-       ["a.b"."\u00c0"]
+          <empty>
 
 <b>FAIL</b> <b>valid/key/quoted-unicode</b>
 <b> </b>    Traceback (most recent call last):
@@ -3216,7 +3241,112 @@ invalid tests: 286 passed, 69 failed
        basic_string = "~  ÿ ퟿  ￿ 𐀀 􏿿"
        literal_string = '~  ÿ ퟿  ￿ 𐀀 􏿿'
 
-toml-test [./src/python-toml/tests/encoding_test.py]: using embedded tests
-encoder tests: 151 passed, 11 failed
+<b>FAIL</b> <b>valid/string/unicode-escape</b>
+<b> </b>    Traceback (most recent call last):
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+<b> </b>        print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
+<b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+<b> </b>        addtoretval, sections = encoder.dump_sections(o, "")
+<b> </b>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 226, in dump_sections
+<b> </b>        unicode(self.dump_value(o[section])) + '\n')
+<b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 180, in dump_value
+<b> </b>        return dump_fn(v) if dump_fn is not None else self.dump_funcs[str](v)
+<b> </b>               ^^^^^^^^^^
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
+<b> </b>        v = [v[0] + joiner + v[1]] + v[2:]
+<b> </b>                             ~^^^
+<b> </b>    IndexError: list index out of range
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "a": {
+           "type": "string",
+           "value": "a"
+         },
+         "b": {
+           "type": "string",
+           "value": "b"
+         },
+         "c": {
+           "type": "string",
+           "value": "c"
+         },
+         "delta-1": {
+           "type": "string",
+           "value": "δ"
+         },
+         "delta-2": {
+           "type": "string",
+           "value": "δ"
+         },
+         "ml-a": {
+           "type": "string",
+           "value": "a"
+         },
+         "ml-b": {
+           "type": "string",
+           "value": "b"
+         },
+         "ml-c": {
+           "type": "string",
+           "value": "c"
+         },
+         "ml-delta-1": {
+           "type": "string",
+           "value": "δ"
+         },
+         "ml-delta-2": {
+           "type": "string",
+           "value": "δ"
+         },
+         "ml-null-1": {
+           "type": "string",
+           "value": "\u0000"
+         },
+         "ml-null-2": {
+           "type": "string",
+           "value": "\u0000"
+         },
+         "null-1": {
+           "type": "string",
+           "value": "\u0000"
+         },
+         "null-2": {
+           "type": "string",
+           "value": "\u0000"
+         }
+       }
+
+<b>     output from parser-cmd (stderr):</b>
+       Traceback (most recent call last):
+         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+           print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+           addtoretval, sections = encoder.dump_sections(o, "")
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 226, in dump_sections
+           unicode(self.dump_value(o[section])) + '\n')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 180, in dump_value
+           return dump_fn(v) if dump_fn is not None else self.dump_funcs[str](v)
+                  ^^^^^^^^^^
+         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
+           v = [v[0] + joiner + v[1]] + v[2:]
+                                ~^^^
+       IndexError: list index out of range
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+toml-test v2023-10-13 [./src/python-toml/tests/encoding_test.py]: using embedded tests
+encoder tests: 154 passed, 12 failed
 took 5.2 2.44
 </pre>

@@ -1,12 +1,9 @@
 setup() {
 	go build ./cmd/gotoml-test-decoder
-
-	mkdir -p ./cmd/gotoml-test-encoder
-	cp ../../scripts/gotoml-test-encoder.go ./cmd/gotoml-test-encoder
 	go build ./cmd/gotoml-test-encoder
 
 	mkdir -p ./cmd/perf
-	cp ../../scripts/go-go-toml.go ./cmd/perf
+	cp ../../scripts/go-go-toml-perf.go ./cmd/perf
 	go build ./cmd/perf
 }
 

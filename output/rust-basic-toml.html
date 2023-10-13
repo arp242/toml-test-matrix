@@ -87,6 +87,28 @@
 <b>     want:</b>
           <empty>
 
+<b>FAIL</b> <b>valid/datetime/edge</b>
+<b> </b>    Error: Error { message: "invalid number at line 1 column 17" }
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       first-offset = 0001-01-01 00:00:00Z
+       first-local  = 0001-01-01 00:00:00
+       first-date   = 0001-01-01
+       
+       last-offset = 9999-12-31 23:59:59Z
+       last-local  = 9999-12-31 23:59:59
+       last-date   = 9999-12-31
+
+<b>     output from parser-cmd (stderr):</b>
+       Error: Error { message: "invalid number at line 1 column 17" }
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
 <b>FAIL</b> <b>valid/datetime/leap-year</b>
 <b> </b>    Error: Error { message: "invalid number at line 1 column 23" }
 <b> </b>    
@@ -523,8 +545,8 @@
 <b>     want:</b>
        Exit code 1
 
-toml-test [./scripts/target/release/basic-toml-decoder]: using embedded tests
-  valid tests: 142 passed, 20 failed
+toml-test v2023-10-13 [./scripts/target/release/basic-toml-decoder]: using embedded tests
+  valid tests: 145 passed, 21 failed
 invalid tests: 351 passed,  4 failed
 
 ==> ENCODER TESTS

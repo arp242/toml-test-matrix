@@ -16,6 +16,28 @@
 <b>     want:</b>
           <empty>
 
+<b>FAIL</b> <b>valid/datetime/edge</b>
+<b> </b>    Error: Error { message: "expected value (15..25)\nexpected new line (26..34)\nexpected new line (34..35)\nexpected value (51..61)\nexpected new line (62..70)\nexpected value (86..96)\n" }
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       first-offset = 0001-01-01 00:00:00Z
+       first-local  = 0001-01-01 00:00:00
+       first-date   = 0001-01-01
+       
+       last-offset = 9999-12-31 23:59:59Z
+       last-local  = 9999-12-31 23:59:59
+       last-date   = 9999-12-31
+
+<b>     output from parser-cmd (stderr):</b>
+       Error: Error { message: "expected value (15..25)\nexpected new line (26..34)\nexpected new line (34..35)\nexpected value (51..61)\nexpected new line (62..70)\nexpected value (86..96)\n" }
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
 <b>FAIL</b> <b>valid/key/quoted-unicode</b>
 <b> </b>    Error: Error { message: "invalid control character in string literal (205..205)\n" }
 <b> </b>    
@@ -93,8 +115,8 @@
 <b>     want:</b>
        Exit code 1
 
-toml-test [./scripts/target/release/taplo-decoder]: using embedded tests
-  valid tests: 159 passed,  3 failed
+toml-test v2023-10-13 [./scripts/target/release/taplo-decoder]: using embedded tests
+  valid tests: 162 passed,  4 failed
 invalid tests: 353 passed,  2 failed
 
 ==> ENCODER TESTS
