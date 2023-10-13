@@ -11,6 +11,7 @@ small, em    { font-size:.75em; }
 table        { border-collapse:collapse; }
 td, th       { border:1px solid #d7d7d7; padding:.5em;  }
 td:nth-child(2) { white-space:nowrap; }
+td:nth-child(3) { white-space:nowrap; }
 th           { background:#f3f3f3; font-weight:normal; text-align:left; white-space:nowrap; }
 tr:hover     { background-color:#fffef1; }
 .pass        { }
@@ -54,9 +55,9 @@ or so for the 10k file). Still, it should be a decent rough comparison.
 If performance is of prime concern you should run your own benchmarks
 based on your real-world use case in any case.</p>
 
-<p><strong>Not yet finished!</strong> Some parsers may show false test
-failures due to bugs in the integration with toml-test. This is still a
-work in progress.</p>
+<p><strong>Not yet finished! Some parsers may show false test failures
+due to bugs in the integration with toml-test. This is still a work in
+progress.</strong></p>
 
 <div id="langs">Only show:
 <label><input type='checkbox' value='C'>C (1)</label>
@@ -68,6 +69,7 @@ work in progress.</p>
 <label><input type='checkbox' value='JS'>JS (2)</label>
 <label><input type='checkbox' value='Lisp'>Lisp (1)</label>
 <label><input type='checkbox' value='Python'>Python (4)</label>
+<label><input type='checkbox' value='Racket'>Racket (1)</label>
 <label><input type='checkbox' value='Ruby'>Ruby (3)</label>
 <label><input type='checkbox' value='Rust'>Rust (4)</label>
 </div>
@@ -488,6 +490,35 @@ work in progress.</p>
 <td class='bench'>3.3ms</td>
 <td class='bench'>1.24s</td>
 <td><a href="output/python-tomllib.html" class="ui">output</a></td>
+</tr>
+<tr data-lang="Racket">
+<td><span title="Non-compliant">❌</span></td>
+<td>Racket</td>
+<td title="Version fe46aa2"><a href="https://github.com/toml-racket/toml-racket">toml-racket</a></td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:99.397590361445779%"></span><span class="barf" style="width:0.60240963855421692%"></span>
+</div>
+<small class="pass">pass: 165</small>
+<span class="fail didfail">fail: 1</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp " style="width:98.192771084337352%"></span><span class="barf" style="width:1.8072289156626504%"></span>
+</div>
+<small class="pass">pass: 163</small>
+<span class="fail didfail">fail: 3</span>
+</td>
+<td style="width:30em">
+<div class="bars">
+<span class="barp allpass" style="width:100%"></span><span class="barf" style="width:0%"></span>
+</div>
+<small class="pass">pass: 355</small>
+<span class="fail ">fail: 0</span>
+</td>
+<td class='bench'><em>(TODO)</em></td>
+<td class='bench'><em>(TODO)</em></td>
+<td><a href="output/racket-toml-racket.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Ruby">
 <td><span title="Compliant">✅</span></td>

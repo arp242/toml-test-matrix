@@ -66,10 +66,12 @@ do_run() {
 			[[ $enc[1] != '.' && ! $enc =~ ' ' ]] && enc=./src/$name/$enc
 
 			start=$EPOCHREALTIME
-			toml-test -color bold $=dec |& sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' >>$out
+			toml-test -color bold ${=info[flags]:-} -- $=dec |&
+				sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' >>$out
 			print $'\n==> ENCODER TESTS' >>$out
 			if [[ -n $info[encoder] ]] && [[ $info[encoder] != 'TODO' ]]; then
-				toml-test -color bold -encoder $enc |& sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' >>$out
+				toml-test -color bold -encoder ${=info[flags]:-} -- $=enc |&
+					sed $'s!\x1b\\[1m!<b>!g; s!\x1b\\[0m!</b>!g' >>$out
 			else
 				print '(not supported)' >>$out
 			fi
@@ -245,6 +247,7 @@ do_gen() {
 			table        { border-collapse:collapse; }
 			td, th       { border:1px solid #d7d7d7; padding:.5em;  }
 			td:nth-child(2) { white-space:nowrap; }
+			td:nth-child(3) { white-space:nowrap; }
 			th           { background:#f3f3f3; font-weight:normal; text-align:left; white-space:nowrap; }
 			tr:hover     { background-color:#fffef1; }
 			.pass        { }
@@ -288,9 +291,9 @@ do_gen() {
 		If performance is of prime concern you should run your own benchmarks
 		based on your real-world use case in any case.</p>
 
-		<p><strong>Not yet finished!</strong> Some parsers may show false test
-		failures due to bugs in the integration with toml-test. This is still a
-		work in progress.</p>
+		<p><strong>Not yet finished! Some parsers may show false test failures
+		due to bugs in the integration with toml-test. This is still a work in
+		progress.</strong></p>
 
 		<div id="langs">Only show:
 	EOF
