@@ -1,0 +1,57 @@
+<pre>
+c0c3fe7
+<b>FAIL</b> <b>valid/comment/nonascii</b>
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       # ~  ÿ ퟿  ￿ 𐀀 􏿿
+
+<b>     output from parser-cmd (stderr):</b>
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>valid/key/quoted-unicode</b>
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       
+       "\u0000" = "null"
+       '\u0000' = "different key"
+       "\u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff" = "escaped key"
+       
+       "~  ÿ ퟿  ￿ 𐀀 􏿿" = "basic key"
+       'l ~  ÿ ퟿  ￿ 𐀀 􏿿' = "literal key"
+
+<b>     output from parser-cmd (stderr):</b>
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>valid/string/quoted-unicode</b>
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       
+       escaped_string = "\u0000 \u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff"
+       not_escaped_string = '\u0000 \u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff'
+       
+       basic_string = "~  ÿ ퟿  ￿ 𐀀 􏿿"
+       literal_string = '~  ÿ ퟿  ￿ 𐀀 􏿿'
+
+<b>     output from parser-cmd (stderr):</b>
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+toml-test v2023-10-13 [./src/lisp-clop/roswell/decoder]: using embedded tests
+  valid tests: 163 passed,  3 failed
+invalid tests: 355 passed,  0 failed
+
+==> ENCODER TESTS
+(not supported)
+took 0.0 0.0
+</pre>
