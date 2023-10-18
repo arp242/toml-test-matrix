@@ -868,8 +868,8 @@ d4a7bed
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-10-13 [./src/js-iarna-toml/js-iarna-toml-decode]: using embedded tests
-  valid tests: 160 passed,  6 failed
+toml-test v2023-10-18 [./src/js-iarna-toml/js-iarna-toml-decode]: using embedded tests
+  valid tests: 161 passed,  6 failed
 invalid tests: 333 passed, 22 failed
 
 ==> ENCODER TESTS
@@ -1301,6 +1301,83 @@ invalid tests: 333 passed, 22 failed
        exponent-signed-pos = +0e0
        exponent-signed-neg = -0e0
 
+<b>FAIL</b> <b>valid/inline-table/spaces</b>
+<b> </b>    Values for key "clap-2.nest.b" differ:
+<b> </b>      Expected:     9 (float64)
+<b> </b>      Your encoder: 9 (int64)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "clap-1": {
+           "features": [
+             {
+               "type": "string",
+               "value": "derive"
+             },
+             {
+               "type": "string",
+               "value": "cargo"
+             }
+           ],
+           "version": {
+             "type": "string",
+             "value": "4"
+           }
+         },
+         "clap-2": {
+           "features": [
+             {
+               "type": "string",
+               "value": "derive"
+             },
+             {
+               "type": "string",
+               "value": "cargo"
+             }
+           ],
+           "nest": {
+             "a": {
+               "type": "string",
+               "value": "x"
+             },
+             "b": [
+               {
+                 "type": "float",
+                 "value": "1.5"
+               },
+               {
+                 "type": "float",
+                 "value": "9"
+               }
+             ]
+           },
+           "version": {
+             "type": "string",
+             "value": "4"
+           }
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       [clap-1]
+       features = [ "derive", "cargo" ]
+       version = "4"
+       
+       [clap-2]
+       features = [ "derive", "cargo" ]
+       version = "4"
+       
+         [clap-2.nest]
+         a = "x"
+         b = [ 1.5, 9 ]
+
+<b>     want:</b>
+       # https://github.com/toml-lang/toml-test/issues/146
+       clap-1 = { version = "4"  , features = ["derive", "cargo"] }
+       
+       # Contains some literal tabs!
+       clap-2 = { version = "4"	   	,	  	features = [   "derive" 	  ,  	  "cargo"   ]   , nest   =   {  	  "a"   =   'x'  , 	  'b'   = [ 1.5    ,   9.0  ]  }  }
+
 <b>FAIL</b> <b>valid/spec/float-0</b>
 <b> </b>    Values for key "flt1" differ:
 <b> </b>      Expected:     1 (float64)
@@ -1480,7 +1557,7 @@ invalid tests: 333 passed, 22 failed
        basic_string = "~  ÿ ퟿  ￿ 𐀀 􏿿"
        literal_string = '~  ÿ ퟿  ￿ 𐀀 􏿿'
 
-toml-test v2023-10-13 [./src/js-iarna-toml/js-iarna-toml-encode]: using embedded tests
-encoder tests: 155 passed, 11 failed
+toml-test v2023-10-18 [./src/js-iarna-toml/js-iarna-toml-encode]: using embedded tests
+encoder tests: 155 passed, 12 failed
 took 13.3 0.66
 </pre>

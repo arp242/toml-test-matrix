@@ -1,5 +1,5 @@
 <pre>
-f7c630d
+5ccd1d1
 <b>FAIL</b> <b>valid/array/open-parent-table</b>
 <b> </b>    file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:122
 <b> </b>                    throw new TomlError('trying to redefine an already defined table or value', {
@@ -52,6 +52,74 @@ f7c630d
          line: 3,
          column: 2,
          codeblock: '2:  [[parent-table.arr]]\n3:  [parent-table]\n     ^\n4:  not-arr = 1\n'
+       }
+       
+       Node.js v18.16.0
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>valid/inline-table/spaces</b>
+<b> </b>    file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/struct.js:125
+<b> </b>                throw new TomlError('expected key-value, found comma', {
+<b> </b>                ^
+<b> </b>    
+<b> </b>    TomlError: Invalid TOML document: expected key-value, found comma
+<b> </b>    
+<b> </b>    1:  # https://github.com/toml-lang/toml-test/issues/146
+<b> </b>    2:  clap-1 = { version = "4"  , features = ["derive", "cargo"] }
+<b> </b>                                  ^
+<b> </b>    
+<b> </b>        at parseInlineTable (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/struct.js:125:19)
+<b> </b>        at extractValue (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/extract.js:58:15)
+<b> </b>        at parse (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:140:21)
+<b> </b>        at Socket.<anonymous> (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/toml-test-parse.js:74:17)
+<b> </b>        at Socket.emit (node:events:525:35)
+<b> </b>        at endReadableNT (node:internal/streams/readable:1359:12)
+<b> </b>        at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+<b> </b>      line: 2,
+<b> </b>      column: 27,
+<b> </b>      codeblock: '1:  # https://github.com/toml-lang/toml-test/issues/146\n' +
+<b> </b>        '2:  clap-1 = { version = "4"  , features = ["derive", "cargo"] }\n' +
+<b> </b>        '                              ^\n'
+<b> </b>    }
+<b> </b>    
+<b> </b>    Node.js v18.16.0
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       # https://github.com/toml-lang/toml-test/issues/146
+       clap-1 = { version = "4"  , features = ["derive", "cargo"] }
+       
+       # Contains some literal tabs!
+       clap-2 = { version = "4"	   	,	  	features = [   "derive" 	  ,  	  "cargo"   ]   , nest   =   {  	  "a"   =   'x'  , 	  'b'   = [ 1.5    ,   9.0  ]  }  }
+
+<b>     output from parser-cmd (stderr):</b>
+       file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/struct.js:125
+                   throw new TomlError('expected key-value, found comma', {
+                   ^
+       
+       TomlError: Invalid TOML document: expected key-value, found comma
+       
+       1:  # https://github.com/toml-lang/toml-test/issues/146
+       2:  clap-1 = { version = "4"  , features = ["derive", "cargo"] }
+                                     ^
+       
+           at parseInlineTable (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/struct.js:125:19)
+           at extractValue (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/extract.js:58:15)
+           at parse (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:140:21)
+           at Socket.<anonymous> (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/toml-test-parse.js:74:17)
+           at Socket.emit (node:events:525:35)
+           at endReadableNT (node:internal/streams/readable:1359:12)
+           at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+         line: 2,
+         column: 27,
+         codeblock: '1:  # https://github.com/toml-lang/toml-test/issues/146\n' +
+           '2:  clap-1 = { version = "4"  , features = ["derive", "cargo"] }\n' +
+           '                              ^\n'
        }
        
        Node.js v18.16.0
@@ -402,7 +470,7 @@ f7c630d
        Exit code 1
 
 toml-test v2023-10-18 [./src/js-smol-toml/toml-test-parse.js]: using embedded tests
-  valid tests: 163 passed,  3 failed
+  valid tests: 163 passed,  4 failed
 invalid tests: 342 passed, 13 failed
 
 ==> ENCODER TESTS
@@ -760,6 +828,83 @@ invalid tests: 342 passed, 13 failed
        exponent-signed-pos = +0e0
        exponent-signed-neg = -0e0
 
+<b>FAIL</b> <b>valid/inline-table/spaces</b>
+<b> </b>    Values for key "clap-2.nest.b" differ:
+<b> </b>      Expected:     9 (float64)
+<b> </b>      Your encoder: 9 (int64)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "clap-1": {
+           "features": [
+             {
+               "type": "string",
+               "value": "derive"
+             },
+             {
+               "type": "string",
+               "value": "cargo"
+             }
+           ],
+           "version": {
+             "type": "string",
+             "value": "4"
+           }
+         },
+         "clap-2": {
+           "features": [
+             {
+               "type": "string",
+               "value": "derive"
+             },
+             {
+               "type": "string",
+               "value": "cargo"
+             }
+           ],
+           "nest": {
+             "a": {
+               "type": "string",
+               "value": "x"
+             },
+             "b": [
+               {
+                 "type": "float",
+                 "value": "1.5"
+               },
+               {
+                 "type": "float",
+                 "value": "9"
+               }
+             ]
+           },
+           "version": {
+             "type": "string",
+             "value": "4"
+           }
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       [clap-1]
+       features = [ "derive", "cargo" ]
+       version = "4"
+       
+       [clap-2]
+       features = [ "derive", "cargo" ]
+       version = "4"
+       
+       [clap-2.nest]
+       a = "x"
+       b = [ 1.5, 9 ]
+
+<b>     want:</b>
+       # https://github.com/toml-lang/toml-test/issues/146
+       clap-1 = { version = "4"  , features = ["derive", "cargo"] }
+       
+       # Contains some literal tabs!
+       clap-2 = { version = "4"	   	,	  	features = [   "derive" 	  ,  	  "cargo"   ]   , nest   =   {  	  "a"   =   'x'  , 	  'b'   = [ 1.5    ,   9.0  ]  }  }
+
 <b>FAIL</b> <b>valid/spec/float-0</b>
 <b> </b>    Values for key "flt1" differ:
 <b> </b>      Expected:     1 (float64)
@@ -902,6 +1047,6 @@ invalid tests: 342 passed, 13 failed
        odt3 = 1979-05-27T00:32:00.999999-07:00
 
 toml-test v2023-10-18 [./src/js-smol-toml/toml-test-encode.js]: using embedded tests
-encoder tests: 157 passed,  9 failed
+encoder tests: 157 passed, 10 failed
 took 6.2 0.40
 </pre>

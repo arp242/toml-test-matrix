@@ -83,8 +83,8 @@ fe46aa2
          }
        }
 
-toml-test v2023-10-13 [./src/racket-toml-racket/toml-compliance/compliance/decoder]: using embedded tests
-  valid tests: 165 passed,  1 failed
+toml-test v2023-10-18 [./src/racket-toml-racket/toml-compliance/compliance/decoder]: using embedded tests
+  valid tests: 166 passed,  1 failed
 invalid tests: 355 passed,  0 failed
 
 ==> ENCODER TESTS
@@ -142,6 +142,92 @@ invalid tests: 355 passed,  0 failed
        exponent-two-0 = 0e00
        exponent-signed-pos = +0e0
        exponent-signed-neg = -0e0
+
+<b>FAIL</b> <b>valid/inline-table/spaces</b>
+<b> </b>    Values for key "clap-2.nest.b" differ:
+<b> </b>      Expected:     9 (float64)
+<b> </b>      Your encoder: 9 (int64)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "clap-1": {
+           "features": [
+             {
+               "type": "string",
+               "value": "derive"
+             },
+             {
+               "type": "string",
+               "value": "cargo"
+             }
+           ],
+           "version": {
+             "type": "string",
+             "value": "4"
+           }
+         },
+         "clap-2": {
+           "features": [
+             {
+               "type": "string",
+               "value": "derive"
+             },
+             {
+               "type": "string",
+               "value": "cargo"
+             }
+           ],
+           "nest": {
+             "a": {
+               "type": "string",
+               "value": "x"
+             },
+             "b": [
+               {
+                 "type": "float",
+                 "value": "1.5"
+               },
+               {
+                 "type": "float",
+                 "value": "9"
+               }
+             ]
+           },
+           "version": {
+             "type": "string",
+             "value": "4"
+           }
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       [clap-1]
+       features = [
+         "derive",
+         "cargo",
+       ]
+       version = "4"
+       
+       [clap-2]
+       features = [
+         "derive",
+         "cargo",
+       ]
+       version = "4"
+       
+       [clap-2.nest]
+       a = "x"
+       b = [
+         1.5,
+         9,
+       ]
+
+<b>     want:</b>
+       # https://github.com/toml-lang/toml-test/issues/146
+       clap-1 = { version = "4"  , features = ["derive", "cargo"] }
+       
+       # Contains some literal tabs!
+       clap-2 = { version = "4"	   	,	  	features = [   "derive" 	  ,  	  "cargo"   ]   , nest   =   {  	  "a"   =   'x'  , 	  'b'   = [ 1.5    ,   9.0  ]  }  }
 
 <b>FAIL</b> <b>valid/key/quoted-unicode</b>
 <b> </b>    decode TOML from encoder:
@@ -247,7 +333,7 @@ invalid tests: 355 passed,  0 failed
        # both
        flt7 = 6.626e-34
 
-toml-test v2023-10-13 [./src/racket-toml-racket/toml-compliance/compliance/encoder]: using embedded tests
-encoder tests: 163 passed,  3 failed
+toml-test v2023-10-18 [./src/racket-toml-racket/toml-compliance/compliance/encoder]: using embedded tests
+encoder tests: 163 passed,  4 failed
 took 0.0 0.0
 </pre>
