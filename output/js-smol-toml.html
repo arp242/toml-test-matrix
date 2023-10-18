@@ -1,134 +1,5 @@
 <pre>
 5ccd1d1
-<b>FAIL</b> <b>valid/array/open-parent-table</b>
-<b> </b>    file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:122
-<b> </b>                    throw new TomlError('trying to redefine an already defined table or value', {
-<b> </b>                    ^
-<b> </b>    
-<b> </b>    TomlError: Invalid TOML document: trying to redefine an already defined table or value
-<b> </b>    
-<b> </b>    2:  [[parent-table.arr]]
-<b> </b>    3:  [parent-table]
-<b> </b>         ^
-<b> </b>    4:  not-arr = 1
-<b> </b>    
-<b> </b>        at parse (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:122:23)
-<b> </b>        at Socket.<anonymous> (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/toml-test-parse.js:74:17)
-<b> </b>        at Socket.emit (node:events:525:35)
-<b> </b>        at endReadableNT (node:internal/streams/readable:1359:12)
-<b> </b>        at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
-<b> </b>      line: 3,
-<b> </b>      column: 2,
-<b> </b>      codeblock: '2:  [[parent-table.arr]]\n3:  [parent-table]\n     ^\n4:  not-arr = 1\n'
-<b> </b>    }
-<b> </b>    
-<b> </b>    Node.js v18.16.0
-<b> </b>    
-<b> </b>    Exit 1
-
-<b>     input sent to parser-cmd:</b>
-       [[parent-table.arr]]
-       [[parent-table.arr]]
-       [parent-table]
-       not-arr = 1
-
-<b>     output from parser-cmd (stderr):</b>
-       file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:122
-                       throw new TomlError('trying to redefine an already defined table or value', {
-                       ^
-       
-       TomlError: Invalid TOML document: trying to redefine an already defined table or value
-       
-       2:  [[parent-table.arr]]
-       3:  [parent-table]
-            ^
-       4:  not-arr = 1
-       
-           at parse (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:122:23)
-           at Socket.<anonymous> (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/toml-test-parse.js:74:17)
-           at Socket.emit (node:events:525:35)
-           at endReadableNT (node:internal/streams/readable:1359:12)
-           at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
-         line: 3,
-         column: 2,
-         codeblock: '2:  [[parent-table.arr]]\n3:  [parent-table]\n     ^\n4:  not-arr = 1\n'
-       }
-       
-       Node.js v18.16.0
-       
-       Exit 1
-
-<b>     want:</b>
-          <empty>
-
-<b>FAIL</b> <b>valid/inline-table/spaces</b>
-<b> </b>    file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/struct.js:125
-<b> </b>                throw new TomlError('expected key-value, found comma', {
-<b> </b>                ^
-<b> </b>    
-<b> </b>    TomlError: Invalid TOML document: expected key-value, found comma
-<b> </b>    
-<b> </b>    1:  # https://github.com/toml-lang/toml-test/issues/146
-<b> </b>    2:  clap-1 = { version = "4"  , features = ["derive", "cargo"] }
-<b> </b>                                  ^
-<b> </b>    
-<b> </b>        at parseInlineTable (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/struct.js:125:19)
-<b> </b>        at extractValue (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/extract.js:58:15)
-<b> </b>        at parse (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:140:21)
-<b> </b>        at Socket.<anonymous> (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/toml-test-parse.js:74:17)
-<b> </b>        at Socket.emit (node:events:525:35)
-<b> </b>        at endReadableNT (node:internal/streams/readable:1359:12)
-<b> </b>        at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
-<b> </b>      line: 2,
-<b> </b>      column: 27,
-<b> </b>      codeblock: '1:  # https://github.com/toml-lang/toml-test/issues/146\n' +
-<b> </b>        '2:  clap-1 = { version = "4"  , features = ["derive", "cargo"] }\n' +
-<b> </b>        '                              ^\n'
-<b> </b>    }
-<b> </b>    
-<b> </b>    Node.js v18.16.0
-<b> </b>    
-<b> </b>    Exit 1
-
-<b>     input sent to parser-cmd:</b>
-       # https://github.com/toml-lang/toml-test/issues/146
-       clap-1 = { version = "4"  , features = ["derive", "cargo"] }
-       
-       # Contains some literal tabs!
-       clap-2 = { version = "4"	   	,	  	features = [   "derive" 	  ,  	  "cargo"   ]   , nest   =   {  	  "a"   =   'x'  , 	  'b'   = [ 1.5    ,   9.0  ]  }  }
-
-<b>     output from parser-cmd (stderr):</b>
-       file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/struct.js:125
-                   throw new TomlError('expected key-value, found comma', {
-                   ^
-       
-       TomlError: Invalid TOML document: expected key-value, found comma
-       
-       1:  # https://github.com/toml-lang/toml-test/issues/146
-       2:  clap-1 = { version = "4"  , features = ["derive", "cargo"] }
-                                     ^
-       
-           at parseInlineTable (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/struct.js:125:19)
-           at extractValue (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/extract.js:58:15)
-           at parse (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:140:21)
-           at Socket.<anonymous> (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/toml-test-parse.js:74:17)
-           at Socket.emit (node:events:525:35)
-           at endReadableNT (node:internal/streams/readable:1359:12)
-           at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
-         line: 2,
-         column: 27,
-         codeblock: '1:  # https://github.com/toml-lang/toml-test/issues/146\n' +
-           '2:  clap-1 = { version = "4"  , features = ["derive", "cargo"] }\n' +
-           '                              ^\n'
-       }
-       
-       Node.js v18.16.0
-       
-       Exit 1
-
-<b>     want:</b>
-          <empty>
-
 <b>FAIL</b> <b>valid/integer/long</b>
 <b> </b>    file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/primitive.js:157
 <b> </b>                throw new TomlError('integer value cannot be represented losslessly', {
@@ -141,8 +12,8 @@
 <b> </b>    2:  int64-max-neg = -9223372036854775808
 <b> </b>    
 <b> </b>        at parseValue (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/primitive.js:157:19)
-<b> </b>        at extractValue (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/extract.js:89:9)
-<b> </b>        at parse (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:140:21)
+<b> </b>        at extractValue (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/extract.js:100:9)
+<b> </b>        at parse (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:134:21)
 <b> </b>        at Socket.<anonymous> (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/toml-test-parse.js:74:17)
 <b> </b>        at Socket.emit (node:events:525:35)
 <b> </b>        at endReadableNT (node:internal/streams/readable:1359:12)
@@ -174,8 +45,8 @@
        2:  int64-max-neg = -9223372036854775808
        
            at parseValue (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/primitive.js:157:19)
-           at extractValue (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/extract.js:89:9)
-           at parse (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:140:21)
+           at extractValue (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/extract.js:100:9)
+           at parse (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:134:21)
            at Socket.<anonymous> (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/toml-test-parse.js:74:17)
            at Socket.emit (node:events:525:35)
            at endReadableNT (node:internal/streams/readable:1359:12)
@@ -185,66 +56,6 @@
          codeblock: '1:  int64-max = 9223372036854775807\n' +
            '                ^\n' +
            '2:  int64-max-neg = -9223372036854775808\n'
-       }
-       
-       Node.js v18.16.0
-       
-       Exit 1
-
-<b>     want:</b>
-          <empty>
-
-<b>FAIL</b> <b>valid/table/array-implicit-and-explicit-after</b>
-<b> </b>    file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:122
-<b> </b>                    throw new TomlError('trying to redefine an already defined table or value', {
-<b> </b>                    ^
-<b> </b>    
-<b> </b>    TomlError: Invalid TOML document: trying to redefine an already defined table or value
-<b> </b>    
-<b> </b>    4:  [a]
-<b> </b>         ^
-<b> </b>    5:  y = 2
-<b> </b>    
-<b> </b>        at parse (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:122:23)
-<b> </b>        at Socket.<anonymous> (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/toml-test-parse.js:74:17)
-<b> </b>        at Socket.emit (node:events:525:35)
-<b> </b>        at endReadableNT (node:internal/streams/readable:1359:12)
-<b> </b>        at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
-<b> </b>      line: 4,
-<b> </b>      column: 2,
-<b> </b>      codeblock: '4:  [a]\n     ^\n5:  y = 2\n'
-<b> </b>    }
-<b> </b>    
-<b> </b>    Node.js v18.16.0
-<b> </b>    
-<b> </b>    Exit 1
-
-<b>     input sent to parser-cmd:</b>
-       [[a.b]]
-       x = 1
-       
-       [a]
-       y = 2
-
-<b>     output from parser-cmd (stderr):</b>
-       file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:122
-                       throw new TomlError('trying to redefine an already defined table or value', {
-                       ^
-       
-       TomlError: Invalid TOML document: trying to redefine an already defined table or value
-       
-       4:  [a]
-            ^
-       5:  y = 2
-       
-           at parse (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:122:23)
-           at Socket.<anonymous> (file:///home/martin/code/toml/toml-test-matrix/src/js-smol-toml/toml-test-parse.js:74:17)
-           at Socket.emit (node:events:525:35)
-           at endReadableNT (node:internal/streams/readable:1359:12)
-           at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
-         line: 4,
-         column: 2,
-         codeblock: '4:  [a]\n     ^\n5:  y = 2\n'
        }
        
        Node.js v18.16.0
@@ -470,7 +281,7 @@
        Exit code 1
 
 toml-test v2023-10-18 [./src/js-smol-toml/toml-test-parse.js]: using embedded tests
-  valid tests: 163 passed,  4 failed
+  valid tests: 166 passed,  1 failed
 invalid tests: 342 passed, 13 failed
 
 ==> ENCODER TESTS
