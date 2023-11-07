@@ -1,5 +1,5 @@
 setup() {
-	:
+	print
 }
 
 typeset -A info=(

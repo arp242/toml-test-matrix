@@ -7,10 +7,11 @@ setup() {
 	else
 		(cd toml-racket && git pull ||:)
 	fi
-	ln -s toml-racket racket-toml-racket
+	ln -fs toml-racket racket-toml-racket
 
-	(cd toml-lib        && raco pkg install --auto --batch)
-	(cd toml-compliance && raco pkg install --auto --batch)
+	cd toml-racket
+	(cd toml-lib        && raco pkg install --auto --batch) ||:
+	(cd toml-compliance && raco pkg install --auto --batch) ||:
 
 	raco exe ./toml-compliance/compliance/decoder.rkt
 	raco exe ./toml-compliance/compliance/encoder.rkt

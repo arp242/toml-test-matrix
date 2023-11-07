@@ -2002,6 +2002,57 @@
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/float/exp-point-3</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       exp-point-3 = 3.e+20
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "exp-point-3": {
+           "type": "float",
+           "value": "3e+20"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/float/exp-trailing-us-1</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       exp-trailing-us-1 = 1_e2
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "exp-trailing-us-1": {
+           "type": "float",
+           "value": "100.0"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/float/exp-trailing-us-2</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       exp-trailing-us-2 = 1.2_e2
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "exp-trailing-us-2": {
+           "type": "float",
+           "value": "120.0"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/float/inf-capital</b>
 <b> </b>    Expected an error, but no error was reported.
 
@@ -2468,9 +2519,9 @@
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-10-18 [./src/python-toml/tests/decoding_test.py]: using embedded tests
-  valid tests: 151 passed, 16 failed
-invalid tests: 286 passed, 69 failed
+toml-test v2023-11-07 [./src/python-toml/tests/decoding_test.py]: using embedded tests
+  valid tests: 152 passed, 16 failed
+invalid tests: 288 passed, 72 failed
 
 ==> ENCODER TESTS
 <b>FAIL</b> <b>valid/array/mixed-string-table</b>
@@ -2572,8 +2623,8 @@ invalid tests: 286 passed, 69 failed
 
 <b>FAIL</b> <b>valid/datetime/local-time</b>
 <b> </b>    Values for key "milliseconds" differ:
-<b> </b>      Expected:     0000-01-01 10:32:00.555 +0100 time-local (time.Time)
-<b> </b>      Your encoder: 0000-01-01 10:32:00.000555 +0100 time-local (time.Time)
+<b> </b>      Expected:     0000-01-01 10:32:00.555 +0000 time-local (time.Time)
+<b> </b>      Your encoder: 0000-01-01 10:32:00.000555 +0000 time-local (time.Time)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -3346,7 +3397,7 @@ invalid tests: 286 passed, 69 failed
 <b>     want:</b>
           <empty>
 
-toml-test v2023-10-18 [./src/python-toml/tests/encoding_test.py]: using embedded tests
-encoder tests: 155 passed, 12 failed
+toml-test v2023-11-07 [./src/python-toml/tests/encoding_test.py]: using embedded tests
+encoder tests: 156 passed, 12 failed
 took 5.2 2.44
 </pre>

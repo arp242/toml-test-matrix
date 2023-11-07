@@ -868,9 +868,9 @@ d4a7bed
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-10-18 [./src/js-iarna-toml/js-iarna-toml-decode]: using embedded tests
-  valid tests: 161 passed,  6 failed
-invalid tests: 333 passed, 22 failed
+toml-test v2023-11-07 [./src/js-iarna-toml/js-iarna-toml-decode]: using embedded tests
+  valid tests: 162 passed,  6 failed
+invalid tests: 338 passed, 22 failed
 
 ==> ENCODER TESTS
 <b>FAIL</b> <b>valid/array/mixed-string-table</b>
@@ -1440,8 +1440,8 @@ invalid tests: 333 passed, 22 failed
 
 <b>FAIL</b> <b>valid/spec/local-date-time-0</b>
 <b> </b>    Values for key "ldt2" differ:
-<b> </b>      Expected:     1979-05-27 00:32:00.999999 +0100 datetime-local (time.Time)
-<b> </b>      Your encoder: 1979-05-27 00:32:00.999 +0100 datetime-local (time.Time)
+<b> </b>      Expected:     1979-05-27 00:32:00.999999 +0000 datetime-local (time.Time)
+<b> </b>      Your encoder: 1979-05-27 00:32:00.999 +0000 datetime-local (time.Time)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -1465,8 +1465,8 @@ invalid tests: 333 passed, 22 failed
 
 <b>FAIL</b> <b>valid/spec/local-time-0</b>
 <b> </b>    Values for key "lt2" differ:
-<b> </b>      Expected:     0000-01-01 00:32:00.999999 +0100 time-local (time.Time)
-<b> </b>      Your encoder: 0000-01-01 00:32:00.999 +0100 time-local (time.Time)
+<b> </b>      Expected:     0000-01-01 00:32:00.999999 +0000 time-local (time.Time)
+<b> </b>      Your encoder: 0000-01-01 00:32:00.999 +0000 time-local (time.Time)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -1557,7 +1557,7 @@ invalid tests: 333 passed, 22 failed
        basic_string = "~  ÿ ퟿  ￿ 𐀀 􏿿"
        literal_string = '~  ÿ ퟿  ￿ 𐀀 􏿿'
 
-toml-test v2023-10-18 [./src/js-iarna-toml/js-iarna-toml-encode]: using embedded tests
-encoder tests: 155 passed, 12 failed
+toml-test v2023-11-07 [./src/js-iarna-toml/js-iarna-toml-encode]: using embedded tests
+encoder tests: 156 passed, 12 failed
 took 13.3 0.66
 </pre>

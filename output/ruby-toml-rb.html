@@ -1958,6 +1958,40 @@
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/float/exp-trailing-us-1</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       exp-trailing-us-1 = 1_e2
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "exp-trailing-us-1": {
+           "type": "float",
+           "value": "1"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/float/exp-trailing-us-2</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       exp-trailing-us-2 = 1.2_e2
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "exp-trailing-us-2": {
+           "type": "float",
+           "value": "1.2"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/float/leading-us</b>
 <b> </b>    Expected an error, but no error was reported.
 
@@ -2990,9 +3024,9 @@
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-10-18 [./src/ruby-toml-rb/ruby-toml-rb-decoder]: using embedded tests
-  valid tests: 142 passed, 25 failed
-invalid tests: 267 passed, 88 failed
+toml-test v2023-11-07 [./src/ruby-toml-rb/ruby-toml-rb-decoder]: using embedded tests
+  valid tests: 143 passed, 25 failed
+invalid tests: 270 passed, 90 failed
 
 ==> ENCODER TESTS
 <b>FAIL</b> <b>valid/array/array</b>
@@ -4920,7 +4954,7 @@ invalid tests: 267 passed, 88 failed
        [a.'']
        x = 3
 
-toml-test v2023-10-18 [./src/ruby-toml-rb/ruby-toml-rb-encoder]: using embedded tests
-encoder tests: 134 passed, 33 failed
+toml-test v2023-11-07 [./src/ruby-toml-rb/ruby-toml-rb-encoder]: using embedded tests
+encoder tests: 135 passed, 33 failed
 took 0.0 0.0
 </pre>

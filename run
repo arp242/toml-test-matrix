@@ -14,9 +14,10 @@ do_setup() {
 			source $f
 			(( ${info[skip]:-0} )) && continue
 
+			print -n "$name: "
+
 			if [[ -n $info[src] ]]; then
 				(
-					print -n "$name: "
 					cd src
 					if [[ ! -d $name ]]; then
 						git clone $info[src] $name
@@ -27,12 +28,7 @@ do_setup() {
 				cd src/$name
 			fi
 
-			out=$(setup 2>&1)
-			if [[ $? -ne 0 ]]; then
-				print "Error in setup() for $f"
-				print -r -- $out
-				exit 1
-			fi
+			setup
 		)
 	done
 }
@@ -206,12 +202,10 @@ do_test() {
 		[[ -n $only && $name != $only ]] && continue
 
 		(
-			print -nf '%-25s' $name
 			source $f
-			if (( ${info[skip]:-0} )); then
-				print '(skip)'
-				continue
-			fi
+			(( ${info[skip]:-0} )) && continue
+
+			print -nf '%-25s' $name
 
 			dec=$info[decoder]
 			[[ $dec[1] != '.' && ! $dec =~ ' ' ]] && dec=./src/$name/$dec
@@ -362,17 +356,17 @@ do_gen() {
 		allv=allpass; alli=allpass; alle=allpass
 
 		if (( $v[5] > 0 )); then
-			failvw=$(( $v[5].0 / ($v[3] + $v[5]) * 100 ))
+			failvw=$(print -f '%f' $(( $v[5].0 / ($v[3] + $v[5]) * 100 )))
 			passvw=$(( 100 - $failvw ))
 			allv=
 		fi
 		if (( $iv[5] > 0 )); then
-			failiw=$(( $iv[5].0 / ($iv[3] + $iv[5]) * 100 ))
+			failiw=$(print -f '%f' $(( $iv[5].0 / ($iv[3] + $iv[5]) * 100 )))
 			passiw=$(( 100 - $failiw ))
 			alli=
 		fi
 		if (( $e[5] > 0 )); then
-			faile=$(( $e[5].0 / ($e[3] + $e[5]) * 100 ))
+			faile=$(print -f '%f' $(( $e[5].0 / ($e[3] + $e[5]) * 100 )))
 			passe=$(( 100 - $faile ))
 			alle=
 		fi

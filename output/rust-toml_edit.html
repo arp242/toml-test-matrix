@@ -1,113 +1,11 @@
 <pre>
 0.20.1
-<b>FAIL</b> <b>invalid/datetime/feb-29</b>
-<b> </b>    Expected an error, but no error was reported.
-
-<b>     input sent to parser-cmd:</b>
-       "not a leap year" = 2100-02-29T15:15:15Z
-
-<b>     output from parser-cmd (stdout):</b>
-       {
-         "not a leap year": {
-           "type": "datetime",
-           "value": "2100-02-29T15:15:15Z"
-         }
-       }
-
-<b>     want:</b>
-       Exit code 1
-
-<b>FAIL</b> <b>invalid/datetime/feb-30</b>
-<b> </b>    Expected an error, but no error was reported.
-
-<b>     input sent to parser-cmd:</b>
-       "only 28 or 29 days in february" = 1988-02-30T15:15:15Z
-
-<b>     output from parser-cmd (stdout):</b>
-       {
-         "only 28 or 29 days in february": {
-           "type": "datetime",
-           "value": "1988-02-30T15:15:15Z"
-         }
-       }
-
-<b>     want:</b>
-       Exit code 1
-
-<b>FAIL</b> <b>invalid/local-date/feb-29</b>
-<b> </b>    Expected an error, but no error was reported.
-
-<b>     input sent to parser-cmd:</b>
-       "not a leap year" = 2100-02-29
-
-<b>     output from parser-cmd (stdout):</b>
-       {
-         "not a leap year": {
-           "type": "date-local",
-           "value": "2100-02-29"
-         }
-       }
-
-<b>     want:</b>
-       Exit code 1
-
-<b>FAIL</b> <b>invalid/local-date/feb-30</b>
-<b> </b>    Expected an error, but no error was reported.
-
-<b>     input sent to parser-cmd:</b>
-       "only 28 or 29 days in february" = 1988-02-30
-
-<b>     output from parser-cmd (stdout):</b>
-       {
-         "only 28 or 29 days in february": {
-           "type": "date-local",
-           "value": "1988-02-30"
-         }
-       }
-
-<b>     want:</b>
-       Exit code 1
-
-<b>FAIL</b> <b>invalid/local-datetime/feb-29</b>
-<b> </b>    Expected an error, but no error was reported.
-
-<b>     input sent to parser-cmd:</b>
-       "not a leap year" = 2100-02-29T15:15:15
-
-<b>     output from parser-cmd (stdout):</b>
-       {
-         "not a leap year": {
-           "type": "datetime-local",
-           "value": "2100-02-29T15:15:15"
-         }
-       }
-
-<b>     want:</b>
-       Exit code 1
-
-<b>FAIL</b> <b>invalid/local-datetime/feb-30</b>
-<b> </b>    Expected an error, but no error was reported.
-
-<b>     input sent to parser-cmd:</b>
-       "only 28 or 29 days in february" = 1988-02-30T15:15:15
-
-<b>     output from parser-cmd (stdout):</b>
-       {
-         "only 28 or 29 days in february": {
-           "type": "datetime-local",
-           "value": "1988-02-30T15:15:15"
-         }
-       }
-
-<b>     want:</b>
-       Exit code 1
-
-toml-test v2023-10-18 [./scripts/target/release/toml_edit-decoder]: using embedded tests
-  valid tests: 167 passed,  0 failed
-invalid tests: 349 passed,  6 failed
+toml-test v2023-11-07 [./scripts/target/release/toml_edit-decoder]: using embedded tests
+  valid tests: 168 passed,  0 failed
+invalid tests: 360 passed,  0 failed
 
 ==> ENCODER TESTS
-toml-test v2023-10-18 [./scripts/target/release/toml_edit-encoder]: using embedded tests
-encoder tests: 167 passed,  0 failed
+toml-test v2023-11-07 [./scripts/target/release/toml_edit-encoder]: using embedded tests
+encoder tests: 168 passed,  0 failed
 took 0.5 0.16
 </pre>

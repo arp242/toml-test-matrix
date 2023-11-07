@@ -280,9 +280,9 @@
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-10-18 [./src/js-smol-toml/toml-test-parse.js]: using embedded tests
-  valid tests: 166 passed,  1 failed
-invalid tests: 342 passed, 13 failed
+toml-test v2023-11-07 [./src/js-smol-toml/toml-test-parse.js]: using embedded tests
+  valid tests: 167 passed,  1 failed
+invalid tests: 347 passed, 13 failed
 
 ==> ENCODER TESTS
 <b>FAIL</b> <b>valid/comment/tricky</b>
@@ -444,8 +444,8 @@ invalid tests: 342 passed, 13 failed
 
 <b>FAIL</b> <b>valid/datetime/edge</b>
 <b> </b>    Values for key "first-date" differ:
-<b> </b>      Expected:     0001-01-01 00:00:00 +0100 date-local (time.Time)
-<b> </b>      Your encoder: 2001-01-01 00:00:00 +0100 date-local (time.Time)
+<b> </b>      Expected:     0001-01-01 00:00:00 +0000 date-local (time.Time)
+<b> </b>      Your encoder: 2001-01-01 00:00:00 +0000 date-local (time.Time)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -778,8 +778,8 @@ invalid tests: 342 passed, 13 failed
 
 <b>FAIL</b> <b>valid/spec/local-date-time-0</b>
 <b> </b>    Values for key "ldt2" differ:
-<b> </b>      Expected:     1979-05-27 00:32:00.999999 +0100 datetime-local (time.Time)
-<b> </b>      Your encoder: 1979-05-27 00:32:00.999 +0100 datetime-local (time.Time)
+<b> </b>      Expected:     1979-05-27 00:32:00.999999 +0000 datetime-local (time.Time)
+<b> </b>      Your encoder: 1979-05-27 00:32:00.999 +0000 datetime-local (time.Time)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -803,8 +803,8 @@ invalid tests: 342 passed, 13 failed
 
 <b>FAIL</b> <b>valid/spec/local-time-0</b>
 <b> </b>    Values for key "lt2" differ:
-<b> </b>      Expected:     0000-01-01 00:32:00.999999 +0100 time-local (time.Time)
-<b> </b>      Your encoder: 0000-01-01 00:32:00.999 +0100 time-local (time.Time)
+<b> </b>      Expected:     0000-01-01 00:32:00.999999 +0000 time-local (time.Time)
+<b> </b>      Your encoder: 0000-01-01 00:32:00.999 +0000 time-local (time.Time)
 
 <b>     input sent to parser-cmd:</b>
        {
@@ -857,7 +857,7 @@ invalid tests: 342 passed, 13 failed
        odt2 = 1979-05-27T00:32:00-07:00
        odt3 = 1979-05-27T00:32:00.999999-07:00
 
-toml-test v2023-10-18 [./src/js-smol-toml/toml-test-encode.js]: using embedded tests
-encoder tests: 157 passed, 10 failed
+toml-test v2023-11-07 [./src/js-smol-toml/toml-test-encode.js]: using embedded tests
+encoder tests: 158 passed, 10 failed
 took 6.2 0.40
 </pre>
