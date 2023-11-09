@@ -1,0 +1,153 @@
+<pre>
+0991f0c
+<b>FAIL</b> <b>invalid/control/bare-cr</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # The following line contains a single carriage return control character
+       
+
+<b>     output from parser-cmd (stdout):</b>
+       {}
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/control/multi-cr</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       multi-cr   = """null"""
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "multi-cr": {
+           "type": "string",
+           "value": "null\n"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/control/rawmulti-cd</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       rawmulti-cd   = '''null'''
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "rawmulti-cd": {
+           "type": "string",
+           "value": "null\n"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/encoding/bad-codepoint</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # Invalid codepoint U+D800 : í €
+
+<b>     output from parser-cmd (stdout):</b>
+       {}
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/encoding/bad-utf8-in-comment</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # Ã
+
+<b>     output from parser-cmd (stdout):</b>
+       {}
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/encoding/bad-utf8-in-multiline</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # The following line contains an invalid UTF-8 sequence.
+       bad = """Ã"""
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "bad": {
+           "type": "string",
+           "value": "ï¿½"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/encoding/bad-utf8-in-multiline-literal</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # The following line contains an invalid UTF-8 sequence.
+       bad = '''Ã'''
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "bad": {
+           "type": "string",
+           "value": "ï¿½"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/encoding/bad-utf8-in-string</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # The following line contains an invalid UTF-8 sequence.
+       bad = "Ã"
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "bad": {
+           "type": "string",
+           "value": "ï¿½"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/encoding/bad-utf8-in-string-literal</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # The following line contains an invalid UTF-8 sequence.
+       bad = 'Ã'
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "bad": {
+           "type": "string",
+           "value": "ï¿½"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+toml-test v2023-11-07 [./src/js-toml-eslint-parser/toml-test-decode.js]: using embedded tests
+  valid tests: 168 passed,  0 failed
+invalid tests: 351 passed,  9 failed
+
+==> ENCODER TESTS
+(not supported)
+took 17.9 1.28
+</pre>
