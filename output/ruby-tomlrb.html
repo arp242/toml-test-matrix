@@ -357,9 +357,27 @@ db2eddb
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-11-07 [./src/ruby-tomlrb/ruby-tomlrb-decoder]: using embedded tests
-  valid tests: 168 passed,  0 failed
-invalid tests: 341 passed, 19 failed
+<b>FAIL</b> <b>invalid/table/super-twice</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [a.b]
+       [a]
+       [a]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "a": {
+           "b": {}
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+toml-test v2023-11-17 [./src/ruby-tomlrb/ruby-tomlrb-decoder]: using embedded tests
+  valid tests: 169 passed,  0 failed
+invalid tests: 341 passed, 20 failed
 
 ==> ENCODER TESTS
 (not supported)

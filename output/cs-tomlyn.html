@@ -180,9 +180,27 @@
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-11-07 [./src/cs-tomlyn/cs-tomlyn-decoder/bin/Release/net6.0/cs-tomlyn-decoder]: using embedded tests
-  valid tests: 165 passed,  3 failed
-invalid tests: 355 passed,  5 failed
+<b>FAIL</b> <b>invalid/table/super-twice</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [a.b]
+       [a]
+       [a]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "a": {
+           "b": {}
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+toml-test v2023-11-17 [./src/cs-tomlyn/cs-tomlyn-decoder/bin/Release/net6.0/cs-tomlyn-decoder]: using embedded tests
+  valid tests: 166 passed,  3 failed
+invalid tests: 355 passed,  6 failed
 
 ==> ENCODER TESTS
 (not supported)

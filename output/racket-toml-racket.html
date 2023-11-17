@@ -83,9 +83,9 @@ fe46aa2
          }
        }
 
-toml-test v2023-11-07 [./src/racket-toml-racket/toml-compliance/compliance/decoder]: using embedded tests
-  valid tests: 167 passed,  1 failed
-invalid tests: 360 passed,  0 failed
+toml-test v2023-11-17 [./src/racket-toml-racket/toml-compliance/compliance/decoder]: using embedded tests
+  valid tests: 168 passed,  1 failed
+invalid tests: 361 passed,  0 failed
 
 ==> ENCODER TESTS
 <b>FAIL</b> <b>valid/float/zero</b>
@@ -142,6 +142,66 @@ invalid tests: 360 passed,  0 failed
        exponent-two-0 = 0e00
        exponent-signed-pos = +0e0
        exponent-signed-neg = -0e0
+
+<b>FAIL</b> <b>valid/inline-table/array-values</b>
+<b> </b>    Could not find key "a.a" in encoder output
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "a": {
+           "a": []
+         },
+         "b": {
+           "a": [
+             {
+               "type": "integer",
+               "value": "1"
+             },
+             {
+               "type": "integer",
+               "value": "2"
+             }
+           ],
+           "b": [
+             {
+               "type": "integer",
+               "value": "3"
+             },
+             {
+               "type": "integer",
+               "value": "4"
+             }
+           ]
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       [a]
+       
+       [b]
+       a = [
+         1,
+         2,
+       ]
+       b = [
+         3,
+         4,
+       ]
+
+<b>     want:</b>
+       # "No newlines are allowed between the curly braces unless they are valid within
+       # a value"
+       
+       a = { a = [
+       ]}
+       
+       b = { a = [
+       		1,
+       		2,
+       	], b = [
+       		3,
+       		4,
+       	]}
 
 <b>FAIL</b> <b>valid/inline-table/spaces</b>
 <b> </b>    Values for key "clap-2.nest.b" differ:
@@ -333,7 +393,7 @@ invalid tests: 360 passed,  0 failed
        # both
        flt7 = 6.626e-34
 
-toml-test v2023-11-07 [./src/racket-toml-racket/toml-compliance/compliance/encoder]: using embedded tests
-encoder tests: 164 passed,  4 failed
+toml-test v2023-11-17 [./src/racket-toml-racket/toml-compliance/compliance/encoder]: using embedded tests
+encoder tests: 164 passed,  5 failed
 took 0.0 0.0
 </pre>
