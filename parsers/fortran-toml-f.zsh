@@ -8,7 +8,7 @@ setup() {
 		)
 	EOF
 
-	meson setup _build
+	meson setup _build --reconfigure
 	meson compile -C _build
 }
 

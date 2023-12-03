@@ -1,5 +1,5 @@
 setup() {
-	meson build_tt --buildtype=release -Dbuild_tt=true -Dgenerate_cmake_config=false
+	meson setup build_tt --reconfigure --buildtype=release -Dbuild_tt=true -Dgenerate_cmake_config=false
 	cd build_tt
 	ninja
 

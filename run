@@ -82,7 +82,7 @@ do_run() {
 
 			typeset -f after-run >/dev/null && after-run
 
-			print -f 'pass %3d; fail %3d; took %5ss\n' \
+			print -f 'pass %3d; fail %3d; took %6ss\n' \
 				$(( $v[3] + $iv[3] + $e[3] )) $(( $v[5] + $iv[5] + $e[5] )) $took
 		)
 	done

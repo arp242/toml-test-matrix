@@ -11,4 +11,5 @@ typeset -A info=(
 	decoder 'js-iarna-toml-decode'
 	encoder 'js-iarna-toml-encode'
 	perf    'js-iarna-toml-perf'
+	flags   '-int-as-float=1'
 )
