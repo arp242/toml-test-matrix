@@ -53,8 +53,8 @@ do_run() {
 				perf=($(grep -a '^took ' $out))
 				perf=($perf[2] $perf[3])
 			fi
-			print '<pre>'        >|$out
-			print $info[version] >>$out
+			print '<pre>' >|$out
+			print "$name version $info[version]" >>$out
 
 			dec=$info[decoder]
 			[[ $dec[1] != '.' && ! $dec =~ ' ' ]] && dec=./src/$name/$dec
