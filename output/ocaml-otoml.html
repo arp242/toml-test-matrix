@@ -1,0 +1,1368 @@
+<pre>
+f6ab907
+<b>FAIL</b> <b>valid/array/open-parent-table</b>
+<b> </b>    Array lengths differ for key "parent-table.arr":
+<b> </b>      Expected:     2
+<b> </b>      Your encoder: 1
+
+<b>     input sent to parser-cmd:</b>
+       [[parent-table.arr]]
+       [[parent-table.arr]]
+       [parent-table]
+       not-arr = 1
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "parent-table": {
+           "arr": [
+             {}
+           ],
+           "not-arr": {
+             "type": "integer",
+             "value": "1"
+           }
+         }
+       }
+
+<b>     want:</b>
+       {
+         "parent-table": {
+           "arr": [
+             {},
+             {}
+           ],
+           "not-arr": {
+             "type": "integer",
+             "value": "1"
+           }
+         }
+       }
+
+<b>FAIL</b> <b>valid/comment/noeol</b>
+<b> </b>    otoml internal error: lexing: empty token
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       # single comment without any eol characters
+
+<b>     output from parser-cmd (stderr):</b>
+       otoml internal error: lexing: empty token
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>valid/string/multiline-escaped-crlf</b>
+<b> </b>    otoml internal error: lexing: empty token
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       # The following line should be an unescaped backslash followed by a Windows
+       # newline sequence ("\r\n")
+       0="""\
+       """
+
+<b>     output from parser-cmd (stderr):</b>
+       otoml internal error: lexing: empty token
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>invalid/array/extend-defined-aot</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [[tab.arr]]
+       [tab]
+       arr.val1=1
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "tab": {
+           "arr": [
+             {
+               "val1": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           ]
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/array/extending-table</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       a = [{ b = 1 }]
+       
+       # Cannot extend tables within static arrays
+       # https://github.com/toml-lang/toml/issues/908
+       [a.c]
+       foo = 1
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"a\" overrides a value of type array with a value of type table")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/array/tables-1</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       # INVALID TOML DOC
+       fruit = []
+       
+       [[fruit]] # Not allowed
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("table [fruit] is duplicated by an array of tables [[fruit]]")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/array/tables-2</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       # INVALID TOML DOC
+       [[fruit]]
+         name = "apple"
+       
+         [[fruit.variety]]
+           name = "red delicious"
+       
+         # This table conflicts with the previous table
+         [fruit.variety]
+           name = "granny smith"
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("array of tables [[fruit.variety]] is duplicated by a table [fruit.variety]")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/datetime/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29T15:15:15Z
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "datetime",
+           "value": "2100-02-29T15:15:15Z"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/duplicate-key-1</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       # Duplicate keys within an inline table are invalid
+       a={b=1, b=2}
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"b\" overrides a value of type integer with a value of type integer")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/duplicate-key-2</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       table1 = { table2.dupe = 1, table2.dupe = 2 }
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"dupe\" overrides a value of type integer with a value of type integer")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/duplicate-key-3</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       tbl = { fruit = { apple.color = "red" }, fruit.apple.texture = { smooth = true } }
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "tbl": {
+           "fruit": {
+             "apple": {
+               "color": {
+                 "type": "string",
+                 "value": "red"
+               },
+               "texture": {
+                 "smooth": {
+                   "type": "bool",
+                   "value": "true"
+                 }
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/duplicate-key-4</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       tbl = { a.b = "a_b", a.b.c = "a_b_c" }
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"b\" overrides a value of type string with a value of type string")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-1</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       a.b=0
+       # Since table "a" is already defined, it can't be replaced by an inline table.
+       a={}
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"a\" overrides a value of type table with a value of type table")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-2</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       a={}
+       # Inline tables are immutable and can't be extended
+       [a.b]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "a": {
+           "b": {}
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-3</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       a = { b = 1 }
+       a.b = 2
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"b\" overrides a value of type integer with a value of type integer")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-4</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       inline-t = { nest = {} }
+       
+       [[inline-t.nest]]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "inline-t": {
+           "nest": {}
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-5</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       inline-t = { nest = {} }
+       
+       [inline-t.nest]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "inline-t": {
+           "nest": {}
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-6</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       a = { b = 1, b.c = 2 }
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"b\" overrides a value of type integer with a value of type integer")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-7</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       tab = { inner.table = [{}], inner.table.val = "bad" }
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"table\" overrides a value of type array with a value of type string")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-8</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       tab = { inner = { dog = "best" }, inner.cat = "worst" }
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "tab": {
+           "inner": {
+             "cat": {
+               "type": "string",
+               "value": "worst"
+             },
+             "dog": {
+               "type": "string",
+               "value": "best"
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-9</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       [tab.nested]
+       inline-t = { nest = {} }
+       
+       [tab]
+       nested.inline-t.nest = 2
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"nest\" overrides a value of type table with a value of type integer")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/dotted-redefine-table-1</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       a = false
+       a.b = true
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"a\" overrides a value of type boolean with a value of type boolean")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/dotted-redefine-table-2</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       # Defined a.b as int
+       a.b = 1
+       # Tries to access it as table: error
+       a.b.c = 2
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"b\" overrides a value of type integer with a value of type integer")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/duplicate-keys-1</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       name = "Tom"
+       name = "Pradyun"
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"name\" overrides a value of type string with a value of type string")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/duplicate-keys-2</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       dupe = false
+       dupe = true
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"dupe\" overrides a value of type boolean with a value of type boolean")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/duplicate-keys-3</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       spelling   = "favorite"
+       "spelling" = "favourite"
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"spelling\" overrides a value of type string with a value of type string")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/duplicate-keys-4</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       spelling   = "favorite"
+       'spelling' = "favourite"
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"spelling\" overrides a value of type string with a value of type string")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-date/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "date-local",
+           "value": "2100-02-29"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-datetime/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29T15:15:15
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "datetime-local",
+           "value": "2100-02-29T15:15:15"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/spec/inline-table-2-0</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [product]
+       type = { name = "Nail" }
+       type.edible = false  # INVALID
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "product": {
+           "type": {
+             "edible": {
+               "type": "bool",
+               "value": "false"
+             },
+             "name": {
+               "type": "string",
+               "value": "Nail"
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/spec/inline-table-3-0</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       [product]
+       type.name = "Nail"
+       type = { edible = false }  # INVALID
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"type\" overrides a value of type table with a value of type table")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/spec/table-9-0</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [fruit]
+       apple.color = "red"
+       apple.taste.sweet = true
+       
+       [fruit.apple]  # INVALID
+       # [fruit.apple.taste]  # INVALID
+       
+       [fruit.apple.texture]  # you can add sub-tables
+       smooth = true
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "fruit": {
+           "apple": {
+             "color": {
+               "type": "string",
+               "value": "red"
+             },
+             "taste": {
+               "sweet": {
+                 "type": "bool",
+                 "value": "true"
+               }
+             },
+             "texture": {
+               "smooth": {
+                 "type": "bool",
+                 "value": "true"
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/spec/table-9-1</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [fruit]
+       apple.color = "red"
+       apple.taste.sweet = true
+       
+       # [fruit.apple]  # INVALID
+       [fruit.apple.taste]  # INVALID
+       
+       [fruit.apple.texture]  # you can add sub-tables
+       smooth = true
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "fruit": {
+           "apple": {
+             "color": {
+               "type": "string",
+               "value": "red"
+             },
+             "taste": {
+               "sweet": {
+                 "type": "bool",
+                 "value": "true"
+               }
+             },
+             "texture": {
+               "smooth": {
+                 "type": "bool",
+                 "value": "true"
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/string/bad-uni-esc-3</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       bad-uni-esc-3 = "val\U0000000"
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "bad-uni-esc-3": {
+           "type": "string",
+           "value": "val\u0000000"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/string/bad-uni-esc-4</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       bad-uni-esc-4 = "val\U0000"
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "bad-uni-esc-4": {
+           "type": "string",
+           "value": "val\u0000"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/append-to-array-with-dotted-keys</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [[a.b]]
+       
+       [a]
+       b.y = 2
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "a": {
+           "b": [
+             {
+               "y": {
+                 "type": "integer",
+                 "value": "2"
+               }
+             }
+           ]
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/append-with-dotted-keys-1</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # First a.b.c defines a table: a.b.c = {z=9}
+       #
+       # Then we define a.b.c.t = "str" to add a str to the above table, making it:
+       #
+       #   a.b.c = {z=9, t="..."}
+       #
+       # While this makes sense, logically, it was decided this is not valid TOML as
+       # it's too confusing/convoluted.
+       # 
+       # See: https://github.com/toml-lang/toml/issues/846
+       #      https://github.com/toml-lang/toml/pull/859
+       
+       [a.b.c]
+         z = 9
+       
+       [a]
+         b.c.t = "Using dotted keys to add to [a.b.c] after explicitly defining it above is not allowed"
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "a": {
+           "b": {
+             "c": {
+               "t": {
+                 "type": "string",
+                 "value": "Using dotted keys to add to [a.b.c] after explicitly defining it above is not allowed"
+               },
+               "z": {
+                 "type": "integer",
+                 "value": "9"
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/append-with-dotted-keys-2</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # This is the same issue as in injection-1.toml, except that nests one level
+       # deeper. See that file for a more complete description.
+       
+       [a.b.c.d]
+         z = 9
+       
+       [a]
+         b.c.d.k.t = "Using dotted keys to add to [a.b.c.d] after explicitly defining it above is not allowed"
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "a": {
+           "b": {
+             "c": {
+               "d": {
+                 "k": {
+                   "t": {
+                     "type": "string",
+                     "value": "Using dotted keys to add to [a.b.c.d] after explicitly defining it above is not allowed"
+                   }
+                 },
+                 "z": {
+                   "type": "integer",
+                   "value": "9"
+                 }
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/duplicate</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       [a]
+       b = 1
+       
+       [a]
+       c = 2
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("table [a] is defined more than once")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/duplicate-key-dotted-array</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [fruit]
+       apple.color = "red"
+       
+       [[fruit.apple]]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "fruit": {
+           "apple": {
+             "color": {
+               "type": "string",
+               "value": "red"
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/duplicate-key-dotted-table</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [fruit]
+       apple.color = "red"
+       
+       [fruit.apple] # INVALID
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "fruit": {
+           "apple": {
+             "color": {
+               "type": "string",
+               "value": "red"
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/duplicate-key-dotted-table2</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [fruit]
+       apple.taste.sweet = true
+       
+       [fruit.apple.taste] # INVALID
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "fruit": {
+           "apple": {
+             "taste": {
+               "sweet": {
+                 "type": "bool",
+                 "value": "true"
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/duplicate-key-table</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       [fruit]
+       type = "apple"
+       
+       [fruit.type]
+       apple = "yes"
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("table [fruit.type] is defined more than once")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/duplicate-table-array</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       [tbl]
+       [[tbl]]
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("table [tbl] is duplicated by an array of tables [[tbl]]")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/duplicate-table-array2</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       [[tbl]]
+       [tbl]
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("array of tables [[tbl]] is duplicated by a table [tbl]")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/overwrite-array-in-parent</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       [[parent-table.arr]]
+       [parent-table]
+       not-arr = 1
+       arr = 2
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"arr\" overrides a value of type array with a value of type integer")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/overwrite-bool-with-array</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       a=true
+       [[a]]
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("table [a] is duplicated by an array of tables [[a]]")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/overwrite-with-deep-table</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       a=1
+       [a.b.c.d]
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"a\" overrides a value of type integer with a value of type table")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/redefine-1</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       # Define b as int, and try to use it as a table: error
+       [a]
+       b = 1
+       
+       [a.b]
+       c = 2
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("table [a.b] is defined more than once")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/redefine-2</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [t1]
+       t2.t3.v = 0
+       [t1.t2]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "t1": {
+           "t2": {
+             "t3": {
+               "v": {
+                 "type": "integer",
+                 "value": "0"
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/redefine-3</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [t1]
+       t2.t3.v = 0
+       [t1.t2.t3]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "t1": {
+           "t2": {
+             "t3": {
+               "v": {
+                 "type": "integer",
+                 "value": "0"
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/super-twice</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       [a.b]
+       [a]
+       [a]
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("table [a] is defined more than once")
+
+<b>     want:</b>
+       Exit code 1
+
+toml-test v2023-12-03 [./src/ocaml-otoml/decoder]: using embedded tests
+  valid tests: 166 passed,  3 failed
+invalid tests: 319 passed, 49 failed
+
+==> ENCODER TESTS
+<b>FAIL</b> <b>valid/array/open-parent-table</b>
+<b> </b>    Could not find key "parent-table.not-arr" in encoder output
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "parent-table": {
+           "arr": [
+             {},
+             {}
+           ],
+           "not-arr": {
+             "type": "integer",
+             "value": "1"
+           }
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       [parent-table]
+       
+       [[parent-table.arr]]
+       
+       [[parent-table.arr]]
+         not-arr = 1
+
+<b>     want:</b>
+       [[parent-table.arr]]
+       [[parent-table.arr]]
+       [parent-table]
+       not-arr = 1
+
+<b>FAIL</b> <b>valid/float/zero</b>
+<b> </b>    Values for key "exponent" differ:
+<b> </b>      Expected:     0 (float64)
+<b> </b>      Your encoder: 0 (int64)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "exponent": {
+           "type": "float",
+           "value": "0"
+         },
+         "exponent-signed-neg": {
+           "type": "float",
+           "value": "-0"
+         },
+         "exponent-signed-pos": {
+           "type": "float",
+           "value": "0"
+         },
+         "exponent-two-0": {
+           "type": "float",
+           "value": "0"
+         },
+         "signed-neg": {
+           "type": "float",
+           "value": "-0"
+         },
+         "signed-pos": {
+           "type": "float",
+           "value": "0"
+         },
+         "zero": {
+           "type": "float",
+           "value": "0"
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       exponent = 0
+       exponent-signed-neg = -0
+       exponent-signed-pos = 0
+       "exponent-two-0" = 0
+       signed-neg = -0
+       signed-pos = 0
+       zero = 0
+
+<b>     want:</b>
+       zero = 0.0
+       signed-pos = +0.0
+       signed-neg = -0.0
+       exponent = 0e0
+       exponent-two-0 = 0e00
+       exponent-signed-pos = +0e0
+       exponent-signed-neg = -0e0
+
+<b>FAIL</b> <b>valid/inline-table/spaces</b>
+<b> </b>    Values for key "clap-2.nest.b" differ:
+<b> </b>      Expected:     9 (float64)
+<b> </b>      Your encoder: 9 (int64)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "clap-1": {
+           "features": [
+             {
+               "type": "string",
+               "value": "derive"
+             },
+             {
+               "type": "string",
+               "value": "cargo"
+             }
+           ],
+           "version": {
+             "type": "string",
+             "value": "4"
+           }
+         },
+         "clap-2": {
+           "features": [
+             {
+               "type": "string",
+               "value": "derive"
+             },
+             {
+               "type": "string",
+               "value": "cargo"
+             }
+           ],
+           "nest": {
+             "a": {
+               "type": "string",
+               "value": "x"
+             },
+             "b": [
+               {
+                 "type": "float",
+                 "value": "1.5"
+               },
+               {
+                 "type": "float",
+                 "value": "9"
+               }
+             ]
+           },
+           "version": {
+             "type": "string",
+             "value": "4"
+           }
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       ["clap-1"]
+         features = ["derive", "cargo"]
+         version = "4"
+       
+       ["clap-2"]
+         features = ["derive", "cargo"]
+         version = "4"
+       
+       ["clap-2".nest]
+         a = "x"
+         b = [1.5, 9]
+
+<b>     want:</b>
+       # https://github.com/toml-lang/toml-test/issues/146
+       clap-1 = { version = "4"  , features = ["derive", "cargo"] }
+       
+       # Contains some literal tabs!
+       clap-2 = { version = "4"	   	,	  	features = [   "derive" 	  ,  	  "cargo"   ]   , nest   =   {  	  "a"   =   'x'  , 	  'b'   = [ 1.5    ,   9.0  ]  }  }
+
+<b>FAIL</b> <b>valid/spec/array-of-tables-1</b>
+<b> </b>    Could not find key "fruits.physical" in encoder output
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "fruits": [
+           {
+             "name": {
+               "type": "string",
+               "value": "apple"
+             },
+             "physical": {
+               "color": {
+                 "type": "string",
+                 "value": "red"
+               },
+               "shape": {
+                 "type": "string",
+                 "value": "round"
+               }
+             },
+             "varieties": [
+               {
+                 "name": {
+                   "type": "string",
+                   "value": "red delicious"
+                 }
+               },
+               {
+                 "name": {
+                   "type": "string",
+                   "value": "granny smith"
+                 }
+               }
+             ]
+           },
+           {
+             "name": {
+               "type": "string",
+               "value": "banana"
+             },
+             "varieties": [
+               {
+                 "name": {
+                   "type": "string",
+                   "value": "plantain"
+                 }
+               }
+             ]
+           }
+         ]
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       [[fruits]]
+         name = "apple"
+       
+       [[fruits.varieties]]
+         name = "red delicious"
+       
+       [[fruits.varieties]]
+         name = "granny smith"
+         physical = {color = "red", shape = "round"}
+       
+       [[fruits]]
+         name = "banana"
+       
+       [[fruits.varieties]]
+         name = "plantain"
+
+<b>     want:</b>
+       [[fruits]]
+       name = "apple"
+       
+       [fruits.physical]  # subtable
+       color = "red"
+       shape = "round"
+       
+       [[fruits.varieties]]  # nested array of tables
+       name = "red delicious"
+       
+       [[fruits.varieties]]
+       name = "granny smith"
+       
+       
+       [[fruits]]
+       name = "banana"
+       
+       [[fruits.varieties]]
+       name = "plantain"
+
+<b>FAIL</b> <b>valid/spec/float-0</b>
+<b> </b>    Values for key "flt1" differ:
+<b> </b>      Expected:     1 (float64)
+<b> </b>      Your encoder: 1 (int64)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "flt1": {
+           "type": "float",
+           "value": "1"
+         },
+         "flt2": {
+           "type": "float",
+           "value": "3.1415"
+         },
+         "flt3": {
+           "type": "float",
+           "value": "-0.01"
+         },
+         "flt4": {
+           "type": "float",
+           "value": "5e+22"
+         },
+         "flt5": {
+           "type": "float",
+           "value": "1e+06"
+         },
+         "flt6": {
+           "type": "float",
+           "value": "-0.02"
+         },
+         "flt7": {
+           "type": "float",
+           "value": "6.626e-34"
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       "flt1" = 1
+       "flt2" = 3.1415
+       "flt3" = -0.01
+       "flt4" = 5e+22
+       "flt5" = 1e+6
+       "flt6" = -0.02
+       "flt7" = 6.626e-34
+
+<b>     want:</b>
+       # fractional
+       flt1 = +1.0
+       flt2 = 3.1415
+       flt3 = -0.01
+       
+       # exponent
+       flt4 = 5e+22
+       flt5 = 1e06
+       flt6 = -2E-2
+       
+       # both
+       flt7 = 6.626e-34
+
+<b>FAIL</b> <b>valid/table/array-implicit-and-explicit-after</b>
+<b> </b>    Could not find key "a.y" in encoder output
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "a": {
+           "b": [
+             {
+               "x": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           ],
+           "y": {
+             "type": "integer",
+             "value": "2"
+           }
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       [a]
+       
+       [[a.b]]
+         x = 1
+         y = 2
+
+<b>     want:</b>
+       [[a.b]]
+       x = 1
+       
+       [a]
+       y = 2
+
+toml-test v2023-12-03 [./src/ocaml-otoml/encoder]: using embedded tests
+encoder tests: 163 passed,  6 failed
+took 0.0 0.0
+</pre>
