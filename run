@@ -1,8 +1,9 @@
-#!/bin/zsh
-set -euC
+#!/usr/bin/env zsh
+[ "${ZSH_VERSION:-}" = "" ] && echo >&2 "Only works with zsh" && exit 1
+setopt err_exit no_unset no_clobber
+
 mkdir -p src output
 zmodload zsh/datetime
-TIMEFMT='%*E'%K
 only=
 
 do_setup() {
@@ -226,6 +227,46 @@ do_test() {
 	done
 }
 
+do_report() {
+	IFS=$'\n'
+	typeset -A all
+	for f in output/*.html; do
+		for line in $(sed '/==> ENCODER TESTS/q' $f | grep -a FAIL); do
+			parser=$f:t:r
+			tst=${line##*<b>}
+			tst=${tst%</b>}
+			all[$tst]+=" $parser"
+		done
+	done
+
+	IFS=' '
+	typeset -A order
+	for k in ${(k)all}; do
+		local x=($=all[$k])
+		order[$#x-$k]=$k
+	done
+
+	integer width=$(tput cols || print 80)
+	width=$(( $width - 56 ))
+	for k in ${(kon)order}; do
+		n=${k%%-*}
+		kk=${k#$n-}
+		parsers=($=all[$kk])
+		pr_parse=
+		integer w=0
+		for p in ${(o)parsers}; do
+			w+=$#p
+			if (( $w > $width )); then
+				w=0
+				pr_parse+=$(print -f '\n%51s' '')
+			fi
+			pr_parse+=" $p"
+		done
+
+		print -f '%2d %-48s%s\n' $n $order[$k] $pr_parse
+	done
+}
+
 do_gen() {
 	cat >|index.html <<-EOF
 		<!DOCTYPE html>
@@ -241,7 +282,7 @@ do_gen() {
 			               box-shadow:2px 2px #000; border-radius:2px; border:1px solid #666; }
 			.intro       { padding:0 1em; }
 			small, em    { font-size:.75em; }
-			table        { border-collapse:separate; border-spacing:0; margin-left:-1em; margin-right:-1em; }
+			table        { border-collapse:separate; border-spacing:0; margin-left:-1em; margin-right:-1em; margin-bottom:-1em;}
 			td, th       { border:1px solid #d7d7d7; padding:.5em;  }
 			td:nth-child(2) { white-space:nowrap; }
 			td:nth-child(3) { white-space:nowrap; }
@@ -483,14 +524,41 @@ do_gen() {
 	EOF
 }
 
+usage() {
+	cat <<-EOF
+		Commands:
+		    setup    Setup repos: clone or update source to ./src, download
+		             dependencies, compile code (if applicable), etc.
+		    run      Run the test suite against toml-test in PATH.
+		    perf     Run performance benchmarks.
+		    gen      Generate index.html.
+		    test     Pass stdin to all decoders and show output.
+			report   Show overview of failing decoder (not encoder) tests.
+		    all      Run setup, run, and gen.
+
+		The typical usage is to run "setup" first and then "run".
+
+		setup, run, and perf can optionally take a parser name; for example to
+		re-generate just ocaml-otoml:
+
+		    % ./run run ocaml-otoml
+		    % ./run gen
+
+		Right now "setup" assumes tooling is in PATH; this means you'll need to
+		install Go, Haskell, Rust, OCAML, etc. etc. as needed.
+	EOF
+}
+
 only=${2:-}
-case ${1:-all}; in
-	setup) do_setup ;;
-	run)   do_run   ;;
-	perf)  do_perf  ;;
-	gen)   do_gen   ;;
-	test)  do_test  ;;
-	all)   do_setup && do_run && do_gen ;;
+case ${1:-help}; in
+	setup)                  do_setup  ;;
+	run)                    do_run    ;;
+	perf)                   do_perf   ;;
+	gen)                    do_gen    ;;
+	test)                   do_test   ;;
+	report)                 do_report ;;
+	all)                    do_setup && do_run && do_gen ;;
+	help|h|-h|-help|--help) usage ;;
 	*)
 		print "unknown step: $1"
 		exit 1

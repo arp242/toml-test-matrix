@@ -17,7 +17,9 @@ setup() {
 }
 
 typeset -A info=(
-skip 1
+	# TODO: doesn't contain anything for toml-test
+	skip 1
+
 	lang    'C#'
 	toml    '1.0'
 	site    'https://github.com/dezhidki/Tommy'

@@ -1,18 +1,17 @@
-A test matrix of TOML implementations:
-https://arp242.github.io/toml-test-matrix
+A test matrix of TOML implementations: https://arp242.github.io/toml-test-matrix
 
 Rather incomplete at the moment, should add more parsers from
 https://github.com/toml-lang/toml/wiki
 
 Adding a parser
 ---------------
-- Add `parser/name`; the naming convention is "[language]-[name].zsh".
+- Add `parser/name.zsh`; the naming convention is "[language]-[pkg-name].zsh".
 
 - Put commands to build the decoder binary in `setup()`, or add a script in
   `scripts`. It needs to implement the JSON protocol for toml-test, as described
   at https://github.com/toml-lang/toml-test#implementing-a-decoder
 
-- Fill in the `info` array (the `encoder` isn't actually used yet).
+- Fill in the `info` array.
 
 Running it
 ----------
