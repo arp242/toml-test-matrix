@@ -3,7 +3,8 @@ setup() {
 }
 
 typeset -A info=(
-	skip    '1' # TODO
+	# TODO: this doesn't seem to have anything for integrating with toml-tets.
+	skip    '1'
 
 	lang    'Haskell'
 	toml    '1.0'
