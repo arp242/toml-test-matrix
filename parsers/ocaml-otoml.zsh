@@ -14,5 +14,5 @@ typeset -A info=(
 	src     'git@github.com:dmbaturin/otoml.git'
 	decoder 'decoder'
 	encoder 'encoder'
-	perf    ''
+	perf    'TODO'
 )

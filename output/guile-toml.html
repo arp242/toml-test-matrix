@@ -1,0 +1,782 @@
+<pre>
+guile-toml version ecb24de
+<b>FAIL</b> <b>valid/inline-table/array-values</b>
+<b> </b>    Backtrace:
+<b> </b>              12 (apply-smob/1 #<catch-closure 7fd2e8b8e1a0>)
+<b> </b>    In ice-9/boot-9.scm:
+<b> </b>        705:2 11 (call-with-prompt _ _ #<procedure default-prompt-handle…>)
+<b> </b>    In ice-9/eval.scm:
+<b> </b>        619:8 10 (_ #(#(#<directory (guile-user) 7fd2e8849140>)))
+<b> </b>    In ice-9/boot-9.scm:
+<b> </b>       2312:4  9 (save-module-excursion _)
+<b> </b>      3832:12  8 (_)
+<b> </b>    In test/test-decoder.scm:
+<b> </b>        58:14  7 (_)
+<b> </b>    In toml/parser.scm:
+<b> </b>       373:22  6 (peg-tree->scm _)
+<b> </b>       280:18  5 (add-kv-to-tree () _ _)
+<b> </b>       167:23  4 (loop _)
+<b> </b>       373:22  3 (peg-tree->scm _)
+<b> </b>       280:18  2 (add-kv-to-tree () _ _)
+<b> </b>       167:23  1 (loop _)
+<b> </b>    In unknown file:
+<b> </b>               0 (scm-error misc-error #f "~A ~S" ("err: ~a" array) #f)
+<b> </b>    
+<b> </b>    ERROR: In procedure scm-error:
+<b> </b>    err: ~a array
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       # "No newlines are allowed between the curly braces unless they are valid within
+       # a value"
+       
+       a = { a = [
+       ]}
+       
+       b = { a = [
+       		1,
+       		2,
+       	], b = [
+       		3,
+       		4,
+       	]}
+
+<b>     output from parser-cmd (stderr):</b>
+       Backtrace:
+                 12 (apply-smob/1 #<catch-closure 7fd2e8b8e1a0>)
+       In ice-9/boot-9.scm:
+           705:2 11 (call-with-prompt _ _ #<procedure default-prompt-handle…>)
+       In ice-9/eval.scm:
+           619:8 10 (_ #(#(#<directory (guile-user) 7fd2e8849140>)))
+       In ice-9/boot-9.scm:
+          2312:4  9 (save-module-excursion _)
+         3832:12  8 (_)
+       In test/test-decoder.scm:
+           58:14  7 (_)
+       In toml/parser.scm:
+          373:22  6 (peg-tree->scm _)
+          280:18  5 (add-kv-to-tree () _ _)
+          167:23  4 (loop _)
+          373:22  3 (peg-tree->scm _)
+          280:18  2 (add-kv-to-tree () _ _)
+          167:23  1 (loop _)
+       In unknown file:
+                  0 (scm-error misc-error #f "~A ~S" ("err: ~a" array) #f)
+       
+       ERROR: In procedure scm-error:
+       err: ~a array
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>valid/key/dotted-empty</b>
+<b> </b>    Backtrace:
+<b> </b>               8 (apply-smob/1 #<catch-closure 7ff1c0baec40>)
+<b> </b>    In ice-9/boot-9.scm:
+<b> </b>        705:2  7 (call-with-prompt _ _ #<procedure default-prompt-handle…>)
+<b> </b>    In ice-9/eval.scm:
+<b> </b>        619:8  6 (_ #(#(#<directory (guile-user) 7ff1c056d140>)))
+<b> </b>    In ice-9/boot-9.scm:
+<b> </b>       2312:4  5 (save-module-excursion _)
+<b> </b>      3832:12  4 (_)
+<b> </b>    In test/test-decoder.scm:
+<b> </b>        58:14  3 (_)
+<b> </b>    In toml/parser.scm:
+<b> </b>       367:45  2 (peg-tree->scm _)
+<b> </b>    In srfi/srfi-1.scm:
+<b> </b>       592:17  1 (map1 ((simple-key (simple-key "x"))))
+<b> </b>    In unknown file:
+<b> </b>               0 (string-join (simple-key "x") "" #<undefined>)
+<b> </b>    
+<b> </b>    ERROR: In procedure string-join:
+<b> </b>    In procedure string-append: Wrong type (expecting string): simple-key
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       ''.x = "empty.x"
+       x."" = "x.empty"
+       [a]
+       "".'' = "empty.empty"
+
+<b>     output from parser-cmd (stderr):</b>
+       Backtrace:
+                  8 (apply-smob/1 #<catch-closure 7ff1c0baec40>)
+       In ice-9/boot-9.scm:
+           705:2  7 (call-with-prompt _ _ #<procedure default-prompt-handle…>)
+       In ice-9/eval.scm:
+           619:8  6 (_ #(#(#<directory (guile-user) 7ff1c056d140>)))
+       In ice-9/boot-9.scm:
+          2312:4  5 (save-module-excursion _)
+         3832:12  4 (_)
+       In test/test-decoder.scm:
+           58:14  3 (_)
+       In toml/parser.scm:
+          367:45  2 (peg-tree->scm _)
+       In srfi/srfi-1.scm:
+          592:17  1 (map1 ((simple-key (simple-key "x"))))
+       In unknown file:
+                  0 (string-join (simple-key "x") "" #<undefined>)
+       
+       ERROR: In procedure string-join:
+       In procedure string-append: Wrong type (expecting string): simple-key
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>valid/spec/table-9</b>
+<b> </b>    Backtrace:
+<b> </b>               7 (apply-smob/1 #<catch-closure 7fa0c3f8e080>)
+<b> </b>    In ice-9/boot-9.scm:
+<b> </b>        705:2  6 (call-with-prompt _ _ #<procedure default-prompt-handle…>)
+<b> </b>    In ice-9/eval.scm:
+<b> </b>        619:8  5 (_ #(#(#<directory (guile-user) 7fa0c3c83140>)))
+<b> </b>    In ice-9/boot-9.scm:
+<b> </b>       2312:4  4 (save-module-excursion _)
+<b> </b>      3832:12  3 (_)
+<b> </b>    In test/test-decoder.scm:
+<b> </b>        58:14  2 (_)
+<b> </b>    In toml/parser.scm:
+<b> </b>       386:13  1 (peg-tree->scm _)
+<b> </b>    In unknown file:
+<b> </b>               0 (scm-error misc-error #f "~A ~S ~S ~S" ("guile-toml…" …) …)
+<b> </b>    
+<b> </b>    ERROR: In procedure scm-error:
+<b> </b>    guile-toml: redefinition not allowed ("fruit" "apple" "texture") (("fruit" "apple" "taste") ("fruit" "apple") ("fruit")) 1
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       [fruit]
+       apple.color = "red"
+       apple.taste.sweet = true
+       
+       # [fruit.apple]  # INVALID
+       # [fruit.apple.taste]  # INVALID
+       
+       [fruit.apple.texture]  # you can add sub-tables
+       smooth = true
+
+<b>     output from parser-cmd (stderr):</b>
+       Backtrace:
+                  7 (apply-smob/1 #<catch-closure 7fa0c3f8e080>)
+       In ice-9/boot-9.scm:
+           705:2  6 (call-with-prompt _ _ #<procedure default-prompt-handle…>)
+       In ice-9/eval.scm:
+           619:8  5 (_ #(#(#<directory (guile-user) 7fa0c3c83140>)))
+       In ice-9/boot-9.scm:
+          2312:4  4 (save-module-excursion _)
+         3832:12  3 (_)
+       In test/test-decoder.scm:
+           58:14  2 (_)
+       In toml/parser.scm:
+          386:13  1 (peg-tree->scm _)
+       In unknown file:
+                  0 (scm-error misc-error #f "~A ~S ~S ~S" ("guile-toml…" …) …)
+       
+       ERROR: In procedure scm-error:
+       guile-toml: redefinition not allowed ("fruit" "apple" "texture") (("fruit" "apple" "taste") ("fruit" "apple") ("fruit")) 1
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>valid/table/array-within-dotted</b>
+<b> </b>    Backtrace:
+<b> </b>               7 (apply-smob/1 #<catch-closure 7f59a898e1a0>)
+<b> </b>    In ice-9/boot-9.scm:
+<b> </b>        705:2  6 (call-with-prompt _ _ #<procedure default-prompt-handle…>)
+<b> </b>    In ice-9/eval.scm:
+<b> </b>        619:8  5 (_ #(#(#<directory (guile-user) 7f59a86fe140>)))
+<b> </b>    In ice-9/boot-9.scm:
+<b> </b>       2312:4  4 (save-module-excursion _)
+<b> </b>      3832:12  3 (_)
+<b> </b>    In test/test-decoder.scm:
+<b> </b>        58:14  2 (_)
+<b> </b>    In toml/parser.scm:
+<b> </b>        399:9  1 (peg-tree->scm _)
+<b> </b>    In unknown file:
+<b> </b>               0 (scm-error misc-error #f "~A ~S ~S ~S" ("guile-toml…" …) …)
+<b> </b>    
+<b> </b>    ERROR: In procedure scm-error:
+<b> </b>    guile-toml: redefinition not allowed ("fruit" "apple" "seeds") (("fruit")) 0
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       [fruit]
+       apple.color = "red"
+       
+       [[fruit.apple.seeds]]
+       size = 2
+
+<b>     output from parser-cmd (stderr):</b>
+       Backtrace:
+                  7 (apply-smob/1 #<catch-closure 7f59a898e1a0>)
+       In ice-9/boot-9.scm:
+           705:2  6 (call-with-prompt _ _ #<procedure default-prompt-handle…>)
+       In ice-9/eval.scm:
+           619:8  5 (_ #(#(#<directory (guile-user) 7f59a86fe140>)))
+       In ice-9/boot-9.scm:
+          2312:4  4 (save-module-excursion _)
+         3832:12  3 (_)
+       In test/test-decoder.scm:
+           58:14  2 (_)
+       In toml/parser.scm:
+           399:9  1 (peg-tree->scm _)
+       In unknown file:
+                  0 (scm-error misc-error #f "~A ~S ~S ~S" ("guile-toml…" …) …)
+       
+       ERROR: In procedure scm-error:
+       guile-toml: redefinition not allowed ("fruit" "apple" "seeds") (("fruit")) 0
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>valid/table/empty-name</b>
+<b> </b>    Backtrace:
+<b> </b>               8 (apply-smob/1 #<catch-closure 7f8c5b58e1a0>)
+<b> </b>    In ice-9/boot-9.scm:
+<b> </b>        705:2  7 (call-with-prompt _ _ #<procedure default-prompt-handle…>)
+<b> </b>    In ice-9/eval.scm:
+<b> </b>        619:8  6 (_ #(#(#<directory (guile-user) 7f8c5b259140>)))
+<b> </b>    In ice-9/boot-9.scm:
+<b> </b>       2312:4  5 (save-module-excursion _)
+<b> </b>      3832:12  4 (_)
+<b> </b>    In test/test-decoder.scm:
+<b> </b>        58:14  3 (_)
+<b> </b>    In toml/parser.scm:
+<b> </b>       376:22  2 (peg-tree->scm _)
+<b> </b>    In srfi/srfi-1.scm:
+<b> </b>       592:17  1 (map1 ((simple-key (simple-key "a"))))
+<b> </b>    In unknown file:
+<b> </b>               0 (string-join (simple-key "a") "" #<undefined>)
+<b> </b>    
+<b> </b>    ERROR: In procedure string-join:
+<b> </b>    In procedure string-append: Wrong type (expecting string): simple-key
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       ['']
+       x = 1
+       
+       ["".a]
+       x = 2
+       
+       [a.'']
+       x = 3
+
+<b>     output from parser-cmd (stderr):</b>
+       Backtrace:
+                  8 (apply-smob/1 #<catch-closure 7f8c5b58e1a0>)
+       In ice-9/boot-9.scm:
+           705:2  7 (call-with-prompt _ _ #<procedure default-prompt-handle…>)
+       In ice-9/eval.scm:
+           619:8  6 (_ #(#(#<directory (guile-user) 7f8c5b259140>)))
+       In ice-9/boot-9.scm:
+          2312:4  5 (save-module-excursion _)
+         3832:12  4 (_)
+       In test/test-decoder.scm:
+           58:14  3 (_)
+       In toml/parser.scm:
+          376:22  2 (peg-tree->scm _)
+       In srfi/srfi-1.scm:
+          592:17  1 (map1 ((simple-key (simple-key "a"))))
+       In unknown file:
+                  0 (string-join (simple-key "a") "" #<undefined>)
+       
+       ERROR: In procedure string-join:
+       In procedure string-append: Wrong type (expecting string): simple-key
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>invalid/array/extend-defined-aot</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [[tab.arr]]
+       [tab]
+       arr.val1=1
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "tab": {
+           "arr": [
+             {
+               "val1": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           ]
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/datetime/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29T15:15:15Z
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "datetime",
+           "value": "2100-02-29T15:15:15Z"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/datetime/feb-30</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "only 28 or 29 days in february" = 1988-02-30T15:15:15Z
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only 28 or 29 days in february": {
+           "type": "datetime",
+           "value": "1988-02-30T15:15:15Z"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/duplicate-key-3</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       tbl = { fruit = { apple.color = "red" }, fruit.apple.texture = { smooth = true } }
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "tbl": {
+           "fruit": {
+             "apple": {
+               "color": {
+                 "type": "string",
+                 "value": "red"
+               },
+               "texture": {
+                 "smooth": {
+                   "type": "bool",
+                   "value": "true"
+                 }
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-7</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       tab = { inner.table = [{}], inner.table.val = "bad" }
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "tab": {
+           "inner": {
+             "table": [
+               {
+                 "val": {
+                   "type": "string",
+                   "value": "bad"
+                 }
+               }
+             ]
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-8</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       tab = { inner = { dog = "best" }, inner.cat = "worst" }
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "tab": {
+           "inner": {
+             "cat": {
+               "type": "string",
+               "value": "worst"
+             },
+             "dog": {
+               "type": "string",
+               "value": "best"
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-date/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "date-local",
+           "value": "2100-02-29"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-date/feb-30</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "only 28 or 29 days in february" = 1988-02-30
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only 28 or 29 days in february": {
+           "type": "date-local",
+           "value": "1988-02-30"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-datetime/feb-29</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "not a leap year" = 2100-02-29T15:15:15
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "not a leap year": {
+           "type": "datetime-local",
+           "value": "2100-02-29T15:15:15"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/local-datetime/feb-30</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       "only 28 or 29 days in february" = 1988-02-30T15:15:15
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "only 28 or 29 days in february": {
+           "type": "datetime-local",
+           "value": "1988-02-30T15:15:15"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/spec/inline-table-2-0</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [product]
+       type = { name = "Nail" }
+       type.edible = false  # INVALID
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "product": {
+           "type": {
+             "edible": {
+               "type": "bool",
+               "value": "false"
+             },
+             "name": {
+               "type": "string",
+               "value": "Nail"
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/string/bad-uni-esc-6</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       bad-uni-esc-6 = "This string contains a non scalar unicode codepoint \uD801"
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "bad-uni-esc-6": {
+           "type": "string",
+           "value": "This string contains a non scalar unicode codepoint �"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/append-to-array-with-dotted-keys</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [[a.b]]
+       
+       [a]
+       b.y = 2
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "a": {
+           "b": [
+             {
+               "y": {
+                 "type": "integer",
+                 "value": "2"
+               }
+             }
+           ]
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/table/redefine-2</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       [t1]
+       t2.t3.v = 0
+       [t1.t2]
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "t1": {
+           "t2": {
+             "t3": {
+               "v": {
+                 "type": "integer",
+                 "value": "0"
+               }
+             }
+           }
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+toml-test v2023-12-03 [./src/guile-toml/test/test-decoder.scm]: using embedded tests
+  valid tests: 164 passed,  5 failed
+invalid tests: 354 passed, 14 failed
+
+==> ENCODER TESTS
+<b>FAIL</b> <b>valid/inline-table/array-values</b>
+<b> </b>    Could not find key "a.a" in encoder output
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "a": {
+           "a": []
+         },
+         "b": {
+           "a": [
+             {
+               "type": "integer",
+               "value": "1"
+             },
+             {
+               "type": "integer",
+               "value": "2"
+             }
+           ],
+           "b": [
+             {
+               "type": "integer",
+               "value": "3"
+             },
+             {
+               "type": "integer",
+               "value": "4"
+             }
+           ]
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       ["b"]
+       "b" = [3, 4]
+       "a" = [1, 2]
+       
+       ["a"]
+
+<b>     want:</b>
+       # "No newlines are allowed between the curly braces unless they are valid within
+       # a value"
+       
+       a = { a = [
+       ]}
+       
+       b = { a = [
+       		1,
+       		2,
+       	], b = [
+       		3,
+       		4,
+       	]}
+
+<b>FAIL</b> <b>valid/spec/float-0</b>
+<b> </b>    decode TOML from encoder:
+<b> </b>      toml: line 3 (last key "flt5"): Invalid float value: "1e+06.0"
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "flt1": {
+           "type": "float",
+           "value": "1"
+         },
+         "flt2": {
+           "type": "float",
+           "value": "3.1415"
+         },
+         "flt3": {
+           "type": "float",
+           "value": "-0.01"
+         },
+         "flt4": {
+           "type": "float",
+           "value": "5e+22"
+         },
+         "flt5": {
+           "type": "float",
+           "value": "1e+06"
+         },
+         "flt6": {
+           "type": "float",
+           "value": "-0.02"
+         },
+         "flt7": {
+           "type": "float",
+           "value": "6.626e-34"
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       "flt7" = 6.626e-34
+       "flt6" = -0.02
+       "flt5" = 1e+06.0
+       "flt4" = 5e+22.0
+       "flt3" = -0.01
+       "flt2" = 3.1415
+       "flt1" = 1.0
+
+<b>     want:</b>
+       # fractional
+       flt1 = +1.0
+       flt2 = 3.1415
+       flt3 = -0.01
+       
+       # exponent
+       flt4 = 5e+22
+       flt5 = 1e06
+       flt6 = -2E-2
+       
+       # both
+       flt7 = 6.626e-34
+
+<b>FAIL</b> <b>valid/spec/string-0</b>
+<b> </b>    Values for key "str" differ:
+<b> </b>      Expected:     I'm a string. "You can quote me". Name	José
+<b> </b>    Location	SF. (string)
+<b> </b>      Your encoder: I'm a string. "You can quote me". Name\u0009José
+<b> </b>    Location\u0009SF. (string)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "str": {
+           "type": "string",
+           "value": "I'm a string. \"You can quote me\". Name\tJosé\nLocation\tSF."
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       "str" = '''I'm a string. "You can quote me". Name\u0009José
+       Location\u0009SF.'''
+
+<b>     want:</b>
+       str = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
+
+<b>FAIL</b> <b>valid/spec/string-6</b>
+<b> </b>    decode TOML from encoder:
+<b> </b>      toml: line 1: expected a top-level item to end with a newline, comment, or EOF, but got 't' instead
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "lines": {
+           "type": "string",
+           "value": "The first newline is\ntrimmed in raw strings.\n   All other whitespace\n   is preserved.\n"
+         },
+         "regex2": {
+           "type": "string",
+           "value": "I [dw]on't need \\d{2} apples"
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       "regex2" = 'I [dw]on't need \d{2} apples'
+       "lines" = """The first newline is
+       trimmed in raw strings.
+          All other whitespace
+          is preserved.
+       """
+
+<b>     want:</b>
+       regex2 = '''I [dw]on't need \d{2} apples'''
+       lines  = '''
+       The first newline is
+       trimmed in raw strings.
+          All other whitespace
+          is preserved.
+       '''
+
+toml-test v2023-12-03 [./src/guile-toml/test/test-encoder.scm]: using embedded tests
+encoder tests: 165 passed,  4 failed
+took 0.0 0.0
+</pre>

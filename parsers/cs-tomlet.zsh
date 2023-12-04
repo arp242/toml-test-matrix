@@ -12,6 +12,6 @@ typeset -A info=(
 	src     'git@github.com:SamboyCoding/Tomlet.git'
 	version ''
 	decoder ''
-	encoder 'TODO'
+	encoder ''
 	perf    ''
 )
