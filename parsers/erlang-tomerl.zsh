@@ -28,7 +28,7 @@ typeset -A info=(
 	lang    'Erlang'
 	toml    '1.0'
 	site    'https://github.com/filmor/tomerl'
-	src     'git@github.com:filmor/tomerl.git'
+	src     'https://github.com/filmor/tomerl.git'
 	decoder ''
 	encoder ''
 	perf    ''

@@ -10,7 +10,7 @@ typeset -A info=(
 	lang    'Perl'
 	toml    '1.0'
 	site    'https://github.com/sysread/TOML-Tiny'
-	src     'git@github.com:sysread/TOML-Tiny.git'
+	src     'https://github.com/sysread/TOML-Tiny.git'
 	decoder ''
 	encoder ''
 	perf    ''

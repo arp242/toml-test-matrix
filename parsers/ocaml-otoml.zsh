@@ -1,6 +1,7 @@
-deps() { print 'ocaml opam' }
+deps() { print 'opam' }
 
 setup() {
+	opam init -a
 	eval $(opam env)
 	opam -y pin --with-test add .
 
@@ -13,7 +14,7 @@ typeset -A info=(
 	lang    'OCAML'
 	toml    '1.0'
 	site    'https://github.com/dmbaturin/otoml'
-	src     'git@github.com:dmbaturin/otoml.git'
+	src     'https://github.com/dmbaturin/otoml.git'
 	decoder 'decoder'
 	encoder 'encoder'
 	perf    'TODO'

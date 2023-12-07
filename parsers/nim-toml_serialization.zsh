@@ -13,7 +13,7 @@ typeset -A info=(
 	lang    'Nim'
 	toml    '1.0'
 	site    'https://github.com/status-im/nim-toml-serialization'
-	src     'git@github.com:status-im/nim-toml-serialization.git'
+	src     'https://github.com/status-im/nim-toml-serialization.git'
 	decoder ''
 	encoder ''
 	perf    ''

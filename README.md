@@ -10,8 +10,23 @@ See `new-parser.zsh` for a template with instructions.
 Running it
 ----------
 The results are committed in git, so you don't really need to run it unless
-you're adding a new parser.
+you're adding a new parser, or want to re-check the results.
 
-That said, use `./run` to generate the files. You'll need zsh, git, and the
-dependencies to build stuff (e.g. compilers/interpreters). It's not super
-well-documented: see if you get "command not found" errors and fix them 🙃
+You can use `./run check` to check for dependencies; these are just looked up in
+$PATH. If you want to wrap this in Docker or VMs or whatnot then use a wrapper
+scripts and prepend that to $PATH. There is no real cross-platform way to
+abstract this more. `check` is just an informational command: it doesn't do
+anything
+
+Use `./run setup` to clone the sources, compile binaries, etc. Then `./run run`
+to run `toml-test`, and `./run gen` to generate a new index.html.
+
+For all of the above you can add a parser name to run just for that one parser:
+
+    % ./run setup go-toml
+    % ./run run go-toml
+    % ./run gen
+
+Which is probably what you want if you're just adding a new parser.
+
+See `./run` for more detailed help.

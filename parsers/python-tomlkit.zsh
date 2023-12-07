@@ -8,7 +8,7 @@ typeset -A info=(
 	lang    'Python'
 	toml    '1.0'
 	site    'https://github.com/sdispater/tomlkit'
-	src     'git@github.com:sdispater/tomlkit.git'
+	src     'https://github.com/sdispater/tomlkit.git'
 	decoder './scripts/python-tomlkit-decoder'
 	encoder './scripts/python-tomlkit-encoder'
 	perf    './scripts/python-tomlkit-perf'
