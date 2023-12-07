@@ -19,7 +19,7 @@ typeset -A info=(
 	lang    'Julia'
 	toml    '1.0'
 	site    'https://github.com/JuliaLang/TOML.jl'
-	src     'git@github.com:JuliaLang/TOML.jl.git'
+	src     'https://github.com/JuliaLang/TOML.jl.git'
 	decoder 'julia-TOML-decode.jl'
 	encoder 'N/A'
 	perf    ''

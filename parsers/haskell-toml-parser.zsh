@@ -24,7 +24,7 @@ typeset -A info=(
 	lang    'Haskell'
 	toml    '1.0'
 	site    'https://github.com/glguy/toml-parser'
-	src     'git@github.com:glguy/toml-parser.git'
+	src     'https://github.com/glguy/toml-parser.git'
 	decoder 'TomlDecoder'
 	encoder 'TomlEncoder'
 	perf    'toml-benchmarker'

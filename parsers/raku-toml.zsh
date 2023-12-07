@@ -10,7 +10,7 @@ typeset -A info=(
 	lang    'Raku'
 	toml    '1.0'
 	site    'https://github.com/tony-o/raku-toml'
-	src     'git@github.com:tony-o/raku-toml.git'
+	src     'https://github.com/tony-o/raku-toml.git'
 	decoder ''
 	encoder ''
 	perf    ''

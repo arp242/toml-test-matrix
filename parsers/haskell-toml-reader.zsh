@@ -47,7 +47,7 @@ typeset -A info=(
 	lang    'Haskell'
 	toml    '1.0'
 	site    'https://github.com/brandonchinn178/toml-reader'
-	src     'git@github.com:brandonchinn178/toml-reader.git'
+	src     'https://github.com/brandonchinn178/toml-reader.git'
 	decoder './src/haskell-toml-reader/parser-validator --check'
 	encoder ''
 	perf    'perf-bin'

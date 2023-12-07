@@ -13,7 +13,7 @@ typeset -A info=(
 	lang    'Go'
 	toml    '1.0'
 	site    'https://github.com/pelletier/go-toml'
-	src     'git@github.com:pelletier/go-toml.git'
+	src     'https://github.com/pelletier/go-toml.git'
 	decoder 'gotoml-test-decoder'
 	encoder 'gotoml-test-encoder'
 	perf    'perf'

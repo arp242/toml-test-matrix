@@ -16,6 +16,7 @@ do_setup() {
 			(( ${info[skip]:-0} )) && continue
 
 			print -n "$name: "
+			check-deps || exit 1
 
 			if [[ -n $info[src] ]]; then
 				(
@@ -34,7 +35,58 @@ do_setup() {
 	done
 }
 
+do_check() {
+	e=0
+
+	print -f '%-25s' 'toml-test'
+	if (( ! $+commands[toml-test] )); then
+		print 'MISSING: toml-test'
+		e=1
+	else
+		print 'okay'
+	fi
+
+	for f in ./parsers/*.zsh; do
+		(
+			name=$f:t:r
+			[[ -n $only && $name != $only ]] && continue
+
+			source $f
+			(( ${info[skip]:-0} )) && continue
+
+			tools=($(deps))
+			missing=()
+			for t in $tools; (( $+commands[$t] )) || missing+=($t)
+			print -f '%-25s' $name
+			if (( $#missing > 0 )); then
+				print "MISSING: ${(j:, :)missing}"
+				exit 1
+			else
+				print 'okay'
+			fi
+		) || e=1
+	done
+	exit $e
+}
+
+# Assumes parser is sourced.
+check-deps() {
+	tools=($(deps))
+	missing=()
+	for t in $tools; (( $+commands[$t] )) || missing+=($t)
+	if (( $#missing > 0 )); then
+		print "MISSING DEPENDENCIES: ${(j:, :)missing}"
+		return 1
+	fi
+	return 0
+}
+
 do_run() {
+	if (( ! $+commands[toml-test] )); then
+		print >&2 'toml-test not found in $PATH; install from:'
+		print >&2 '  https://github.com/toml-lang/toml-test/releases'
+		exit 1
+	fi
 	for f in ./parsers/*.zsh; do
 		name=$f:t:r
 		out=output/$name.html
@@ -47,6 +99,7 @@ do_run() {
 				print '(skip)'
 				continue
 			fi
+			check-deps || exit 1
 
 			[[ -z ${info[version]:-} ]] && info[version]=$(cd src/$name && git log -n1 --format=%h)
 			perf=(0.0 0.0)
@@ -107,6 +160,7 @@ do_perf() {
 				print '(TODO)'
 				continue
 			fi
+			check-deps || exit 1
 
 			skip=($(sed '/==> ENCODER TESTS/q; /FAIL/p; d;' $out | grep -Eo '>valid/.*?<' | sed 's/>/-skip /; s/</.toml/'))
 			[[ $name = 'c-tomlc99' ]] && skip+=(-skip valid/string/multiline-quotes.toml)
@@ -211,6 +265,7 @@ do_test() {
 			(( ${info[skip]:-0} )) && continue
 
 			print -nf '%-25s' $name
+			check-deps || exit 1
 
 			dec=$info[decoder]
 			[[ $dec[1] != '.' && ! $dec =~ ' ' ]] && dec=./src/$name/$dec
@@ -524,11 +579,12 @@ usage() {
 		Commands:
 		    setup    Setup repos: clone or update source to ./src, download
 		             dependencies, compile code (if applicable), etc.
+		    check    Check if all dependencies are present.
 		    run      Run the test suite against toml-test in PATH.
 		    perf     Run performance benchmarks.
 		    gen      Generate index.html.
 		    test     Pass stdin to all decoders and show output.
-			report   Show overview of failing decoder (not encoder) tests.
+		    report   Show overview of failing decoder (not encoder) tests.
 		    all      Run setup, run, and gen.
 
 		The typical usage is to run "setup" first and then "run".
@@ -538,15 +594,13 @@ usage() {
 
 		    % ./run run ocaml-otoml
 		    % ./run gen
-
-		Right now "setup" assumes tooling is in PATH; this means you'll need to
-		install Go, Haskell, Rust, OCAML, etc. etc. as needed.
 	EOF
 }
 
 only=${2:-}
 case ${1:-help}; in
 	setup)                  do_setup  ;;
+	check)                  do_check  ;;
 	run)                    do_run    ;;
 	perf)                   do_perf   ;;
 	gen)                    do_gen    ;;
