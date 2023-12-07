@@ -287,90 +287,92 @@ fortran-toml-f version e2e4a06
 <b> </b>      invalid character '\x1f' in string literal
 
 <b>     input sent to parser-cmd:</b>
-       backspace = "This string has a \b backspace character."
-       tab = "This string has a \t tab character."
-       newline = "This string has a \n new line character."
-       formfeed = "This string has a \f form feed character."
-       carriage = "This string has a \r carriage return character."
-       quote = "This string has a \" quote character."
-       backslash = "This string has a \\ backslash character."
-       notunicode1 = "This string does not have a unicode \\u escape."
-       notunicode2 = "This string does not have a unicode \u005Cu escape."
-       notunicode3 = "This string does not have a unicode \\u0075 escape."
-       notunicode4 = "This string does not have a unicode \\\u0075 escape."
-       delete = "This string has a \u007F delete control code."
-       unitseparator = "This string has a \u001F unit separator control code."
+       backspace     = "|\b."
+       tab           = "|\t."
+       newline       = "|\n."
+       formfeed      = "|\f."
+       carriage      = "|\r."
+       quote         = "|\"."
+       backslash     = "|\\."
+       delete        = "|\u007F."
+       unitseparator = "|\u001F."
+       
+       # \u is escaped, so should NOT be interperted as a \u escape.
+       notunicode1   = "|\\u."
+       notunicode2   = "|\u005Cu."
+       notunicode3   = "|\\u0075."
+       notunicode4   = "|\\\u0075."
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "backspace": {"type": "string", "value": "This string has a \b backspace character."},
-         "tab": {"type": "string", "value": "This string has a \t tab character."},
-         "newline": {"type": "string", "value": "This string has a \n new line character."},
-         "formfeed": {"type": "string", "value": "This string has a \f form feed character."},
-         "carriage": {"type": "string", "value": "This string has a \r carriage return character."},
-         "quote": {"type": "string", "value": "This string has a \" quote character."},
-         "backslash": {"type": "string", "value": "This string has a \\ backslash character."},
-         "notunicode1": {"type": "string", "value": "This string does not have a unicode \\u escape."},
-         "notunicode2": {"type": "string", "value": "This string does not have a unicode \\ escape."},
-         "notunicode3": {"type": "string", "value": "This string does not have a unicode \\u0075 escape."},
-         "notunicode4": {"type": "string", "value": "This string does not have a unicode \\uescape."},
-         "delete": {"type": "string", "value": "This string has a delete control code."},
-         "unitseparator": {"type": "string", "value": "This string has a unit separator control code."}
+         "backspace": {"type": "string", "value": "|\b."},
+         "tab": {"type": "string", "value": "|\t."},
+         "newline": {"type": "string", "value": "|\n."},
+         "formfeed": {"type": "string", "value": "|\f."},
+         "carriage": {"type": "string", "value": "|\r."},
+         "quote": {"type": "string", "value": "|\"."},
+         "backslash": {"type": "string", "value": "|\\."},
+         "delete": {"type": "string", "value": "|"},
+         "unitseparator": {"type": "string", "value": "|"},
+         "notunicode1": {"type": "string", "value": "|\\u."},
+         "notunicode2": {"type": "string", "value": "|\\."},
+         "notunicode3": {"type": "string", "value": "|\\u0075."},
+         "notunicode4": {"type": "string", "value": "|\\u"}
        }
 
 <b>     want:</b>
        {
          "backslash": {
            "type": "string",
-           "value": "This string has a \\ backslash character."
+           "value": "|\\."
          },
          "backspace": {
            "type": "string",
-           "value": "This string has a \u0008 backspace character."
+           "value": "|\u0008."
          },
          "carriage": {
            "type": "string",
-           "value": "This string has a \r carriage return character."
+           "value": "|\r."
          },
          "delete": {
            "type": "string",
-           "value": "This string has a  delete control code."
+           "value": "|."
          },
          "formfeed": {
            "type": "string",
-           "value": "This string has a \u000c form feed character."
+           "value": "|\u000c."
          },
          "newline": {
            "type": "string",
-           "value": "This string has a \n new line character."
+           "value": "|\n."
          },
          "notunicode1": {
            "type": "string",
-           "value": "This string does not have a unicode \\u escape."
+           "value": "|\\u."
          },
          "notunicode2": {
            "type": "string",
-           "value": "This string does not have a unicode \\u escape."
+           "value": "|\\u."
          },
          "notunicode3": {
            "type": "string",
-           "value": "This string does not have a unicode \\u0075 escape."
+           "value": "|\\u0075."
          },
          "notunicode4": {
            "type": "string",
-           "value": "This string does not have a unicode \\u escape."
+           "value": "|\\u."
          },
          "quote": {
            "type": "string",
-           "value": "This string has a \" quote character."
+           "value": "|\"."
          },
          "tab": {
            "type": "string",
-           "value": "This string has a \t tab character."
+           "value": "|\t."
          },
          "unitseparator": {
            "type": "string",
-           "value": "This string has a \u001f unit separator control code."
+           "value": "|\u001f."
          }
        }
 
@@ -381,21 +383,6 @@ fortran-toml-f version e2e4a06
 
 <b>     input sent to parser-cmd:</b>
        # NOTE: this file includes some literal tab characters.
-       
-       multiline_empty_one = """"""
-       
-       # A newline immediately following the opening delimiter will be trimmed.
-       multiline_empty_two = """
-       """
-       
-       # \ at the end of line trims newlines as well; note that last \ is followed by
-       # two spaces, which are ignored.
-       multiline_empty_three = """\
-           """
-       multiline_empty_four = """\
-          \
-          \  
-          """
        
        equivalent_one = "The quick brown fox jumps over the lazy dog."
        equivalent_two = """
@@ -463,22 +450,6 @@ fortran-toml-f version e2e4a06
            "type": "string",
            "value": "a   \t   b"
          },
-         "multiline_empty_four": {
-           "type": "string",
-           "value": "         "
-         },
-         "multiline_empty_one": {
-           "type": "string",
-           "value": ""
-         },
-         "multiline_empty_three": {
-           "type": "string",
-           "value": "    "
-         },
-         "multiline_empty_two": {
-           "type": "string",
-           "value": ""
-         },
          "no-space": {
            "type": "string",
            "value": "a    b"
@@ -519,22 +490,6 @@ fortran-toml-f version e2e4a06
            "type": "string",
            "value": "a   \tb"
          },
-         "multiline_empty_four": {
-           "type": "string",
-           "value": ""
-         },
-         "multiline_empty_one": {
-           "type": "string",
-           "value": ""
-         },
-         "multiline_empty_three": {
-           "type": "string",
-           "value": ""
-         },
-         "multiline_empty_two": {
-           "type": "string",
-           "value": ""
-         },
          "no-space": {
            "type": "string",
            "value": "ab"
@@ -542,6 +497,67 @@ fortran-toml-f version e2e4a06
          "whitespace-after-bs": {
            "type": "string",
            "value": "The quick brown fox jumps over the lazy dog."
+         }
+       }
+
+<b>FAIL</b> <b>valid/string/multiline-empty</b>
+<b> </b>    Values for key "empty-3" don't match:
+<b> </b>      Expected:     
+<b> </b>      Your encoder:     
+
+<b>     input sent to parser-cmd:</b>
+       empty-1 = """"""
+       
+       # A newline immediately following the opening delimiter will be trimmed.
+       empty-2 = """
+       """
+       
+       # \ at the end of line trims newlines as well; note that last \ is followed by
+       # two spaces, which are ignored.
+       empty-3 = """\
+           """
+       empty-4 = """\
+          \
+          \  
+          """
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "empty-1": {
+           "type": "string",
+           "value": ""
+         },
+         "empty-2": {
+           "type": "string",
+           "value": ""
+         },
+         "empty-3": {
+           "type": "string",
+           "value": "    "
+         },
+         "empty-4": {
+           "type": "string",
+           "value": "         "
+         }
+       }
+
+<b>     want:</b>
+       {
+         "empty-1": {
+           "type": "string",
+           "value": ""
+         },
+         "empty-2": {
+           "type": "string",
+           "value": ""
+         },
+         "empty-3": {
+           "type": "string",
+           "value": ""
+         },
+         "empty-4": {
+           "type": "string",
+           "value": ""
          }
        }
 
@@ -1403,8 +1419,8 @@ fortran-toml-f version e2e4a06
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-12-03 [./src/fortran-toml-f/_build/test/compliance/toml2json]: using embedded tests
-  valid tests: 159 passed, 10 failed
+toml-test v2023-12-07 [./src/fortran-toml-f/_build/test/compliance/toml2json]: using embedded tests
+  valid tests: 168 passed, 11 failed
 invalid tests: 336 passed, 32 failed
 
 ==> ENCODER TESTS
@@ -1527,6 +1543,97 @@ invalid tests: 336 passed, 32 failed
 
 <b>     want:</b>
           <empty>
+
+<b>FAIL</b> <b>valid/inline-table/key-dotted-5</b>
+<b> </b>    Could not find key "arr-2.a" in encoder output
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "arr-1": [
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           }
+         ],
+         "arr-2": [
+           {
+             "type": "string",
+             "value": "str"
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           }
+         ],
+         "arr-3": [
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "2"
+               }
+             }
+           }
+         ],
+         "arr-4": [
+           {
+             "type": "string",
+             "value": "str"
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "2"
+               }
+             }
+           }
+         ]
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       arr-2 = [ "str", { b = 1 } ]
+       arr-4 = [ "str", { b = 1 }, { b = 2 } ]
+       [[arr-1]]
+       [arr-1.a]
+       b = 1
+       [[arr-3]]
+       [arr-3.a]
+       b = 1
+       [[arr-3]]
+       [arr-3.a]
+       b = 2
+
+<b>     want:</b>
+       arr-1 = [{a.b = 1}]
+       arr-2 = ["str", {a.b = 1}]
+       
+       arr-3 = [{a.b = 1}, {a.b = 2}]
+       arr-4 = ["str", {a.b = 1}, {a.b = 2}]
 
 <b>FAIL</b> <b>valid/key/escapes</b>
 <b> </b>    ERROR STOP 
@@ -1991,55 +2098,55 @@ invalid tests: 336 passed, 32 failed
        {
          "backslash": {
            "type": "string",
-           "value": "This string has a \\ backslash character."
+           "value": "|\\."
          },
          "backspace": {
            "type": "string",
-           "value": "This string has a \u0008 backspace character."
+           "value": "|\u0008."
          },
          "carriage": {
            "type": "string",
-           "value": "This string has a \r carriage return character."
+           "value": "|\r."
          },
          "delete": {
            "type": "string",
-           "value": "This string has a  delete control code."
+           "value": "|."
          },
          "formfeed": {
            "type": "string",
-           "value": "This string has a \u000c form feed character."
+           "value": "|\u000c."
          },
          "newline": {
            "type": "string",
-           "value": "This string has a \n new line character."
+           "value": "|\n."
          },
          "notunicode1": {
            "type": "string",
-           "value": "This string does not have a unicode \\u escape."
+           "value": "|\\u."
          },
          "notunicode2": {
            "type": "string",
-           "value": "This string does not have a unicode \\u escape."
+           "value": "|\\u."
          },
          "notunicode3": {
            "type": "string",
-           "value": "This string does not have a unicode \\u0075 escape."
+           "value": "|\\u0075."
          },
          "notunicode4": {
            "type": "string",
-           "value": "This string does not have a unicode \\u escape."
+           "value": "|\\u."
          },
          "quote": {
            "type": "string",
-           "value": "This string has a \" quote character."
+           "value": "|\"."
          },
          "tab": {
            "type": "string",
-           "value": "This string has a \t tab character."
+           "value": "|\t."
          },
          "unitseparator": {
            "type": "string",
-           "value": "This string has a \u001f unit separator control code."
+           "value": "|\u001f."
          }
        }
 
@@ -2202,7 +2309,7 @@ invalid tests: 336 passed, 32 failed
 <b>     want:</b>
           <empty>
 
-toml-test v2023-12-03 [./src/fortran-toml-f/_build/test/compliance/json2toml]: using embedded tests
-encoder tests: 158 passed, 11 failed
+toml-test v2023-12-07 [./src/fortran-toml-f/_build/test/compliance/json2toml]: using embedded tests
+encoder tests: 167 passed, 12 failed
 took 1.5 150.98
 </pre>

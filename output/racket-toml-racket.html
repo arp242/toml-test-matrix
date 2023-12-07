@@ -83,8 +83,8 @@ racket-toml-racket version fe46aa2
          }
        }
 
-toml-test v2023-12-03 [./src/racket-toml-racket/toml-compliance/compliance/decoder]: using embedded tests
-  valid tests: 168 passed,  1 failed
+toml-test v2023-12-07 [./src/racket-toml-racket/toml-compliance/compliance/decoder]: using embedded tests
+  valid tests: 178 passed,  1 failed
 invalid tests: 368 passed,  0 failed
 
 ==> ENCODER TESTS
@@ -202,6 +202,110 @@ invalid tests: 368 passed,  0 failed
        		3,
        		4,
        	]}
+
+<b>FAIL</b> <b>valid/inline-table/key-dotted-5</b>
+<b> </b>    Could not find key "arr-2.a" in encoder output
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "arr-1": [
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           }
+         ],
+         "arr-2": [
+           {
+             "type": "string",
+             "value": "str"
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           }
+         ],
+         "arr-3": [
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "2"
+               }
+             }
+           }
+         ],
+         "arr-4": [
+           {
+             "type": "string",
+             "value": "str"
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "2"
+               }
+             }
+           }
+         ]
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       arr-2 = [
+         "str",
+         {  },
+       ]
+       arr-4 = [
+         "str",
+         {  },
+         {  },
+       ]
+       
+       [[arr-1]]
+       
+       [arr-1.a]
+       b = 1
+       
+       [[arr-3]]
+       
+       [arr-3.a]
+       b = 1
+       
+       [[arr-3]]
+       
+       [arr-3.a]
+       b = 2
+
+<b>     want:</b>
+       arr-1 = [{a.b = 1}]
+       arr-2 = ["str", {a.b = 1}]
+       
+       arr-3 = [{a.b = 1}, {a.b = 2}]
+       arr-4 = ["str", {a.b = 1}, {a.b = 2}]
 
 <b>FAIL</b> <b>valid/inline-table/spaces</b>
 <b> </b>    Values for key "clap-2.nest.b" differ:
@@ -393,7 +497,7 @@ invalid tests: 368 passed,  0 failed
        # both
        flt7 = 6.626e-34
 
-toml-test v2023-12-03 [./src/racket-toml-racket/toml-compliance/compliance/encoder]: using embedded tests
-encoder tests: 164 passed,  5 failed
+toml-test v2023-12-07 [./src/racket-toml-racket/toml-compliance/compliance/encoder]: using embedded tests
+encoder tests: 173 passed,  6 failed
 took 0.0 0.0
 </pre>

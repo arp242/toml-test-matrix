@@ -1008,8 +1008,8 @@ ocaml-otoml version f6ab907
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-12-03 [./src/ocaml-otoml/decoder]: using embedded tests
-  valid tests: 166 passed,  3 failed
+toml-test v2023-12-07 [./src/ocaml-otoml/decoder]: using embedded tests
+  valid tests: 176 passed,  3 failed
 invalid tests: 319 passed, 49 failed
 
 ==> ENCODER TESTS
@@ -1098,6 +1098,125 @@ invalid tests: 319 passed, 49 failed
        exponent-two-0 = 0e00
        exponent-signed-pos = +0e0
        exponent-signed-neg = -0e0
+
+<b>FAIL</b> <b>valid/inline-table/key-dotted-5</b>
+<b> </b>    Could not find key "arr-2" in encoder output
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "arr-1": [
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           }
+         ],
+         "arr-2": [
+           {
+             "type": "string",
+             "value": "str"
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           }
+         ],
+         "arr-3": [
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "2"
+               }
+             }
+           }
+         ],
+         "arr-4": [
+           {
+             "type": "string",
+             "value": "str"
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "2"
+               }
+             }
+           }
+         ]
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       [["arr-1"]]
+         a = {b = 1}
+       "arr-2" = ["str", {a = {b = 1}}]
+       
+       [["arr-3"]]
+         a = {b = 1}
+       
+       [["arr-3"]]
+         a = {b = 2}
+       "arr-4" = ["str", {a = {b = 1}}, {a = {b = 2}}]
+
+<b>     want:</b>
+       arr-1 = [{a.b = 1}]
+       arr-2 = ["str", {a.b = 1}]
+       
+       arr-3 = [{a.b = 1}, {a.b = 2}]
+       arr-4 = ["str", {a.b = 1}, {a.b = 2}]
+
+<b>FAIL</b> <b>valid/inline-table/key-dotted-7</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "arr": [
+           {
+             "a": {
+               "b": [
+                 {
+                   "c": {
+                     "d": {
+                       "type": "integer",
+                       "value": "1"
+                     }
+                   }
+                 }
+               ]
+             }
+           }
+         ]
+       }
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Failure("TOML arrays of tables cannot be formatted out of the parent table context")
+
+<b>     want:</b>
+          <empty>
 
 <b>FAIL</b> <b>valid/inline-table/spaces</b>
 <b> </b>    Values for key "clap-2.nest.b" differ:
@@ -1362,7 +1481,7 @@ invalid tests: 319 passed, 49 failed
        [a]
        y = 2
 
-toml-test v2023-12-03 [./src/ocaml-otoml/encoder]: using embedded tests
-encoder tests: 163 passed,  6 failed
+toml-test v2023-12-07 [./src/ocaml-otoml/encoder]: using embedded tests
+encoder tests: 171 passed,  8 failed
 took 0.0 0.0
 </pre>

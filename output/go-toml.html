@@ -1,5 +1,5 @@
 <pre>
-go-toml version 6fb5266
+go-toml version 4223137
 <b>FAIL</b> <b>invalid/array/extend-defined-aot</b>
 <b> </b>    Expected an error, but no error was reported.
 
@@ -73,24 +73,32 @@ go-toml version 6fb5266
        Exit code 1
 
 <b>FAIL</b> <b>invalid/inline-table/overwrite-7</b>
-<b> </b>    Expected an error, but no error was reported.
+<b> </b>    exit status 2
 
 <b>     input sent to parser-cmd:</b>
        tab = { inner.table = [{}], inner.table.val = "bad" }
 
-<b>     output from parser-cmd (stdout):</b>
-       {
-         "tab": {
-           "inner": {
-             "table": {
-               "val": {
-                 "type": "string",
-                 "value": "bad"
-               }
-             }
-           }
-         }
-       }
+<b>     output from parser-cmd (stderr):</b>
+       panic: interface conversion: interface {} is []interface {}, not map[string]interface {} [recovered]
+       	panic: interface conversion: interface {} is []interface {}, not map[string]interface {}
+       
+       goroutine 1 [running]:
+       github.com/BurntSushi/toml.parse.func1()
+       	/home/martin/code/toml/toml-test-matrix/src/go-toml/parse.go:44 +0x12b
+       panic({0x4defe0?, 0xc000108450?})
+       	/usr/lib/go/src/runtime/panic.go:914 +0x21f
+       github.com/BurntSushi/toml.(*parser).valueInlineTable(0xc000144000, {0x16, {0xc00013e000, 0x0}, {0x0, 0x0}, {0x1, 0x7, 0x1}}, 0x0)
+       	/home/martin/code/toml/toml-test-matrix/src/go-toml/parse.go:488 +0xd8d
+       github.com/BurntSushi/toml.(*parser).value(0x3?, {0x16, {0xc00013e000, 0x0}, {0x0, 0x0}, {0x1, 0x7, 0x1}}, 0x0)
+       	/home/martin/code/toml/toml-test-matrix/src/go-toml/parse.go:275 +0x625
+       github.com/BurntSushi/toml.(*parser).topLevel(0xc000144000, {0x13, {0xc00013e000, 0x0}, {0x0, 0x0}, {0x1, 0x0, 0x1}})
+       	/home/martin/code/toml/toml-test-matrix/src/go-toml/parse.go:211 +0xa45
+       github.com/BurntSushi/toml.parse({0xc00013e000, 0x35})
+       	/home/martin/code/toml/toml-test-matrix/src/go-toml/parse.go:87 +0x4cc
+       github.com/BurntSushi/toml.(*Decoder).Decode(0xc000127e50, {0x4d7940?, 0xc000104040?})
+       	/home/martin/code/toml/toml-test-matrix/src/go-toml/decode.go:151 +0x3a5
+       main.main()
+       	/home/martin/code/toml/toml-test-matrix/src/go-toml/cmd/toml-test-decoder/main.go:34 +0xab
 
 <b>     want:</b>
        Exit code 1
@@ -395,12 +403,12 @@ go-toml version 6fb5266
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-12-03 [./src/go-toml/toml-test-decoder]: using embedded tests
-  valid tests: 169 passed,  0 failed
+toml-test v2023-12-07 [./src/go-toml/toml-test-decoder]: using embedded tests
+  valid tests: 179 passed,  0 failed
 invalid tests: 354 passed, 14 failed
 
 ==> ENCODER TESTS
-toml-test v2023-12-03 [./src/go-toml/toml-test-encoder]: using embedded tests
-encoder tests: 169 passed,  0 failed
+toml-test v2023-12-07 [./src/go-toml/toml-test-encoder]: using embedded tests
+encoder tests: 179 passed,  0 failed
 took 1.3 0.38
 </pre>

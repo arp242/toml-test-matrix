@@ -316,33 +316,15 @@ python-toml version 65bab75
 <b>     want:</b>
           <empty>
 
-<b>FAIL</b> <b>valid/inline-table/key-dotted</b>
+<b>FAIL</b> <b>valid/inline-table/key-dotted-1</b>
 <b> </b>    Could not find key "c.a" in parser output.
 
 <b>     input sent to parser-cmd:</b>
-       inline = {a.b = 42}
-       
-       many.dots.here.dot.dot.dot = {a.b.c = 1, a.b.d = 2}
-       
        a = {   a.b  =  1   }
        b = {   "a"."b"  =  1   }
        c = {   a   .   b  =  1   }
        d = {   'a'   .   "b"  =  1   }
        e = {a.b=1}
-       
-       [tbl]
-       a.b.c = {d.e=1}
-       
-       [tbl.x]
-       a.b.c = {d.e=1}
-       
-       [[arr]]
-       t = {a.b=1}
-       T = {a.b=1}
-       
-       [[arr]]
-       t = {a.b=2}
-       T = {a.b=2}
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -354,44 +336,6 @@ python-toml version 65bab75
              }
            }
          },
-         "arr": [
-           {
-             "T": {
-               "a": {
-                 "b": {
-                   "type": "integer",
-                   "value": "1"
-                 }
-               }
-             },
-             "t": {
-               "a": {
-                 "b": {
-                   "type": "integer",
-                   "value": "1"
-                 }
-               }
-             }
-           },
-           {
-             "T": {
-               "a": {
-                 "b": {
-                   "type": "integer",
-                   "value": "2"
-                 }
-               }
-             },
-             "t": {
-               "a": {
-                 "b": {
-                   "type": "integer",
-                   "value": "2"
-                 }
-               }
-             }
-           }
-         ],
          "b": {
            "a": {
              "b": {
@@ -423,66 +367,6 @@ python-toml version 65bab75
                "value": "1"
              }
            }
-         },
-         "inline": {
-           "a": {
-             "b": {
-               "type": "integer",
-               "value": "42"
-             }
-           }
-         },
-         "many": {
-           "dots": {
-             "here": {
-               "dot": {
-                 "dot": {
-                   "dot": {
-                     "a": {
-                       "b": {
-                         "c": {
-                           "type": "integer",
-                           "value": "1"
-                         },
-                         "d": {
-                           "type": "integer",
-                           "value": "2"
-                         }
-                       }
-                     }
-                   }
-                 }
-               }
-             }
-           }
-         },
-         "tbl": {
-           "a": {
-             "b": {
-               "c": {
-                 "d": {
-                   "e": {
-                     "type": "integer",
-                     "value": "1"
-                   }
-                 }
-               }
-             }
-           },
-           "x": {
-             "a": {
-               "b": {
-                 "c": {
-                   "d": {
-                     "e": {
-                       "type": "integer",
-                       "value": "1"
-                     }
-                   }
-                 }
-               }
-             }
-           }
          }
        }
 
@@ -496,44 +380,6 @@ python-toml version 65bab75
              }
            }
          },
-         "arr": [
-           {
-             "T": {
-               "a": {
-                 "b": {
-                   "type": "integer",
-                   "value": "1"
-                 }
-               }
-             },
-             "t": {
-               "a": {
-                 "b": {
-                   "type": "integer",
-                   "value": "1"
-                 }
-               }
-             }
-           },
-           {
-             "T": {
-               "a": {
-                 "b": {
-                   "type": "integer",
-                   "value": "2"
-                 }
-               }
-             },
-             "t": {
-               "a": {
-                 "b": {
-                   "type": "integer",
-                   "value": "2"
-                 }
-               }
-             }
-           }
-         ],
          "b": {
            "a": {
              "b": {
@@ -565,68 +411,60 @@ python-toml version 65bab75
                "value": "1"
              }
            }
-         },
-         "inline": {
-           "a": {
-             "b": {
-               "type": "integer",
-               "value": "42"
-             }
-           }
-         },
-         "many": {
-           "dots": {
-             "here": {
-               "dot": {
-                 "dot": {
-                   "dot": {
-                     "a": {
-                       "b": {
-                         "c": {
-                           "type": "integer",
-                           "value": "1"
-                         },
-                         "d": {
-                           "type": "integer",
-                           "value": "2"
-                         }
-                       }
-                     }
-                   }
-                 }
-               }
-             }
-           }
-         },
-         "tbl": {
-           "a": {
-             "b": {
-               "c": {
-                 "d": {
-                   "e": {
-                     "type": "integer",
-                     "value": "1"
-                   }
-                 }
-               }
-             }
-           },
-           "x": {
-             "a": {
-               "b": {
-                 "c": {
-                   "d": {
-                     "e": {
-                       "type": "integer",
-                       "value": "1"
-                     }
-                   }
-                 }
-               }
-             }
-           }
          }
        }
+
+<b>FAIL</b> <b>valid/inline-table/key-dotted-5</b>
+<b> </b>    Traceback (most recent call last):
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>        tdata = toml.loads(sys.stdin.read())
+<b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+<b> </b>        ret = decoder.load_line(line, currentlevel, multikey,
+<b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
+<b> </b>        value, vtype = self.load_value(pair[1], strictly_valid)
+<b> </b>                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 880, in load_value
+<b> </b>        return (self.load_array(v), "array")
+<b> </b>                ^^^^^^^^^^^^^^^^^^
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 1001, in load_array
+<b> </b>        a[b] = a[b] + ',' + a[b + 1]
+<b> </b>                            ~^^^^^^^
+<b> </b>    IndexError: list index out of range
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       arr-1 = [{a.b = 1}]
+       arr-2 = ["str", {a.b = 1}]
+       
+       arr-3 = [{a.b = 1}, {a.b = 2}]
+       arr-4 = ["str", {a.b = 1}, {a.b = 2}]
+
+<b>     output from parser-cmd (stderr):</b>
+       Traceback (most recent call last):
+         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+           tdata = toml.loads(sys.stdin.read())
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+           ret = decoder.load_line(line, currentlevel, multikey,
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
+           value, vtype = self.load_value(pair[1], strictly_valid)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 880, in load_value
+           return (self.load_array(v), "array")
+                   ^^^^^^^^^^^^^^^^^^
+         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 1001, in load_array
+           a[b] = a[b] + ',' + a[b + 1]
+                               ~^^^^^^^
+       IndexError: list index out of range
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
 
 <b>FAIL</b> <b>valid/inline-table/multiline</b>
 <b> </b>    Traceback (most recent call last):
@@ -689,24 +527,80 @@ python-toml version 65bab75
 <b>     want:</b>
           <empty>
 
-<b>FAIL</b> <b>valid/key/dotted</b>
+<b>FAIL</b> <b>valid/key/dotted-1</b>
+<b> </b>    Could not find key "name.last" in parser output.
+
+<b>     input sent to parser-cmd:</b>
+       name.first = "Arthur"
+       "name".'last' = "Dent"
+       
+       many.dots.dot.dot.dot = 42
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "many": {
+           "dots": {
+             "dot": {
+               "dot": {
+                 "dot": {
+                   "type": "integer",
+                   "value": "42"
+                 }
+               }
+             }
+           }
+         },
+         "name": {
+           "'last'": {
+             "type": "string",
+             "value": "Dent"
+           },
+           "first": {
+             "type": "string",
+             "value": "Arthur"
+           }
+         }
+       }
+
+<b>     want:</b>
+       {
+         "many": {
+           "dots": {
+             "dot": {
+               "dot": {
+                 "dot": {
+                   "type": "integer",
+                   "value": "42"
+                 }
+               }
+             }
+           }
+         },
+         "name": {
+           "first": {
+             "type": "string",
+             "value": "Arthur"
+           },
+           "last": {
+             "type": "string",
+             "value": "Dent"
+           }
+         }
+       }
+
+<b>FAIL</b> <b>valid/key/dotted-2</b>
 <b> </b>    Traceback (most recent call last):
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 260, in loads
 <b> </b>        raise TomlDecodeError("Found invalid character in key name: '" +
-<b> </b>    toml.decoder.TomlDecodeError: Found invalid character in key name: '"'. Try quoting the key name. (line 12 column 11 char 245)
+<b> </b>    toml.decoder.TomlDecodeError: Found invalid character in key name: '"'. Try quoting the key name. (line 7 column 11 char 166)
 <b> </b>    
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
        # Note: this file contains literal tab characters.
-       
-       name.first = "Arthur"
-       "name".'last' = "Dent"
-       
-       many.dots.here.dot.dot.dot = 42
        
        # Space are ignored, and key parts can be quoted.
        count.a       = 1
@@ -721,21 +615,6 @@ python-toml version 65bab75
        count 	.	 'j'	   = 10
        "count".k     = 11
        "count" . l   = 12
-       
-       [tbl]
-       a.b.c = 42.666
-       
-       [a.few.dots]
-       polka.dot = "again?"
-       polka.dance-with = "Dot"
-       
-       [[arr]]
-       a.b.c=1
-       a.b.d=2
-       
-       [[arr]]
-       a.b.c=3
-       a.b.d=4
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
@@ -744,7 +623,7 @@ python-toml version 65bab75
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 260, in loads
            raise TomlDecodeError("Found invalid character in key name: '" +
-       toml.decoder.TomlDecodeError: Found invalid character in key name: '"'. Try quoting the key name. (line 12 column 11 char 245)
+       toml.decoder.TomlDecodeError: Found invalid character in key name: '"'. Try quoting the key name. (line 7 column 11 char 166)
        
        Exit 1
 
@@ -2519,8 +2398,8 @@ python-toml version 65bab75
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-12-03 [./src/python-toml/tests/decoding_test.py]: using embedded tests
-  valid tests: 153 passed, 16 failed
+toml-test v2023-12-07 [./src/python-toml/tests/decoding_test.py]: using embedded tests
+  valid tests: 161 passed, 18 failed
 invalid tests: 296 passed, 72 failed
 
 ==> ENCODER TESTS
@@ -2645,6 +2524,113 @@ invalid tests: 296 passed, 72 failed
 <b>     want:</b>
        besttimeever = 17:45:00
        milliseconds = 10:32:00.555
+
+<b>FAIL</b> <b>valid/inline-table/key-dotted-5</b>
+<b> </b>    Traceback (most recent call last):
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+<b> </b>        print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
+<b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+<b> </b>        addtoretval, sections = encoder.dump_sections(o, "")
+<b> </b>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 203, in dump_sections
+<b> </b>        s, d = self.dump_sections(a, sup + qsection)
+<b> </b>               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 193, in dump_sections
+<b> </b>        if not isinstance(o[section], dict):
+<b> </b>                          ~^^^^^^^^^
+<b> </b>    TypeError: string indices must be integers, not 'str'
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "arr-1": [
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           }
+         ],
+         "arr-2": [
+           {
+             "type": "string",
+             "value": "str"
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           }
+         ],
+         "arr-3": [
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "2"
+               }
+             }
+           }
+         ],
+         "arr-4": [
+           {
+             "type": "string",
+             "value": "str"
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "2"
+               }
+             }
+           }
+         ]
+       }
+
+<b>     output from parser-cmd (stderr):</b>
+       Traceback (most recent call last):
+         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+           print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+           addtoretval, sections = encoder.dump_sections(o, "")
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 203, in dump_sections
+           s, d = self.dump_sections(a, sup + qsection)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 193, in dump_sections
+           if not isinstance(o[section], dict):
+                             ~^^^^^^^^^
+       TypeError: string indices must be integers, not 'str'
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
 
 <b>FAIL</b> <b>valid/inline-table/nest</b>
 <b> </b>    Key "arr_arr_tbl_empty" (type "table"):
@@ -3164,94 +3150,96 @@ invalid tests: 296 passed, 72 failed
 
 <b>FAIL</b> <b>valid/string/escapes</b>
 <b> </b>    Values for key "backspace" differ:
-<b> </b>      Expected:     This string has a  backspace character. (string)
-<b> </b>      Your encoder: This string has a x08 backspace character. (string)
+<b> </b>      Expected:     |. (string)
+<b> </b>      Your encoder: |x08. (string)
 
 <b>     input sent to parser-cmd:</b>
        {
          "backslash": {
            "type": "string",
-           "value": "This string has a \\ backslash character."
+           "value": "|\\."
          },
          "backspace": {
            "type": "string",
-           "value": "This string has a \u0008 backspace character."
+           "value": "|\u0008."
          },
          "carriage": {
            "type": "string",
-           "value": "This string has a \r carriage return character."
+           "value": "|\r."
          },
          "delete": {
            "type": "string",
-           "value": "This string has a  delete control code."
+           "value": "|."
          },
          "formfeed": {
            "type": "string",
-           "value": "This string has a \u000c form feed character."
+           "value": "|\u000c."
          },
          "newline": {
            "type": "string",
-           "value": "This string has a \n new line character."
+           "value": "|\n."
          },
          "notunicode1": {
            "type": "string",
-           "value": "This string does not have a unicode \\u escape."
+           "value": "|\\u."
          },
          "notunicode2": {
            "type": "string",
-           "value": "This string does not have a unicode \\u escape."
+           "value": "|\\u."
          },
          "notunicode3": {
            "type": "string",
-           "value": "This string does not have a unicode \\u0075 escape."
+           "value": "|\\u0075."
          },
          "notunicode4": {
            "type": "string",
-           "value": "This string does not have a unicode \\u escape."
+           "value": "|\\u."
          },
          "quote": {
            "type": "string",
-           "value": "This string has a \" quote character."
+           "value": "|\"."
          },
          "tab": {
            "type": "string",
-           "value": "This string has a \t tab character."
+           "value": "|\t."
          },
          "unitseparator": {
            "type": "string",
-           "value": "This string has a \u001f unit separator control code."
+           "value": "|\u001f."
          }
        }
 
 <b>     output from parser-cmd (stdout):</b>
-       backslash = "This string has a \\ backslash character."
-       backspace = "This string has a x08 backspace character."
-       carriage = "This string has a \r carriage return character."
-       delete = "This string has a x7f delete control code."
-       formfeed = "This string has a x0c form feed character."
-       newline = "This string has a \n new line character."
-       notunicode1 = "This string does not have a unicode \\u escape."
-       notunicode2 = "This string does not have a unicode \\u escape."
-       notunicode3 = "This string does not have a unicode \\u0075 escape."
-       notunicode4 = "This string does not have a unicode \\u escape."
-       quote = "This string has a \" quote character."
-       tab = "This string has a \t tab character."
-       unitseparator = "This string has a x1f unit separator control code."
+       backslash = "|\\."
+       backspace = "|x08."
+       carriage = "|\r."
+       delete = "|x7f."
+       formfeed = "|x0c."
+       newline = "|\n."
+       notunicode1 = "|\\u."
+       notunicode2 = "|\\u."
+       notunicode3 = "|\\u0075."
+       notunicode4 = "|\\u."
+       quote = "|\"."
+       tab = "|\t."
+       unitseparator = "|x1f."
 
 <b>     want:</b>
-       backspace = "This string has a \b backspace character."
-       tab = "This string has a \t tab character."
-       newline = "This string has a \n new line character."
-       formfeed = "This string has a \f form feed character."
-       carriage = "This string has a \r carriage return character."
-       quote = "This string has a \" quote character."
-       backslash = "This string has a \\ backslash character."
-       notunicode1 = "This string does not have a unicode \\u escape."
-       notunicode2 = "This string does not have a unicode \u005Cu escape."
-       notunicode3 = "This string does not have a unicode \\u0075 escape."
-       notunicode4 = "This string does not have a unicode \\\u0075 escape."
-       delete = "This string has a \u007F delete control code."
-       unitseparator = "This string has a \u001F unit separator control code."
+       backspace     = "|\b."
+       tab           = "|\t."
+       newline       = "|\n."
+       formfeed      = "|\f."
+       carriage      = "|\r."
+       quote         = "|\"."
+       backslash     = "|\\."
+       delete        = "|\u007F."
+       unitseparator = "|\u001F."
+       
+       # \u is escaped, so should NOT be interperted as a \u escape.
+       notunicode1   = "|\\u."
+       notunicode2   = "|\u005Cu."
+       notunicode3   = "|\\u0075."
+       notunicode4   = "|\\\u0075."
 
 <b>FAIL</b> <b>valid/string/quoted-unicode</b>
 <b> </b>    Values for key "basic_string" differ:
@@ -3397,7 +3385,7 @@ invalid tests: 296 passed, 72 failed
 <b>     want:</b>
           <empty>
 
-toml-test v2023-12-03 [./src/python-toml/tests/encoding_test.py]: using embedded tests
-encoder tests: 157 passed, 12 failed
+toml-test v2023-12-07 [./src/python-toml/tests/encoding_test.py]: using embedded tests
+encoder tests: 166 passed, 13 failed
 took 5.1 2.31
 </pre>

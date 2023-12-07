@@ -769,7 +769,7 @@ ruby-toml-rb version 34ad28e
          }
        }
 
-<b>FAIL</b> <b>valid/inline-table/key-dotted</b>
+<b>FAIL</b> <b>valid/inline-table/key-dotted-2</b>
 <b> </b>    /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/inline_table.rb:15:in `block (2 levels) in value': Key "a" is defined more than once (TomlRB::ValueOverwriteError)
 <b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/inline_table.rb:15:in `merge!'
 <b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/inline_table.rb:15:in `block in value'
@@ -790,29 +790,7 @@ ruby-toml-rb version 34ad28e
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
-       inline = {a.b = 42}
-       
        many.dots.here.dot.dot.dot = {a.b.c = 1, a.b.d = 2}
-       
-       a = {   a.b  =  1   }
-       b = {   "a"."b"  =  1   }
-       c = {   a   .   b  =  1   }
-       d = {   'a'   .   "b"  =  1   }
-       e = {a.b=1}
-       
-       [tbl]
-       a.b.c = {d.e=1}
-       
-       [tbl.x]
-       a.b.c = {d.e=1}
-       
-       [[arr]]
-       t = {a.b=1}
-       T = {a.b=1}
-       
-       [[arr]]
-       t = {a.b=2}
-       T = {a.b=2}
 
 <b>     output from parser-cmd (stderr):</b>
        /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/inline_table.rb:15:in `block (2 levels) in value': Key "a" is defined more than once (TomlRB::ValueOverwriteError)
@@ -828,6 +806,58 @@ ruby-toml-rb version 34ad28e
        	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:14:in `block in initialize'
        	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:14:in `each'
        	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:14:in `initialize'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `new'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `parse'
+       	from ./src/ruby-toml-rb/ruby-toml-rb-decoder:38:in `<main>'
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>valid/inline-table/key-dotted-5</b>
+<b> </b>    /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:16:in `rescue in initialize': Failed to parse input on line 2 at offset 16 (TomlRB::ParseError)
+<b> </b>    arr-2 = ["str", {a.b = 1}]
+<b> </b>    
+<b> </b>                    ^
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:12:in `initialize'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `new'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `parse'
+<b> </b>    	from ./src/ruby-toml-rb/ruby-toml-rb-decoder:38:in `<main>'
+<b> </b>    /home/martin/.cache/gem/ruby/3.2.0/gems/citrus-3.0.2/lib/citrus.rb:669:in `parse': Failed to parse input on line 2 at offset 16 (Citrus::ParseError)
+<b> </b>    arr-2 = ["str", {a.b = 1}]
+<b> </b>    
+<b> </b>                    ^
+<b> </b>    	from /home/martin/.cache/gem/ruby/3.2.0/gems/citrus-3.0.2/lib/citrus.rb:392:in `parse'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:13:in `initialize'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `new'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `parse'
+<b> </b>    	from ./src/ruby-toml-rb/ruby-toml-rb-decoder:38:in `<main>'
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       arr-1 = [{a.b = 1}]
+       arr-2 = ["str", {a.b = 1}]
+       
+       arr-3 = [{a.b = 1}, {a.b = 2}]
+       arr-4 = ["str", {a.b = 1}, {a.b = 2}]
+
+<b>     output from parser-cmd (stderr):</b>
+       /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:16:in `rescue in initialize': Failed to parse input on line 2 at offset 16 (TomlRB::ParseError)
+       arr-2 = ["str", {a.b = 1}]
+       
+                       ^
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:12:in `initialize'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `new'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `parse'
+       	from ./src/ruby-toml-rb/ruby-toml-rb-decoder:38:in `<main>'
+       /home/martin/.cache/gem/ruby/3.2.0/gems/citrus-3.0.2/lib/citrus.rb:669:in `parse': Failed to parse input on line 2 at offset 16 (Citrus::ParseError)
+       arr-2 = ["str", {a.b = 1}]
+       
+                       ^
+       	from /home/martin/.cache/gem/ruby/3.2.0/gems/citrus-3.0.2/lib/citrus.rb:392:in `parse'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:13:in `initialize'
        	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `new'
        	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `parse'
        	from ./src/ruby-toml-rb/ruby-toml-rb-decoder:38:in `<main>'
@@ -1220,21 +1250,6 @@ ruby-toml-rb version 34ad28e
 <b>     input sent to parser-cmd:</b>
        # NOTE: this file includes some literal tab characters.
        
-       multiline_empty_one = """"""
-       
-       # A newline immediately following the opening delimiter will be trimmed.
-       multiline_empty_two = """
-       """
-       
-       # \ at the end of line trims newlines as well; note that last \ is followed by
-       # two spaces, which are ignored.
-       multiline_empty_three = """\
-           """
-       multiline_empty_four = """\
-          \
-          \  
-          """
-       
        equivalent_one = "The quick brown fox jumps over the lazy dog."
        equivalent_two = """
        The quick brown \
@@ -1270,6 +1285,55 @@ ruby-toml-rb version 34ad28e
        
        escape-bs-3 = """a \\\\
          b"""
+
+<b>     output from parser-cmd (stderr):</b>
+       /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:38:in `parse_error': Escape sequence \  is reserved (TomlRB::ParseError)
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:30:in `block in transform_escaped_chars'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:28:in `gsub'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:28:in `transform_escaped_chars'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:56:in `value'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/keyvalue.rb:55:in `value'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:14:in `map'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:14:in `initialize'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `new'
+       	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `parse'
+       	from ./src/ruby-toml-rb/ruby-toml-rb-decoder:38:in `<main>'
+       
+       Exit 1
+
+<b>     want:</b>
+          <empty>
+
+<b>FAIL</b> <b>valid/string/multiline-empty</b>
+<b> </b>    /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:38:in `parse_error': Escape sequence \  is reserved (TomlRB::ParseError)
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:30:in `block in transform_escaped_chars'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:28:in `gsub'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:28:in `transform_escaped_chars'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:56:in `value'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/keyvalue.rb:55:in `value'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:14:in `map'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/parser.rb:14:in `initialize'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `new'
+<b> </b>    	from /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb.rb:47:in `parse'
+<b> </b>    	from ./src/ruby-toml-rb/ruby-toml-rb-decoder:38:in `<main>'
+<b> </b>    
+<b> </b>    Exit 1
+
+<b>     input sent to parser-cmd:</b>
+       empty-1 = """"""
+       
+       # A newline immediately following the opening delimiter will be trimmed.
+       empty-2 = """
+       """
+       
+       # \ at the end of line trims newlines as well; note that last \ is followed by
+       # two spaces, which are ignored.
+       empty-3 = """\
+           """
+       empty-4 = """\
+          \
+          \  
+          """
 
 <b>     output from parser-cmd (stderr):</b>
        /home/martin/code/toml/toml-test-matrix/src/ruby-toml-rb/lib/toml-rb/string.rb:38:in `parse_error': Escape sequence \  is reserved (TomlRB::ParseError)
@@ -3024,8 +3088,8 @@ ruby-toml-rb version 34ad28e
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-12-03 [./src/ruby-toml-rb/ruby-toml-rb-decoder]: using embedded tests
-  valid tests: 144 passed, 25 failed
+toml-test v2023-12-07 [./src/ruby-toml-rb/ruby-toml-rb-decoder]: using embedded tests
+  valid tests: 152 passed, 27 failed
 invalid tests: 278 passed, 90 failed
 
 ==> ENCODER TESTS
@@ -3810,6 +3874,98 @@ invalid tests: 278 passed, 90 failed
        infinity = inf
        infinity_neg = -inf
        infinity_plus = +inf
+
+<b>FAIL</b> <b>valid/inline-table/key-dotted-5</b>
+<b> </b>    decode TOML from encoder:
+<b> </b>      toml: line 1 (last key "arr-2.a"): expected value but found '>' instead
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "arr-1": [
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           }
+         ],
+         "arr-2": [
+           {
+             "type": "string",
+             "value": "str"
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           }
+         ],
+         "arr-3": [
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "2"
+               }
+             }
+           }
+         ],
+         "arr-4": [
+           {
+             "type": "string",
+             "value": "str"
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "1"
+               }
+             }
+           },
+           {
+             "a": {
+               "b": {
+                 "type": "integer",
+                 "value": "2"
+               }
+             }
+           }
+         ]
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       arr-2 = ["str", {"a"=>{"b"=>1}}]
+       arr-4 = ["str", {"a"=>{"b"=>1}}, {"a"=>{"b"=>2}}]
+       [[arr-1]]
+       [arr-1.a]
+       b = 1
+       [[arr-3]]
+       [arr-3.a]
+       b = 1
+       [[arr-3]]
+       [arr-3.a]
+       b = 2
+
+<b>     want:</b>
+       arr-1 = [{a.b = 1}]
+       arr-2 = ["str", {a.b = 1}]
+       
+       arr-3 = [{a.b = 1}, {a.b = 2}]
+       arr-4 = ["str", {a.b = 1}, {a.b = 2}]
 
 <b>FAIL</b> <b>valid/inline-table/nest</b>
 <b> </b>    decode TOML from encoder:
@@ -4954,7 +5110,7 @@ invalid tests: 278 passed, 90 failed
        [a.'']
        x = 3
 
-toml-test v2023-12-03 [./src/ruby-toml-rb/ruby-toml-rb-encoder]: using embedded tests
-encoder tests: 136 passed, 33 failed
+toml-test v2023-12-07 [./src/ruby-toml-rb/ruby-toml-rb-encoder]: using embedded tests
+encoder tests: 145 passed, 34 failed
 took 77.8 199.80
 </pre>
