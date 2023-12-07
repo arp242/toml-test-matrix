@@ -4,6 +4,9 @@ setup() {
 	dart pub get
 	dart compile exe -o build/bin/decoder bin/decoder.dart
 	dart compile exe -o build/bin/encoder bin/encoder.dart
+
+	cp ../../scripts/dart-toml.dart-perf.dart ./perf.dart
+	dart compile exe -o perf perf.dart
 }
 
 typeset -A info=(
@@ -13,6 +16,5 @@ typeset -A info=(
 	src     'git@github.com:just95/toml.dart.git'
 	decoder 'build/bin/decoder'
 	encoder 'build/bin/encoder'
-	perf    'TODO'
+	perf    'perf'
 )
-
