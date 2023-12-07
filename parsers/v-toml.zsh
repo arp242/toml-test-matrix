@@ -1,6 +1,6 @@
-setup() {
-	:
-}
+deps() { print 'v' }
+
+setup() { }
 
 typeset -A info=(
 	# TODO: doesn't seem too hard to add, but not easily installable as a

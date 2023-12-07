@@ -1,5 +1,6 @@
+deps() { print 'dart' }
+
 setup() {
-	export PATH=$PATH:~/.local/dart-sdk/bin
 	mkdir -p build/bin
 	dart pub get
 	dart compile exe -o build/bin/decoder bin/decoder.dart
@@ -8,6 +9,8 @@ setup() {
 	cp ../../scripts/dart-toml.dart-perf.dart ./perf.dart
 	dart compile exe -o perf perf.dart
 }
+
+export PATH=$PATH:~/.local/dart-sdk/bin
 
 typeset -A info=(
 	lang    'Dart'

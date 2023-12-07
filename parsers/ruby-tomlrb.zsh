@@ -1,3 +1,5 @@
+deps() { print 'ruby bundle' }
+
 setup() {
 	bundle
 	cp ../../scripts/ruby-tomlrb-decoder .

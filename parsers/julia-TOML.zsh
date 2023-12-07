@@ -1,3 +1,5 @@
+deps() { print 'julia' }
+
 setup() {
 	print $'import Pkg;\nPkg.add("JSON");\n' >|toml-test-setup.jl
 	julia toml-test-setup.jl

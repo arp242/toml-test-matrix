@@ -1,3 +1,5 @@
+deps() { print 'node' }
+
 setup() {
 	cp ../../scripts/js-iarna-toml-* .
 }

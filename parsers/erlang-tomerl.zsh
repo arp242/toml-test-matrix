@@ -1,3 +1,5 @@
+deps() { print 'rebar3 erl' }
+
 setup() {
 	rebar3 compile
 }

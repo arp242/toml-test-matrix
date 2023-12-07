@@ -1,3 +1,5 @@
+deps() { print 'cabal' }
+
 setup() {
 	cabal update
 

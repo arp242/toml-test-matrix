@@ -1,3 +1,5 @@
+deps() { print 'ros' }
+
 setup() {
 	cd roswell
 	ros build decoder.ros
@@ -12,4 +14,3 @@ typeset -A info=(
 	encoder ''
 	perf    'TODO'
 )
-

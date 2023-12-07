@@ -1,4 +1,4 @@
-# tomli is stdlib's tomllib, but that doesn't include the writer.
+deps() { print 'python git' }
 
 setup() {
 	cd src

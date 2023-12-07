@@ -1,3 +1,5 @@
+deps() { print 'dotnet' }
+
 setup() {
 	(
 		if [[ ! -d cs-tomlyn-decoder ]]; then

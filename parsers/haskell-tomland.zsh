@@ -1,6 +1,6 @@
-setup() {
-	:
-}
+deps() { print 'cabal' }
+
+setup() { }
 
 typeset -A info=(
 	# TODO: this doesn't seem to have anything for integrating with toml-tets.

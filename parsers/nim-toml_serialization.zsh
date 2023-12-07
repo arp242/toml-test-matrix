@@ -1,3 +1,5 @@
+deps() { print 'nim nimble' }
+
 setup() {
 	nimble install -y --depsOnly
 	nimble install -y stint

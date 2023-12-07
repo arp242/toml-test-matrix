@@ -1,3 +1,5 @@
+deps() { print 'cc make' }
+
 setup() {
 	make
 	cp ../../scripts/c-tomlc99-perf.c .

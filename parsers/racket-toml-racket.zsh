@@ -1,3 +1,5 @@
+deps() { print 'raco racket' }
+
 setup() {
 	# This needs this directory name, otherwise 'raco pkg install' refuses to
 	# work.

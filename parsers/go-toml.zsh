@@ -1,3 +1,5 @@
+deps() { print 'go' }
+
 setup() {
 	go build ./cmd/toml-test-decoder
 	go build ./cmd/toml-test-encoder

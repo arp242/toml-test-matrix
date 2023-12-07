@@ -1,3 +1,5 @@
+deps() { print 'meson' }
+
 setup() {
 	cp ../../scripts/fortran-toml-f-perf.f90 ./test/compliance/
 

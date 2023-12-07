@@ -5,13 +5,7 @@ https://github.com/toml-lang/toml/wiki
 
 Adding a parser
 ---------------
-- Add `parser/name.zsh`; the naming convention is "[language]-[pkg-name].zsh".
-
-- Put commands to build the decoder binary in `setup()`, or add a script in
-  `scripts`. It needs to implement the JSON protocol for toml-test, as described
-  at https://github.com/toml-lang/toml-test#implementing-a-decoder
-
-- Fill in the `info` array.
+See `new-parser.zsh` for a template with instructions.
 
 Running it
 ----------

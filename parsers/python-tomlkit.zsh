@@ -1,6 +1,6 @@
-setup() {
-	:
-}
+deps() { print 'python' }
+
+setup() { }
 
 export PYTHONPATH=./src/python-tomlkit
 

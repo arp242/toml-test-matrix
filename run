@@ -55,7 +55,7 @@ do_run() {
 				perf=($perf[2] $perf[3])
 			fi
 			print '<pre>' >|$out
-			print "$name version $info[version]" >>$out
+			print "${name#*-} version $info[version]" >>$out
 
 			dec=$info[decoder]
 			[[ $dec[1] != '.' && ! $dec =~ ' ' ]] && dec=./src/$name/$dec
@@ -314,32 +314,23 @@ do_gen() {
 		<body>
 		<div class="page intro">
 		<p>This tests various parsers agains the
-		<a href="https://github.com/toml-lang/toml-test">toml-test</a>
-		suite. It doesn't include all parsers (yet), see
-		<a href="https://github.com/toml-lang/toml/wiki">the wiki</a>
-		for a full list.</p>
+		<a href="https://github.com/toml-lang/toml-test">toml-test</a> suite.</p>
 
-		<p>There are three kinds of tests: "decoder tests" test if valid TOML
-		documents are processed correctly, "encoder tests" tests writing TOML
-		files (if supported), and "invalid input" tests that the parser rejects
-		invalid TOML documents. Implementations are marked as "compliant" (✅)
-		if both the "valid" and "encoder" tests pass, otherwise they're marked
-		as non-compliant (❌). Usually it's not a huge deal to accept some
-		technically invalid TOML, especially since almost all failing "invalid"
-		tests are uncommon edge cases.</p>
+		<p>"Decoder tests" check if valid TOML documents are processed
+		correctly, "encoder tests" checks writing TOML files, and "invalid
+		input" checks that the parser rejects invalid TOML documents.
+		Implementations are marked as "compliant" (✅) if both the "valid" and
+		"encoder" tests pass, otherwise they're marked as non-compliant (❌).
+		Usually it's not a big deal to accept some technically invalid TOML;
+		almost all failing "invalid" tests are uncommon edge cases.</p>
 
 		<p>The benchmarks are a simple decode of a 15k and 5M file. Results
 		aren't necessarily fair as some implementations will parse numbers,
-		dates, etc. when reading the file, and others when the data is used. The
-		benchmarks are also simplistic: it just runs once on my laptop. The
-		results are roughly consistent, but do have some margin of error (±20%
-		or so for the 15k file). Still, it should be a decent rough comparison.
-		If performance is of prime concern you should run your own benchmarks
-		based on your real-world use case in any case.</p>
-
-		<p><strong>Not yet finished! Some parsers may show false test failures
-		due to bugs in the integration with toml-test. This is still a work in
-		progress.</strong></p>
+		dates, etc. when reading the file, and others delay this parsing until
+		the data is used. It's only intended as a rough comparison and
+		demonstration that a parser isn't atrociously slow. If performance is of
+		prime concern then you should run your own benchmarks based on your
+		real-world use case in any case.</p>
 		</div>
 
 		<div class="page">

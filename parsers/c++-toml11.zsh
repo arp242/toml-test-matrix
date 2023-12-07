@@ -1,3 +1,5 @@
+deps() { print 'c++ curl' }
+
 # C++ compiler is slower than a blind crippled tortoise, so we need all these
 # stupid tricks if we don't want to wait 40 seconds...
 setup() {

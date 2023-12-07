@@ -1,3 +1,5 @@
+deps() { print 'guile git' }
+
 setup() {
 	if [[ -d guile-json ]]; then
 		(cd guile-json && git pull)

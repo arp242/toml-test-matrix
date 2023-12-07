@@ -1,3 +1,5 @@
+deps() { print 'cabal' }
+
 setup() {
 	# Note: Needs cabal 3.10 (or 3.8?) for --prefer oldest. 3.6 is too old at least.
 	cabal update

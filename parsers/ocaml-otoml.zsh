@@ -1,3 +1,5 @@
+deps() { print 'ocaml opam' }
+
 setup() {
 	eval $(opam env)
 	opam -y pin --with-test add .

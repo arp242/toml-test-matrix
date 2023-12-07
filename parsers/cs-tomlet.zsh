@@ -1,6 +1,6 @@
-setup() {
-	:
-}
+deps() { print 'dotnet' }
+
+setup() { }
 
 typeset -A info=(
 	# TODO: doesn't contain anything for toml-test

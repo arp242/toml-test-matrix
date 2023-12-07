@@ -1,3 +1,5 @@
+deps() { print 'node npm' }
+
 setup() {
 	npm install
 	npm run build

@@ -1,6 +1,6 @@
-setup() {
-	print
-}
+deps() { print 'python' }
+
+setup() { }
 
 typeset -A info=(
 	lang    'Python'

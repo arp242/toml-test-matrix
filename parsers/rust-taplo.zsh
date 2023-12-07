@@ -1,3 +1,5 @@
+deps() { print 'cargo rustc' }
+
 setup() {
 	cd scripts
 	cargo build --release

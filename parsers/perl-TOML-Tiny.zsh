@@ -1,6 +1,6 @@
-setup() {
-	:
-}
+deps() { print 'perl' }
+
+setup() { }
 
 typeset -A info=(
 	# TODO: this tests against toml-test by converting the JSON files to Perl
