@@ -1,60 +1,11 @@
 <pre>
-toml-parser version 112e649
+toml-parser version e486a99
 toml-test v2023-12-07 [./src/haskell-toml-parser/TomlDecoder]: using embedded tests
   valid tests: 179 passed,  0 failed
 invalid tests: 368 passed,  0 failed
 
 ==> ENCODER TESTS
-<b>FAIL</b> <b>valid/datetime/edge</b>
-<b> </b>    decode TOML from encoder:
-<b> </b>      toml: line 1 (last key "first-date"): invalid datetime: "1-01-01"
-
-<b>     input sent to parser-cmd:</b>
-       {
-         "first-date": {
-           "type": "date-local",
-           "value": "0001-01-01"
-         },
-         "first-local": {
-           "type": "datetime-local",
-           "value": "0001-01-01T00:00:00"
-         },
-         "first-offset": {
-           "type": "datetime",
-           "value": "0001-01-01T00:00:00Z"
-         },
-         "last-date": {
-           "type": "date-local",
-           "value": "9999-12-31"
-         },
-         "last-local": {
-           "type": "datetime-local",
-           "value": "9999-12-31T23:59:59"
-         },
-         "last-offset": {
-           "type": "datetime",
-           "value": "9999-12-31T23:59:59Z"
-         }
-       }
-
-<b>     output from parser-cmd (stdout):</b>
-       first-date = 1-01-01
-       first-local = 1-01-01T00:00:00
-       first-offset = 1-01-01T00:00:00Z
-       last-date = 9999-12-31
-       last-local = 9999-12-31T23:59:59
-       last-offset = 9999-12-31T23:59:59Z
-
-<b>     want:</b>
-       first-offset = 0001-01-01 00:00:00Z
-       first-local  = 0001-01-01 00:00:00
-       first-date   = 0001-01-01
-       
-       last-offset = 9999-12-31 23:59:59Z
-       last-local  = 9999-12-31 23:59:59
-       last-date   = 9999-12-31
-
 toml-test v2023-12-07 [./src/haskell-toml-parser/TomlEncoder]: using embedded tests
-encoder tests: 178 passed,  1 failed
+encoder tests: 179 passed,  0 failed
 took 0.0 0.0
 </pre>
