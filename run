@@ -135,6 +135,8 @@ do_perf() {
 			dist_5M=(9999 0)
 			took_perf10k=$($=perf $tmp10k 2>&/dev/null || print -1)
 			took_perf5M=$($=perf $tmp5M   2>&/dev/null || print -1)
+			took_perf10k=${took_perf10k%s}
+			took_perf5M=${took_perf5M%s}
 			if (( $took_perf10k == -1 )); then
 				took_perf10k='(error)'; dist_10k=(0 0)
 			fi
@@ -148,6 +150,7 @@ do_perf() {
 
 				for (( i=0; i<$n_10k; i++ )); do
 					r=$($=perf $tmp10k 2>&/dev/null || print -1)
+					r=${r%s}
 					if (( $r == -1 )); then
 						took_perf10k='(error)'; dist_10k=(0 0)
 						break
@@ -168,6 +171,7 @@ do_perf() {
 				all=($took_perf5M)
 				for (( i=0; i<$n_5M; i++ )); do
 					r=$($=perf $tmp5M 2>&/dev/null || print -1)
+					r=${r%s}
 					if (( $r == -1 )); then
 						took_perf5M='(error)'; dist_5M=(0 0)
 						break
