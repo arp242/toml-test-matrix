@@ -6,12 +6,13 @@ setup() {
 		    buildable: True
 		    main-is: perf.hs
 		    default-language: Haskell2010
-		    build-depends: base, toml-reader, time
+		    build-depends: base, toml-reader, time, text
 		    hs-source-dirs: perf
 	EOF
 	mkdir -p perf
 	cat >|perf/perf.hs <<-'EOF'
 		import Control.Exception (evaluate)
+		import qualified Data.Text as Text
 		import Data.Time (diffUTCTime, getCurrentTime)
 		import System.Environment (getArgs)
 		import TOML.Parser (parseTOML)
@@ -25,7 +26,7 @@ setup() {
 		    txt <- readFile filename
 		    evaluate (length txt) -- readFile uses lazy IO, force it to load
 		    start <- getCurrentTime
-		    evaluate (parseTOML txt)
+		    evaluate (parseTOML filename (Text.pack txt))
 		    stop <- getCurrentTime
 		    print (stop `diffUTCTime` start)
 	EOF
