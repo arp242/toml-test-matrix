@@ -1,42 +1,32 @@
 name: 'test'
-on:
-  push:
-  #schedule:
-  #  - cron: 0 1 * * MON
-
+on:   ['push']
 jobs:
   test:
     runs-on: 'ubuntu-latest'
     steps:
-    - uses: 'actions/checkout@v3'
-
-    - uses: 'Bogdanp/setup-racket@v1.11'
-      with: {version: 'stable'}
-
-    - uses: 'ocaml/setup-ocaml@v2'
-      with: {ocaml-compiler: '4.14'}
-
-    - uses: 'ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1'
-      with: {ruby-version: '3.2'}
-
-    - uses: 'actions/setup-python@v5'
-      with: {python-version: '3.12'}
-
-    - uses: 'guenchi/setup-scheme@master'
-      with: {implementation: 'guile'}
-
-    - uses: 'dart-lang/setup-dart@v1'
-
+    - uses: actions/checkout@v3
     - run: |
         go install github.com/toml-lang/toml-test/cmd/toml-test@master
-
     - name: 'install'
       run: |
         sudo apt-get update
-        sudo apt-get install zsh ninja-build
+        sudo apt-get install zsh \
+          ninja-build \
+          python3-pip \
+          bundler \
+          opam \
+          guile-2.2 \
+          racket
 
         # Meson from Ubuntu is too old.
         pip3 install --user meson
+
+        # Dart
+        sudo apt-get install apt-transport-https
+        wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/dart.gpg
+        echo 'deb [signed-by=/usr/share/keyrings/dart.gpg arch=amd64] https://storage.googleapis.com/download.dartlang.org/linux/debian stable main' | sudo tee /etc/apt/sources.list.d/dart_stable.list
+        sudo apt-get update
+        sudo apt-get install dart
 
         # Roswell
         (
@@ -44,13 +34,11 @@ jobs:
           curl -Ls https://github.com/roswell/roswell/releases/download/v23.10.14.114/roswell-23.10.14.114-linux-x86_64.tar.bz2 |
             tar xjf -
         )
-
     - name: 'setup'
       run: |
         export PATH=$PATH:"$HOME/roswell":"$(go env GOPATH)/bin"
         ./run check || exit 1
         ./run setup || exit 1
-
     - name: 'run'
       run: |
         export PATH=$PATH:"$HOME/roswell":"$(go env GOPATH)/bin"
