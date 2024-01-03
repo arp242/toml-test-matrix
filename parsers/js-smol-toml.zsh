@@ -12,7 +12,7 @@ typeset -A info=(
 	lang    'JS'
 	toml    '1.0'
 	site    'https://github.com/squirrelchat/smol-toml'
-	src     'git@github.com:squirrelchat/smol-toml.git'
+	src     'https://github.com/squirrelchat/smol-toml.git'
 	decoder 'toml-test-parse.js'
 	encoder 'toml-test-encode.js'
 	perf    'js-smol-toml-perf.js'

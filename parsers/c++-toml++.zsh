@@ -13,7 +13,7 @@ typeset -A info=(
 	lang    'C++'
 	toml    '1.0'
 	site    'https://github.com/marzer/tomlplusplus'
-	src     'git@github.com:marzer/tomlplusplus.git'
+	src     'https://github.com/marzer/tomlplusplus.git'
 	decoder 'build_tt/toml-test/tt_decoder'
 	encoder 'build_tt/toml-test/tt_encoder'
 	perf    'build_tt/perf'

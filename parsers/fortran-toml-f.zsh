@@ -3,7 +3,7 @@ deps() { print 'meson' }
 setup() {
 	cp ../../scripts/fortran-toml-f-perf.f90 ./test/compliance/
 
-	grep perf_exe ./test/compliance/meson.build || cat >./test/compliance/meson.build <<-EOF
+	grep perf_exe ./test/compliance/meson.build || cat >>./test/compliance/meson.build <<-EOF
 		perf_exe = executable('perf',
 			sources: files('fortran-toml-f-perf.f90'),
 			dependencies: tomlf_dep,
@@ -23,7 +23,7 @@ typeset -A info=(
 	lang    'Fortran'
 	toml    '1.0'
 	site    'https://github.com/toml-f/toml-f'
-	src     'git@github.com:toml-f/toml-f.git'
+	src     'https://github.com/toml-f/toml-f.git'
 	decoder '_build/test/compliance/toml2json'
 	encoder '_build/test/compliance/json2toml'
 	perf    '_build/test/compliance/perf'

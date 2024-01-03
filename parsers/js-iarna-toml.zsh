@@ -9,7 +9,7 @@ typeset -A info=(
 	lang    'JS'
 	toml    '1.0'
 	site    'https://github.com/iarna/iarna-toml'
-	src     'git@github.com:iarna/iarna-toml.git'
+	src     'https://github.com/iarna/iarna-toml.git'
 	decoder 'js-iarna-toml-decode'
 	encoder 'js-iarna-toml-encode'
 	perf    'js-iarna-toml-perf'

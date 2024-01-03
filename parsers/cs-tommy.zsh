@@ -25,7 +25,7 @@ typeset -A info=(
 	lang    'C#'
 	toml    '1.0'
 	site    'https://github.com/dezhidki/Tommy'
-	src     'git@github.com:dezhidki/Tommy.git'
+	src     'https://github.com/dezhidki/Tommy.git'
 	version '3.1.2'
 	decoder ''
 	encoder 'TODO'

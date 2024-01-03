@@ -11,6 +11,13 @@ setup() {
 	# Run configure, build binaries, etc.
 }
 
+# Run after completion, mostly to ensure output/[name].html is stable between
+# runs (e.g. by removing memory addresses from stack traces).
+#
+# Should rarely be needed.
+# after-run() {
+# }
+
 typeset -A info=(
 	# Language name.
 	lang    'MyLang'

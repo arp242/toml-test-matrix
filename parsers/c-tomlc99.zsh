@@ -10,7 +10,7 @@ typeset -A info=(
 	lang    'C'
 	toml    '1.0'
 	site    'https://github.com/cktan/tomlc99'
-	src     'git@github.com:cktan/tomlc99.git'
+	src     'https://github.com/cktan/tomlc99.git'
 	decoder 'toml_json'
 	encoder ''
 	perf    'perf'

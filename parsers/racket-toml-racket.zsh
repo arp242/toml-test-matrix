@@ -5,7 +5,7 @@ setup() {
 	# work.
 	cd src
 	if [[ ! -d toml-racket ]]; then
-		git clone 'git@github.com:toml-racket/toml-racket.git'
+		git clone 'https://github.com/toml-racket/toml-racket.git'
 	else
 		(cd toml-racket && git pull ||:)
 	fi
@@ -23,7 +23,7 @@ typeset -A info=(
 	lang    'Racket'
 	toml    '1.0'
 	site    'https://github.com/toml-racket/toml-racket'
-	src     '' # git@github.com:toml-racket/toml-racket.git'
+	src     '' # https://github.com/toml-racket/toml-racket.git'
 	decoder 'toml-compliance/compliance/decoder'
 	encoder 'toml-compliance/compliance/encoder'
 	perf    'TODO'

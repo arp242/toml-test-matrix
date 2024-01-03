@@ -16,7 +16,7 @@ typeset -A info=(
 	lang    'Dart'
 	toml    '1.0'
 	site    'https://github.com/just95/toml.dart'
-	src     'git@github.com:just95/toml.dart.git'
+	src     'https://github.com/just95/toml.dart.git'
 	decoder 'build/bin/decoder'
 	encoder 'build/bin/encoder'
 	perf    'perf'

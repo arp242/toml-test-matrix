@@ -31,7 +31,7 @@ typeset -A info=(
 	lang    'C++'
 	toml    '1.0'
 	site    'https://github.com/ToruNiina/toml11'
-	src     'git@github.com:ToruNiina/toml11.git'
+	src     'https://github.com/ToruNiina/toml11.git'
 	decoder 'check_toml_test'
 	encoder 'TODO'
 	perf    'perf'

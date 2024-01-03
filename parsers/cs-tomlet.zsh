@@ -9,7 +9,7 @@ typeset -A info=(
 	lang    'C#'
 	toml    '1.0'
 	site    'https://github.com/SamboyCoding/Tomlet'
-	src     'git@github.com:SamboyCoding/Tomlet.git'
+	src     'https://github.com/SamboyCoding/Tomlet.git'
 	version ''
 	decoder ''
 	encoder ''

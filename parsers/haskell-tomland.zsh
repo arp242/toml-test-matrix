@@ -9,7 +9,7 @@ typeset -A info=(
 	lang    'Haskell'
 	toml    '1.0'
 	site    'https://github.com/kowainik/tomland'
-	src     'git@github.com:kowainik/tomland.git'
+	src     'https://github.com/kowainik/tomland.git'
 	decoder ''
 	encoder 'TODO'
 	perf    ''
