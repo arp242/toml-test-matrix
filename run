@@ -7,6 +7,8 @@ zmodload zsh/datetime
 only=
 
 do_setup() {
+	# Get source.
+	job=()
 	for f in ./parsers/*.zsh; do
 		name=$f:t:r
 		[[ -n $only && $name != $only ]] && continue
@@ -15,7 +17,36 @@ do_setup() {
 			source $f
 			(( ${info[skip]:-0} )) && continue
 
-			print -n "$name: "
+			check-deps || exit 1
+
+			cd src
+			if [[ -n $info[src] ]]; then
+				err=
+				if [[ ! -d $name ]]; then
+					git clone $info[src] $name >/dev/null
+				else
+					cd $name && git pull >/dev/null
+				fi
+			fi
+		) &
+		job+=($!)
+	done
+	# Explicitly wait so we can exit on errors; just "wait" won't return 1 if
+	# one of the jobs failed.
+	for j in $job; do
+		wait $j
+	done
+
+	# Compile
+	for f in ./parsers/*.zsh; do
+		name=$f:t:r
+		[[ -n $only && $name != $only ]] && continue
+
+		(
+			source $f
+			(( ${info[skip]:-0} )) && continue
+
+			print -n "== $name: "
 			check-deps || exit 1
 
 			if [[ -n $info[src] ]]; then

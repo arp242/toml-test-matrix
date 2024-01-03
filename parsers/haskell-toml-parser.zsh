@@ -3,7 +3,7 @@ deps() { print 'cabal' }
 setup() {
 	cabal update
 
-	grep 'buildable: False' &&
+	grep 'buildable: False' toml-parser.cabal &&
 		sed -i.orig 's/buildable: False/buildable: True/' toml-parser.cabal
 
 	cd test-drivers
