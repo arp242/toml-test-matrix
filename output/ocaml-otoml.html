@@ -68,7 +68,7 @@ otoml version 970e114
 
 <b>     input sent to parser-cmd:</b>
        a = [{ b = 1 }]
-       
+
        # Cannot extend tables within static arrays
        # https://github.com/toml-lang/toml/issues/908
        [a.c]
@@ -86,7 +86,7 @@ otoml version 970e114
 <b>     input sent to parser-cmd:</b>
        # INVALID TOML DOC
        fruit = []
-       
+
        [[fruit]] # Not allowed
 
 <b>     output from parser-cmd (stderr):</b>
@@ -102,10 +102,10 @@ otoml version 970e114
        # INVALID TOML DOC
        [[fruit]]
          name = "apple"
-       
+
          [[fruit.variety]]
            name = "red delicious"
-       
+
          # This table conflicts with the previous table
          [fruit.variety]
            name = "granny smith"
@@ -283,7 +283,7 @@ otoml version 970e114
 
 <b>     input sent to parser-cmd:</b>
        inline-t = { nest = {} }
-       
+
        [[inline-t.nest]]
 
 <b>     output from parser-cmd (stdout):</b>
@@ -301,7 +301,7 @@ otoml version 970e114
 
 <b>     input sent to parser-cmd:</b>
        inline-t = { nest = {} }
-       
+
        [inline-t.nest]
 
 <b>     output from parser-cmd (stdout):</b>
@@ -369,7 +369,7 @@ otoml version 970e114
 <b>     input sent to parser-cmd:</b>
        [tab.nested]
        inline-t = { nest = {} }
-       
+
        [tab]
        nested.inline-t.nest = 2
 
@@ -556,10 +556,10 @@ otoml version 970e114
        [fruit]
        apple.color = "red"
        apple.taste.sweet = true
-       
+
        [fruit.apple]  # INVALID
        # [fruit.apple.taste]  # INVALID
-       
+
        [fruit.apple.texture]  # you can add sub-tables
        smooth = true
 
@@ -597,10 +597,10 @@ otoml version 970e114
        [fruit]
        apple.color = "red"
        apple.taste.sweet = true
-       
+
        # [fruit.apple]  # INVALID
        [fruit.apple.taste]  # INVALID
-       
+
        [fruit.apple.texture]  # you can add sub-tables
        smooth = true
 
@@ -670,7 +670,7 @@ otoml version 970e114
 
 <b>     input sent to parser-cmd:</b>
        [[a.b]]
-       
+
        [a]
        b.y = 2
 
@@ -703,13 +703,13 @@ otoml version 970e114
        #
        # While this makes sense, logically, it was decided this is not valid TOML as
        # it's too confusing/convoluted.
-       # 
+       #
        # See: https://github.com/toml-lang/toml/issues/846
        #      https://github.com/toml-lang/toml/pull/859
-       
+
        [a.b.c]
          z = 9
-       
+
        [a]
          b.c.t = "Using dotted keys to add to [a.b.c] after explicitly defining it above is not allowed"
 
@@ -740,10 +740,10 @@ otoml version 970e114
 <b>     input sent to parser-cmd:</b>
        # This is the same issue as in injection-1.toml, except that nests one level
        # deeper. See that file for a more complete description.
-       
+
        [a.b.c.d]
          z = 9
-       
+
        [a]
          b.c.d.k.t = "Using dotted keys to add to [a.b.c.d] after explicitly defining it above is not allowed"
 
@@ -778,7 +778,7 @@ otoml version 970e114
 <b>     input sent to parser-cmd:</b>
        [a]
        b = 1
-       
+
        [a]
        c = 2
 
@@ -794,7 +794,7 @@ otoml version 970e114
 <b>     input sent to parser-cmd:</b>
        [fruit]
        apple.color = "red"
-       
+
        [[fruit.apple]]
 
 <b>     output from parser-cmd (stdout):</b>
@@ -818,7 +818,7 @@ otoml version 970e114
 <b>     input sent to parser-cmd:</b>
        [fruit]
        apple.color = "red"
-       
+
        [fruit.apple] # INVALID
 
 <b>     output from parser-cmd (stdout):</b>
@@ -842,7 +842,7 @@ otoml version 970e114
 <b>     input sent to parser-cmd:</b>
        [fruit]
        apple.taste.sweet = true
-       
+
        [fruit.apple.taste] # INVALID
 
 <b>     output from parser-cmd (stdout):</b>
@@ -868,7 +868,7 @@ otoml version 970e114
 <b>     input sent to parser-cmd:</b>
        [fruit]
        type = "apple"
-       
+
        [fruit.type]
        apple = "yes"
 
@@ -952,7 +952,7 @@ otoml version 970e114
        # Define b as int, and try to use it as a table: error
        [a]
        b = 1
-       
+
        [a.b]
        c = 2
 
@@ -1026,7 +1026,7 @@ otoml version 970e114
 <b>     want:</b>
        Exit code 1
 
-toml-test v2024-05-16 [./src/ocaml-otoml/decoder]: using embedded tests
+toml-test v2024-05-23 [./src/ocaml-otoml/decoder]: using embedded tests
   valid tests: 179 passed,  1 failed
 invalid tests: 319 passed, 52 failed
 
@@ -1050,9 +1050,9 @@ invalid tests: 319 passed, 52 failed
 
 <b>     output from parser-cmd (stdout):</b>
        [parent-table]
-       
+
        [[parent-table.arr]]
-       
+
        [[parent-table.arr]]
          not-arr = 1
 
@@ -1192,10 +1192,10 @@ invalid tests: 319 passed, 52 failed
        [["arr-1"]]
          a = {b = 1}
        "arr-2" = ["str", {a = {b = 1}}]
-       
+
        [["arr-3"]]
          a = {b = 1}
-       
+
        [["arr-3"]]
          a = {b = 2}
        "arr-4" = ["str", {a = {b = 1}}, {a = {b = 2}}]
@@ -1203,7 +1203,7 @@ invalid tests: 319 passed, 52 failed
 <b>     want:</b>
        arr-1 = [{a.b = 1}]
        arr-2 = ["str", {a.b = 1}]
-       
+
        arr-3 = [{a.b = 1}, {a.b = 2}]
        arr-4 = ["str", {a.b = 1}, {a.b = 2}]
 
@@ -1297,11 +1297,11 @@ invalid tests: 319 passed, 52 failed
        ["clap-1"]
          features = ["derive", "cargo"]
          version = "4"
-       
+
        ["clap-2"]
          features = ["derive", "cargo"]
          version = "4"
-       
+
        ["clap-2".nest]
          a = "x"
          b = [1.5, 9]
@@ -1309,7 +1309,7 @@ invalid tests: 319 passed, 52 failed
 <b>     want:</b>
        # https://github.com/toml-lang/toml-test/issues/146
        clap-1 = { version = "4"  , features = ["derive", "cargo"] }
-       
+
        # Contains some literal tabs!
        clap-2 = { version = "4"	   	,	  	features = [   "derive" 	  ,  	  "cargo"   ]   , nest   =   {  	  "a"   =   'x'  , 	  'b'   = [ 1.5    ,   9.0  ]  }  }
 
@@ -1369,38 +1369,38 @@ invalid tests: 319 passed, 52 failed
 <b>     output from parser-cmd (stdout):</b>
        [[fruits]]
          name = "apple"
-       
+
        [[fruits.varieties]]
          name = "red delicious"
-       
+
        [[fruits.varieties]]
          name = "granny smith"
          physical = {color = "red", shape = "round"}
-       
+
        [[fruits]]
          name = "banana"
-       
+
        [[fruits.varieties]]
          name = "plantain"
 
 <b>     want:</b>
        [[fruits]]
        name = "apple"
-       
+
        [fruits.physical]  # subtable
        color = "red"
        shape = "round"
-       
+
        [[fruits.varieties]]  # nested array of tables
        name = "red delicious"
-       
+
        [[fruits.varieties]]
        name = "granny smith"
-       
-       
+
+
        [[fruits]]
        name = "banana"
-       
+
        [[fruits.varieties]]
        name = "plantain"
 
@@ -1455,12 +1455,12 @@ invalid tests: 319 passed, 52 failed
        flt1 = +1.0
        flt2 = 3.1415
        flt3 = -0.01
-       
+
        # exponent
        flt4 = 5e+22
        flt5 = 1e06
        flt6 = -2E-2
-       
+
        # both
        flt7 = 6.626e-34
 
@@ -1487,7 +1487,7 @@ invalid tests: 319 passed, 52 failed
 
 <b>     output from parser-cmd (stdout):</b>
        [a]
-       
+
        [[a.b]]
          x = 1
          y = 2
@@ -1495,11 +1495,11 @@ invalid tests: 319 passed, 52 failed
 <b>     want:</b>
        [[a.b]]
        x = 1
-       
+
        [a]
        y = 2
 
-toml-test v2024-05-16 [./src/ocaml-otoml/encoder]: using embedded tests
+toml-test v2024-05-23 [./src/ocaml-otoml/encoder]: using embedded tests
 encoder tests: 172 passed,  8 failed
 took 0.0 0.0
 </pre>

@@ -4,13 +4,13 @@ smol-toml version 7eac80f
 <b> </b>    /home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/primitive.js:161
 <b> </b>                throw new error_js_1.TomlError('integer value cannot be represented losslessly', {
 <b> </b>                ^
-<b> </b>    
+<b> </b>
 <b> </b>    TomlError: Invalid TOML document: integer value cannot be represented losslessly
-<b> </b>    
+<b> </b>
 <b> </b>    1:  int64-max = 9223372036854775807
 <b> </b>                    ^
 <b> </b>    2:  int64-max-neg = -9223372036854775808
-<b> </b>    
+<b> </b>
 <b> </b>        at parseValue (/home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/primitive.js:161:19)
 <b> </b>        at extractValue (/home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/extract.js:103:39)
 <b> </b>        at parse (/home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:137:51)
@@ -24,9 +24,9 @@ smol-toml version 7eac80f
 <b> </b>        '                ^\n' +
 <b> </b>        '2:  int64-max-neg = -9223372036854775808\n'
 <b> </b>    }
-<b> </b>    
+<b> </b>
 <b> </b>    Node.js v18.19.1
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -37,13 +37,13 @@ smol-toml version 7eac80f
        /home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/primitive.js:161
                    throw new error_js_1.TomlError('integer value cannot be represented losslessly', {
                    ^
-       
+
        TomlError: Invalid TOML document: integer value cannot be represented losslessly
-       
+
        1:  int64-max = 9223372036854775807
                        ^
        2:  int64-max-neg = -9223372036854775808
-       
+
            at parseValue (/home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/primitive.js:161:19)
            at extractValue (/home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/extract.js:103:39)
            at parse (/home/martin/code/toml/toml-test-matrix/src/js-smol-toml/dist/parse.js:137:51)
@@ -57,9 +57,9 @@ smol-toml version 7eac80f
            '                ^\n' +
            '2:  int64-max-neg = -9223372036854775808\n'
        }
-       
+
        Node.js v18.19.1
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -298,7 +298,7 @@ smol-toml version 7eac80f
 <b>     want:</b>
        Exit code 1
 
-toml-test v2024-05-16 [./src/js-smol-toml/toml-test-parse.mjs]: using embedded tests
+toml-test v2024-05-23 [./src/js-smol-toml/toml-test-parse.mjs]: using embedded tests
   valid tests: 179 passed,  1 failed
 invalid tests: 357 passed, 14 failed
 
@@ -414,10 +414,10 @@ invalid tests: 357 passed, 14 failed
        arr3 = [ "#", "#", "###" ]
        arr4 = [ 1, 2, 3, 4 ]
        arr5 = [ [ [ [ [ "#" ] ] ] ] ]
-       
+
        ["hash#tag".tbl1]
        "#" = "}#"
-       
+
        [section]
        8 = "eight"
        eleven = 11.1
@@ -435,18 +435,18 @@ invalid tests: 357 passed, 14 failed
        one = "11"#cmt
        two = "22#"
        three = '#'
-       
+
        four = """# no comment
        # nor this
        #also not comment"""#is_comment
-       
+
        five = 5.5#66
        six = 6#7
        8 = "eight"
        #nine = 99
        ten = 10e2#1
        eleven = 1.11e1#23
-       
+
        ["hash#tag"]
        "#!" = "hash bang"
        arr3 = [ "#", '#', """###""" ]
@@ -668,11 +668,11 @@ invalid tests: 357 passed, 14 failed
        [clap-1]
        features = [ "derive", "cargo" ]
        version = "4"
-       
+
        [clap-2]
        features = [ "derive", "cargo" ]
        version = "4"
-       
+
        [clap-2.nest]
        a = "x"
        b = [ 1.5, 9 ]
@@ -680,7 +680,7 @@ invalid tests: 357 passed, 14 failed
 <b>     want:</b>
        # https://github.com/toml-lang/toml-test/issues/146
        clap-1 = { version = "4"  , features = ["derive", "cargo"] }
-       
+
        # Contains some literal tabs!
        clap-2 = { version = "4"	   	,	  	features = [   "derive" 	  ,  	  "cargo"   ]   , nest   =   {  	  "a"   =   'x'  , 	  'b'   = [ 1.5    ,   9.0  ]  }  }
 
@@ -759,12 +759,12 @@ invalid tests: 357 passed, 14 failed
        flt1 = +1.0
        flt2 = 3.1415
        flt3 = -0.01
-       
+
        # exponent
        flt4 = 5e+22
        flt5 = 1e06
        flt6 = -2E-2
-       
+
        # both
        flt7 = 6.626e-34
 
@@ -849,7 +849,7 @@ invalid tests: 357 passed, 14 failed
        odt2 = 1979-05-27T00:32:00-07:00
        odt3 = 1979-05-27T00:32:00.999999-07:00
 
-toml-test v2024-05-16 [./src/js-smol-toml/toml-test-encode.mjs]: using embedded tests
+toml-test v2024-05-23 [./src/js-smol-toml/toml-test-encode.mjs]: using embedded tests
 encoder tests: 170 passed, 10 failed
 took (error) (error)
 </pre>

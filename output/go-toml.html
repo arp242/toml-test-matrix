@@ -168,10 +168,10 @@ toml version a645c7b
        [fruit]
        apple.color = "red"
        apple.taste.sweet = true
-       
+
        # [fruit.apple]  # INVALID
        [fruit.apple.taste]  # INVALID
-       
+
        [fruit.apple.texture]  # you can add sub-tables
        smooth = true
 
@@ -207,7 +207,7 @@ toml version a645c7b
 
 <b>     input sent to parser-cmd:</b>
        [[a.b]]
-       
+
        [a]
        b.y = 2
 
@@ -240,13 +240,13 @@ toml version a645c7b
        #
        # While this makes sense, logically, it was decided this is not valid TOML as
        # it's too confusing/convoluted.
-       # 
+       #
        # See: https://github.com/toml-lang/toml/issues/846
        #      https://github.com/toml-lang/toml/pull/859
-       
+
        [a.b.c]
          z = 9
-       
+
        [a]
          b.c.t = "Using dotted keys to add to [a.b.c] after explicitly defining it above is not allowed"
 
@@ -277,10 +277,10 @@ toml version a645c7b
 <b>     input sent to parser-cmd:</b>
        # This is the same issue as in injection-1.toml, except that nests one level
        # deeper. See that file for a more complete description.
-       
+
        [a.b.c.d]
          z = 9
-       
+
        [a]
          b.c.d.k.t = "Using dotted keys to add to [a.b.c.d] after explicitly defining it above is not allowed"
 
@@ -315,7 +315,7 @@ toml version a645c7b
 <b>     input sent to parser-cmd:</b>
        [fruit]
        apple.color = "red"
-       
+
        [fruit.apple] # INVALID
 
 <b>     output from parser-cmd (stdout):</b>
@@ -339,7 +339,7 @@ toml version a645c7b
 <b>     input sent to parser-cmd:</b>
        [fruit]
        apple.taste.sweet = true
-       
+
        [fruit.apple.taste] # INVALID
 
 <b>     output from parser-cmd (stdout):</b>
@@ -409,12 +409,12 @@ toml version a645c7b
 <b>     want:</b>
        Exit code 1
 
-toml-test v2024-05-16 [./src/go-toml/toml-test-decoder]: using embedded tests
+toml-test v2024-05-23 [./src/go-toml/toml-test-decoder]: using embedded tests
   valid tests: 180 passed,  0 failed
 invalid tests: 356 passed, 15 failed
 
 ==> ENCODER TESTS
-toml-test v2024-05-16 [./src/go-toml/toml-test-encoder]: using embedded tests
+toml-test v2024-05-23 [./src/go-toml/toml-test-encoder]: using embedded tests
 encoder tests: 180 passed,  0 failed
 took 0.9 0.36
 </pre>

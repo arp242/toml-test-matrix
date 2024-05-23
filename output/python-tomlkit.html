@@ -80,13 +80,13 @@ tomlkit version 13576bb
        #
        # While this makes sense, logically, it was decided this is not valid TOML as
        # it's too confusing/convoluted.
-       # 
+       #
        # See: https://github.com/toml-lang/toml/issues/846
        #      https://github.com/toml-lang/toml/pull/859
-       
+
        [a.b.c]
          z = 9
-       
+
        [a]
          b.c.t = "Using dotted keys to add to [a.b.c] after explicitly defining it above is not allowed"
 
@@ -117,10 +117,10 @@ tomlkit version 13576bb
 <b>     input sent to parser-cmd:</b>
        # This is the same issue as in injection-1.toml, except that nests one level
        # deeper. See that file for a more complete description.
-       
+
        [a.b.c.d]
          z = 9
-       
+
        [a]
          b.c.d.k.t = "Using dotted keys to add to [a.b.c.d] after explicitly defining it above is not allowed"
 

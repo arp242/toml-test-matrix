@@ -18,7 +18,7 @@ toml version 65bab75
 <b> </b>        a[b] = a[b] + ',' + a[b + 1]
 <b> </b>                            ~^^^^^^^
 <b> </b>    IndexError: list index out of range
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -26,7 +26,7 @@ toml version 65bab75
          "Foo Bar <foo@example.com>",
          { name = "Baz Qux", email = "bazqux@example.com", url = "https://example.com/bazqux" }
        ]
-       
+
        # Start with a table as the first element. This tests a case that some libraries
        # might have where they will check if the first entry is a table/map/hash/assoc
        # array and then encode it as a table array. This was a reasonable thing to do
@@ -52,7 +52,7 @@ toml version 65bab75
            a[b] = a[b] + ',' + a[b + 1]
                                ~^^^^^^^
        IndexError: list index out of range
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -73,7 +73,7 @@ toml version 65bab75
 <b> </b>        while len(newp) > 1 and newp[-1][0] != '"' and newp[-1][0] != "'":
 <b> </b>                                ~~~~~~~~^^^
 <b> </b>    IndexError: string index out of range
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -98,7 +98,7 @@ toml version 65bab75
            while len(newp) > 1 and newp[-1][0] != '"' and newp[-1][0] != "'":
                                    ~~~~~~~~^^^
        IndexError: string index out of range
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -113,18 +113,18 @@ toml version 65bab75
        one = "11"#cmt
        two = "22#"
        three = '#'
-       
+
        four = """# no comment
        # nor this
        #also not comment"""#is_comment
-       
+
        five = 5.5#66
        six = 6#7
        8 = "eight"
        #nine = 99
        ten = 10e2#1
        eleven = 1.11e1#23
-       
+
        ["hash#tag"]
        "#!" = "hash bang"
        arr3 = [ "#", '#', """###""" ]
@@ -267,9 +267,9 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 894, in load_value
 <b> </b>        raise ValueError("Weirdness with leading zeroes or "
 <b> </b>    ValueError: Weirdness with leading zeroes or underscores in your number.
-<b> </b>    
+<b> </b>
 <b> </b>    During handling of the above exception, another exception occurred:
-<b> </b>    
+<b> </b>
 <b> </b>    Traceback (most recent call last):
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
@@ -277,7 +277,7 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
 <b> </b>        raise TomlDecodeError(str(err), original, pos)
 <b> </b>    toml.decoder.TomlDecodeError: Weirdness with leading zeroes or underscores in your number. (line 4 column 1 char 47)
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -300,9 +300,9 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 894, in load_value
            raise ValueError("Weirdness with leading zeroes or "
        ValueError: Weirdness with leading zeroes or underscores in your number.
-       
+
        During handling of the above exception, another exception occurred:
-       
+
        Traceback (most recent call last):
          File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
@@ -310,7 +310,7 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
            raise TomlDecodeError(str(err), original, pos)
        toml.decoder.TomlDecodeError: Weirdness with leading zeroes or underscores in your number. (line 4 column 1 char 47)
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -432,13 +432,13 @@ toml version 65bab75
 <b> </b>        a[b] = a[b] + ',' + a[b + 1]
 <b> </b>                            ~^^^^^^^
 <b> </b>    IndexError: list index out of range
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
        arr-1 = [{a.b = 1}]
        arr-2 = ["str", {a.b = 1}]
-       
+
        arr-3 = [{a.b = 1}, {a.b = 2}]
        arr-4 = ["str", {a.b = 1}, {a.b = 2}]
 
@@ -460,7 +460,7 @@ toml version 65bab75
            a[b] = a[b] + ',' + a[b + 1]
                                ~^^^^^^^
        IndexError: list index out of range
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -479,9 +479,9 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 677, in load_inline_object
 <b> </b>        raise ValueError("Invalid inline table value encountered")
 <b> </b>    ValueError: Invalid inline table value encountered
-<b> </b>    
+<b> </b>
 <b> </b>    During handling of the above exception, another exception occurred:
-<b> </b>    
+<b> </b>
 <b> </b>    Traceback (most recent call last):
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
@@ -489,7 +489,7 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
 <b> </b>        raise TomlDecodeError(str(err), original, pos)
 <b> </b>    toml.decoder.TomlDecodeError: Invalid inline table value encountered (line 1 column 1 char 0)
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -511,9 +511,9 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 677, in load_inline_object
            raise ValueError("Invalid inline table value encountered")
        ValueError: Invalid inline table value encountered
-       
+
        During handling of the above exception, another exception occurred:
-       
+
        Traceback (most recent call last):
          File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
@@ -521,7 +521,7 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
            raise TomlDecodeError(str(err), original, pos)
        toml.decoder.TomlDecodeError: Invalid inline table value encountered (line 1 column 1 char 0)
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -533,7 +533,7 @@ toml version 65bab75
 <b>     input sent to parser-cmd:</b>
        name.first = "Arthur"
        "name".'last' = "Dent"
-       
+
        many.dots.dot.dot.dot = 42
 
 <b>     output from parser-cmd (stdout):</b>
@@ -596,12 +596,12 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 260, in loads
 <b> </b>        raise TomlDecodeError("Found invalid character in key name: '" +
 <b> </b>    toml.decoder.TomlDecodeError: Found invalid character in key name: '"'. Try quoting the key name. (line 7 column 11 char 166)
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
        # Note: this file contains literal tab characters.
-       
+
        # Space are ignored, and key parts can be quoted.
        count.a       = 1
        count . b     = 2
@@ -624,7 +624,7 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 260, in loads
            raise TomlDecodeError("Found invalid character in key name: '" +
        toml.decoder.TomlDecodeError: Found invalid character in key name: '"'. Try quoting the key name. (line 7 column 11 char 166)
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -638,9 +638,9 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 781, in load_line
 <b> </b>        raise ValueError("Duplicate keys!")
 <b> </b>    ValueError: Duplicate keys!
-<b> </b>    
+<b> </b>
 <b> </b>    During handling of the above exception, another exception occurred:
-<b> </b>    
+<b> </b>
 <b> </b>    Traceback (most recent call last):
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
@@ -648,7 +648,7 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
 <b> </b>        raise TomlDecodeError(str(err), original, pos)
 <b> </b>    toml.decoder.TomlDecodeError: Duplicate keys! (line 2 column 1 char 17)
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -665,9 +665,9 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 781, in load_line
            raise ValueError("Duplicate keys!")
        ValueError: Duplicate keys!
-       
+
        During handling of the above exception, another exception occurred:
-       
+
        Traceback (most recent call last):
          File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
@@ -675,7 +675,7 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
            raise TomlDecodeError(str(err), original, pos)
        toml.decoder.TomlDecodeError: Duplicate keys! (line 2 column 1 char 17)
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -689,12 +689,12 @@ toml version 65bab75
        "\b" = "bell"
        "\u00c0" = "latin capital letter A with grave"
        "\"" = "just a quote"
-       
+
        ["backsp\b\b"]
-       
+
        ["\"quoted\""]
        quote = true
-       
+
        ["a.b"."\u00c0"]
 
 <b>     output from parser-cmd (stdout):</b>
@@ -765,9 +765,9 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 781, in load_line
 <b> </b>        raise ValueError("Duplicate keys!")
 <b> </b>    ValueError: Duplicate keys!
-<b> </b>    
+<b> </b>
 <b> </b>    During handling of the above exception, another exception occurred:
-<b> </b>    
+<b> </b>
 <b> </b>    Traceback (most recent call last):
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
@@ -775,15 +775,15 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
 <b> </b>        raise TomlDecodeError(str(err), original, pos)
 <b> </b>    toml.decoder.TomlDecodeError: Duplicate keys! (line 3 column 1 char 19)
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
-       
+
        "\u0000" = "null"
        '\u0000' = "different key"
        "\u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff" = "escaped key"
-       
+
        "~  ÿ ퟿  ￿ 𐀀 􏿿" = "basic key"
        'l ~  ÿ ퟿  ￿ 𐀀 􏿿' = "literal key"
 
@@ -795,9 +795,9 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 781, in load_line
            raise ValueError("Duplicate keys!")
        ValueError: Duplicate keys!
-       
+
        During handling of the above exception, another exception occurred:
-       
+
        Traceback (most recent call last):
          File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
@@ -805,7 +805,7 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
            raise TomlDecodeError(str(err), original, pos)
        toml.decoder.TomlDecodeError: Duplicate keys! (line 3 column 1 char 19)
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -829,7 +829,7 @@ toml version 65bab75
 <b> </b>        a[b] = a[b] + ',' + a[b + 1]
 <b> </b>                            ~^^^^^^^
 <b> </b>    IndexError: list index out of range
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -838,7 +838,7 @@ toml version 65bab75
        nested_arrays_of_ints = [ [ 1, 2 ], [3, 4, 5] ]
        nested_mixed_array = [ [ 1, 2 ], ["a", "b", "c"] ]
        string_array = [ "all", 'strings', """are the same""", '''type''' ]
-       
+
        # Mixed-type arrays are allowed
        numbers = [ 0.1, 0.2, 0.5, 1, 2, 5 ]
        contributors = [
@@ -864,7 +864,7 @@ toml version 65bab75
            a[b] = a[b] + ',' + a[b + 1]
                                ~^^^^^^^
        IndexError: list index out of range
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -878,7 +878,7 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 260, in loads
 <b> </b>        raise TomlDecodeError("Found invalid character in key name: '" +
 <b> </b>    toml.decoder.TomlDecodeError: Found invalid character in key name: 'c'. Try quoting the key name. (line 2 column 8 char 57)
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -894,7 +894,7 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 260, in loads
            raise TomlDecodeError("Found invalid character in key name: '" +
        toml.decoder.TomlDecodeError: Found invalid character in key name: 'c'. Try quoting the key name. (line 2 column 8 char 57)
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -908,9 +908,9 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 866, in load_value
 <b> </b>        raise ValueError("Reserved escape sequence used")
 <b> </b>    ValueError: Reserved escape sequence used
-<b> </b>    
+<b> </b>
 <b> </b>    During handling of the above exception, another exception occurred:
-<b> </b>    
+<b> </b>
 <b> </b>    Traceback (most recent call last):
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
@@ -918,15 +918,15 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 397, in loads
 <b> </b>        raise TomlDecodeError(str(err), original, pos)
 <b> </b>    toml.decoder.TomlDecodeError: Reserved escape sequence used (line 6 column 1 char 28)
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
        beee = """
        heeee
-       geeee\  
-       
-       
+       geeee\
+
+
              """
 
 <b>     output from parser-cmd (stderr):</b>
@@ -937,9 +937,9 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 866, in load_value
            raise ValueError("Reserved escape sequence used")
        ValueError: Reserved escape sequence used
-       
+
        During handling of the above exception, another exception occurred:
-       
+
        Traceback (most recent call last):
          File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
@@ -947,7 +947,7 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 397, in loads
            raise TomlDecodeError(str(err), original, pos)
        toml.decoder.TomlDecodeError: Reserved escape sequence used (line 6 column 1 char 28)
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -961,30 +961,30 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 362, in loads
 <b> </b>        raise TomlDecodeError("Unterminated string found."
 <b> </b>    toml.decoder.TomlDecodeError: Unterminated string found. Reached end of file. (line 27 column 1 char 664)
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
        # Make sure that quotes inside multiline strings are allowed, including right
        # after the opening '''/""" and before the closing '''/"""
-       
+
        lit_one = ''''one quote''''
        lit_two = '''''two quotes'''''
        lit_one_space = ''' 'one quote' '''
        lit_two_space = ''' ''two quotes'' '''
-       
+
        one = """"one quote""""
        two = """""two quotes"""""
        one_space = """ "one quote" """
        two_space = """ ""two quotes"" """
-       
+
        mismatch1 = """aaa'''bbb"""
        mismatch2 = '''aaa"""bbb'''
-       
+
        # Three opening """, then one escaped ", then two "" (allowed), and then three
        # closing """
        escaped = """lol\""""""
-       
+
        five-quotes = """
        Closing with five quotes
        """""
@@ -1000,7 +1000,7 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 362, in loads
            raise TomlDecodeError("Unterminated string found."
        toml.decoder.TomlDecodeError: Unterminated string found. Reached end of file. (line 27 column 1 char 664)
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -1014,17 +1014,17 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 340, in loads
 <b> </b>        raise TomlDecodeError("Unbalanced quotes", original, i)
 <b> </b>    toml.decoder.TomlDecodeError: Unbalanced quotes (line 20 column 50 char 532)
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
        # Single ' should be allowed.
        oneline = '''This string has a ' quote character.'''
-       
+
        # A newline immediately following the opening delimiter will be trimmed.
        firstnl = '''
        This string has a ' quote character.'''
-       
+
        # All other whitespace and newline characters remain intact.
        multiline = '''
        This string
@@ -1032,11 +1032,11 @@ toml version 65bab75
        and more than
        one newline
        in it.'''
-       
+
        # Tab character in literal string does not need to be escaped
        multiline_with_tab = '''First line
        	 Followed by a tab'''
-       
+
        this-str-has-apostrophes='''' there's one already
        '' two more
        '''''
@@ -1049,7 +1049,7 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 340, in loads
            raise TomlDecodeError("Unbalanced quotes", original, i)
        toml.decoder.TomlDecodeError: Unbalanced quotes (line 20 column 50 char 532)
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -1063,16 +1063,16 @@ toml version 65bab75
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 463, in loads
 <b> </b>        raise TomlDecodeError("Can't have a keygroup with an empty "
 <b> </b>    toml.decoder.TomlDecodeError: Can't have a keygroup with an empty name (line 1 column 1 char 0)
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
        ['']
        x = 1
-       
+
        ["".a]
        x = 2
-       
+
        [a.'']
        x = 3
 
@@ -1084,7 +1084,7 @@ toml version 65bab75
          File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 463, in loads
            raise TomlDecodeError("Can't have a keygroup with an empty "
        toml.decoder.TomlDecodeError: Can't have a keygroup with an empty name (line 1 column 1 char 0)
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -1141,7 +1141,7 @@ toml version 65bab75
 
 <b>     input sent to parser-cmd:</b>
        a = [{ b = 1 }]
-       
+
        # Cannot extend tables within static arrays
        # https://github.com/toml-lang/toml/issues/908
        [a.c]
@@ -1375,7 +1375,7 @@ toml version 65bab75
 <b>     input sent to parser-cmd:</b>
        # INVALID TOML DOC
        fruit = []
-       
+
        [[fruit]] # Not allowed
 
 <b>     output from parser-cmd (stdout):</b>
@@ -2348,13 +2348,13 @@ toml version 65bab75
        #
        # While this makes sense, logically, it was decided this is not valid TOML as
        # it's too confusing/convoluted.
-       # 
+       #
        # See: https://github.com/toml-lang/toml/issues/846
        #      https://github.com/toml-lang/toml/pull/859
-       
+
        [a.b.c]
          z = 9
-       
+
        [a]
          b.c.t = "Using dotted keys to add to [a.b.c] after explicitly defining it above is not allowed"
 
@@ -2385,10 +2385,10 @@ toml version 65bab75
 <b>     input sent to parser-cmd:</b>
        # This is the same issue as in injection-1.toml, except that nests one level
        # deeper. See that file for a more complete description.
-       
+
        [a.b.c.d]
          z = 9
-       
+
        [a]
          b.c.d.k.t = "Using dotted keys to add to [a.b.c.d] after explicitly defining it above is not allowed"
 
@@ -2437,7 +2437,7 @@ invalid tests: 298 passed, 73 failed
 <b> </b>        if not isinstance(o[section], dict):
 <b> </b>                          ~^^^^^^^^^
 <b> </b>    TypeError: string indices must be integers, not 'str'
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -2495,7 +2495,7 @@ invalid tests: 298 passed, 73 failed
            if not isinstance(o[section], dict):
                              ~^^^^^^^^^
        TypeError: string indices must be integers, not 'str'
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -2559,7 +2559,7 @@ invalid tests: 298 passed, 73 failed
 <b> </b>        if not isinstance(o[section], dict):
 <b> </b>                          ~^^^^^^^^^
 <b> </b>    TypeError: string indices must be integers, not 'str'
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -2645,7 +2645,7 @@ invalid tests: 298 passed, 73 failed
            if not isinstance(o[section], dict):
                              ~^^^^^^^^^
        TypeError: string indices must be integers, not 'str'
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -2727,16 +2727,16 @@ invalid tests: 298 passed, 73 failed
        arr_arr_tbl_val = [ [ [ "one",],],]
        arr_arr_tbls = [ [ [ "one",], [ "two",],],]
        [[arr_tbl_tbl]]
-       
+
        [arr_tbl_tbl.tbl]
        one = 1
-       
+
        [tbl_arr_tbl]
        [[tbl_arr_tbl.arr_tbl]]
        one = 1
-       
+
        [tbl_tbl_empty.tbl_0]
-       
+
        [tbl_tbl_val.tbl_1]
        one = 1
 
@@ -2745,7 +2745,7 @@ invalid tests: 298 passed, 73 failed
        tbl_tbl_val   = { tbl_1 = { one = 1 } }
        tbl_arr_tbl   = { arr_tbl = [ { one = 1 } ] }
        arr_tbl_tbl   = [ { tbl = { one = 1 } } ]
-       
+
        # Array-of-array-of-table is interesting because it can only
        # be represented in inline form.
        arr_arr_tbl_empty = [ [ {} ] ]
@@ -2767,7 +2767,7 @@ invalid tests: 298 passed, 73 failed
 <b> </b>        v = [v[0] + joiner + v[1]] + v[2:]
 <b> </b>                             ~^^^
 <b> </b>    IndexError: list index out of range
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -2815,7 +2815,7 @@ invalid tests: 298 passed, 73 failed
            v = [v[0] + joiner + v[1]] + v[2:]
                                 ~^^^
        IndexError: list index out of range
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -2836,7 +2836,7 @@ invalid tests: 298 passed, 73 failed
 <b> </b>        v = [v[0] + joiner + v[1]] + v[2:]
 <b> </b>                             ~^^^
 <b> </b>    IndexError: list index out of range
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -2878,7 +2878,7 @@ invalid tests: 298 passed, 73 failed
            v = [v[0] + joiner + v[1]] + v[2:]
                                 ~^^^
        IndexError: list index out of range
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -2899,7 +2899,7 @@ invalid tests: 298 passed, 73 failed
 <b> </b>        if not isinstance(o[section], dict):
 <b> </b>                          ~^^^^^^^^^
 <b> </b>    TypeError: string indices must be integers, not 'str'
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -3065,7 +3065,7 @@ invalid tests: 298 passed, 73 failed
            if not isinstance(o[section], dict):
                              ~^^^^^^^^^
        TypeError: string indices must be integers, not 'str'
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -3089,7 +3089,7 @@ invalid tests: 298 passed, 73 failed
 <b> </b>        v = [v[0] + joiner + v[1]] + v[2:]
 <b> </b>                             ~^^^
 <b> </b>    IndexError: list index out of range
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -3142,7 +3142,7 @@ invalid tests: 298 passed, 73 failed
            v = [v[0] + joiner + v[1]] + v[2:]
                                 ~^^^
        IndexError: list index out of range
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -3253,7 +3253,7 @@ invalid tests: 298 passed, 73 failed
        backslash     = "|\\."
        delete        = "|\u007F."
        unitseparator = "|\u001F."
-       
+
        # \u is escaped, so should NOT be interperted as a \u escape.
        notunicode1   = "|\\u."
        notunicode2   = "|\u005Cu."
@@ -3292,10 +3292,10 @@ invalid tests: 298 passed, 73 failed
        not_escaped_string = "\\u0000 \\u0008 \\u000c \\U00000041 \\u007f \\u0080 \\u00ff \\ud7ff \\ue000 \\uffff \\U00010000 \\U0010ffff"
 
 <b>     want:</b>
-       
+
        escaped_string = "\u0000 \u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff"
        not_escaped_string = '\u0000 \u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff'
-       
+
        basic_string = "~  ÿ ퟿  ￿ 𐀀 􏿿"
        literal_string = '~  ÿ ퟿  ￿ 𐀀 􏿿'
 
@@ -3317,7 +3317,7 @@ invalid tests: 298 passed, 73 failed
 <b> </b>        v = [v[0] + joiner + v[1]] + v[2:]
 <b> </b>                             ~^^^
 <b> </b>    IndexError: list index out of range
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -3398,7 +3398,7 @@ invalid tests: 298 passed, 73 failed
            v = [v[0] + joiner + v[1]] + v[2:]
                                 ~^^^
        IndexError: list index out of range
-       
+
        Exit 1
 
 <b>     want:</b>

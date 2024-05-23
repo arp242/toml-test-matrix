@@ -10,12 +10,12 @@ toml-racket version fe46aa2
        flt1 = +1.0
        flt2 = 3.1415
        flt3 = -0.01
-       
+
        # exponent
        flt4 = 5e+22
        flt5 = 1e06
        flt6 = -2E-2
-       
+
        # both
        flt7 = 6.626e-34
 
@@ -102,113 +102,9 @@ toml-racket version fe46aa2
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/key/bare-invalid-character</b>
-<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
-
-<b>     input sent to parser-cmd:</b>
-       bare!key = 123
-
-<b>     output from parser-cmd (stdout):</b>
-       
-
-<b>     want:</b>
-       Exit code 1
-
-<b>FAIL</b> <b>invalid/key/dotted-redefine-table-1</b>
-<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
-
-<b>     input sent to parser-cmd:</b>
-       a = false
-       a.b = true
-
-<b>     output from parser-cmd (stdout):</b>
-       
-
-<b>     want:</b>
-       Exit code 1
-
-<b>FAIL</b> <b>invalid/key/dotted-redefine-table-2</b>
-<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
-
-<b>     input sent to parser-cmd:</b>
-       # Defined a.b as int
-       a.b = 1
-       # Tries to access it as table: error
-       a.b.c = 2
-
-<b>     output from parser-cmd (stdout):</b>
-       
-
-<b>     want:</b>
-       Exit code 1
-
-<b>FAIL</b> <b>invalid/key/duplicate-keys-1</b>
-<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
-
-<b>     input sent to parser-cmd:</b>
-       name = "Tom"
-       name = "Pradyun"
-
-<b>     output from parser-cmd (stdout):</b>
-       
-
-<b>     want:</b>
-       Exit code 1
-
-<b>FAIL</b> <b>invalid/key/duplicate-keys-2</b>
-<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
-
-<b>     input sent to parser-cmd:</b>
-       dupe = false
-       dupe = true
-
-<b>     output from parser-cmd (stdout):</b>
-       
-
-<b>     want:</b>
-       Exit code 1
-
-<b>FAIL</b> <b>invalid/key/duplicate-keys-3</b>
-<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
-
-<b>     input sent to parser-cmd:</b>
-       spelling   = "favorite"
-       "spelling" = "favourite"
-
-<b>     output from parser-cmd (stdout):</b>
-       
-
-<b>     want:</b>
-       Exit code 1
-
-<b>FAIL</b> <b>invalid/key/duplicate-keys-4</b>
-<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
-
-<b>     input sent to parser-cmd:</b>
-       spelling   = "favorite"
-       'spelling' = "favourite"
-
-<b>     output from parser-cmd (stdout):</b>
-       
-
-<b>     want:</b>
-       Exit code 1
-
-<b>FAIL</b> <b>invalid/key/empty</b>
-<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
-
-<b>     input sent to parser-cmd:</b>
-        = 1
-
-<b>     output from parser-cmd (stdout):</b>
-       
-
-<b>     want:</b>
-       Exit code 1
-
 toml-test v2024-05-23 [./src/racket-toml-racket/toml-compliance/compliance/decoder]: using embedded tests
   valid tests: 179 passed,  1 failed
-invalid tests: 362 passed,  9 failed
+invalid tests: 370 passed,  1 failed
 
 ==> ENCODER TESTS
 <b>FAIL</b> <b>valid/float/zero</b>
@@ -300,7 +196,7 @@ invalid tests: 362 passed,  9 failed
 
 <b>     output from parser-cmd (stdout):</b>
        [a]
-       
+
        [b]
        a = [
          1,
@@ -314,10 +210,10 @@ invalid tests: 362 passed,  9 failed
 <b>     want:</b>
        # "No newlines are allowed between the curly braces unless they are valid within
        # a value"
-       
+
        a = { a = [
        ]}
-       
+
        b = { a = [
        		1,
        		2,
@@ -407,26 +303,26 @@ invalid tests: 362 passed,  9 failed
          {  },
          {  },
        ]
-       
+
        [[arr-1]]
-       
+
        [arr-1.a]
        b = 1
-       
+
        [[arr-3]]
-       
+
        [arr-3.a]
        b = 1
-       
+
        [[arr-3]]
-       
+
        [arr-3.a]
        b = 2
 
 <b>     want:</b>
        arr-1 = [{a.b = 1}]
        arr-2 = ["str", {a.b = 1}]
-       
+
        arr-3 = [{a.b = 1}, {a.b = 2}]
        arr-4 = ["str", {a.b = 1}, {a.b = 2}]
 
@@ -494,14 +390,14 @@ invalid tests: 362 passed,  9 failed
          "cargo",
        ]
        version = "4"
-       
+
        [clap-2]
        features = [
          "derive",
          "cargo",
        ]
        version = "4"
-       
+
        [clap-2.nest]
        a = "x"
        b = [
@@ -512,7 +408,7 @@ invalid tests: 362 passed,  9 failed
 <b>     want:</b>
        # https://github.com/toml-lang/toml-test/issues/146
        clap-1 = { version = "4"  , features = ["derive", "cargo"] }
-       
+
        # Contains some literal tabs!
        clap-2 = { version = "4"	   	,	  	features = [   "derive" 	  ,  	  "cargo"   ]   , nest   =   {  	  "a"   =   'x'  , 	  'b'   = [ 1.5    ,   9.0  ]  }  }
 
@@ -552,11 +448,11 @@ invalid tests: 362 passed,  9 failed
        "~  ÿ ퟿  ￿ 𐀀 􏿿" = "basic key"
 
 <b>     want:</b>
-       
+
        "\u0000" = "null"
        '\u0000' = "different key"
        "\u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff" = "escaped key"
-       
+
        "~  ÿ ퟿  ￿ 𐀀 􏿿" = "basic key"
        'l ~  ÿ ퟿  ￿ 𐀀 􏿿' = "literal key"
 
@@ -611,12 +507,12 @@ invalid tests: 362 passed,  9 failed
        flt1 = +1.0
        flt2 = 3.1415
        flt3 = -0.01
-       
+
        # exponent
        flt4 = 5e+22
        flt5 = 1e06
        flt6 = -2E-2
-       
+
        # both
        flt7 = 6.626e-34
 

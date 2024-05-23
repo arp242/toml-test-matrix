@@ -2,11 +2,11 @@
 tomlyn version 0.16.2
 <b>FAIL</b> <b>valid/comment/nonascii</b>
 <b> </b>    System.InvalidOperationException: The document has errors: (1,17) : error : The character `􏿿` is an invalid UTF8 character
-<b> </b>    
+<b> </b>
 <b> </b>       at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
 <b> </b>       at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
 <b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
@@ -14,11 +14,11 @@ tomlyn version 0.16.2
 
 <b>     output from parser-cmd (stderr):</b>
        System.InvalidOperationException: The document has errors: (1,17) : error : The character `􏿿` is an invalid UTF8 character
-       
+
           at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
           at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
           at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -28,19 +28,19 @@ tomlyn version 0.16.2
 <b> </b>    System.InvalidOperationException: The document has errors: (4,81) : error : Invalid Unicode scalar value [10FFFF]
 <b> </b>    (6,16) : error : The character `􏿿` is an invalid UTF8 character
 <b> </b>    (7,18) : error : The character `􏿿` is an invalid UTF8 character
-<b> </b>    
+<b> </b>
 <b> </b>       at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
 <b> </b>       at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
 <b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
-       
+
        "\u0000" = "null"
        '\u0000' = "different key"
        "\u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff" = "escaped key"
-       
+
        "~  ÿ ퟿  ￿ 𐀀 􏿿" = "basic key"
        'l ~  ÿ ퟿  ￿ 𐀀 􏿿' = "literal key"
 
@@ -48,11 +48,11 @@ tomlyn version 0.16.2
        System.InvalidOperationException: The document has errors: (4,81) : error : Invalid Unicode scalar value [10FFFF]
        (6,16) : error : The character `􏿿` is an invalid UTF8 character
        (7,18) : error : The character `􏿿` is an invalid UTF8 character
-       
+
           at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
           at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
           at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
-       
+
        Exit 1
 
 <b>     want:</b>
@@ -62,18 +62,18 @@ tomlyn version 0.16.2
 <b> </b>    System.InvalidOperationException: The document has errors: (2,105) : error : Invalid Unicode scalar value [10FFFF]
 <b> </b>    (5,31) : error : The character `􏿿` is an invalid UTF8 character
 <b> </b>    (6,33) : error : The character `􏿿` is an invalid UTF8 character
-<b> </b>    
+<b> </b>
 <b> </b>       at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
 <b> </b>       at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
 <b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
-<b> </b>    
+<b> </b>
 <b> </b>    Exit 1
 
 <b>     input sent to parser-cmd:</b>
-       
+
        escaped_string = "\u0000 \u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff"
        not_escaped_string = '\u0000 \u0008 \u000c \U00000041 \u007f \u0080 \u00ff \ud7ff \ue000 \uffff \U00010000 \U0010ffff'
-       
+
        basic_string = "~  ÿ ퟿  ￿ 𐀀 􏿿"
        literal_string = '~  ÿ ퟿  ￿ 𐀀 􏿿'
 
@@ -81,11 +81,11 @@ tomlyn version 0.16.2
        System.InvalidOperationException: The document has errors: (2,105) : error : Invalid Unicode scalar value [10FFFF]
        (5,31) : error : The character `􏿿` is an invalid UTF8 character
        (6,33) : error : The character `􏿿` is an invalid UTF8 character
-       
+
           at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
           at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
           at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
-       
+
        Exit 1
 
 <b>     want:</b>
