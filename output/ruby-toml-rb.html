@@ -959,7 +959,7 @@ toml-rb version 28b2ebc
 
 <b>     input sent to parser-cmd:</b>
        ldt1 = 1979-05-27T07:32:00
-       ldt2 = 1979-05-27T00:32:00.999999
+       ldt2 = 1979-05-27T00:32:00.999
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -969,7 +969,7 @@ toml-rb version 28b2ebc
          },
          "ldt2": {
            "type": "datetime",
-           "value": "1979-05-27T00:32:00.9999+01:00"
+           "value": "1979-05-27T00:32:00.9990+01:00"
          }
        }
 
@@ -981,7 +981,7 @@ toml-rb version 28b2ebc
          },
          "ldt2": {
            "type": "datetime-local",
-           "value": "1979-05-27T00:32:00.999999"
+           "value": "1979-05-27T00:32:00.999"
          }
        }
 
@@ -992,7 +992,7 @@ toml-rb version 28b2ebc
 
 <b>     input sent to parser-cmd:</b>
        lt1 = 07:32:00
-       lt2 = 00:32:00.999999
+       lt2 = 00:32:00.999
 
 <b>     output from parser-cmd (stdout):</b>
        {
@@ -1002,7 +1002,7 @@ toml-rb version 28b2ebc
          },
          "lt2": {
            "type": "datetime",
-           "value": "1970-01-01T01:32:00.9999+01:00"
+           "value": "1970-01-01T01:32:00.9990+01:00"
          }
        }
 
@@ -1014,7 +1014,7 @@ toml-rb version 28b2ebc
          },
          "lt2": {
            "type": "time-local",
-           "value": "00:32:00.999999"
+           "value": "00:32:00.999"
          }
        }
 
@@ -3091,7 +3091,7 @@ toml-rb version 28b2ebc
        Exit code 1
 
 toml-test v2024-05-23 [./src/ruby-toml-rb/ruby-toml-rb-decoder]: using embedded tests
-  valid tests: 153 passed, 27 failed
+  valid tests: 155 passed, 27 failed
 invalid tests: 281 passed, 90 failed
 
 ==> ENCODER TESTS
@@ -4668,7 +4668,7 @@ invalid tests: 281 passed, 90 failed
          },
          "ldt2": {
            "type": "datetime-local",
-           "value": "1979-05-27T00:32:00.999999"
+           "value": "1979-05-27T00:32:00.999"
          }
        }
 
@@ -4713,7 +4713,7 @@ invalid tests: 281 passed, 90 failed
          },
          "lt2": {
            "type": "time-local",
-           "value": "00:32:00.999999"
+           "value": "00:32:00.999"
          }
        }
 
@@ -4759,7 +4759,7 @@ invalid tests: 281 passed, 90 failed
          },
          "odt3": {
            "type": "datetime",
-           "value": "1979-05-27T00:32:00.999999-07:00"
+           "value": "1979-05-27T00:32:00.999-07:00"
          }
        }
 
@@ -4913,6 +4913,6 @@ invalid tests: 281 passed, 90 failed
        literal_string = '~  ÿ ퟿  ￿ 𐀀 􏿿'
 
 toml-test v2024-05-23 [./src/ruby-toml-rb/ruby-toml-rb-encoder]: using embedded tests
-encoder tests: 152 passed, 28 failed
-took 61.1 199.56
+encoder tests: 154 passed, 28 failed
+took 0.0 0.0
 </pre>

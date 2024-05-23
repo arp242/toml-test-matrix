@@ -2418,7 +2418,7 @@ toml version 65bab75
        Exit code 1
 
 toml-test v2024-05-23 [./src/python-toml/tests/decoding_test.py]: using embedded tests
-  valid tests: 162 passed, 18 failed
+  valid tests: 164 passed, 18 failed
 invalid tests: 298 passed, 73 failed
 
 ==> ENCODER TESTS
@@ -3071,6 +3071,31 @@ invalid tests: 298 passed, 73 failed
 <b>     want:</b>
           <empty>
 
+<b>FAIL</b> <b>valid/spec/local-time-0</b>
+<b> </b>    Values for key "lt2" differ:
+<b> </b>      Expected:     0000-01-01 00:32:00.999 +0100 time-local (time.Time)
+<b> </b>      Your encoder: 0000-01-01 00:32:00.000999 +0100 time-local (time.Time)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "lt1": {
+           "type": "time-local",
+           "value": "07:32:00"
+         },
+         "lt2": {
+           "type": "time-local",
+           "value": "00:32:00.999"
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       lt1 = 07:32:00
+       lt2 = 00:32:00.000999
+
+<b>     want:</b>
+       lt1 = 07:32:00
+       lt2 = 00:32:00.999
+
 <b>FAIL</b> <b>valid/string/escape-tricky</b>
 <b> </b>    Traceback (most recent call last):
 <b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
@@ -3405,6 +3430,6 @@ invalid tests: 298 passed, 73 failed
           <empty>
 
 toml-test v2024-05-23 [./src/python-toml/tests/encoding_test.py]: using embedded tests
-encoder tests: 167 passed, 13 failed
+encoder tests: 168 passed, 14 failed
 took 3.7 1.80
 </pre>

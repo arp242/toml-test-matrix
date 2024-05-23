@@ -103,10 +103,36 @@ toml-racket version fe46aa2
        Exit code 1
 
 toml-test v2024-05-23 [./src/racket-toml-racket/toml-compliance/compliance/decoder]: using embedded tests
-  valid tests: 179 passed,  1 failed
+  valid tests: 181 passed,  1 failed
 invalid tests: 370 passed,  1 failed
 
 ==> ENCODER TESTS
+<b>FAIL</b> <b>valid/float/max-int</b>
+<b> </b>    Values for key "max_float" differ:
+<b> </b>      Expected:     9007199254740991 (float64)
+<b> </b>      Your encoder: 9007199254740991 (int64)
+
+<b>     input sent to parser-cmd:</b>
+       {
+         "max_float": {
+           "type": "float",
+           "value": "9007199254740991"
+         },
+         "min_float": {
+           "type": "float",
+           "value": "-9007199254740991"
+         }
+       }
+
+<b>     output from parser-cmd (stdout):</b>
+       max_float = 9007199254740991
+       min_float = -9007199254740991
+
+<b>     want:</b>
+       # Maximum and minimum safe natural numbers.
+       max_float =  9_007_199_254_740_991.0
+       min_float = -9_007_199_254_740_991.0
+
 <b>FAIL</b> <b>valid/float/zero</b>
 <b> </b>    Values for key "exponent-signed-neg" differ:
 <b> </b>      Expected:     -0 (float64)
@@ -517,6 +543,6 @@ invalid tests: 370 passed,  1 failed
        flt7 = 6.626e-34
 
 toml-test v2024-05-23 [./src/racket-toml-racket/toml-compliance/compliance/encoder]: using embedded tests
-encoder tests: 174 passed,  6 failed
+encoder tests: 175 passed,  7 failed
 took 0.0 0.0
 </pre>

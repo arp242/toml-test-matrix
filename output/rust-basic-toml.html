@@ -351,7 +351,7 @@ basic-toml version 0.1.4
 
 <b>     input sent to parser-cmd:</b>
        ldt1 = 1979-05-27T07:32:00
-       ldt2 = 1979-05-27T00:32:00.999999
+       ldt2 = 1979-05-27T00:32:00.999
 
 <b>     output from parser-cmd (stderr):</b>
        Error: Error { message: "invalid number at line 1 column 8" }
@@ -368,7 +368,7 @@ basic-toml version 0.1.4
 
 <b>     input sent to parser-cmd:</b>
        lt1 = 07:32:00
-       lt2 = 00:32:00.999999
+       lt2 = 00:32:00.999
 
 <b>     output from parser-cmd (stderr):</b>
        Error: Error { message: "invalid number at line 1 column 8" }
@@ -386,7 +386,7 @@ basic-toml version 0.1.4
 <b>     input sent to parser-cmd:</b>
        odt1 = 1979-05-27T07:32:00Z
        odt2 = 1979-05-27T00:32:00-07:00
-       odt3 = 1979-05-27T00:32:00.999999-07:00
+       odt3 = 1979-05-27T00:32:00.999-07:00
 
 <b>     output from parser-cmd (stderr):</b>
        Error: Error { message: "invalid number at line 1 column 8" }
@@ -548,7 +548,7 @@ basic-toml version 0.1.4
        Exit code 1
 
 toml-test v2024-05-23 [./scripts/target/release/basic-toml-decoder]: using embedded tests
-  valid tests: 159 passed, 21 failed
+  valid tests: 161 passed, 21 failed
 invalid tests: 367 passed,  4 failed
 
 ==> ENCODER TESTS
