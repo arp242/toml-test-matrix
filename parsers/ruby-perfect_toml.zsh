@@ -1,11 +1,11 @@
+export RUBYLIB=./src/ruby-perfect_toml/lib
+
 deps() { print 'ruby bundle' }
 
 setup() {
 	bundle
 	cp ../../scripts/ruby-perfect_toml-perf .
 }
-
-export RUBYLIB=./src/ruby-perfect_toml/lib
 
 typeset -A info=(
 	lang    'Ruby'

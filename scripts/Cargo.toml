@@ -8,13 +8,13 @@ edition = "2021"
 publish = false
 
 [workspace.dependencies]
-basic-toml = "0.1.4"
+basic-toml = "0.1.9"
 serde_json = "1.0.107"
-taplo = { version = "0.12.1", features = ["serde"] }
-toml = "0.8.4"
+taplo = { version = "0.13.0", features = ["serde"] }
+toml = "0.8.13"
 toml-test = "1.0.0"
 toml-test-harness = "0.4.8"
-toml_edit = "0.20.4"
+toml_edit = "0.22.13"
 
 [profile.release]
 panic = "abort"

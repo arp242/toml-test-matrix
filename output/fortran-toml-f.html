@@ -731,14 +731,14 @@ toml-f version 59a62ce
        	at ../sysdeps/posix/raise.c:26
        #5  0x… in __GI_abort
        	at ./stdlib/abort.c:79
-       #6  0x… in __libc_message
-       	at ../sysdeps/posix/libc_fatal.c:155
+       #6  0x… in __libc_message_impl
+       	at ../sysdeps/posix/libc_fatal.c:132
        #7  0x… in malloc_printerr
-       	at ./malloc/malloc.c:5660
-       #8  0x… in _int_free
-       	at ./malloc/malloc.c:4584
+       	at ./malloc/malloc.c:5772
+       #8  0x… in _int_free_merge_chunk
+       	at ./malloc/malloc.c:4676
        #9  0x… in __GI___libc_free
-       	at ./malloc/malloc.c:3385
+       	at ./malloc/malloc.c:3398
        #10  0x… in __tomlf_diagnostic_MOD_render_diagnostic
        	at ../src/tomlf/diagnostic.f90:160
        #11  0x… in make_error
@@ -1060,7 +1060,7 @@ toml-f version 59a62ce
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/inline-table/overwrite-6</b>
+<b>FAIL</b> <b>invalid/inline-table/overwrite-06</b>
 <b> </b>    signal: segmentation fault
 
 <b>     input sent to parser-cmd:</b>
@@ -1096,7 +1096,7 @@ toml-f version 59a62ce
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/inline-table/overwrite-7</b>
+<b>FAIL</b> <b>invalid/inline-table/overwrite-07</b>
 <b> </b>    signal: segmentation fault
 
 <b>     input sent to parser-cmd:</b>
@@ -1419,9 +1419,9 @@ toml-f version 59a62ce
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-12-07 [./src/fortran-toml-f/_build/test/compliance/toml2json]: using embedded tests
-  valid tests: 168 passed, 11 failed
-invalid tests: 336 passed, 32 failed
+toml-test v2024-05-16 [./src/fortran-toml-f/_build/test/compliance/toml2json]: using embedded tests
+  valid tests: 169 passed, 11 failed
+invalid tests: 339 passed, 32 failed
 
 ==> ENCODER TESTS
 <b>FAIL</b> <b>valid/array/mixed-string-table</b>
@@ -2309,7 +2309,7 @@ invalid tests: 336 passed, 32 failed
 <b>     want:</b>
           <empty>
 
-toml-test v2023-12-07 [./src/fortran-toml-f/_build/test/compliance/json2toml]: using embedded tests
-encoder tests: 167 passed, 12 failed
-took 1.5 150.98
+toml-test v2024-05-16 [./src/fortran-toml-f/_build/test/compliance/json2toml]: using embedded tests
+encoder tests: 168 passed, 12 failed
+took 1.2 145.63
 </pre>

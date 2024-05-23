@@ -1,3 +1,5 @@
+path+=(/home/martin/julia-1.9.3/bin)
+
 deps() { print 'julia' }
 
 setup() {
@@ -5,8 +7,6 @@ setup() {
 	julia toml-test-setup.jl
 	# Pkg.add("PackageCompiler")
 }
-
-export PATH=$PATH:/home/martin/julia-1.9.3/bin
 
 typeset -A info=(
 	# TODO: need to write JSON converter; the tests work by converting JSON to

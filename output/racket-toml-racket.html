@@ -83,9 +83,132 @@ toml-racket version fe46aa2
          }
        }
 
-toml-test v2023-12-07 [./src/racket-toml-racket/toml-compliance/compliance/decoder]: using embedded tests
-  valid tests: 178 passed,  1 failed
-invalid tests: 368 passed,  0 failed
+<b>FAIL</b> <b>invalid/datetime/offset-overflow-minute</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       # Minute must be 00-59; we allow 60 too because some people do write offsets of
+       # 60 minutes
+       d = 1985-06-18 17:04:07+12:61
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "d": {
+           "type": "datetime",
+           "value": "1985-06-18T17:04:07+13:01"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/bare-invalid-character</b>
+<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       bare!key = 123
+
+<b>     output from parser-cmd (stdout):</b>
+       
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/dotted-redefine-table-1</b>
+<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       a = false
+       a.b = true
+
+<b>     output from parser-cmd (stdout):</b>
+       
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/dotted-redefine-table-2</b>
+<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       # Defined a.b as int
+       a.b = 1
+       # Tries to access it as table: error
+       a.b.c = 2
+
+<b>     output from parser-cmd (stdout):</b>
+       
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/duplicate-keys-1</b>
+<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       name = "Tom"
+       name = "Pradyun"
+
+<b>     output from parser-cmd (stdout):</b>
+       
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/duplicate-keys-2</b>
+<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       dupe = false
+       dupe = true
+
+<b>     output from parser-cmd (stdout):</b>
+       
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/duplicate-keys-3</b>
+<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       spelling   = "favorite"
+       "spelling" = "favourite"
+
+<b>     output from parser-cmd (stdout):</b>
+       
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/duplicate-keys-4</b>
+<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+       spelling   = "favorite"
+       'spelling' = "favourite"
+
+<b>     output from parser-cmd (stdout):</b>
+       
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/key/empty</b>
+<b> </b>    command timed out after 3s; increase -timeout if this isn't an infinite loop or pathological behaviour
+
+<b>     input sent to parser-cmd:</b>
+        = 1
+
+<b>     output from parser-cmd (stdout):</b>
+       
+
+<b>     want:</b>
+       Exit code 1
+
+toml-test v2024-05-23 [./src/racket-toml-racket/toml-compliance/compliance/decoder]: using embedded tests
+  valid tests: 179 passed,  1 failed
+invalid tests: 362 passed,  9 failed
 
 ==> ENCODER TESTS
 <b>FAIL</b> <b>valid/float/zero</b>
@@ -497,7 +620,7 @@ invalid tests: 368 passed,  0 failed
        # both
        flt7 = 6.626e-34
 
-toml-test v2023-12-07 [./src/racket-toml-racket/toml-compliance/compliance/encoder]: using embedded tests
-encoder tests: 173 passed,  6 failed
+toml-test v2024-05-23 [./src/racket-toml-racket/toml-compliance/compliance/encoder]: using embedded tests
+encoder tests: 174 passed,  6 failed
 took 0.0 0.0
 </pre>

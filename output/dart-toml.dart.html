@@ -1,5 +1,5 @@
 <pre>
-toml.dart version f5e6e5f
+toml.dart version e9fe9b4
 <b>FAIL</b> <b>invalid/datetime/feb-29</b>
 <b> </b>    exit status 255
 
@@ -298,6 +298,85 @@ toml.dart version f5e6e5f
 <b>     want:</b>
        Exit code 1
 
+<b>FAIL</b> <b>invalid/datetime/offset-overflow-hour</b>
+<b> </b>    exit status 255
+
+<b>     input sent to parser-cmd:</b>
+       # Hour must be 00-24
+       d = 1985-06-18 17:04:07+25:00
+
+<b>     output from parser-cmd (stderr):</b>
+       Unhandled exception:
+       Invalid argument(s): Invalid hours of time-zone offset: 25
+       #0      new TomlTimeZoneOffset._ (package:toml/src/ast/value/date_time.dart:268)
+       #1      new TomlTimeZoneOffset.positive (package:toml/src/ast/value/date_time.dart:297)
+       #2      TomlTimeZoneOffset._positiveParser.<anonymous closure> (package:toml/src/ast/value/date_time.dart:231)
+       #3      MapParser.parseOn (package:petitparser/src/parser/action/map.dart:42)
+       #4      ChoiceParser.parseOn (package:petitparser/src/parser/combinator/choice.dart:72)
+       #5      SequenceParser3.parseOn (package:petitparser/src/parser/combinator/generated/sequence_3.dart:61)
+       #6      MapParser.parseOn (package:petitparser/src/parser/action/map.dart:40)
+       #7      ChoiceParser.parseOn (package:petitparser/src/parser/combinator/choice.dart:67)
+       #8      ChoiceParser.parseOn (package:petitparser/src/parser/combinator/choice.dart:67)
+       #9      ChoiceParser.parseOn (package:petitparser/src/parser/combinator/choice.dart:67)
+       #10     LateParser.parseOn (package:toml/src/util/parser/late.dart:40)
+       #11     SequenceParser2.parseOn (package:petitparser/src/parser/combinator/generated/sequence_2.dart:52)
+       #12     MapParser.parseOn (package:petitparser/src/parser/action/map.dart:40)
+       #13     TrimmingParser.parseOn (package:petitparser/src/parser/action/trimming.dart:44)
+       #14     SkipParser.parseOn (package:petitparser/src/parser/combinator/skip.dart:35)
+       #15     SkipParser.parseOn (package:petitparser/src/parser/combinator/skip.dart:35)
+       #16     ChoiceParser.parseOn (package:petitparser/src/parser/combinator/choice.dart:67)
+       #17     SeparatedRepeatingParser.parseOn (package:petitparser/src/parser/repeater/separated.dart:88)
+       #18     MapParser.parseOn (package:petitparser/src/parser/action/map.dart:40)
+       #19     MapParser.parseOn (package:petitparser/src/parser/action/map.dart:40)
+       #20     SkipParser.parseOn (package:petitparser/src/parser/combinator/skip.dart:35)
+       #21     Parser.parse (package:petitparser/src/core/parser.dart:51)
+       #22     TomlDocument.parse (package:toml/src/ast/document.dart:34)
+       #23     main (file:///home/martin/code/toml/toml-test-matrix/src/dart-toml.dart/bin/decoder.dart:67)
+       <asynchronous suspension>
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/datetime/offset-overflow-minute</b>
+<b> </b>    exit status 255
+
+<b>     input sent to parser-cmd:</b>
+       # Minute must be 00-59; we allow 60 too because some people do write offsets of
+       # 60 minutes
+       d = 1985-06-18 17:04:07+12:61
+
+<b>     output from parser-cmd (stderr):</b>
+       Unhandled exception:
+       Invalid argument(s): Invalid minutes of time-zone offset: 61
+       #0      new TomlTimeZoneOffset._ (package:toml/src/ast/value/date_time.dart:271)
+       #1      new TomlTimeZoneOffset.positive (package:toml/src/ast/value/date_time.dart:297)
+       #2      TomlTimeZoneOffset._positiveParser.<anonymous closure> (package:toml/src/ast/value/date_time.dart:231)
+       #3      MapParser.parseOn (package:petitparser/src/parser/action/map.dart:42)
+       #4      ChoiceParser.parseOn (package:petitparser/src/parser/combinator/choice.dart:72)
+       #5      SequenceParser3.parseOn (package:petitparser/src/parser/combinator/generated/sequence_3.dart:61)
+       #6      MapParser.parseOn (package:petitparser/src/parser/action/map.dart:40)
+       #7      ChoiceParser.parseOn (package:petitparser/src/parser/combinator/choice.dart:67)
+       #8      ChoiceParser.parseOn (package:petitparser/src/parser/combinator/choice.dart:67)
+       #9      ChoiceParser.parseOn (package:petitparser/src/parser/combinator/choice.dart:67)
+       #10     LateParser.parseOn (package:toml/src/util/parser/late.dart:40)
+       #11     SequenceParser2.parseOn (package:petitparser/src/parser/combinator/generated/sequence_2.dart:52)
+       #12     MapParser.parseOn (package:petitparser/src/parser/action/map.dart:40)
+       #13     TrimmingParser.parseOn (package:petitparser/src/parser/action/trimming.dart:44)
+       #14     SkipParser.parseOn (package:petitparser/src/parser/combinator/skip.dart:35)
+       #15     SkipParser.parseOn (package:petitparser/src/parser/combinator/skip.dart:35)
+       #16     ChoiceParser.parseOn (package:petitparser/src/parser/combinator/choice.dart:67)
+       #17     SeparatedRepeatingParser.parseOn (package:petitparser/src/parser/repeater/separated.dart:88)
+       #18     MapParser.parseOn (package:petitparser/src/parser/action/map.dart:40)
+       #19     MapParser.parseOn (package:petitparser/src/parser/action/map.dart:40)
+       #20     SkipParser.parseOn (package:petitparser/src/parser/combinator/skip.dart:35)
+       #21     Parser.parse (package:petitparser/src/core/parser.dart:51)
+       #22     TomlDocument.parse (package:toml/src/ast/document.dart:34)
+       #23     main (file:///home/martin/code/toml/toml-test-matrix/src/dart-toml.dart/bin/decoder.dart:67)
+       <asynchronous suspension>
+
+<b>     want:</b>
+       Exit code 1
+
 <b>FAIL</b> <b>invalid/datetime/second-over</b>
 <b> </b>    exit status 255
 
@@ -346,21 +425,21 @@ toml.dart version f5e6e5f
 <b>     output from parser-cmd (stderr):</b>
        Unhandled exception:
        FormatException: Encoded surrogate (at offset 30)
-       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1852)
+       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1864)
        #1      _Utf8ConversionSink.addSlice (dart:convert/string_conversion.dart:304)
        #2      _Utf8ConversionSink.add (dart:convert/string_conversion.dart:300)
        #3      _ConverterStreamEventSink.add (dart:convert/chunked_conversion.dart:69)
        #4      _SinkTransformerStreamSubscription._handleData (dart:async/stream_transformers.dart:111)
        #5      _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #8      _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #9      _StreamController._add (dart:async/stream_controller.dart:658)
        #10     _StreamController.add (dart:async/stream_controller.dart:606)
-       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2447)
+       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2449)
        #12     _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #15     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #16     _StreamController._add (dart:async/stream_controller.dart:658)
        #17     _StreamController.add (dart:async/stream_controller.dart:606)
@@ -387,21 +466,21 @@ toml.dart version f5e6e5f
 <b>     output from parser-cmd (stderr):</b>
        Unhandled exception:
        FormatException: Unfinished UTF-8 octet sequence
-       #0      _Utf8Decoder.flush (dart:convert/utf.dart:617)
+       #0      _Utf8Decoder.flush (dart:convert/utf.dart:593)
        #1      _Utf8ConversionSink.close (dart:convert/string_conversion.dart:289)
        #2      _ConverterStreamEventSink.close (dart:convert/chunked_conversion.dart:78)
        #3      _SinkTransformerStreamSubscription._handleDone (dart:async/stream_transformers.dart:132)
        #4      _RootZone.runGuarded (dart:async/zone.dart:1582)
-       #5      _BufferingStreamSubscription._sendDone.sendDone (dart:async/stream_impl.dart:392)
-       #6      _BufferingStreamSubscription._sendDone (dart:async/stream_impl.dart:402)
-       #7      _BufferingStreamSubscription._close (dart:async/stream_impl.dart:291)
+       #5      _BufferingStreamSubscription._sendDone.sendDone (dart:async/stream_impl.dart:418)
+       #6      _BufferingStreamSubscription._sendDone (dart:async/stream_impl.dart:428)
+       #7      _BufferingStreamSubscription._close (dart:async/stream_impl.dart:317)
        #8      _SyncStreamControllerDispatch._sendDone (dart:async/stream_controller.dart:792)
        #9      _StreamController._closeUnchecked (dart:async/stream_controller.dart:647)
        #10     _StreamController.close (dart:async/stream_controller.dart:640)
-       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2454)
+       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2456)
        #12     _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #15     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #16     _StreamController._add (dart:async/stream_controller.dart:658)
        #17     _StreamController.add (dart:async/stream_controller.dart:606)
@@ -424,21 +503,21 @@ toml.dart version f5e6e5f
 <b>     output from parser-cmd (stderr):</b>
        Unhandled exception:
        FormatException: Missing extension byte (at offset 3)
-       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1852)
+       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1864)
        #1      _Utf8ConversionSink.addSlice (dart:convert/string_conversion.dart:304)
        #2      _Utf8ConversionSink.add (dart:convert/string_conversion.dart:300)
        #3      _ConverterStreamEventSink.add (dart:convert/chunked_conversion.dart:69)
        #4      _SinkTransformerStreamSubscription._handleData (dart:async/stream_transformers.dart:111)
        #5      _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #8      _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #9      _StreamController._add (dart:async/stream_controller.dart:658)
        #10     _StreamController.add (dart:async/stream_controller.dart:606)
-       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2447)
+       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2449)
        #12     _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #15     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #16     _StreamController._add (dart:async/stream_controller.dart:658)
        #17     _StreamController.add (dart:async/stream_controller.dart:606)
@@ -462,21 +541,21 @@ toml.dart version f5e6e5f
 <b>     output from parser-cmd (stderr):</b>
        Unhandled exception:
        FormatException: Missing extension byte (at offset 67)
-       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1852)
+       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1864)
        #1      _Utf8ConversionSink.addSlice (dart:convert/string_conversion.dart:304)
        #2      _Utf8ConversionSink.add (dart:convert/string_conversion.dart:300)
        #3      _ConverterStreamEventSink.add (dart:convert/chunked_conversion.dart:69)
        #4      _SinkTransformerStreamSubscription._handleData (dart:async/stream_transformers.dart:111)
        #5      _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #8      _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #9      _StreamController._add (dart:async/stream_controller.dart:658)
        #10     _StreamController.add (dart:async/stream_controller.dart:606)
-       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2447)
+       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2449)
        #12     _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #15     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #16     _StreamController._add (dart:async/stream_controller.dart:658)
        #17     _StreamController.add (dart:async/stream_controller.dart:606)
@@ -500,21 +579,21 @@ toml.dart version f5e6e5f
 <b>     output from parser-cmd (stderr):</b>
        Unhandled exception:
        FormatException: Missing extension byte (at offset 67)
-       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1852)
+       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1864)
        #1      _Utf8ConversionSink.addSlice (dart:convert/string_conversion.dart:304)
        #2      _Utf8ConversionSink.add (dart:convert/string_conversion.dart:300)
        #3      _ConverterStreamEventSink.add (dart:convert/chunked_conversion.dart:69)
        #4      _SinkTransformerStreamSubscription._handleData (dart:async/stream_transformers.dart:111)
        #5      _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #8      _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #9      _StreamController._add (dart:async/stream_controller.dart:658)
        #10     _StreamController.add (dart:async/stream_controller.dart:606)
-       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2447)
+       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2449)
        #12     _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #15     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #16     _StreamController._add (dart:async/stream_controller.dart:658)
        #17     _StreamController.add (dart:async/stream_controller.dart:606)
@@ -538,21 +617,21 @@ toml.dart version f5e6e5f
 <b>     output from parser-cmd (stderr):</b>
        Unhandled exception:
        FormatException: Missing extension byte (at offset 65)
-       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1852)
+       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1864)
        #1      _Utf8ConversionSink.addSlice (dart:convert/string_conversion.dart:304)
        #2      _Utf8ConversionSink.add (dart:convert/string_conversion.dart:300)
        #3      _ConverterStreamEventSink.add (dart:convert/chunked_conversion.dart:69)
        #4      _SinkTransformerStreamSubscription._handleData (dart:async/stream_transformers.dart:111)
        #5      _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #8      _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #9      _StreamController._add (dart:async/stream_controller.dart:658)
        #10     _StreamController.add (dart:async/stream_controller.dart:606)
-       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2447)
+       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2449)
        #12     _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #15     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #16     _StreamController._add (dart:async/stream_controller.dart:658)
        #17     _StreamController.add (dart:async/stream_controller.dart:606)
@@ -576,21 +655,21 @@ toml.dart version f5e6e5f
 <b>     output from parser-cmd (stderr):</b>
        Unhandled exception:
        FormatException: Missing extension byte (at offset 65)
-       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1852)
+       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1864)
        #1      _Utf8ConversionSink.addSlice (dart:convert/string_conversion.dart:304)
        #2      _Utf8ConversionSink.add (dart:convert/string_conversion.dart:300)
        #3      _ConverterStreamEventSink.add (dart:convert/chunked_conversion.dart:69)
        #4      _SinkTransformerStreamSubscription._handleData (dart:async/stream_transformers.dart:111)
        #5      _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #8      _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #9      _StreamController._add (dart:async/stream_controller.dart:658)
        #10     _StreamController.add (dart:async/stream_controller.dart:606)
-       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2447)
+       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2449)
        #12     _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #15     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #16     _StreamController._add (dart:async/stream_controller.dart:658)
        #17     _StreamController.add (dart:async/stream_controller.dart:606)
@@ -613,21 +692,21 @@ toml.dart version f5e6e5f
 <b>     output from parser-cmd (stderr):</b>
        Unhandled exception:
        FormatException: Invalid UTF-8 byte (at offset 17)
-       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1852)
+       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1864)
        #1      _Utf8ConversionSink.addSlice (dart:convert/string_conversion.dart:304)
        #2      _Utf8ConversionSink.add (dart:convert/string_conversion.dart:300)
        #3      _ConverterStreamEventSink.add (dart:convert/chunked_conversion.dart:69)
        #4      _SinkTransformerStreamSubscription._handleData (dart:async/stream_transformers.dart:111)
        #5      _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #8      _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #9      _StreamController._add (dart:async/stream_controller.dart:658)
        #10     _StreamController.add (dart:async/stream_controller.dart:606)
-       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2447)
+       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2449)
        #12     _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #15     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #16     _StreamController._add (dart:async/stream_controller.dart:658)
        #17     _StreamController.add (dart:async/stream_controller.dart:606)
@@ -650,21 +729,21 @@ toml.dart version f5e6e5f
 <b>     output from parser-cmd (stderr):</b>
        Unhandled exception:
        FormatException: Invalid UTF-8 byte (at offset 18)
-       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1852)
+       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1864)
        #1      _Utf8ConversionSink.addSlice (dart:convert/string_conversion.dart:304)
        #2      _Utf8ConversionSink.add (dart:convert/string_conversion.dart:300)
        #3      _ConverterStreamEventSink.add (dart:convert/chunked_conversion.dart:69)
        #4      _SinkTransformerStreamSubscription._handleData (dart:async/stream_transformers.dart:111)
        #5      _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #8      _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #9      _StreamController._add (dart:async/stream_controller.dart:658)
        #10     _StreamController.add (dart:async/stream_controller.dart:606)
-       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2447)
+       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2449)
        #12     _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #15     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #16     _StreamController._add (dart:async/stream_controller.dart:658)
        #17     _StreamController.add (dart:async/stream_controller.dart:606)
@@ -687,21 +766,21 @@ toml.dart version f5e6e5f
 <b>     output from parser-cmd (stderr):</b>
        Unhandled exception:
        FormatException: Invalid UTF-8 byte (at offset 0)
-       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1852)
+       #0      _Utf8Decoder.convertChunked (dart:convert-patch/convert_patch.dart:1864)
        #1      _Utf8ConversionSink.addSlice (dart:convert/string_conversion.dart:304)
        #2      _Utf8ConversionSink.add (dart:convert/string_conversion.dart:300)
        #3      _ConverterStreamEventSink.add (dart:convert/chunked_conversion.dart:69)
        #4      _SinkTransformerStreamSubscription._handleData (dart:async/stream_transformers.dart:111)
        #5      _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #6      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #7      _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #8      _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #9      _StreamController._add (dart:async/stream_controller.dart:658)
        #10     _StreamController.add (dart:async/stream_controller.dart:606)
-       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2447)
+       #11     _Socket._onData (dart:io-patch/socket_patch.dart:2449)
        #12     _RootZone.runUnaryGuarded (dart:async/zone.dart:1594)
-       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339)
-       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271)
+       #13     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:365)
+       #14     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:297)
        #15     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:784)
        #16     _StreamController._add (dart:async/stream_controller.dart:658)
        #17     _StreamController.add (dart:async/stream_controller.dart:606)
@@ -1383,12 +1462,12 @@ toml.dart version f5e6e5f
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-12-07 [./src/dart-toml.dart/build/bin/decoder]: using embedded tests
-  valid tests: 179 passed,  0 failed
-invalid tests: 331 passed, 37 failed
+toml-test v2024-05-23 [./src/dart-toml.dart/build/bin/decoder]: using embedded tests
+  valid tests: 180 passed,  0 failed
+invalid tests: 332 passed, 39 failed
 
 ==> ENCODER TESTS
-toml-test v2023-12-07 [./src/dart-toml.dart/build/bin/encoder]: using embedded tests
-encoder tests: 179 passed,  0 failed
-took 4.7 1.24
+toml-test v2024-05-23 [./src/dart-toml.dart/build/bin/encoder]: using embedded tests
+encoder tests: 180 passed,  0 failed
+took 4.2 1.22
 </pre>

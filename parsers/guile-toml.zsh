@@ -1,3 +1,5 @@
+export GUILE_LOAD_PATH=src/guile-toml:src/guile-toml/guile-json
+
 deps() { print 'guile git' }
 
 setup() {
@@ -10,8 +12,6 @@ setup() {
 	GUILE_LOAD_PATH=.:guile-json ./test/test-decoder.scm <<<''
 	GUILE_LOAD_PATH=.:guile-json ./test/test-encoder.scm <<<'{}'
 }
-
-export GUILE_LOAD_PATH=src/guile-toml:src/guile-toml/guile-json
 
 typeset -A info=(
 	lang    'Guile'

@@ -1,3 +1,5 @@
+export PYTHONPATH=./src/python-tomli/src:./src/python-tomli/src/tomli/src
+
 deps() { print 'python git' }
 
 setup() {
@@ -8,8 +10,6 @@ setup() {
 		(cd tomli && git pull >/dev/null)
 	fi
 }
-
-export PYTHONPATH=./src/python-tomli/src:./src/python-tomli/src/tomli/src
 
 typeset -A info=(
 	lang    'Python'

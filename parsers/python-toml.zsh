@@ -1,8 +1,8 @@
+export PYTHONPATH=./src/python-toml
+
 deps() { print 'python' }
 
 setup() { }
-
-export PYTHONPATH=./src/python-toml
 
 typeset -A info=(
 	lang    'Python'

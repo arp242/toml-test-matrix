@@ -194,6 +194,7 @@ do_perf() {
 			check-deps || exit 1
 
 			skip=($(sed '/==> ENCODER TESTS/q; /FAIL/p; d;' $out | grep -Eo '>valid/.*?<' | sed 's/>/-skip /; s/</.toml/'))
+			skip+=(-skip valid/datetime/edge.toml)
 			[[ $name = 'c-tomlc99' ]] && skip+=(-skip valid/string/multiline-quotes.toml)
 			tmp5M=$(mktemp)
 			tmp10k=$(mktemp)
@@ -366,38 +367,40 @@ do_gen() {
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>TOML test matrix</title>
 		<style>
-			html         { background-color:#eee; font:18px/1.5em sans-serif; }
-			body         { overflow-y:scroll; }
-			.page        { background-color:#fff; padding:1em; max-width:80em; margin:1em auto;
-			               box-shadow:2px 2px #000; border-radius:2px; border:1px solid #666; }
-			.intro       { padding:0 1em; }
-			small, em    { font-size:.75em; }
-			table        { border-collapse:separate; border-spacing:0; margin-left:-1em; margin-right:-1em; margin-bottom:-1em;}
-			td, th       { border:1px solid #d7d7d7; padding:.5em;  }
+			html            { background-color:#eee; font:18px/1.5em sans-serif; }
+			body            { overflow-y:scroll; }
+			.page, footer   { padding:1em; max-width:80em; margin:1em auto; }
+			.page           { background-color:#fff; box-shadow:2px 2px #000; border-radius:2px; border:1px solid #666; }
+			.intro          { padding:0 1em; }
+			footer          { text-align:right; margin-top:-.75em; padding:0; }
+			small, em       { font-size:.75em; }
+			table           { border-collapse:separate; border-spacing:0; margin-left:-1em; margin-right:-1em;
+			                  margin-bottom:-1em; }
+			td, th          { border:1px solid #d7d7d7; padding:.5em;  }
 			td:nth-child(2) { white-space:nowrap; }
 			td:nth-child(3) { white-space:nowrap; }
-			th           { position:sticky; top:0; padding:0 .5em; white-space:nowrap; text-align:left;
-			               background:#f3f3f3; font-weight:normal; font-size:.9em; border-bottom:2px solid #000; }
-			th.noborder  { border-left:none; border-right:none; }
-			tr:hover     { background-color:#fffef1; }
-			.pass        { }
-			.fail        { float:right; }
-			.didfail     { font-weight:bold; color:red; }
-			.bench       { text-align:right; }
-			a            { text-decoration:none; }
-			a:hover      { text-decoration:underline; }
-			.ui:visited  { color:LinkText; text-decoration:none; }
-			.bars        { height:.5em; line-height:0; }
-			.barp, .barf { display:inline-block; height:.5em; }
-			.barp        { background:#e1e1e1; color:#fff; }
-			.barf        { background:red; color:#fff; text-align:right;}
-			.allpass     {  }
-			#langs       { gap:1em; margin-bottom:.5em; display:none; line-height:2.5em; }
+			th              { position:sticky; top:0; padding:0 .5em; white-space:nowrap; text-align:left;
+			                  background:#f3f3f3; font-weight:normal; font-size:.9em; border-bottom:2px solid #000; }
+			th.noborder     { border-left:none; border-right:none; }
+			tr:hover        { background-color:#fffef1; }
+			.pass           { }
+			.fail           { float:right; }
+			.didfail        { font-weight:bold; color:red; }
+			.bench          { text-align:right; }
+			a               { text-decoration:none; }
+			a:hover         { text-decoration:underline; }
+			.ui:visited     { color:LinkText; text-decoration:none; }
+			.bars           { height:.5em; line-height:0; }
+			.barp, .barf    { display:inline-block; height:.5em; }
+			.barp           { background:#e1e1e1; color:#fff; }
+			.barf           { background:red; color:#fff; text-align:right;}
+			.allpass        { }
+			#langs          { gap:1em; margin-bottom:.5em; display:none; line-height:2.5em; }
 			#langs >span:nth-child(1) { white-space:nowrap; }
-			label        { white-space:nowrap; break-inside:avoid; margin-right:.4em; padding:.3em;
-			               box-shadow:2px 2px #000; border-radius:2px; border:1px solid #666; user-select:none; }
-			label:hover  { background:#eee; }
-			.on          { box-shadow:-1px -1px #000; background:#eee; }
+			label           { white-space:nowrap; break-inside:avoid; margin-right:.4em; padding:.3em;
+			                  box-shadow:2px 2px #000; border-radius:2px; border:1px solid #666; user-select:none; }
+			label:hover     { background:#eee; }
+			.on             { box-shadow:-1px -1px #000; background:#eee; }
 			input[type="checkbox"] { vertical-align:text-top; }
 		</style>
 		</head>
@@ -492,17 +495,17 @@ do_gen() {
 
 		if (( $v[5] > 0 )); then
 			failvw=$(print -f '%f' $(( $v[5].0 / ($v[3] + $v[5]) * 100 )))
-			passvw=$(( 100 - $failvw ))
+			passvw=$(print -f '%f' $(( 100 - $failvw )))
 			allv=
 		fi
 		if (( $iv[5] > 0 )); then
 			failiw=$(print -f '%f' $(( $iv[5].0 / ($iv[3] + $iv[5]) * 100 )))
-			passiw=$(( 100 - $failiw ))
+			passiw=$(print -f '%f' $(( 100 - $failiw )))
 			alli=
 		fi
 		if (( $e[5] > 0 )); then
 			faile=$(print -f '%f' $(( $e[5].0 / ($e[3] + $e[5]) * 100 )))
-			passe=$(( 100 - $faile ))
+			passe=$(print -f '%f' $(( 100 - $faile )))
 			alle=
 		fi
 		cat >>index.html <<-EOF
@@ -569,10 +572,10 @@ do_gen() {
 	cat >>index.html <<-EOF
 		</tbody></table>
 		</div> <!-- page -->
-		<p style="float:right; font-size:.75em; margin:1em; margin-top:-.75em;">
+		<footer><small>
 			Generated on $(strftime %Y-%m-%d);
 			<a href="https://github.com/arp242/toml-test-matrix">https://github.com/arp242/toml-test-matrix</a>
-		</p>
+		</small></footer>
 		<script>
 			window.langs.style.display = 'flex'
 

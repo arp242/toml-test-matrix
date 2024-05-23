@@ -5,7 +5,7 @@ tomlyn version 0.16.2
 <b> </b>    
 <b> </b>       at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
 <b> </b>       at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
-<b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 15
+<b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
 <b> </b>    
 <b> </b>    Exit 1
 
@@ -17,7 +17,7 @@ tomlyn version 0.16.2
        
           at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
           at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
-          at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 15
+          at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
        
        Exit 1
 
@@ -31,7 +31,7 @@ tomlyn version 0.16.2
 <b> </b>    
 <b> </b>       at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
 <b> </b>       at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
-<b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 15
+<b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
 <b> </b>    
 <b> </b>    Exit 1
 
@@ -51,7 +51,7 @@ tomlyn version 0.16.2
        
           at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
           at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
-          at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 15
+          at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
        
        Exit 1
 
@@ -65,7 +65,7 @@ tomlyn version 0.16.2
 <b> </b>    
 <b> </b>       at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
 <b> </b>       at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
-<b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 15
+<b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
 <b> </b>    
 <b> </b>    Exit 1
 
@@ -84,7 +84,7 @@ tomlyn version 0.16.2
        
           at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
           at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
-          at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 15
+          at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
        
        Exit 1
 
@@ -159,27 +159,6 @@ tomlyn version 0.16.2
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/encoding/bad-utf8-at-end</b>
-<b> </b>    Expected an error, but no error was reported.
-
-<b>     input sent to parser-cmd:</b>
-       # There is a 0xda at after the quotes, and no EOL at the end of the file.
-       #
-       # This is a bit of an edge case: This indicates there should be two bytes
-       # (0b1101_1010) but there is no byte to follow because it's the end of the file.
-       x = """"""Ú
-
-<b>     output from parser-cmd (stdout):</b>
-       {
-         "x": {
-           "type": "string",
-           "value": ""
-         }
-       }
-
-<b>     want:</b>
-       Exit code 1
-
 <b>FAIL</b> <b>invalid/table/super-twice</b>
 <b> </b>    Expected an error, but no error was reported.
 
@@ -198,11 +177,11 @@ tomlyn version 0.16.2
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-12-07 [./src/cs-tomlyn/cs-tomlyn-decoder/bin/Release/net6.0/cs-tomlyn-decoder]: using embedded tests
-  valid tests: 176 passed,  3 failed
-invalid tests: 362 passed,  6 failed
+toml-test v2024-05-23 [./src/cs-tomlyn/cs-tomlyn-decoder/bin/Release/net8.0/cs-tomlyn-decoder]: using embedded tests
+  valid tests: 177 passed,  3 failed
+invalid tests: 366 passed,  5 failed
 
 ==> ENCODER TESTS
 (not supported)
-took 95.3 1.70
+took 76.3 1.72
 </pre>

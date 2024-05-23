@@ -1,5 +1,5 @@
 <pre>
-otoml version f6ab907
+otoml version 970e114
 <b>FAIL</b> <b>valid/array/open-parent-table</b>
 <b> </b>    Array lengths differ for key "parent-table.arr":
 <b> </b>      Expected:     2
@@ -37,37 +37,6 @@ otoml version f6ab907
            }
          }
        }
-
-<b>FAIL</b> <b>valid/comment/noeol</b>
-<b> </b>    otoml internal error: lexing: empty token
-<b> </b>    Exit 1
-
-<b>     input sent to parser-cmd:</b>
-       # single comment without any eol characters
-
-<b>     output from parser-cmd (stderr):</b>
-       otoml internal error: lexing: empty token
-       Exit 1
-
-<b>     want:</b>
-          <empty>
-
-<b>FAIL</b> <b>valid/string/multiline-escaped-crlf</b>
-<b> </b>    otoml internal error: lexing: empty token
-<b> </b>    Exit 1
-
-<b>     input sent to parser-cmd:</b>
-       # The following line should be an unescaped backslash followed by a Windows
-       # newline sequence ("\r\n")
-       0="""\
-       """
-
-<b>     output from parser-cmd (stderr):</b>
-       otoml internal error: lexing: empty token
-       Exit 1
-
-<b>     want:</b>
-          <empty>
 
 <b>FAIL</b> <b>invalid/array/extend-defined-aot</b>
 <b> </b>    Expected an error, but no error was reported.
@@ -143,6 +112,40 @@ otoml version f6ab907
 
 <b>     output from parser-cmd (stderr):</b>
        Fatal error: exception Otoml__Common.Duplicate_key("array of tables [[fruit.variety]] is duplicated by a table [fruit.variety]")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/control/multi-cr</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       multi-cr   = """null"""
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "multi-cr": {
+           "type": "string",
+           "value": "null\r"
+         }
+       }
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/control/rawmulti-cd</b>
+<b> </b>    Expected an error, but no error was reported.
+
+<b>     input sent to parser-cmd:</b>
+       rawmulti-cd   = '''null'''
+
+<b>     output from parser-cmd (stdout):</b>
+       {
+         "rawmulti-cd": {
+           "type": "string",
+           "value": "null\r"
+         }
+       }
 
 <b>     want:</b>
        Exit code 1
@@ -230,7 +233,7 @@ otoml version f6ab907
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/inline-table/overwrite-1</b>
+<b>FAIL</b> <b>invalid/inline-table/overwrite-01</b>
 <b> </b>    exit status 2
 
 <b>     input sent to parser-cmd:</b>
@@ -244,7 +247,7 @@ otoml version f6ab907
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/inline-table/overwrite-2</b>
+<b>FAIL</b> <b>invalid/inline-table/overwrite-02</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
@@ -262,7 +265,7 @@ otoml version f6ab907
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/inline-table/overwrite-3</b>
+<b>FAIL</b> <b>invalid/inline-table/overwrite-03</b>
 <b> </b>    exit status 2
 
 <b>     input sent to parser-cmd:</b>
@@ -275,7 +278,7 @@ otoml version f6ab907
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/inline-table/overwrite-4</b>
+<b>FAIL</b> <b>invalid/inline-table/overwrite-04</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
@@ -293,7 +296,7 @@ otoml version f6ab907
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/inline-table/overwrite-5</b>
+<b>FAIL</b> <b>invalid/inline-table/overwrite-05</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
@@ -311,7 +314,7 @@ otoml version f6ab907
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/inline-table/overwrite-6</b>
+<b>FAIL</b> <b>invalid/inline-table/overwrite-06</b>
 <b> </b>    exit status 2
 
 <b>     input sent to parser-cmd:</b>
@@ -323,7 +326,7 @@ otoml version f6ab907
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/inline-table/overwrite-7</b>
+<b>FAIL</b> <b>invalid/inline-table/overwrite-07</b>
 <b> </b>    exit status 2
 
 <b>     input sent to parser-cmd:</b>
@@ -335,7 +338,7 @@ otoml version f6ab907
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/inline-table/overwrite-8</b>
+<b>FAIL</b> <b>invalid/inline-table/overwrite-08</b>
 <b> </b>    Expected an error, but no error was reported.
 
 <b>     input sent to parser-cmd:</b>
@@ -360,7 +363,7 @@ otoml version f6ab907
 <b>     want:</b>
        Exit code 1
 
-<b>FAIL</b> <b>invalid/inline-table/overwrite-9</b>
+<b>FAIL</b> <b>invalid/inline-table/overwrite-09</b>
 <b> </b>    exit status 2
 
 <b>     input sent to parser-cmd:</b>
@@ -372,6 +375,21 @@ otoml version f6ab907
 
 <b>     output from parser-cmd (stderr):</b>
        Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"nest\" overrides a value of type table with a value of type integer")
+
+<b>     want:</b>
+       Exit code 1
+
+<b>FAIL</b> <b>invalid/inline-table/overwrite-10</b>
+<b> </b>    exit status 2
+
+<b>     input sent to parser-cmd:</b>
+       # Set implicit "b", overwrite "b" (illegal!) and then set another implicit.
+       #
+       # Caused panic: https://github.com/BurntSushi/toml/issues/403
+       a = {b.a = 1, b = 2, b.c = 3}
+
+<b>     output from parser-cmd (stderr):</b>
+       Fatal error: exception Otoml__Common.Duplicate_key("duplicate key \"b\" overrides a value of type table with a value of type integer")
 
 <b>     want:</b>
        Exit code 1
@@ -1008,9 +1026,9 @@ otoml version f6ab907
 <b>     want:</b>
        Exit code 1
 
-toml-test v2023-12-07 [./src/ocaml-otoml/decoder]: using embedded tests
-  valid tests: 176 passed,  3 failed
-invalid tests: 319 passed, 49 failed
+toml-test v2024-05-16 [./src/ocaml-otoml/decoder]: using embedded tests
+  valid tests: 179 passed,  1 failed
+invalid tests: 319 passed, 52 failed
 
 ==> ENCODER TESTS
 <b>FAIL</b> <b>valid/array/open-parent-table</b>
@@ -1481,7 +1499,7 @@ invalid tests: 319 passed, 49 failed
        [a]
        y = 2
 
-toml-test v2023-12-07 [./src/ocaml-otoml/encoder]: using embedded tests
-encoder tests: 171 passed,  8 failed
+toml-test v2024-05-16 [./src/ocaml-otoml/encoder]: using embedded tests
+encoder tests: 172 passed,  8 failed
 took 0.0 0.0
 </pre>

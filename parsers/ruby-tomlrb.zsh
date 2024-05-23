@@ -1,3 +1,5 @@
+export RUBYLIB=./src/ruby-tomlrb/lib
+
 deps() { print 'ruby bundle' }
 
 setup() {
@@ -5,8 +7,6 @@ setup() {
 	cp ../../scripts/ruby-tomlrb-decoder .
 	cp ../../scripts/ruby-tomlrb-perf .
 }
-
-export RUBYLIB=./src/ruby-tomlrb/lib
 
 typeset -A info=(
 	lang    'Ruby'

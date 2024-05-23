@@ -1,4 +1,4 @@
-deps() { print 'meson' }
+deps() { print 'meson gfortran' }
 
 setup() {
 	cp ../../scripts/fortran-toml-f-perf.f90 ./test/compliance/

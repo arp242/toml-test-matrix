@@ -1,3 +1,7 @@
+if [[ -f ./toolchain/dart-sdk/bin/dart ]]; then
+	path+=($PWD/toolchain/dart-sdk/bin)
+fi
+
 deps() { print 'dart' }
 
 setup() {
@@ -9,8 +13,6 @@ setup() {
 	cp ../../scripts/dart-toml.dart-perf.dart ./perf.dart
 	dart compile exe -o perf perf.dart
 }
-
-export PATH=$PATH:~/.local/dart-sdk/bin
 
 typeset -A info=(
 	lang    'Dart'
