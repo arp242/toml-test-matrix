@@ -1,5 +1,5 @@
 <pre>
-toml version 5bcf186
+toml version a339e1f
 <b>FAIL</b> <b>invalid/array/extend-defined-aot</b>
 <b> </b>    Expected an error, but no error was reported.
 
@@ -10,16 +10,9 @@ toml version 5bcf186
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "tab": {
-           "arr": [
-             {
-               "val1": {
-                 "type": "integer",
-                 "value": "1"
-               }
-             }
-           ]
-         }
+         "tab": {"arr": [{
+           "val1": {"type": "integer", "value": "1"}
+         }]}
        }
 
 <b>     want:</b>
@@ -34,10 +27,7 @@ toml version 5bcf186
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "d": {
-           "type": "datetime",
-           "value": "1985-06-18T17:04:07+25:00"
-         }
+         "d": {"type": "datetime", "value": "1985-06-18T17:04:07+25:00"}
        }
 
 <b>     want:</b>
@@ -53,10 +43,7 @@ toml version 5bcf186
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "d": {
-           "type": "datetime",
-           "value": "1985-06-18T17:04:07+13:01"
-         }
+         "d": {"type": "datetime", "value": "1985-06-18T17:04:07+13:01"}
        }
 
 <b>     want:</b>
@@ -73,15 +60,9 @@ toml version 5bcf186
          "tbl": {
            "fruit": {
              "apple": {
-               "color": {
-                 "type": "string",
-                 "value": "red"
-               },
+               "color": {"type": "string", "value": "red"},
                "texture": {
-                 "smooth": {
-                   "type": "bool",
-                   "value": "true"
-                 }
+                 "smooth": {"type": "bool", "value": "true"}
                }
              }
            }
@@ -119,14 +100,8 @@ toml version 5bcf186
        {
          "tab": {
            "inner": {
-             "cat": {
-               "type": "string",
-               "value": "worst"
-             },
-             "dog": {
-               "type": "string",
-               "value": "best"
-             }
+             "cat": {"type": "string", "value": "worst"},
+             "dog": {"type": "string", "value": "best"}
            }
          }
        }
@@ -146,14 +121,8 @@ toml version 5bcf186
        {
          "product": {
            "type": {
-             "edible": {
-               "type": "bool",
-               "value": "false"
-             },
-             "name": {
-               "type": "string",
-               "value": "Nail"
-             }
+             "edible": {"type": "bool", "value": "false"},
+             "name":   {"type": "string", "value": "Nail"}
            }
          }
        }
@@ -179,21 +148,12 @@ toml version 5bcf186
        {
          "fruit": {
            "apple": {
-             "color": {
-               "type": "string",
-               "value": "red"
-             },
+             "color": {"type": "string", "value": "red"},
              "taste": {
-               "sweet": {
-                 "type": "bool",
-                 "value": "true"
-               }
+               "sweet": {"type": "bool", "value": "true"}
              },
              "texture": {
-               "smooth": {
-                 "type": "bool",
-                 "value": "true"
-               }
+               "smooth": {"type": "bool", "value": "true"}
              }
            }
          }
@@ -213,16 +173,9 @@ toml version 5bcf186
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "a": {
-           "b": [
-             {
-               "y": {
-                 "type": "integer",
-                 "value": "2"
-               }
-             }
-           ]
-         }
+         "a": {"b": [{
+           "y": {"type": "integer", "value": "2"}
+         }]}
        }
 
 <b>     want:</b>
@@ -255,13 +208,10 @@ toml version 5bcf186
          "a": {
            "b": {
              "c": {
+               "z": {"type": "integer", "value": "9"},
                "t": {
-                 "type": "string",
+                 "type":  "string",
                  "value": "Using dotted keys to add to [a.b.c] after explicitly defining it above is not allowed"
-               },
-               "z": {
-                 "type": "integer",
-                 "value": "9"
                }
              }
            }
@@ -290,15 +240,12 @@ toml version 5bcf186
            "b": {
              "c": {
                "d": {
+                 "z": {"type": "integer", "value": "9"},
                  "k": {
                    "t": {
-                     "type": "string",
+                     "type":  "string",
                      "value": "Using dotted keys to add to [a.b.c.d] after explicitly defining it above is not allowed"
                    }
-                 },
-                 "z": {
-                   "type": "integer",
-                   "value": "9"
                  }
                }
              }
@@ -322,10 +269,7 @@ toml version 5bcf186
        {
          "fruit": {
            "apple": {
-             "color": {
-               "type": "string",
-               "value": "red"
-             }
+             "color": {"type": "string", "value": "red"}
            }
          }
        }
@@ -347,10 +291,7 @@ toml version 5bcf186
          "fruit": {
            "apple": {
              "taste": {
-               "sweet": {
-                 "type": "bool",
-                 "value": "true"
-               }
+               "sweet": {"type": "bool", "value": "true"}
              }
            }
          }
@@ -372,10 +313,7 @@ toml version 5bcf186
          "t1": {
            "t2": {
              "t3": {
-               "v": {
-                 "type": "integer",
-                 "value": "0"
-               }
+               "v": {"type": "integer", "value": "0"}
              }
            }
          }
@@ -397,10 +335,7 @@ toml version 5bcf186
          "t1": {
            "t2": {
              "t3": {
-               "v": {
-                 "type": "integer",
-                 "value": "0"
-               }
+               "v": {"type": "integer", "value": "0"}
              }
            }
          }
@@ -409,12 +344,12 @@ toml version 5bcf186
 <b>     want:</b>
        Exit code 1
 
-toml-test v2024-05-23 [./src/go-toml/toml-test-decoder]: using embedded tests
+toml-test v2024-05-31 [./src/go-toml/toml-test-decoder]: using embedded tests
   valid tests: 182 passed,  0 failed
 invalid tests: 356 passed, 15 failed
 
 ==> ENCODER TESTS
-toml-test v2024-05-23 [./src/go-toml/toml-test-encoder]: using embedded tests
+toml-test v2024-05-31 [./src/go-toml/toml-test-encoder]: using embedded tests
 encoder tests: 182 passed,  0 failed
 took 0.9 0.36
 </pre>

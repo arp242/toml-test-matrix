@@ -9,14 +9,8 @@ tomlrb version a1eaa06
 <b>     output from parser-cmd (stdout):</b>
        {
          "double-comma-1": [
-           {
-             "type": "integer",
-             "value": "1"
-           },
-           {
-             "type": "integer",
-             "value": "2"
-           }
+           {"type": "integer", "value": "1"},
+           {"type": "integer", "value": "2"}
          ]
        }
 
@@ -32,14 +26,8 @@ tomlrb version a1eaa06
 <b>     output from parser-cmd (stdout):</b>
        {
          "double-comma-2": [
-           {
-             "type": "integer",
-             "value": "1"
-           },
-           {
-             "type": "integer",
-             "value": "2"
-           }
+           {"type": "integer", "value": "1"},
+           {"type": "integer", "value": "2"}
          ]
        }
 
@@ -82,10 +70,7 @@ tomlrb version a1eaa06
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "multi-cr": {
-           "type": "string",
-           "value": "null\r"
-         }
+         "multi-cr": {"type": "string", "value": "null\r"}
        }
 
 <b>     want:</b>
@@ -99,10 +84,7 @@ tomlrb version a1eaa06
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "rawmulti-cd": {
-           "type": "string",
-           "value": "null\r"
-         }
+         "rawmulti-cd": {"type": "string", "value": "null\r"}
        }
 
 <b>     want:</b>
@@ -116,10 +98,7 @@ tomlrb version a1eaa06
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "not a leap year": {
-           "type": "datetime",
-           "value": "2100-03-01T15:15:15Z"
-         }
+         "not a leap year": {"type": "datetime", "value": "2100-03-01T15:15:15Z"}
        }
 
 <b>     want:</b>
@@ -133,10 +112,7 @@ tomlrb version a1eaa06
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "only 28 or 29 days in february": {
-           "type": "datetime",
-           "value": "1988-03-01T15:15:15Z"
-         }
+         "only 28 or 29 days in february": {"type": "datetime", "value": "1988-03-01T15:15:15Z"}
        }
 
 <b>     want:</b>
@@ -153,15 +129,9 @@ tomlrb version a1eaa06
          "tbl": {
            "fruit": {
              "apple": {
-               "color": {
-                 "type": "string",
-                 "value": "red"
-               },
+               "color": {"type": "string", "value": "red"},
                "texture": {
-                 "smooth": {
-                   "type": "bool",
-                   "value": "true"
-                 }
+                 "smooth": {"type": "bool", "value": "true"}
                }
              }
            }
@@ -181,10 +151,7 @@ tomlrb version a1eaa06
 <b>     output from parser-cmd (stdout):</b>
        {
          "a": {
-           "b": {
-             "type": "integer",
-             "value": "2"
-           }
+           "b": {"type": "integer", "value": "2"}
          }
        }
 
@@ -201,14 +168,8 @@ tomlrb version a1eaa06
        {
          "tab": {
            "inner": {
-             "cat": {
-               "type": "string",
-               "value": "worst"
-             },
-             "dog": {
-               "type": "string",
-               "value": "best"
-             }
+             "cat": {"type": "string", "value": "worst"},
+             "dog": {"type": "string", "value": "best"}
            }
          }
        }
@@ -226,10 +187,7 @@ tomlrb version a1eaa06
 <b>     output from parser-cmd (stdout):</b>
        {
          "a": {
-           "b": {
-             "type": "bool",
-             "value": "true"
-           }
+           "b": {"type": "bool", "value": "true"}
          }
        }
 
@@ -244,10 +202,7 @@ tomlrb version a1eaa06
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "not a leap year": {
-           "type": "date-local",
-           "value": "2100-03-01"
-         }
+         "not a leap year": {"type": "date-local", "value": "2100-03-01"}
        }
 
 <b>     want:</b>
@@ -261,10 +216,7 @@ tomlrb version a1eaa06
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "only 28 or 29 days in february": {
-           "type": "date-local",
-           "value": "1988-03-01"
-         }
+         "only 28 or 29 days in february": {"type": "date-local", "value": "1988-03-01"}
        }
 
 <b>     want:</b>
@@ -278,10 +230,7 @@ tomlrb version a1eaa06
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "not a leap year": {
-           "type": "datetime-local",
-           "value": "2100-03-01T15:15:15"
-         }
+         "not a leap year": {"type": "datetime-local", "value": "2100-03-01T15:15:15"}
        }
 
 <b>     want:</b>
@@ -295,10 +244,7 @@ tomlrb version a1eaa06
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "only 28 or 29 days in february": {
-           "type": "datetime-local",
-           "value": "1988-03-01T15:15:15"
-         }
+         "only 28 or 29 days in february": {"type": "datetime-local", "value": "1988-03-01T15:15:15"}
        }
 
 <b>     want:</b>
@@ -313,10 +259,7 @@ tomlrb version a1eaa06
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "d": {
-           "type": "datetime-local",
-           "value": "2006-01-02T00:00:00"
-         }
+         "d": {"type": "datetime-local", "value": "2006-01-02T00:00:00"}
        }
 
 <b>     want:</b>
@@ -331,10 +274,7 @@ tomlrb version a1eaa06
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "d": {
-           "type": "time-local",
-           "value": "00:00:00"
-         }
+         "d": {"type": "time-local", "value": "00:00:00"}
        }
 
 <b>     want:</b>
@@ -348,10 +288,7 @@ tomlrb version a1eaa06
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "backslash": {
-           "type": "string",
-           "value": "\\"
-         }
+         "backslash": {"type": "string", "value": "\\"}
        }
 
 <b>     want:</b>
@@ -375,7 +312,7 @@ tomlrb version a1eaa06
 <b>     want:</b>
        Exit code 1
 
-toml-test v2024-05-23 [./src/ruby-tomlrb/ruby-tomlrb-decoder]: using embedded tests
+toml-test v2024-05-31 [./src/ruby-tomlrb/ruby-tomlrb-decoder]: using embedded tests
   valid tests: 182 passed,  0 failed
 invalid tests: 351 passed, 20 failed
 

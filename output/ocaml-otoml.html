@@ -14,28 +14,20 @@ otoml version 970e114
 <b>     output from parser-cmd (stdout):</b>
        {
          "parent-table": {
-           "arr": [
-             {}
-           ],
-           "not-arr": {
-             "type": "integer",
-             "value": "1"
-           }
+           "arr":     [{}],
+           "not-arr": {"type": "integer", "value": "1"}
          }
        }
 
 <b>     want:</b>
        {
-         "parent-table": {
-           "arr": [
-             {},
-             {}
-           ],
-           "not-arr": {
-             "type": "integer",
-             "value": "1"
+           "parent-table": {
+               "not-arr": {"type": "integer", "value": "1"},
+               "arr": [
+                   {},
+                   {}
+               ]
            }
-         }
        }
 
 <b>FAIL</b> <b>invalid/array/extend-defined-aot</b>
@@ -48,16 +40,9 @@ otoml version 970e114
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "tab": {
-           "arr": [
-             {
-               "val1": {
-                 "type": "integer",
-                 "value": "1"
-               }
-             }
-           ]
-         }
+         "tab": {"arr": [{
+           "val1": {"type": "integer", "value": "1"}
+         }]}
        }
 
 <b>     want:</b>
@@ -124,10 +109,7 @@ otoml version 970e114
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "multi-cr": {
-           "type": "string",
-           "value": "null\r"
-         }
+         "multi-cr": {"type": "string", "value": "null\r"}
        }
 
 <b>     want:</b>
@@ -141,10 +123,7 @@ otoml version 970e114
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "rawmulti-cd": {
-           "type": "string",
-           "value": "null\r"
-         }
+         "rawmulti-cd": {"type": "string", "value": "null\r"}
        }
 
 <b>     want:</b>
@@ -158,10 +137,7 @@ otoml version 970e114
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "not a leap year": {
-           "type": "datetime",
-           "value": "2100-02-29T15:15:15Z"
-         }
+         "not a leap year": {"type": "datetime", "value": "2100-02-29T15:15:15Z"}
        }
 
 <b>     want:</b>
@@ -203,15 +179,9 @@ otoml version 970e114
          "tbl": {
            "fruit": {
              "apple": {
-               "color": {
-                 "type": "string",
-                 "value": "red"
-               },
+               "color": {"type": "string", "value": "red"},
                "texture": {
-                 "smooth": {
-                   "type": "bool",
-                   "value": "true"
-                 }
+                 "smooth": {"type": "bool", "value": "true"}
                }
              }
            }
@@ -348,14 +318,8 @@ otoml version 970e114
        {
          "tab": {
            "inner": {
-             "cat": {
-               "type": "string",
-               "value": "worst"
-             },
-             "dog": {
-               "type": "string",
-               "value": "best"
-             }
+             "cat": {"type": "string", "value": "worst"},
+             "dog": {"type": "string", "value": "best"}
            }
          }
        }
@@ -482,10 +446,7 @@ otoml version 970e114
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "not a leap year": {
-           "type": "date-local",
-           "value": "2100-02-29"
-         }
+         "not a leap year": {"type": "date-local", "value": "2100-02-29"}
        }
 
 <b>     want:</b>
@@ -499,10 +460,7 @@ otoml version 970e114
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "not a leap year": {
-           "type": "datetime-local",
-           "value": "2100-02-29T15:15:15"
-         }
+         "not a leap year": {"type": "datetime-local", "value": "2100-02-29T15:15:15"}
        }
 
 <b>     want:</b>
@@ -520,14 +478,8 @@ otoml version 970e114
        {
          "product": {
            "type": {
-             "edible": {
-               "type": "bool",
-               "value": "false"
-             },
-             "name": {
-               "type": "string",
-               "value": "Nail"
-             }
+             "edible": {"type": "bool", "value": "false"},
+             "name":   {"type": "string", "value": "Nail"}
            }
          }
        }
@@ -567,21 +519,12 @@ otoml version 970e114
        {
          "fruit": {
            "apple": {
-             "color": {
-               "type": "string",
-               "value": "red"
-             },
+             "color": {"type": "string", "value": "red"},
              "taste": {
-               "sweet": {
-                 "type": "bool",
-                 "value": "true"
-               }
+               "sweet": {"type": "bool", "value": "true"}
              },
              "texture": {
-               "smooth": {
-                 "type": "bool",
-                 "value": "true"
-               }
+               "smooth": {"type": "bool", "value": "true"}
              }
            }
          }
@@ -608,21 +551,12 @@ otoml version 970e114
        {
          "fruit": {
            "apple": {
-             "color": {
-               "type": "string",
-               "value": "red"
-             },
+             "color": {"type": "string", "value": "red"},
              "taste": {
-               "sweet": {
-                 "type": "bool",
-                 "value": "true"
-               }
+               "sweet": {"type": "bool", "value": "true"}
              },
              "texture": {
-               "smooth": {
-                 "type": "bool",
-                 "value": "true"
-               }
+               "smooth": {"type": "bool", "value": "true"}
              }
            }
          }
@@ -639,10 +573,7 @@ otoml version 970e114
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "bad-uni-esc-3": {
-           "type": "string",
-           "value": "val\u0000000"
-         }
+         "bad-uni-esc-3": {"type": "string", "value": "val\u0000000"}
        }
 
 <b>     want:</b>
@@ -656,10 +587,7 @@ otoml version 970e114
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "bad-uni-esc-4": {
-           "type": "string",
-           "value": "val\u0000"
-         }
+         "bad-uni-esc-4": {"type": "string", "value": "val\u0000"}
        }
 
 <b>     want:</b>
@@ -676,16 +604,9 @@ otoml version 970e114
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "a": {
-           "b": [
-             {
-               "y": {
-                 "type": "integer",
-                 "value": "2"
-               }
-             }
-           ]
-         }
+         "a": {"b": [{
+           "y": {"type": "integer", "value": "2"}
+         }]}
        }
 
 <b>     want:</b>
@@ -718,13 +639,10 @@ otoml version 970e114
          "a": {
            "b": {
              "c": {
+               "z": {"type": "integer", "value": "9"},
                "t": {
-                 "type": "string",
+                 "type":  "string",
                  "value": "Using dotted keys to add to [a.b.c] after explicitly defining it above is not allowed"
-               },
-               "z": {
-                 "type": "integer",
-                 "value": "9"
                }
              }
            }
@@ -753,15 +671,12 @@ otoml version 970e114
            "b": {
              "c": {
                "d": {
+                 "z": {"type": "integer", "value": "9"},
                  "k": {
                    "t": {
-                     "type": "string",
+                     "type":  "string",
                      "value": "Using dotted keys to add to [a.b.c.d] after explicitly defining it above is not allowed"
                    }
-                 },
-                 "z": {
-                   "type": "integer",
-                   "value": "9"
                  }
                }
              }
@@ -801,10 +716,7 @@ otoml version 970e114
        {
          "fruit": {
            "apple": {
-             "color": {
-               "type": "string",
-               "value": "red"
-             }
+             "color": {"type": "string", "value": "red"}
            }
          }
        }
@@ -825,10 +737,7 @@ otoml version 970e114
        {
          "fruit": {
            "apple": {
-             "color": {
-               "type": "string",
-               "value": "red"
-             }
+             "color": {"type": "string", "value": "red"}
            }
          }
        }
@@ -850,10 +759,7 @@ otoml version 970e114
          "fruit": {
            "apple": {
              "taste": {
-               "sweet": {
-                 "type": "bool",
-                 "value": "true"
-               }
+               "sweet": {"type": "bool", "value": "true"}
              }
            }
          }
@@ -975,10 +881,7 @@ otoml version 970e114
          "t1": {
            "t2": {
              "t3": {
-               "v": {
-                 "type": "integer",
-                 "value": "0"
-               }
+               "v": {"type": "integer", "value": "0"}
              }
            }
          }
@@ -1000,10 +903,7 @@ otoml version 970e114
          "t1": {
            "t2": {
              "t3": {
-               "v": {
-                 "type": "integer",
-                 "value": "0"
-               }
+               "v": {"type": "integer", "value": "0"}
              }
            }
          }
@@ -1026,42 +926,11 @@ otoml version 970e114
 <b>     want:</b>
        Exit code 1
 
-toml-test v2024-05-23 [./src/ocaml-otoml/decoder]: using embedded tests
+toml-test v2024-05-31 [./src/ocaml-otoml/decoder]: using embedded tests
   valid tests: 181 passed,  1 failed
 invalid tests: 319 passed, 52 failed
 
 ==> ENCODER TESTS
-<b>FAIL</b> <b>valid/array/open-parent-table</b>
-<b> </b>    Could not find key "parent-table.not-arr" in encoder output
-
-<b>     input sent to parser-cmd:</b>
-       {
-         "parent-table": {
-           "arr": [
-             {},
-             {}
-           ],
-           "not-arr": {
-             "type": "integer",
-             "value": "1"
-           }
-         }
-       }
-
-<b>     output from parser-cmd (stdout):</b>
-       [parent-table]
-
-       [[parent-table.arr]]
-
-       [[parent-table.arr]]
-         not-arr = 1
-
-<b>     want:</b>
-       [[parent-table.arr]]
-       [[parent-table.arr]]
-       [parent-table]
-       not-arr = 1
-
 <b>FAIL</b> <b>valid/float/max-int</b>
 <b> </b>    Values for key "max_float" differ:
 <b> </b>      Expected:     9007199254740991 (float64)
@@ -1069,14 +938,8 @@ invalid tests: 319 passed, 52 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "max_float": {
-           "type": "float",
-           "value": "9007199254740991"
-         },
-         "min_float": {
-           "type": "float",
-           "value": "-9007199254740991"
-         }
+           "max_float": {"type": "float", "value": "9007199254740991"},
+           "min_float": {"type": "float", "value": "-9007199254740991"}
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -1095,34 +958,13 @@ invalid tests: 319 passed, 52 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "exponent": {
-           "type": "float",
-           "value": "0"
-         },
-         "exponent-signed-neg": {
-           "type": "float",
-           "value": "-0"
-         },
-         "exponent-signed-pos": {
-           "type": "float",
-           "value": "0"
-         },
-         "exponent-two-0": {
-           "type": "float",
-           "value": "0"
-         },
-         "signed-neg": {
-           "type": "float",
-           "value": "-0"
-         },
-         "signed-pos": {
-           "type": "float",
-           "value": "0"
-         },
-         "zero": {
-           "type": "float",
-           "value": "0"
-         }
+           "exponent":            {"type": "float", "value": "0"},
+           "exponent-signed-neg": {"type": "float", "value": "-0"},
+           "exponent-signed-pos": {"type": "float", "value": "0"},
+           "exponent-two-0":      {"type": "float", "value": "0"},
+           "signed-neg":          {"type": "float", "value": "-0"},
+           "signed-pos":          {"type": "float", "value": "0"},
+           "zero":                {"type": "float", "value": "0"}
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -1148,70 +990,44 @@ invalid tests: 319 passed, 52 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "arr-1": [
-           {
-             "a": {
-               "b": {
-                 "type": "integer",
-                 "value": "1"
+           "arr-1": [{
+               "a": {
+                   "b": {"type": "integer", "value": "1"}
                }
-             }
-           }
-         ],
-         "arr-2": [
-           {
-             "type": "string",
-             "value": "str"
-           },
-           {
-             "a": {
-               "b": {
-                 "type": "integer",
-                 "value": "1"
+           }],
+           "arr-2": [
+               {"type": "string", "value": "str"},
+               {
+                   "a": {
+                       "b": {"type": "integer", "value": "1"}
+                   }
                }
-             }
-           }
-         ],
-         "arr-3": [
-           {
-             "a": {
-               "b": {
-                 "type": "integer",
-                 "value": "1"
+           ],
+           "arr-3": [
+               {
+                   "a": {
+                       "b": {"type": "integer", "value": "1"}
+                   }
+               },
+               {
+                   "a": {
+                       "b": {"type": "integer", "value": "2"}
+                   }
                }
-             }
-           },
-           {
-             "a": {
-               "b": {
-                 "type": "integer",
-                 "value": "2"
+           ],
+           "arr-4": [
+               {"type": "string", "value": "str"},
+               {
+                   "a": {
+                       "b": {"type": "integer", "value": "1"}
+                   }
+               },
+               {
+                   "a": {
+                       "b": {"type": "integer", "value": "2"}
+                   }
                }
-             }
-           }
-         ],
-         "arr-4": [
-           {
-             "type": "string",
-             "value": "str"
-           },
-           {
-             "a": {
-               "b": {
-                 "type": "integer",
-                 "value": "1"
-               }
-             }
-           },
-           {
-             "a": {
-               "b": {
-                 "type": "integer",
-                 "value": "2"
-               }
-             }
-           }
-         ]
+           ]
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -1238,22 +1054,13 @@ invalid tests: 319 passed, 52 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "arr": [
-           {
-             "a": {
-               "b": [
-                 {
+           "arr": [{
+               "a": {"b": [{
                    "c": {
-                     "d": {
-                       "type": "integer",
-                       "value": "1"
-                     }
+                       "d": {"type": "integer", "value": "1"}
                    }
-                 }
-               ]
-             }
-           }
-         ]
+               }]}
+           }]
        }
 
 <b>     output from parser-cmd (stderr):</b>
@@ -1269,64 +1076,37 @@ invalid tests: 319 passed, 52 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "clap-1": {
-           "features": [
-             {
-               "type": "string",
-               "value": "derive"
-             },
-             {
-               "type": "string",
-               "value": "cargo"
-             }
-           ],
-           "version": {
-             "type": "string",
-             "value": "4"
-           }
-         },
-         "clap-2": {
-           "features": [
-             {
-               "type": "string",
-               "value": "derive"
-             },
-             {
-               "type": "string",
-               "value": "cargo"
-             }
-           ],
-           "nest": {
-             "a": {
-               "type": "string",
-               "value": "x"
-             },
-             "b": [
-               {
-                 "type": "float",
-                 "value": "1.5"
-               },
-               {
-                 "type": "float",
-                 "value": "9"
-               }
-             ]
+           "clap-1": {
+               "version": {"type": "string", "value": "4"},
+               "features": [
+                   {"type": "string", "value": "derive"},
+                   {"type": "string", "value": "cargo"}
+               ]
            },
-           "version": {
-             "type": "string",
-             "value": "4"
+           "clap-2": {
+               "version": {"type": "string", "value": "4"},
+               "features": [
+                   {"type": "string", "value": "derive"},
+                   {"type": "string", "value": "cargo"}
+               ],
+               "nest": {
+                   "a": {"type": "string", "value": "x"},
+                   "b": [
+                       {"type": "float", "value": "1.5"},
+                       {"type": "float", "value": "9"}
+                   ]
+               }
            }
-         }
        }
 
 <b>     output from parser-cmd (stdout):</b>
        ["clap-1"]
-         features = ["derive", "cargo"]
          version = "4"
+         features = ["derive", "cargo"]
 
        ["clap-2"]
-         features = ["derive", "cargo"]
          version = "4"
+         features = ["derive", "cargo"]
 
        ["clap-2".nest]
          a = "x"
@@ -1344,52 +1124,29 @@ invalid tests: 319 passed, 52 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "fruits": [
-           {
-             "name": {
-               "type": "string",
-               "value": "apple"
-             },
-             "physical": {
-               "color": {
-                 "type": "string",
-                 "value": "red"
-               },
-               "shape": {
-                 "type": "string",
-                 "value": "round"
-               }
-             },
-             "varieties": [
+           "fruits": [
                {
-                 "name": {
-                   "type": "string",
-                   "value": "red delicious"
-                 }
+                   "name": {"type": "string", "value": "apple"},
+                   "physical": {
+                       "color": {"type": "string", "value": "red"},
+                       "shape": {"type": "string", "value": "round"}
+                   },
+                   "varieties": [
+                       {
+                           "name": {"type": "string", "value": "red delicious"}
+                       },
+                       {
+                           "name": {"type": "string", "value": "granny smith"}
+                       }
+                   ]
                },
                {
-                 "name": {
-                   "type": "string",
-                   "value": "granny smith"
-                 }
+                   "name":      {"type": "string", "value": "banana"},
+                   "varieties": [{
+                       "name": {"type": "string", "value": "plantain"}
+                   }]
                }
-             ]
-           },
-           {
-             "name": {
-               "type": "string",
-               "value": "banana"
-             },
-             "varieties": [
-               {
-                 "name": {
-                   "type": "string",
-                   "value": "plantain"
-                 }
-               }
-             ]
-           }
-         ]
+           ]
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -1437,34 +1194,13 @@ invalid tests: 319 passed, 52 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "flt1": {
-           "type": "float",
-           "value": "1"
-         },
-         "flt2": {
-           "type": "float",
-           "value": "3.1415"
-         },
-         "flt3": {
-           "type": "float",
-           "value": "-0.01"
-         },
-         "flt4": {
-           "type": "float",
-           "value": "5e+22"
-         },
-         "flt5": {
-           "type": "float",
-           "value": "1e+06"
-         },
-         "flt6": {
-           "type": "float",
-           "value": "-0.02"
-         },
-         "flt7": {
-           "type": "float",
-           "value": "6.626e-34"
-         }
+           "flt1": {"type": "float", "value": "1"},
+           "flt2": {"type": "float", "value": "3.1415"},
+           "flt3": {"type": "float", "value": "-0.01"},
+           "flt4": {"type": "float", "value": "5e+22"},
+           "flt5": {"type": "float", "value": "1e+06"},
+           "flt6": {"type": "float", "value": "-0.02"},
+           "flt7": {"type": "float", "value": "6.626e-34"}
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -1495,20 +1231,12 @@ invalid tests: 319 passed, 52 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "a": {
-           "b": [
-             {
-               "x": {
-                 "type": "integer",
-                 "value": "1"
-               }
-             }
-           ],
-           "y": {
-             "type": "integer",
-             "value": "2"
+           "a": {
+               "b": [{
+                   "x": {"type": "integer", "value": "1"}
+               }],
+               "y": {"type": "integer", "value": "2"}
            }
-         }
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -1525,7 +1253,7 @@ invalid tests: 319 passed, 52 failed
        [a]
        y = 2
 
-toml-test v2024-05-23 [./src/ocaml-otoml/encoder]: using embedded tests
-encoder tests: 173 passed,  9 failed
+toml-test v2024-05-31 [./src/ocaml-otoml/encoder]: using embedded tests
+encoder tests: 174 passed,  8 failed
 took 0.0 0.0
 </pre>

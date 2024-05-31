@@ -8,10 +8,7 @@ smol-toml version 7eac80f
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "not a leap year": {
-           "type": "datetime",
-           "value": "2100-03-01T15:15:15.000Z"
-         }
+         "not a leap year": {"type": "datetime", "value": "2100-03-01T15:15:15.000Z"}
        }
 
 <b>     want:</b>
@@ -25,10 +22,7 @@ smol-toml version 7eac80f
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "only 28 or 29 days in february": {
-           "type": "datetime",
-           "value": "1988-03-01T15:15:15.000Z"
-         }
+         "only 28 or 29 days in february": {"type": "datetime", "value": "1988-03-01T15:15:15.000Z"}
        }
 
 <b>     want:</b>
@@ -43,10 +37,7 @@ smol-toml version 7eac80f
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "d": {
-           "type": "datetime",
-           "value": "1985-06-18T17:04:07.000+25:00"
-         }
+         "d": {"type": "datetime", "value": "1985-06-18T17:04:07.000+25:00"}
        }
 
 <b>     want:</b>
@@ -85,10 +76,7 @@ smol-toml version 7eac80f
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "bad": {
-           "type": "string",
-           "value": "�"
-         }
+         "bad": {"type": "string", "value": "�"}
        }
 
 <b>     want:</b>
@@ -103,10 +91,7 @@ smol-toml version 7eac80f
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "bad": {
-           "type": "string",
-           "value": "�"
-         }
+         "bad": {"type": "string", "value": "�"}
        }
 
 <b>     want:</b>
@@ -121,10 +106,7 @@ smol-toml version 7eac80f
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "bad": {
-           "type": "string",
-           "value": "�"
-         }
+         "bad": {"type": "string", "value": "�"}
        }
 
 <b>     want:</b>
@@ -139,10 +121,7 @@ smol-toml version 7eac80f
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "bad": {
-           "type": "string",
-           "value": "�"
-         }
+         "bad": {"type": "string", "value": "�"}
        }
 
 <b>     want:</b>
@@ -156,10 +135,7 @@ smol-toml version 7eac80f
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "not a leap year": {
-           "type": "date-local",
-           "value": "2100-03-01"
-         }
+         "not a leap year": {"type": "date-local", "value": "2100-03-01"}
        }
 
 <b>     want:</b>
@@ -173,10 +149,7 @@ smol-toml version 7eac80f
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "only 28 or 29 days in february": {
-           "type": "date-local",
-           "value": "1988-03-01"
-         }
+         "only 28 or 29 days in february": {"type": "date-local", "value": "1988-03-01"}
        }
 
 <b>     want:</b>
@@ -190,10 +163,7 @@ smol-toml version 7eac80f
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "not a leap year": {
-           "type": "datetime-local",
-           "value": "2100-03-01T15:15:15.000"
-         }
+         "not a leap year": {"type": "datetime-local", "value": "2100-03-01T15:15:15.000"}
        }
 
 <b>     want:</b>
@@ -207,10 +177,7 @@ smol-toml version 7eac80f
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "only 28 or 29 days in february": {
-           "type": "datetime-local",
-           "value": "1988-03-01T15:15:15.000"
-         }
+         "only 28 or 29 days in february": {"type": "datetime-local", "value": "1988-03-01T15:15:15.000"}
        }
 
 <b>     want:</b>
@@ -224,16 +191,13 @@ smol-toml version 7eac80f
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "bad-uni-esc-6": {
-           "type": "string",
-           "value": "This string contains a non scalar unicode codepoint �"
-         }
+         "bad-uni-esc-6": {"type": "string", "value": "This string contains a non scalar unicode codepoint �"}
        }
 
 <b>     want:</b>
        Exit code 1
 
-toml-test v2024-05-23 [./src/js-smol-toml/toml-test-parse.mjs]: using embedded tests,  1 skipped
+toml-test v2024-05-31 [./src/js-smol-toml/toml-test-parse.mjs]: using embedded tests,  1 skipped
   valid tests: 181 passed,  0 failed
 invalid tests: 357 passed, 14 failed
 
@@ -245,110 +209,43 @@ invalid tests: 357 passed, 14 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "hash#tag": {
-           "#!": {
-             "type": "string",
-             "value": "hash bang"
+           "hash#tag": {
+               "#!":   {"type": "string", "value": "hash bang"},
+               "arr5": [[[[[{"type": "string", "value": "#"}]]]]],
+               "arr3": [
+                   {"type": "string", "value": "#"},
+                   {"type": "string", "value": "#"},
+                   {"type": "string", "value": "###"}
+               ],
+               "arr4": [
+                   {"type": "integer", "value": "1"},
+                   {"type": "integer", "value": "2"},
+                   {"type": "integer", "value": "3"},
+                   {"type": "integer", "value": "4"}
+               ],
+               "tbl1": {
+                   "#": {"type": "string", "value": "}#"}
+               }
            },
-           "arr3": [
-             {
-               "type": "string",
-               "value": "#"
-             },
-             {
-               "type": "string",
-               "value": "#"
-             },
-             {
-               "type": "string",
-               "value": "###"
-             }
-           ],
-           "arr4": [
-             {
-               "type": "integer",
-               "value": "1"
-             },
-             {
-               "type": "integer",
-               "value": "2"
-             },
-             {
-               "type": "integer",
-               "value": "3"
-             },
-             {
-               "type": "integer",
-               "value": "4"
-             }
-           ],
-           "arr5": [
-             [
-               [
-                 [
-                   [
-                     {
-                       "type": "string",
-                       "value": "#"
-                     }
-                   ]
-                 ]
-               ]
-             ]
-           ],
-           "tbl1": {
-             "#": {
-               "type": "string",
-               "value": "}#"
-             }
+           "section": {
+               "8":      {"type": "string", "value": "eight"},
+               "eleven": {"type": "float", "value": "11.1"},
+               "five":   {"type": "float", "value": "5.5"},
+               "four":   {"type": "string", "value": "# no comment\n# nor this\n#also not comment"},
+               "one":    {"type": "string", "value": "11"},
+               "six":    {"type": "integer", "value": "6"},
+               "ten":    {"type": "float", "value": "1000.0"},
+               "three":  {"type": "string", "value": "#"},
+               "two":    {"type": "string", "value": "22#"}
            }
-         },
-         "section": {
-           "8": {
-             "type": "string",
-             "value": "eight"
-           },
-           "eleven": {
-             "type": "float",
-             "value": "11.1"
-           },
-           "five": {
-             "type": "float",
-             "value": "5.5"
-           },
-           "four": {
-             "type": "string",
-             "value": "# no comment\n# nor this\n#also not comment"
-           },
-           "one": {
-             "type": "string",
-             "value": "11"
-           },
-           "six": {
-             "type": "integer",
-             "value": "6"
-           },
-           "ten": {
-             "type": "float",
-             "value": "1000.0"
-           },
-           "three": {
-             "type": "string",
-             "value": "#"
-           },
-           "two": {
-             "type": "string",
-             "value": "22#"
-           }
-         }
        }
 
 <b>     output from parser-cmd (stdout):</b>
        ["hash#tag"]
        "#!" = "hash bang"
+       arr5 = [ [ [ [ [ "#" ] ] ] ] ]
        arr3 = [ "#", "#", "###" ]
        arr4 = [ 1, 2, 3, 4 ]
-       arr5 = [ [ [ [ [ "#" ] ] ] ] ]
 
        ["hash#tag".tbl1]
        "#" = "}#"
@@ -402,38 +299,14 @@ invalid tests: 357 passed, 14 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "lower": {
-           "type": "float",
-           "value": "300.0"
-         },
-         "minustenth": {
-           "type": "float",
-           "value": "-0.1"
-         },
-         "neg": {
-           "type": "float",
-           "value": "0.03"
-         },
-         "pointlower": {
-           "type": "float",
-           "value": "310.0"
-         },
-         "pointupper": {
-           "type": "float",
-           "value": "310.0"
-         },
-         "pos": {
-           "type": "float",
-           "value": "300.0"
-         },
-         "upper": {
-           "type": "float",
-           "value": "300.0"
-         },
-         "zero": {
-           "type": "float",
-           "value": "3.0"
-         }
+           "lower":      {"type": "float", "value": "300.0"},
+           "minustenth": {"type": "float", "value": "-0.1"},
+           "neg":        {"type": "float", "value": "0.03"},
+           "pointlower": {"type": "float", "value": "310.0"},
+           "pointupper": {"type": "float", "value": "310.0"},
+           "pos":        {"type": "float", "value": "300.0"},
+           "upper":      {"type": "float", "value": "300.0"},
+           "zero":       {"type": "float", "value": "3.0"}
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -463,14 +336,8 @@ invalid tests: 357 passed, 14 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "max_float": {
-           "type": "float",
-           "value": "9007199254740991"
-         },
-         "min_float": {
-           "type": "float",
-           "value": "-9007199254740991"
-         }
+           "max_float": {"type": "float", "value": "9007199254740991"},
+           "min_float": {"type": "float", "value": "-9007199254740991"}
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -489,18 +356,9 @@ invalid tests: 357 passed, 14 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "after": {
-           "type": "float",
-           "value": "3141.5927"
-         },
-         "before": {
-           "type": "float",
-           "value": "3141.5927"
-         },
-         "exponent": {
-           "type": "float",
-           "value": "3.0e14"
-         }
+           "after":    {"type": "float", "value": "3141.5927"},
+           "before":   {"type": "float", "value": "3141.5927"},
+           "exponent": {"type": "float", "value": "3.0e14"}
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -520,34 +378,13 @@ invalid tests: 357 passed, 14 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "exponent": {
-           "type": "float",
-           "value": "0"
-         },
-         "exponent-signed-neg": {
-           "type": "float",
-           "value": "-0"
-         },
-         "exponent-signed-pos": {
-           "type": "float",
-           "value": "0"
-         },
-         "exponent-two-0": {
-           "type": "float",
-           "value": "0"
-         },
-         "signed-neg": {
-           "type": "float",
-           "value": "-0"
-         },
-         "signed-pos": {
-           "type": "float",
-           "value": "0"
-         },
-         "zero": {
-           "type": "float",
-           "value": "0"
-         }
+           "exponent":            {"type": "float", "value": "0"},
+           "exponent-signed-neg": {"type": "float", "value": "-0"},
+           "exponent-signed-pos": {"type": "float", "value": "0"},
+           "exponent-two-0":      {"type": "float", "value": "0"},
+           "signed-neg":          {"type": "float", "value": "-0"},
+           "signed-pos":          {"type": "float", "value": "0"},
+           "zero":                {"type": "float", "value": "0"}
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -575,64 +412,37 @@ invalid tests: 357 passed, 14 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "clap-1": {
-           "features": [
-             {
-               "type": "string",
-               "value": "derive"
-             },
-             {
-               "type": "string",
-               "value": "cargo"
-             }
-           ],
-           "version": {
-             "type": "string",
-             "value": "4"
-           }
-         },
-         "clap-2": {
-           "features": [
-             {
-               "type": "string",
-               "value": "derive"
-             },
-             {
-               "type": "string",
-               "value": "cargo"
-             }
-           ],
-           "nest": {
-             "a": {
-               "type": "string",
-               "value": "x"
-             },
-             "b": [
-               {
-                 "type": "float",
-                 "value": "1.5"
-               },
-               {
-                 "type": "float",
-                 "value": "9"
-               }
-             ]
+           "clap-1": {
+               "version": {"type": "string", "value": "4"},
+               "features": [
+                   {"type": "string", "value": "derive"},
+                   {"type": "string", "value": "cargo"}
+               ]
            },
-           "version": {
-             "type": "string",
-             "value": "4"
+           "clap-2": {
+               "version": {"type": "string", "value": "4"},
+               "features": [
+                   {"type": "string", "value": "derive"},
+                   {"type": "string", "value": "cargo"}
+               ],
+               "nest": {
+                   "a": {"type": "string", "value": "x"},
+                   "b": [
+                       {"type": "float", "value": "1.5"},
+                       {"type": "float", "value": "9"}
+                   ]
+               }
            }
-         }
        }
 
 <b>     output from parser-cmd (stdout):</b>
        [clap-1]
-       features = [ "derive", "cargo" ]
        version = "4"
+       features = [ "derive", "cargo" ]
 
        [clap-2]
-       features = [ "derive", "cargo" ]
        version = "4"
+       features = [ "derive", "cargo" ]
 
        [clap-2.nest]
        a = "x"
@@ -652,34 +462,13 @@ invalid tests: 357 passed, 14 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "flt1": {
-           "type": "float",
-           "value": "1"
-         },
-         "flt2": {
-           "type": "float",
-           "value": "3.1415"
-         },
-         "flt3": {
-           "type": "float",
-           "value": "-0.01"
-         },
-         "flt4": {
-           "type": "float",
-           "value": "5e+22"
-         },
-         "flt5": {
-           "type": "float",
-           "value": "1e+06"
-         },
-         "flt6": {
-           "type": "float",
-           "value": "-0.02"
-         },
-         "flt7": {
-           "type": "float",
-           "value": "6.626e-34"
-         }
+           "flt1": {"type": "float", "value": "1"},
+           "flt2": {"type": "float", "value": "3.1415"},
+           "flt3": {"type": "float", "value": "-0.01"},
+           "flt4": {"type": "float", "value": "5e+22"},
+           "flt5": {"type": "float", "value": "1e+06"},
+           "flt6": {"type": "float", "value": "-0.02"},
+           "flt7": {"type": "float", "value": "6.626e-34"}
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -705,7 +494,7 @@ invalid tests: 357 passed, 14 failed
        # both
        flt7 = 6.626e-34
 
-toml-test v2024-05-23 [./src/js-smol-toml/toml-test-encode.mjs]: using embedded tests,  1 skipped
+toml-test v2024-05-31 [./src/js-smol-toml/toml-test-encode.mjs]: using embedded tests,  1 skipped
 encoder tests: 174 passed,  7 failed
 took (error) (error)
 </pre>

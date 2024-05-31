@@ -1,5 +1,5 @@
 <pre>
-tomlkit version 13576bb
+tomlkit version 30a22f7
 <b>FAIL</b> <b>invalid/control/bare-cr</b>
 <b> </b>    Expected an error, but no error was reported.
 
@@ -21,14 +21,8 @@ tomlkit version 13576bb
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "a": {
-           "type": "integer",
-           "value": "1"
-         },
-         "comment-cr": {
-           "type": "string",
-           "value": "Carriage return in comment"
-         }
+         "a":          {"type": "integer", "value": "1"},
+         "comment-cr": {"type": "string", "value": "Carriage return in comment"}
        }
 
 <b>     want:</b>
@@ -42,10 +36,7 @@ tomlkit version 13576bb
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "multi-cr": {
-           "type": "string",
-           "value": "null\r"
-         }
+         "multi-cr": {"type": "string", "value": "null\r"}
        }
 
 <b>     want:</b>
@@ -59,10 +50,7 @@ tomlkit version 13576bb
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "rawmulti-cd": {
-           "type": "string",
-           "value": "null\r"
-         }
+         "rawmulti-cd": {"type": "string", "value": "null\r"}
        }
 
 <b>     want:</b>
@@ -95,13 +83,10 @@ tomlkit version 13576bb
          "a": {
            "b": {
              "c": {
+               "z": {"type": "integer", "value": "9"},
                "t": {
-                 "type": "string",
+                 "type":  "string",
                  "value": "Using dotted keys to add to [a.b.c] after explicitly defining it above is not allowed"
-               },
-               "z": {
-                 "type": "integer",
-                 "value": "9"
                }
              }
            }
@@ -130,15 +115,12 @@ tomlkit version 13576bb
            "b": {
              "c": {
                "d": {
+                 "z": {"type": "integer", "value": "9"},
                  "k": {
                    "t": {
-                     "type": "string",
+                     "type":  "string",
                      "value": "Using dotted keys to add to [a.b.c.d] after explicitly defining it above is not allowed"
                    }
-                 },
-                 "z": {
-                   "type": "integer",
-                   "value": "9"
                  }
                }
              }
@@ -149,12 +131,12 @@ tomlkit version 13576bb
 <b>     want:</b>
        Exit code 1
 
-toml-test v2024-05-23 [./scripts/python-tomlkit-decoder]: using embedded tests
+toml-test v2024-05-31 [./scripts/python-tomlkit-decoder]: using embedded tests
   valid tests: 182 passed,  0 failed
 invalid tests: 365 passed,  6 failed
 
 ==> ENCODER TESTS
-toml-test v2024-05-23 [./scripts/python-tomlkit-encoder]: using embedded tests
+toml-test v2024-05-31 [./scripts/python-tomlkit-encoder]: using embedded tests
 encoder tests: 182 passed,  0 failed
 took 90.4 55.34
 </pre>

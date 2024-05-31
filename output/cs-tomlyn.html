@@ -5,7 +5,7 @@ tomlyn version 0.16.2
 <b> </b>
 <b> </b>       at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
 <b> </b>       at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
-<b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
+<b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/Toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
 <b> </b>
 <b> </b>    Exit 1
 
@@ -17,7 +17,7 @@ tomlyn version 0.16.2
 
           at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
           at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
-          at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
+          at TomlynDecoder.Main(String[] args) in /home/martin/code/Toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
 
        Exit 1
 
@@ -31,7 +31,7 @@ tomlyn version 0.16.2
 <b> </b>
 <b> </b>       at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
 <b> </b>       at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
-<b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
+<b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/Toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
 <b> </b>
 <b> </b>    Exit 1
 
@@ -51,7 +51,7 @@ tomlyn version 0.16.2
 
           at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
           at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
-          at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
+          at TomlynDecoder.Main(String[] args) in /home/martin/code/Toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
 
        Exit 1
 
@@ -65,7 +65,7 @@ tomlyn version 0.16.2
 <b> </b>
 <b> </b>       at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
 <b> </b>       at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
-<b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
+<b> </b>       at TomlynDecoder.Main(String[] args) in /home/martin/code/Toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
 <b> </b>
 <b> </b>    Exit 1
 
@@ -84,7 +84,7 @@ tomlyn version 0.16.2
 
           at Tomlyn.Model.TomlTable.From(DocumentSyntax documentSyntax)
           at Tomlyn.Toml.ToModel(DocumentSyntax syntax)
-          at TomlynDecoder.Main(String[] args) in /home/martin/code/toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
+          at TomlynDecoder.Main(String[] args) in /home/martin/code/Toml/toml-test-matrix/src/cs-tomlyn/cs-tomlyn-decoder/cs-tomlyn-decoder.cs:line 17
 
        Exit 1
 
@@ -112,14 +112,8 @@ tomlyn version 0.16.2
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "a": {
-           "type": "integer",
-           "value": "1"
-         },
-         "comment-cr": {
-           "type": "string",
-           "value": "Carriage return in comment"
-         }
+         "a":          {"type": "integer", "value": "1"},
+         "comment-cr": {"type": "string", "value": "Carriage return in comment"}
        }
 
 <b>     want:</b>
@@ -133,10 +127,7 @@ tomlyn version 0.16.2
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "multi-cr": {
-           "type": "string",
-           "value": "null\n"
-         }
+         "multi-cr": {"type": "string", "value": "null\n"}
        }
 
 <b>     want:</b>
@@ -150,10 +141,7 @@ tomlyn version 0.16.2
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "rawmulti-cd": {
-           "type": "string",
-           "value": "null\n"
-         }
+         "rawmulti-cd": {"type": "string", "value": "null\n"}
        }
 
 <b>     want:</b>
@@ -177,7 +165,7 @@ tomlyn version 0.16.2
 <b>     want:</b>
        Exit code 1
 
-toml-test v2024-05-23 [./src/cs-tomlyn/cs-tomlyn-decoder/bin/Release/net8.0/cs-tomlyn-decoder]: using embedded tests
+toml-test v2024-05-31 [./src/cs-tomlyn/cs-tomlyn-decoder/bin/Release/net8.0/cs-tomlyn-decoder]: using embedded tests
   valid tests: 179 passed,  3 failed
 invalid tests: 366 passed,  5 failed
 

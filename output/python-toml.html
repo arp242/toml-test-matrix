@@ -2,19 +2,19 @@
 toml version 65bab75
 <b>FAIL</b> <b>valid/array/mixed-string-table</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
 <b> </b>        ret = decoder.load_line(line, currentlevel, multikey,
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
 <b> </b>        value, vtype = self.load_value(pair[1], strictly_valid)
 <b> </b>                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 880, in load_value
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 880, in load_value
 <b> </b>        return (self.load_array(v), "array")
 <b> </b>                ^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 1001, in load_array
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 1001, in load_array
 <b> </b>        a[b] = a[b] + ',' + a[b + 1]
 <b> </b>                            ~^^^^^^^
 <b> </b>    IndexError: list index out of range
@@ -36,19 +36,19 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
            ret = decoder.load_line(line, currentlevel, multikey,
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
            value, vtype = self.load_value(pair[1], strictly_valid)
                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 880, in load_value
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 880, in load_value
            return (self.load_array(v), "array")
                    ^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 1001, in load_array
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 1001, in load_array
            a[b] = a[b] + ',' + a[b + 1]
                                ~^^^^^^^
        IndexError: list index out of range
@@ -60,16 +60,16 @@ toml version 65bab75
 
 <b>FAIL</b> <b>valid/array/string-with-comma-2</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
 <b> </b>        ret = decoder.load_line(line, currentlevel, multikey,
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 767, in load_line
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 767, in load_line
 <b> </b>        k, koffset = self._load_line_multiline_str(pair[1])
 <b> </b>                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 797, in _load_line_multiline_str
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 797, in _load_line_multiline_str
 <b> </b>        while len(newp) > 1 and newp[-1][0] != '"' and newp[-1][0] != "'":
 <b> </b>                                ~~~~~~~~^^^
 <b> </b>    IndexError: string index out of range
@@ -85,16 +85,16 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
            ret = decoder.load_line(line, currentlevel, multikey,
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 767, in load_line
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 767, in load_line
            k, koffset = self._load_line_multiline_str(pair[1])
                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 797, in _load_line_multiline_str
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 797, in _load_line_multiline_str
            while len(newp) > 1 and newp[-1][0] != '"' and newp[-1][0] != "'":
                                    ~~~~~~~~^^^
        IndexError: string index out of range
@@ -141,140 +141,64 @@ toml version 65bab75
 <b>     output from parser-cmd (stdout):</b>
        {
          "section": {
-           "one": {
-             "type": "string",
-             "value": "11"
-           },
-           "three": {
-             "type": "string",
-             "value": "#"
-           },
-           "two": {
-             "type": "string",
-             "value": "22#"
-           }
+           "one":   {"type": "string", "value": "11"},
+           "three": {"type": "string", "value": "#"},
+           "two":   {"type": "string", "value": "22#"}
          }
        }
 
 <b>     want:</b>
        {
-         "hash#tag": {
-           "#!": {
-             "type": "string",
-             "value": "hash bang"
+           "hash#tag": {
+               "#!":   {"type": "string", "value": "hash bang"},
+               "arr5": [[[[[{"type": "string", "value": "#"}]]]]],
+               "arr3": [
+                   {"type": "string", "value": "#"},
+                   {"type": "string", "value": "#"},
+                   {"type": "string", "value": "###"}
+               ],
+               "arr4": [
+                   {"type": "integer", "value": "1"},
+                   {"type": "integer", "value": "2"},
+                   {"type": "integer", "value": "3"},
+                   {"type": "integer", "value": "4"}
+               ],
+               "tbl1": {
+                   "#": {"type": "string", "value": "}#"}
+               }
            },
-           "arr3": [
-             {
-               "type": "string",
-               "value": "#"
-             },
-             {
-               "type": "string",
-               "value": "#"
-             },
-             {
-               "type": "string",
-               "value": "###"
-             }
-           ],
-           "arr4": [
-             {
-               "type": "integer",
-               "value": "1"
-             },
-             {
-               "type": "integer",
-               "value": "2"
-             },
-             {
-               "type": "integer",
-               "value": "3"
-             },
-             {
-               "type": "integer",
-               "value": "4"
-             }
-           ],
-           "arr5": [
-             [
-               [
-                 [
-                   [
-                     {
-                       "type": "string",
-                       "value": "#"
-                     }
-                   ]
-                 ]
-               ]
-             ]
-           ],
-           "tbl1": {
-             "#": {
-               "type": "string",
-               "value": "}#"
-             }
+           "section": {
+               "8":      {"type": "string", "value": "eight"},
+               "eleven": {"type": "float", "value": "11.1"},
+               "five":   {"type": "float", "value": "5.5"},
+               "four":   {"type": "string", "value": "# no comment\n# nor this\n#also not comment"},
+               "one":    {"type": "string", "value": "11"},
+               "six":    {"type": "integer", "value": "6"},
+               "ten":    {"type": "float", "value": "1000.0"},
+               "three":  {"type": "string", "value": "#"},
+               "two":    {"type": "string", "value": "22#"}
            }
-         },
-         "section": {
-           "8": {
-             "type": "string",
-             "value": "eight"
-           },
-           "eleven": {
-             "type": "float",
-             "value": "11.1"
-           },
-           "five": {
-             "type": "float",
-             "value": "5.5"
-           },
-           "four": {
-             "type": "string",
-             "value": "# no comment\n# nor this\n#also not comment"
-           },
-           "one": {
-             "type": "string",
-             "value": "11"
-           },
-           "six": {
-             "type": "integer",
-             "value": "6"
-           },
-           "ten": {
-             "type": "float",
-             "value": "1000.0"
-           },
-           "three": {
-             "type": "string",
-             "value": "#"
-           },
-           "two": {
-             "type": "string",
-             "value": "22#"
-           }
-         }
        }
 
 <b>FAIL</b> <b>valid/float/zero</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
 <b> </b>        ret = decoder.load_line(line, currentlevel, multikey,
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
 <b> </b>        value, vtype = self.load_value(pair[1], strictly_valid)
 <b> </b>                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 894, in load_value
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 894, in load_value
 <b> </b>        raise ValueError("Weirdness with leading zeroes or "
 <b> </b>    ValueError: Weirdness with leading zeroes or underscores in your number.
 <b> </b>
 <b> </b>    During handling of the above exception, another exception occurred:
 <b> </b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
 <b> </b>        raise TomlDecodeError(str(err), original, pos)
 <b> </b>    toml.decoder.TomlDecodeError: Weirdness with leading zeroes or underscores in your number. (line 4 column 1 char 47)
 <b> </b>
@@ -291,23 +215,23 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
            ret = decoder.load_line(line, currentlevel, multikey,
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
            value, vtype = self.load_value(pair[1], strictly_valid)
                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 894, in load_value
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 894, in load_value
            raise ValueError("Weirdness with leading zeroes or "
        ValueError: Weirdness with leading zeroes or underscores in your number.
 
        During handling of the above exception, another exception occurred:
 
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
            raise TomlDecodeError(str(err), original, pos)
        toml.decoder.TomlDecodeError: Weirdness with leading zeroes or underscores in your number. (line 4 column 1 char 47)
 
@@ -330,105 +254,75 @@ toml version 65bab75
        {
          "a": {
            "a": {
-             "b": {
-               "type": "integer",
-               "value": "1"
-             }
+             "b": {"type": "integer", "value": "1"}
            }
          },
          "b": {
            "a": {
-             "b": {
-               "type": "integer",
-               "value": "1"
-             }
+             "b": {"type": "integer", "value": "1"}
            }
          },
          "c": {
            "a   ": {
-             "b": {
-               "type": "integer",
-               "value": "1"
-             }
+             "b": {"type": "integer", "value": "1"}
            }
          },
          "d": {
            "a": {
-             "b": {
-               "type": "integer",
-               "value": "1"
-             }
+             "b": {"type": "integer", "value": "1"}
            }
          },
          "e": {
            "a": {
-             "b": {
-               "type": "integer",
-               "value": "1"
-             }
+             "b": {"type": "integer", "value": "1"}
            }
          }
        }
 
 <b>     want:</b>
        {
-         "a": {
            "a": {
-             "b": {
-               "type": "integer",
-               "value": "1"
-             }
+               "a": {
+                   "b": {"type": "integer", "value": "1"}
+               }
+           },
+           "b": {
+               "a": {
+                   "b": {"type": "integer", "value": "1"}
+               }
+           },
+           "c": {
+               "a": {
+                   "b": {"type": "integer", "value": "1"}
+               }
+           },
+           "d": {
+               "a": {
+                   "b": {"type": "integer", "value": "1"}
+               }
+           },
+           "e": {
+               "a": {
+                   "b": {"type": "integer", "value": "1"}
+               }
            }
-         },
-         "b": {
-           "a": {
-             "b": {
-               "type": "integer",
-               "value": "1"
-             }
-           }
-         },
-         "c": {
-           "a": {
-             "b": {
-               "type": "integer",
-               "value": "1"
-             }
-           }
-         },
-         "d": {
-           "a": {
-             "b": {
-               "type": "integer",
-               "value": "1"
-             }
-           }
-         },
-         "e": {
-           "a": {
-             "b": {
-               "type": "integer",
-               "value": "1"
-             }
-           }
-         }
        }
 
 <b>FAIL</b> <b>valid/inline-table/key-dotted-5</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
 <b> </b>        ret = decoder.load_line(line, currentlevel, multikey,
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
 <b> </b>        value, vtype = self.load_value(pair[1], strictly_valid)
 <b> </b>                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 880, in load_value
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 880, in load_value
 <b> </b>        return (self.load_array(v), "array")
 <b> </b>                ^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 1001, in load_array
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 1001, in load_array
 <b> </b>        a[b] = a[b] + ',' + a[b + 1]
 <b> </b>                            ~^^^^^^^
 <b> </b>    IndexError: list index out of range
@@ -444,19 +338,19 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
            ret = decoder.load_line(line, currentlevel, multikey,
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
            value, vtype = self.load_value(pair[1], strictly_valid)
                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 880, in load_value
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 880, in load_value
            return (self.load_array(v), "array")
                    ^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 1001, in load_array
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 1001, in load_array
            a[b] = a[b] + ',' + a[b + 1]
                                ~^^^^^^^
        IndexError: list index out of range
@@ -468,25 +362,25 @@ toml version 65bab75
 
 <b>FAIL</b> <b>valid/inline-table/multiline</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
 <b> </b>        ret = decoder.load_line(line, currentlevel, multikey,
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
 <b> </b>        value, vtype = self.load_value(pair[1], strictly_valid)
 <b> </b>                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 883, in load_value
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 883, in load_value
 <b> </b>        self.load_inline_object(v, inline_object)
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 677, in load_inline_object
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 677, in load_inline_object
 <b> </b>        raise ValueError("Invalid inline table value encountered")
 <b> </b>    ValueError: Invalid inline table value encountered
 <b> </b>
 <b> </b>    During handling of the above exception, another exception occurred:
 <b> </b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
 <b> </b>        raise TomlDecodeError(str(err), original, pos)
 <b> </b>    toml.decoder.TomlDecodeError: Invalid inline table value encountered (line 1 column 1 char 0)
 <b> </b>
@@ -500,25 +394,25 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
            ret = decoder.load_line(line, currentlevel, multikey,
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
            value, vtype = self.load_value(pair[1], strictly_valid)
                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 883, in load_value
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 883, in load_value
            self.load_inline_object(v, inline_object)
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 677, in load_inline_object
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 677, in load_inline_object
            raise ValueError("Invalid inline table value encountered")
        ValueError: Invalid inline table value encountered
 
        During handling of the above exception, another exception occurred:
 
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
            raise TomlDecodeError(str(err), original, pos)
        toml.decoder.TomlDecodeError: Invalid inline table value encountered (line 1 column 1 char 0)
 
@@ -542,58 +436,40 @@ toml version 65bab75
            "dots": {
              "dot": {
                "dot": {
-                 "dot": {
-                   "type": "integer",
-                   "value": "42"
-                 }
+                 "dot": {"type": "integer", "value": "42"}
                }
              }
            }
          },
          "name": {
-           "'last'": {
-             "type": "string",
-             "value": "Dent"
-           },
-           "first": {
-             "type": "string",
-             "value": "Arthur"
-           }
+           "'last'": {"type": "string", "value": "Dent"},
+           "first":  {"type": "string", "value": "Arthur"}
          }
        }
 
 <b>     want:</b>
        {
-         "many": {
-           "dots": {
-             "dot": {
-               "dot": {
-                 "dot": {
-                   "type": "integer",
-                   "value": "42"
-                 }
+           "many": {
+               "dots": {
+                   "dot": {
+                       "dot": {
+                           "dot": {"type": "integer", "value": "42"}
+                       }
+                   }
                }
-             }
-           }
-         },
-         "name": {
-           "first": {
-             "type": "string",
-             "value": "Arthur"
            },
-           "last": {
-             "type": "string",
-             "value": "Dent"
+           "name": {
+               "first": {"type": "string", "value": "Arthur"},
+               "last":  {"type": "string", "value": "Dent"}
            }
-         }
        }
 
 <b>FAIL</b> <b>valid/key/dotted-2</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 260, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 260, in loads
 <b> </b>        raise TomlDecodeError("Found invalid character in key name: '" +
 <b> </b>    toml.decoder.TomlDecodeError: Found invalid character in key name: '"'. Try quoting the key name. (line 7 column 11 char 166)
 <b> </b>
@@ -618,10 +494,10 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 260, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 260, in loads
            raise TomlDecodeError("Found invalid character in key name: '" +
        toml.decoder.TomlDecodeError: Found invalid character in key name: '"'. Try quoting the key name. (line 7 column 11 char 166)
 
@@ -632,20 +508,20 @@ toml version 65bab75
 
 <b>FAIL</b> <b>valid/key/dotted-empty</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
 <b> </b>        ret = decoder.load_line(line, currentlevel, multikey,
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 781, in load_line
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 781, in load_line
 <b> </b>        raise ValueError("Duplicate keys!")
 <b> </b>    ValueError: Duplicate keys!
 <b> </b>
 <b> </b>    During handling of the above exception, another exception occurred:
 <b> </b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
 <b> </b>        raise TomlDecodeError(str(err), original, pos)
 <b> </b>    toml.decoder.TomlDecodeError: Duplicate keys! (line 2 column 1 char 17)
 <b> </b>
@@ -659,20 +535,20 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
            ret = decoder.load_line(line, currentlevel, multikey,
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 781, in load_line
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 781, in load_line
            raise ValueError("Duplicate keys!")
        ValueError: Duplicate keys!
 
        During handling of the above exception, another exception occurred:
 
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
            raise TomlDecodeError(str(err), original, pos)
        toml.decoder.TomlDecodeError: Duplicate keys! (line 2 column 1 char 17)
 
@@ -699,80 +575,50 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "\b": {
-           "type": "string",
-           "value": "bell"
-         },
-         "\n": {
-           "type": "string",
-           "value": "newline"
-         },
-         "\"": {
-           "type": "string",
-           "value": "just a quote"
-         },
+         "\b":         {"type": "string", "value": "bell"},
+         "\n":         {"type": "string", "value": "newline"},
+         "\"":         {"type": "string", "value": "just a quote"},
+         "\\u00c0":    {"type": "string", "value": "latin capital letter A with grave"},
+         "backsp\\b\\b": {},
          "\\\"quoted\\\"": {
-           "quote": {
-             "type": "bool",
-             "value": "true"
-           }
-         },
-         "\\u00c0": {
-           "type": "string",
-           "value": "latin capital letter A with grave"
+           "quote": {"type": "bool", "value": "true"}
          },
          "a.b": {
            "\\u00c0": {}
-         },
-         "backsp\\b\\b": {}
+         }
        }
 
 <b>     want:</b>
        {
-         "\u0008": {
-           "type": "string",
-           "value": "bell"
-         },
-         "\n": {
-           "type": "string",
-           "value": "newline"
-         },
-         "\"": {
-           "type": "string",
-           "value": "just a quote"
-         },
-         "\"quoted\"": {
-           "quote": {
-             "type": "bool",
-             "value": "true"
+           "\b":         {"type": "string", "value": "bell"},
+           "\n":         {"type": "string", "value": "newline"},
+           "\"":         {"type": "string", "value": "just a quote"},
+           "backsp\b\b": {},
+           "À":          {"type": "string", "value": "latin capital letter A with grave"},
+           "\"quoted\"": {
+               "quote": {"type": "bool", "value": "true"}
+           },
+           "a.b": {
+               "À": {}
            }
-         },
-         "a.b": {
-           "À": {}
-         },
-         "backsp\u0008\u0008": {},
-         "À": {
-           "type": "string",
-           "value": "latin capital letter A with grave"
-         }
        }
 
 <b>FAIL</b> <b>valid/key/quoted-unicode</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
 <b> </b>        ret = decoder.load_line(line, currentlevel, multikey,
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 781, in load_line
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 781, in load_line
 <b> </b>        raise ValueError("Duplicate keys!")
 <b> </b>    ValueError: Duplicate keys!
 <b> </b>
 <b> </b>    During handling of the above exception, another exception occurred:
 <b> </b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
 <b> </b>        raise TomlDecodeError(str(err), original, pos)
 <b> </b>    toml.decoder.TomlDecodeError: Duplicate keys! (line 3 column 1 char 19)
 <b> </b>
@@ -789,20 +635,20 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
            ret = decoder.load_line(line, currentlevel, multikey,
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 781, in load_line
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 781, in load_line
            raise ValueError("Duplicate keys!")
        ValueError: Duplicate keys!
 
        During handling of the above exception, another exception occurred:
 
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 514, in loads
            raise TomlDecodeError(str(err), original, pos)
        toml.decoder.TomlDecodeError: Duplicate keys! (line 3 column 1 char 19)
 
@@ -813,19 +659,19 @@ toml version 65bab75
 
 <b>FAIL</b> <b>valid/spec/array-0</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
 <b> </b>        ret = decoder.load_line(line, currentlevel, multikey,
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
 <b> </b>        value, vtype = self.load_value(pair[1], strictly_valid)
 <b> </b>                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 880, in load_value
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 880, in load_value
 <b> </b>        return (self.load_array(v), "array")
 <b> </b>                ^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 1001, in load_array
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 1001, in load_array
 <b> </b>        a[b] = a[b] + ',' + a[b + 1]
 <b> </b>                            ~^^^^^^^
 <b> </b>    IndexError: list index out of range
@@ -848,19 +694,19 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 511, in loads
            ret = decoder.load_line(line, currentlevel, multikey,
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 778, in load_line
            value, vtype = self.load_value(pair[1], strictly_valid)
                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 880, in load_value
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 880, in load_value
            return (self.load_array(v), "array")
                    ^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 1001, in load_array
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 1001, in load_array
            a[b] = a[b] + ',' + a[b + 1]
                                ~^^^^^^^
        IndexError: list index out of range
@@ -872,10 +718,10 @@ toml version 65bab75
 
 <b>FAIL</b> <b>valid/spec/keys-4</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 260, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 260, in loads
 <b> </b>        raise TomlDecodeError("Found invalid character in key name: '" +
 <b> </b>    toml.decoder.TomlDecodeError: Found invalid character in key name: 'c'. Try quoting the key name. (line 2 column 8 char 57)
 <b> </b>
@@ -888,10 +734,10 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 260, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 260, in loads
            raise TomlDecodeError("Found invalid character in key name: '" +
        toml.decoder.TomlDecodeError: Found invalid character in key name: 'c'. Try quoting the key name. (line 2 column 8 char 57)
 
@@ -902,20 +748,20 @@ toml version 65bab75
 
 <b>FAIL</b> <b>valid/string/ends-in-whitespace-escape</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 395, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 395, in loads
 <b> </b>        value, vtype = decoder.load_value(multilinestr)
 <b> </b>                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 866, in load_value
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 866, in load_value
 <b> </b>        raise ValueError("Reserved escape sequence used")
 <b> </b>    ValueError: Reserved escape sequence used
 <b> </b>
 <b> </b>    During handling of the above exception, another exception occurred:
 <b> </b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 397, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 397, in loads
 <b> </b>        raise TomlDecodeError(str(err), original, pos)
 <b> </b>    toml.decoder.TomlDecodeError: Reserved escape sequence used (line 6 column 1 char 28)
 <b> </b>
@@ -931,20 +777,20 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 395, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 395, in loads
            value, vtype = decoder.load_value(multilinestr)
                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 866, in load_value
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 866, in load_value
            raise ValueError("Reserved escape sequence used")
        ValueError: Reserved escape sequence used
 
        During handling of the above exception, another exception occurred:
 
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 397, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 397, in loads
            raise TomlDecodeError(str(err), original, pos)
        toml.decoder.TomlDecodeError: Reserved escape sequence used (line 6 column 1 char 28)
 
@@ -955,10 +801,10 @@ toml version 65bab75
 
 <b>FAIL</b> <b>valid/string/multiline-quotes</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 362, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 362, in loads
 <b> </b>        raise TomlDecodeError("Unterminated string found."
 <b> </b>    toml.decoder.TomlDecodeError: Unterminated string found. Reached end of file. (line 27 column 1 char 664)
 <b> </b>
@@ -994,10 +840,10 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 362, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 362, in loads
            raise TomlDecodeError("Unterminated string found."
        toml.decoder.TomlDecodeError: Unterminated string found. Reached end of file. (line 27 column 1 char 664)
 
@@ -1008,10 +854,10 @@ toml version 65bab75
 
 <b>FAIL</b> <b>valid/string/raw-multiline</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 340, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 340, in loads
 <b> </b>        raise TomlDecodeError("Unbalanced quotes", original, i)
 <b> </b>    toml.decoder.TomlDecodeError: Unbalanced quotes (line 20 column 50 char 532)
 <b> </b>
@@ -1043,10 +889,10 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 340, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 340, in loads
            raise TomlDecodeError("Unbalanced quotes", original, i)
        toml.decoder.TomlDecodeError: Unbalanced quotes (line 20 column 50 char 532)
 
@@ -1057,10 +903,10 @@ toml version 65bab75
 
 <b>FAIL</b> <b>valid/table/empty-name</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
 <b> </b>        tdata = toml.loads(sys.stdin.read())
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 463, in loads
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 463, in loads
 <b> </b>        raise TomlDecodeError("Can't have a keygroup with an empty "
 <b> </b>    toml.decoder.TomlDecodeError: Can't have a keygroup with an empty name (line 1 column 1 char 0)
 <b> </b>
@@ -1078,10 +924,10 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/decoding_test.py", line 37, in <module>
            tdata = toml.loads(sys.stdin.read())
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 463, in loads
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/decoder.py", line 463, in loads
            raise TomlDecodeError("Can't have a keygroup with an empty "
        toml.decoder.TomlDecodeError: Can't have a keygroup with an empty name (line 1 column 1 char 0)
 
@@ -1099,14 +945,8 @@ toml version 65bab75
 <b>     output from parser-cmd (stdout):</b>
        {
          "double-comma-1": [
-           {
-             "type": "integer",
-             "value": "1"
-           },
-           {
-             "type": "integer",
-             "value": "2"
-           }
+           {"type": "integer", "value": "1"},
+           {"type": "integer", "value": "2"}
          ]
        }
 
@@ -1122,14 +962,8 @@ toml version 65bab75
 <b>     output from parser-cmd (stdout):</b>
        {
          "double-comma-2": [
-           {
-             "type": "integer",
-             "value": "1"
-           },
-           {
-             "type": "integer",
-             "value": "2"
-           }
+           {"type": "integer", "value": "1"},
+           {"type": "integer", "value": "2"}
          ]
        }
 
@@ -1149,20 +983,12 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "a": [
-           {
-             "b": {
-               "type": "integer",
-               "value": "1"
-             },
-             "c": {
-               "foo": {
-                 "type": "integer",
-                 "value": "1"
-               }
-             }
+         "a": [{
+           "b": {"type": "integer", "value": "1"},
+           "c": {
+             "foo": {"type": "integer", "value": "1"}
            }
-         ]
+         }]
        }
 
 <b>     want:</b>
@@ -1177,14 +1003,8 @@ toml version 65bab75
 <b>     output from parser-cmd (stdout):</b>
        {
          "no-close-1": [
-           {
-             "type": "integer",
-             "value": "1"
-           },
-           {
-             "type": "integer",
-             "value": "2"
-           }
+           {"type": "integer", "value": "1"},
+           {"type": "integer", "value": "2"}
          ]
        }
 
@@ -1199,12 +1019,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "no-close-2": [
-           {
-             "type": "integer",
-             "value": "1"
-           }
-         ]
+         "no-close-2": [{"type": "integer", "value": "1"}]
        }
 
 <b>     want:</b>
@@ -1218,12 +1033,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "no-close-3": [
-           {
-             "type": "integer",
-             "value": "4"
-           }
-         ]
+         "no-close-3": [{"type": "integer", "value": "4"}]
        }
 
 <b>     want:</b>
@@ -1380,9 +1190,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "fruit": [
-           {}
-         ]
+         "fruit": [{}]
        }
 
 <b>     want:</b>
@@ -1396,10 +1204,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "comment-cr": {
-           "type": "string",
-           "value": "Carriage return in comment"
-         }
+         "comment-cr": {"type": "string", "value": "Carriage return in comment"}
        }
 
 <b>     want:</b>
@@ -1413,10 +1218,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "comment-del": {
-           "type": "string",
-           "value": "0x7f"
-         }
+         "comment-del": {"type": "string", "value": "0x7f"}
        }
 
 <b>     want:</b>
@@ -1430,10 +1232,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "comment-ff": {
-           "type": "string",
-           "value": "0x7f"
-         }
+         "comment-ff": {"type": "string", "value": "0x7f"}
        }
 
 <b>     want:</b>
@@ -1447,10 +1246,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "comment-lf": {
-           "type": "string",
-           "value": "ctrl-P"
-         }
+         "comment-lf": {"type": "string", "value": "ctrl-P"}
        }
 
 <b>     want:</b>
@@ -1464,10 +1260,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "comment-null": {
-           "type": "string",
-           "value": "null"
-         }
+         "comment-null": {"type": "string", "value": "null"}
        }
 
 <b>     want:</b>
@@ -1481,10 +1274,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "comment-us": {
-           "type": "string",
-           "value": "ctrl-_"
-         }
+         "comment-us": {"type": "string", "value": "ctrl-_"}
        }
 
 <b>     want:</b>
@@ -1498,10 +1288,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "multi-cr": {
-           "type": "string",
-           "value": "null\r"
-         }
+         "multi-cr": {"type": "string", "value": "null\r"}
        }
 
 <b>     want:</b>
@@ -1515,10 +1302,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "multi-del": {
-           "type": "string",
-           "value": "null"
-         }
+         "multi-del": {"type": "string", "value": "null"}
        }
 
 <b>     want:</b>
@@ -1532,10 +1316,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "multi-lf": {
-           "type": "string",
-           "value": "null\u0010"
-         }
+         "multi-lf": {"type": "string", "value": "null\u0010"}
        }
 
 <b>     want:</b>
@@ -1549,10 +1330,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "multi-null": {
-           "type": "string",
-           "value": "null\u0000"
-         }
+         "multi-null": {"type": "string", "value": "null\u0000"}
        }
 
 <b>     want:</b>
@@ -1566,10 +1344,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "multi-us": {
-           "type": "string",
-           "value": "null\u001f"
-         }
+         "multi-us": {"type": "string", "value": "null\u001f"}
        }
 
 <b>     want:</b>
@@ -1583,10 +1358,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "rawmulti-cd": {
-           "type": "string",
-           "value": "null\r"
-         }
+         "rawmulti-cd": {"type": "string", "value": "null\r"}
        }
 
 <b>     want:</b>
@@ -1600,10 +1372,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "rawmulti-del": {
-           "type": "string",
-           "value": "null"
-         }
+         "rawmulti-del": {"type": "string", "value": "null"}
        }
 
 <b>     want:</b>
@@ -1617,10 +1386,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "rawmulti-lf": {
-           "type": "string",
-           "value": "null\u0010"
-         }
+         "rawmulti-lf": {"type": "string", "value": "null\u0010"}
        }
 
 <b>     want:</b>
@@ -1634,10 +1400,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "rawmulti-null": {
-           "type": "string",
-           "value": "null\u0000"
-         }
+         "rawmulti-null": {"type": "string", "value": "null\u0000"}
        }
 
 <b>     want:</b>
@@ -1651,10 +1414,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "rawmulti-us": {
-           "type": "string",
-           "value": "null\u001f"
-         }
+         "rawmulti-us": {"type": "string", "value": "null\u001f"}
        }
 
 <b>     want:</b>
@@ -1668,10 +1428,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "rawstring-cr": {
-           "type": "string",
-           "value": "null\r"
-         }
+         "rawstring-cr": {"type": "string", "value": "null\r"}
        }
 
 <b>     want:</b>
@@ -1685,10 +1442,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "rawstring-del": {
-           "type": "string",
-           "value": "null"
-         }
+         "rawstring-del": {"type": "string", "value": "null"}
        }
 
 <b>     want:</b>
@@ -1702,10 +1456,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "rawstring-lf": {
-           "type": "string",
-           "value": "null\u0010"
-         }
+         "rawstring-lf": {"type": "string", "value": "null\u0010"}
        }
 
 <b>     want:</b>
@@ -1719,10 +1470,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "rawstring-null": {
-           "type": "string",
-           "value": "null\u0000"
-         }
+         "rawstring-null": {"type": "string", "value": "null\u0000"}
        }
 
 <b>     want:</b>
@@ -1736,10 +1484,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "rawstring-us": {
-           "type": "string",
-           "value": "null\u001f"
-         }
+         "rawstring-us": {"type": "string", "value": "null\u001f"}
        }
 
 <b>     want:</b>
@@ -1753,10 +1498,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "string-bs": {
-           "type": "string",
-           "value": "backspace\b"
-         }
+         "string-bs": {"type": "string", "value": "backspace\b"}
        }
 
 <b>     want:</b>
@@ -1770,10 +1512,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "string-cr": {
-           "type": "string",
-           "value": "null\r"
-         }
+         "string-cr": {"type": "string", "value": "null\r"}
        }
 
 <b>     want:</b>
@@ -1787,10 +1526,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "string-del": {
-           "type": "string",
-           "value": "null"
-         }
+         "string-del": {"type": "string", "value": "null"}
        }
 
 <b>     want:</b>
@@ -1804,10 +1540,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "string-lf": {
-           "type": "string",
-           "value": "null\u0010"
-         }
+         "string-lf": {"type": "string", "value": "null\u0010"}
        }
 
 <b>     want:</b>
@@ -1821,10 +1554,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "string-null": {
-           "type": "string",
-           "value": "null\u0000"
-         }
+         "string-null": {"type": "string", "value": "null\u0000"}
        }
 
 <b>     want:</b>
@@ -1838,10 +1568,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "string-us": {
-           "type": "string",
-           "value": "null\u001f"
-         }
+         "string-us": {"type": "string", "value": "null\u001f"}
        }
 
 <b>     want:</b>
@@ -1857,10 +1584,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "d": {
-           "type": "datetime",
-           "value": "1985-06-18T17:04:07+13:01"
-         }
+         "d": {"type": "datetime", "value": "1985-06-18T17:04:07+13:01"}
        }
 
 <b>     want:</b>
@@ -1874,10 +1598,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "exp-leading-us": {
-           "type": "float",
-           "value": "1e+23"
-         }
+         "exp-leading-us": {"type": "float", "value": "1e+23"}
        }
 
 <b>     want:</b>
@@ -1891,10 +1612,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "exp-point-2": {
-           "type": "float",
-           "value": "100.0"
-         }
+         "exp-point-2": {"type": "float", "value": "100.0"}
        }
 
 <b>     want:</b>
@@ -1908,10 +1626,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "exp-point-3": {
-           "type": "float",
-           "value": "3e+20"
-         }
+         "exp-point-3": {"type": "float", "value": "3e+20"}
        }
 
 <b>     want:</b>
@@ -1925,10 +1640,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "exp-trailing-us-1": {
-           "type": "float",
-           "value": "100.0"
-         }
+         "exp-trailing-us-1": {"type": "float", "value": "100.0"}
        }
 
 <b>     want:</b>
@@ -1942,10 +1654,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "exp-trailing-us-2": {
-           "type": "float",
-           "value": "120.0"
-         }
+         "exp-trailing-us-2": {"type": "float", "value": "120.0"}
        }
 
 <b>     want:</b>
@@ -1959,10 +1668,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "v": {
-           "type": "float",
-           "value": "inf"
-         }
+         "v": {"type": "float", "value": "inf"}
        }
 
 <b>     want:</b>
@@ -1976,10 +1682,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "inf_underscore": {
-           "type": "float",
-           "value": "inf"
-         }
+         "inf_underscore": {"type": "float", "value": "inf"}
        }
 
 <b>     want:</b>
@@ -1993,10 +1696,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "v": {
-           "type": "float",
-           "value": "nan"
-         }
+         "v": {"type": "float", "value": "nan"}
        }
 
 <b>     want:</b>
@@ -2010,10 +1710,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "nan_underscore": {
-           "type": "float",
-           "value": "nan"
-         }
+         "nan_underscore": {"type": "float", "value": "nan"}
        }
 
 <b>     want:</b>
@@ -2027,10 +1724,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "trailing-us-exp-1": {
-           "type": "float",
-           "value": "100.0"
-         }
+         "trailing-us-exp-1": {"type": "float", "value": "100.0"}
        }
 
 <b>     want:</b>
@@ -2044,10 +1738,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "trailing-us-exp-2": {
-           "type": "float",
-           "value": "120.0"
-         }
+         "trailing-us-exp-2": {"type": "float", "value": "120.0"}
        }
 
 <b>     want:</b>
@@ -2064,15 +1755,9 @@ toml version 65bab75
          "tbl": {
            "fruit": {
              "apple": {
-               "color": {
-                 "type": "string",
-                 "value": "red"
-               },
+               "color": {"type": "string", "value": "red"},
                "texture": {
-                 "smooth": {
-                   "type": "bool",
-                   "value": "true"
-                 }
+                 "smooth": {"type": "bool", "value": "true"}
                }
              }
            }
@@ -2124,14 +1809,8 @@ toml version 65bab75
        {
          "tab": {
            "inner": {
-             "cat": {
-               "type": "string",
-               "value": "worst"
-             },
-             "dog": {
-               "type": "string",
-               "value": "best"
-             }
+             "cat": {"type": "string", "value": "worst"},
+             "dog": {"type": "string", "value": "best"}
            }
          }
        }
@@ -2147,10 +1826,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "double-sign-nex": {
-           "type": "integer",
-           "value": "99"
-         }
+         "double-sign-nex": {"type": "integer", "value": "99"}
        }
 
 <b>     want:</b>
@@ -2164,10 +1840,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "double-sign-plus": {
-           "type": "integer",
-           "value": "99"
-         }
+         "double-sign-plus": {"type": "integer", "value": "99"}
        }
 
 <b>     want:</b>
@@ -2181,10 +1854,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "us-after-bin": {
-           "type": "integer",
-           "value": "1"
-         }
+         "us-after-bin": {"type": "integer", "value": "1"}
        }
 
 <b>     want:</b>
@@ -2198,10 +1868,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "us-after-hex": {
-           "type": "integer",
-           "value": "1"
-         }
+         "us-after-hex": {"type": "integer", "value": "1"}
        }
 
 <b>     want:</b>
@@ -2215,10 +1882,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "us-after-oct": {
-           "type": "integer",
-           "value": "1"
-         }
+         "us-after-oct": {"type": "integer", "value": "1"}
        }
 
 <b>     want:</b>
@@ -2232,10 +1896,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "\\u00c0": {
-           "type": "string",
-           "value": "latin capital letter A with grave"
-         }
+         "\\u00c0": {"type": "string", "value": "latin capital letter A with grave"}
        }
 
 <b>     want:</b>
@@ -2249,10 +1910,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "μ": {
-           "type": "string",
-           "value": "greek small letter mu"
-         }
+         "μ": {"type": "string", "value": "greek small letter mu"}
        }
 
 <b>     want:</b>
@@ -2266,10 +1924,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "key": {
-           "type": "integer",
-           "value": "1"
-         }
+         "key": {"type": "integer", "value": "1"}
        }
 
 <b>     want:</b>
@@ -2283,10 +1938,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "a=": {
-           "type": "integer",
-           "value": "1"
-         }
+         "a=": {"type": "integer", "value": "1"}
        }
 
 <b>     want:</b>
@@ -2300,10 +1952,7 @@ toml version 65bab75
 
 <b>     output from parser-cmd (stdout):</b>
        {
-         "a=b": {
-           "type": "integer",
-           "value": "1"
-         }
+         "a=b": {"type": "integer", "value": "1"}
        }
 
 <b>     want:</b>
@@ -2321,14 +1970,8 @@ toml version 65bab75
        {
          "product": {
            "type": {
-             "edible": {
-               "type": "bool",
-               "value": "false"
-             },
-             "name": {
-               "type": "string",
-               "value": "Nail"
-             }
+             "edible": {"type": "bool", "value": "false"},
+             "name":   {"type": "string", "value": "Nail"}
            }
          }
        }
@@ -2363,13 +2006,10 @@ toml version 65bab75
          "a": {
            "b": {
              "c": {
+               "z": {"type": "integer", "value": "9"},
                "t": {
-                 "type": "string",
+                 "type":  "string",
                  "value": "Using dotted keys to add to [a.b.c] after explicitly defining it above is not allowed"
-               },
-               "z": {
-                 "type": "integer",
-                 "value": "9"
                }
              }
            }
@@ -2398,15 +2038,12 @@ toml version 65bab75
            "b": {
              "c": {
                "d": {
+                 "z": {"type": "integer", "value": "9"},
                  "k": {
                    "t": {
-                     "type": "string",
+                     "type":  "string",
                      "value": "Using dotted keys to add to [a.b.c.d] after explicitly defining it above is not allowed"
                    }
-                 },
-                 "z": {
-                   "type": "integer",
-                   "value": "9"
                  }
                }
              }
@@ -2417,23 +2054,23 @@ toml version 65bab75
 <b>     want:</b>
        Exit code 1
 
-toml-test v2024-05-23 [./src/python-toml/tests/decoding_test.py]: using embedded tests
+toml-test v2024-05-31 [./src/python-toml/tests/decoding_test.py]: using embedded tests
   valid tests: 164 passed, 18 failed
 invalid tests: 298 passed, 73 failed
 
 ==> ENCODER TESTS
 <b>FAIL</b> <b>valid/array/mixed-string-table</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
 <b> </b>        print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
 <b> </b>        addtoretval, sections = encoder.dump_sections(o, "")
 <b> </b>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 203, in dump_sections
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 203, in dump_sections
 <b> </b>        s, d = self.dump_sections(a, sup + qsection)
 <b> </b>               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 193, in dump_sections
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 193, in dump_sections
 <b> </b>        if not isinstance(o[section], dict):
 <b> </b>                          ~^^^^^^^^^
 <b> </b>    TypeError: string indices must be integers, not 'str'
@@ -2442,56 +2079,35 @@ invalid tests: 298 passed, 73 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "contributors": [
-           {
-             "type": "string",
-             "value": "Foo Bar \u003cfoo@example.com\u003e"
-           },
-           {
-             "email": {
-               "type": "string",
-               "value": "bazqux@example.com"
-             },
-             "name": {
-               "type": "string",
-               "value": "Baz Qux"
-             },
-             "url": {
-               "type": "string",
-               "value": "https://example.com/bazqux"
-             }
-           }
-         ],
-         "mixed": [
-           {
-             "k": {
-               "type": "string",
-               "value": "a"
-             }
-           },
-           {
-             "type": "string",
-             "value": "b"
-           },
-           {
-             "type": "integer",
-             "value": "1"
-           }
-         ]
+           "contributors": [
+               {"type": "string", "value": "Foo Bar \u003cfoo@example.com\u003e"},
+               {
+                   "email": {"type": "string", "value": "bazqux@example.com"},
+                   "name":  {"type": "string", "value": "Baz Qux"},
+                   "url":   {"type": "string", "value": "https://example.com/bazqux"}
+               }
+           ],
+           "mixed": [
+               {
+                   "k": {"type": "string", "value": "a"}
+               },
+               {"type": "string", "value": "b"},
+               {"type": "integer", "value": "1"}
+           ]
        }
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
            print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
            addtoretval, sections = encoder.dump_sections(o, "")
                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 203, in dump_sections
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 203, in dump_sections
            s, d = self.dump_sections(a, sup + qsection)
                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 193, in dump_sections
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 193, in dump_sections
            if not isinstance(o[section], dict):
                              ~^^^^^^^^^
        TypeError: string indices must be integers, not 'str'
@@ -2506,11 +2122,9 @@ invalid tests: 298 passed, 73 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "a": [
-           {
-             "b": {}
-           }
-         ]
+           "a": [{
+               "b": {}
+           }]
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -2526,14 +2140,8 @@ invalid tests: 298 passed, 73 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "besttimeever": {
-           "type": "time-local",
-           "value": "17:45:00"
-         },
-         "milliseconds": {
-           "type": "time-local",
-           "value": "10:32:00.555"
-         }
+           "besttimeever": {"type": "time-local", "value": "17:45:00"},
+           "milliseconds": {"type": "time-local", "value": "10:32:00.555"}
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -2546,16 +2154,16 @@ invalid tests: 298 passed, 73 failed
 
 <b>FAIL</b> <b>valid/inline-table/key-dotted-5</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
 <b> </b>        print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
 <b> </b>        addtoretval, sections = encoder.dump_sections(o, "")
 <b> </b>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 203, in dump_sections
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 203, in dump_sections
 <b> </b>        s, d = self.dump_sections(a, sup + qsection)
 <b> </b>               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 193, in dump_sections
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 193, in dump_sections
 <b> </b>        if not isinstance(o[section], dict):
 <b> </b>                          ~^^^^^^^^^
 <b> </b>    TypeError: string indices must be integers, not 'str'
@@ -2564,84 +2172,58 @@ invalid tests: 298 passed, 73 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "arr-1": [
-           {
-             "a": {
-               "b": {
-                 "type": "integer",
-                 "value": "1"
+           "arr-1": [{
+               "a": {
+                   "b": {"type": "integer", "value": "1"}
                }
-             }
-           }
-         ],
-         "arr-2": [
-           {
-             "type": "string",
-             "value": "str"
-           },
-           {
-             "a": {
-               "b": {
-                 "type": "integer",
-                 "value": "1"
+           }],
+           "arr-2": [
+               {"type": "string", "value": "str"},
+               {
+                   "a": {
+                       "b": {"type": "integer", "value": "1"}
+                   }
                }
-             }
-           }
-         ],
-         "arr-3": [
-           {
-             "a": {
-               "b": {
-                 "type": "integer",
-                 "value": "1"
+           ],
+           "arr-3": [
+               {
+                   "a": {
+                       "b": {"type": "integer", "value": "1"}
+                   }
+               },
+               {
+                   "a": {
+                       "b": {"type": "integer", "value": "2"}
+                   }
                }
-             }
-           },
-           {
-             "a": {
-               "b": {
-                 "type": "integer",
-                 "value": "2"
+           ],
+           "arr-4": [
+               {"type": "string", "value": "str"},
+               {
+                   "a": {
+                       "b": {"type": "integer", "value": "1"}
+                   }
+               },
+               {
+                   "a": {
+                       "b": {"type": "integer", "value": "2"}
+                   }
                }
-             }
-           }
-         ],
-         "arr-4": [
-           {
-             "type": "string",
-             "value": "str"
-           },
-           {
-             "a": {
-               "b": {
-                 "type": "integer",
-                 "value": "1"
-               }
-             }
-           },
-           {
-             "a": {
-               "b": {
-                 "type": "integer",
-                 "value": "2"
-               }
-             }
-           }
-         ]
+           ]
        }
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
            print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
            addtoretval, sections = encoder.dump_sections(o, "")
                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 203, in dump_sections
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 203, in dump_sections
            s, d = self.dump_sections(a, sup + qsection)
                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 193, in dump_sections
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 193, in dump_sections
            if not isinstance(o[section], dict):
                              ~^^^^^^^^^
        TypeError: string indices must be integers, not 'str'
@@ -2658,68 +2240,34 @@ invalid tests: 298 passed, 73 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "arr_arr_tbl_empty": [
-           [
-             {}
-           ]
-         ],
-         "arr_arr_tbl_val": [
-           [
-             {
-               "one": {
-                 "type": "integer",
-                 "value": "1"
+           "arr_arr_tbl_empty": [[{}]],
+           "arr_arr_tbl_val":   [[{
+               "one": {"type": "integer", "value": "1"}
+           }]],
+           "arr_arr_tbls":      [[
+               {
+                   "one": {"type": "integer", "value": "1"}
+               },
+               {
+                   "two": {"type": "integer", "value": "2"}
                }
-             }
-           ]
-         ],
-         "arr_arr_tbls": [
-           [
-             {
-               "one": {
-                 "type": "integer",
-                 "value": "1"
+           ]],
+           "arr_tbl_tbl":       [{
+               "tbl": {
+                   "one": {"type": "integer", "value": "1"}
                }
-             },
-             {
-               "two": {
-                 "type": "integer",
-                 "value": "2"
+           }],
+           "tbl_arr_tbl":       {"arr_tbl": [{
+               "one": {"type": "integer", "value": "1"}
+           }]},
+           "tbl_tbl_empty": {
+               "tbl_0": {}
+           },
+           "tbl_tbl_val": {
+               "tbl_1": {
+                   "one": {"type": "integer", "value": "1"}
                }
-             }
-           ]
-         ],
-         "arr_tbl_tbl": [
-           {
-             "tbl": {
-               "one": {
-                 "type": "integer",
-                 "value": "1"
-               }
-             }
            }
-         ],
-         "tbl_arr_tbl": {
-           "arr_tbl": [
-             {
-               "one": {
-                 "type": "integer",
-                 "value": "1"
-               }
-             }
-           ]
-         },
-         "tbl_tbl_empty": {
-           "tbl_0": {}
-         },
-         "tbl_tbl_val": {
-           "tbl_1": {
-             "one": {
-               "type": "integer",
-               "value": "1"
-             }
-           }
-         }
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -2754,16 +2302,16 @@ invalid tests: 298 passed, 73 failed
 
 <b>FAIL</b> <b>valid/key/escapes</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
 <b> </b>        print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
 <b> </b>        addtoretval, sections = encoder.dump_sections(o, "")
 <b> </b>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 192, in dump_sections
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 192, in dump_sections
 <b> </b>        qsection = _dump_str(section)
 <b> </b>                   ^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
 <b> </b>        v = [v[0] + joiner + v[1]] + v[2:]
 <b> </b>                             ~^^^
 <b> </b>    IndexError: list index out of range
@@ -2772,46 +2320,31 @@ invalid tests: 298 passed, 73 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "\u0008": {
-           "type": "string",
-           "value": "bell"
-         },
-         "\n": {
-           "type": "string",
-           "value": "newline"
-         },
-         "\"": {
-           "type": "string",
-           "value": "just a quote"
-         },
-         "\"quoted\"": {
-           "quote": {
-             "type": "bool",
-             "value": "true"
+           "\b":         {"type": "string", "value": "bell"},
+           "\n":         {"type": "string", "value": "newline"},
+           "\"":         {"type": "string", "value": "just a quote"},
+           "backsp\b\b": {},
+           "À":          {"type": "string", "value": "latin capital letter A with grave"},
+           "\"quoted\"": {
+               "quote": {"type": "bool", "value": "true"}
+           },
+           "a.b": {
+               "À": {}
            }
-         },
-         "a.b": {
-           "À": {}
-         },
-         "backsp\u0008\u0008": {},
-         "À": {
-           "type": "string",
-           "value": "latin capital letter A with grave"
-         }
        }
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
            print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
            addtoretval, sections = encoder.dump_sections(o, "")
                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 192, in dump_sections
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 192, in dump_sections
            qsection = _dump_str(section)
                       ^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
            v = [v[0] + joiner + v[1]] + v[2:]
                                 ~^^^
        IndexError: list index out of range
@@ -2823,16 +2356,16 @@ invalid tests: 298 passed, 73 failed
 
 <b>FAIL</b> <b>valid/key/quoted-unicode</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
 <b> </b>        print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
 <b> </b>        addtoretval, sections = encoder.dump_sections(o, "")
 <b> </b>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 192, in dump_sections
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 192, in dump_sections
 <b> </b>        qsection = _dump_str(section)
 <b> </b>                   ^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
 <b> </b>        v = [v[0] + joiner + v[1]] + v[2:]
 <b> </b>                             ~^^^
 <b> </b>    IndexError: list index out of range
@@ -2841,40 +2374,25 @@ invalid tests: 298 passed, 73 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "\u0000": {
-           "type": "string",
-           "value": "null"
-         },
-         "\u0008 \u000c A   ÿ ퟿  ￿ 𐀀 􏿿": {
-           "type": "string",
-           "value": "escaped key"
-         },
-         "\\u0000": {
-           "type": "string",
-           "value": "different key"
-         },
-         "l ~  ÿ ퟿  ￿ 𐀀 􏿿": {
-           "type": "string",
-           "value": "literal key"
-         },
-         "~  ÿ ퟿  ￿ 𐀀 􏿿": {
-           "type": "string",
-           "value": "basic key"
-         }
+           "\u0000":               {"type": "string", "value": "null"},
+           "\b \f A   ÿ ퟿  ￿ 𐀀 􏿿": {"type": "string", "value": "escaped key"},
+           "\\u0000":              {"type": "string", "value": "different key"},
+           "l ~  ÿ ퟿  ￿ 𐀀 􏿿":      {"type": "string", "value": "literal key"},
+           "~  ÿ ퟿  ￿ 𐀀 􏿿":        {"type": "string", "value": "basic key"}
        }
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
            print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
            addtoretval, sections = encoder.dump_sections(o, "")
                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 192, in dump_sections
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 192, in dump_sections
            qsection = _dump_str(section)
                       ^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
            v = [v[0] + joiner + v[1]] + v[2:]
                                 ~^^^
        IndexError: list index out of range
@@ -2886,16 +2404,16 @@ invalid tests: 298 passed, 73 failed
 
 <b>FAIL</b> <b>valid/spec/array-0</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
 <b> </b>        print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
 <b> </b>        addtoretval, sections = encoder.dump_sections(o, "")
 <b> </b>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 203, in dump_sections
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 203, in dump_sections
 <b> </b>        s, d = self.dump_sections(a, sup + qsection)
 <b> </b>               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 193, in dump_sections
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 193, in dump_sections
 <b> </b>        if not isinstance(o[section], dict):
 <b> </b>                          ~^^^^^^^^^
 <b> </b>    TypeError: string indices must be integers, not 'str'
@@ -2904,164 +2422,74 @@ invalid tests: 298 passed, 73 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "colors": [
-           {
-             "type": "string",
-             "value": "red"
-           },
-           {
-             "type": "string",
-             "value": "yellow"
-           },
-           {
-             "type": "string",
-             "value": "green"
-           }
-         ],
-         "contributors": [
-           {
-             "type": "string",
-             "value": "Foo Bar \u003cfoo@example.com\u003e"
-           },
-           {
-             "email": {
-               "type": "string",
-               "value": "bazqux@example.com"
-             },
-             "name": {
-               "type": "string",
-               "value": "Baz Qux"
-             },
-             "url": {
-               "type": "string",
-               "value": "https://example.com/bazqux"
-             }
-           }
-         ],
-         "integers": [
-           {
-             "type": "integer",
-             "value": "1"
-           },
-           {
-             "type": "integer",
-             "value": "2"
-           },
-           {
-             "type": "integer",
-             "value": "3"
-           }
-         ],
-         "nested_arrays_of_ints": [
-           [
-             {
-               "type": "integer",
-               "value": "1"
-             },
-             {
-               "type": "integer",
-               "value": "2"
-             }
+           "colors": [
+               {"type": "string", "value": "red"},
+               {"type": "string", "value": "yellow"},
+               {"type": "string", "value": "green"}
            ],
-           [
-             {
-               "type": "integer",
-               "value": "3"
-             },
-             {
-               "type": "integer",
-               "value": "4"
-             },
-             {
-               "type": "integer",
-               "value": "5"
-             }
-           ]
-         ],
-         "nested_mixed_array": [
-           [
-             {
-               "type": "integer",
-               "value": "1"
-             },
-             {
-               "type": "integer",
-               "value": "2"
-             }
+           "contributors": [
+               {"type": "string", "value": "Foo Bar \u003cfoo@example.com\u003e"},
+               {
+                   "email": {"type": "string", "value": "bazqux@example.com"},
+                   "name":  {"type": "string", "value": "Baz Qux"},
+                   "url":   {"type": "string", "value": "https://example.com/bazqux"}
+               }
            ],
-           [
-             {
-               "type": "string",
-               "value": "a"
-             },
-             {
-               "type": "string",
-               "value": "b"
-             },
-             {
-               "type": "string",
-               "value": "c"
-             }
+           "integers": [
+               {"type": "integer", "value": "1"},
+               {"type": "integer", "value": "2"},
+               {"type": "integer", "value": "3"}
+           ],
+           "nested_arrays_of_ints": [
+               [
+                   {"type": "integer", "value": "1"},
+                   {"type": "integer", "value": "2"}
+               ],
+               [
+                   {"type": "integer", "value": "3"},
+                   {"type": "integer", "value": "4"},
+                   {"type": "integer", "value": "5"}
+               ]
+           ],
+           "nested_mixed_array": [
+               [
+                   {"type": "integer", "value": "1"},
+                   {"type": "integer", "value": "2"}
+               ],
+               [
+                   {"type": "string", "value": "a"},
+                   {"type": "string", "value": "b"},
+                   {"type": "string", "value": "c"}
+               ]
+           ],
+           "numbers": [
+               {"type": "float", "value": "0.1"},
+               {"type": "float", "value": "0.2"},
+               {"type": "float", "value": "0.5"},
+               {"type": "integer", "value": "1"},
+               {"type": "integer", "value": "2"},
+               {"type": "integer", "value": "5"}
+           ],
+           "string_array": [
+               {"type": "string", "value": "all"},
+               {"type": "string", "value": "strings"},
+               {"type": "string", "value": "are the same"},
+               {"type": "string", "value": "type"}
            ]
-         ],
-         "numbers": [
-           {
-             "type": "float",
-             "value": "0.1"
-           },
-           {
-             "type": "float",
-             "value": "0.2"
-           },
-           {
-             "type": "float",
-             "value": "0.5"
-           },
-           {
-             "type": "integer",
-             "value": "1"
-           },
-           {
-             "type": "integer",
-             "value": "2"
-           },
-           {
-             "type": "integer",
-             "value": "5"
-           }
-         ],
-         "string_array": [
-           {
-             "type": "string",
-             "value": "all"
-           },
-           {
-             "type": "string",
-             "value": "strings"
-           },
-           {
-             "type": "string",
-             "value": "are the same"
-           },
-           {
-             "type": "string",
-             "value": "type"
-           }
-         ]
        }
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
            print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
            addtoretval, sections = encoder.dump_sections(o, "")
                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 203, in dump_sections
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 203, in dump_sections
            s, d = self.dump_sections(a, sup + qsection)
                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 193, in dump_sections
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 193, in dump_sections
            if not isinstance(o[section], dict):
                              ~^^^^^^^^^
        TypeError: string indices must be integers, not 'str'
@@ -3078,14 +2506,8 @@ invalid tests: 298 passed, 73 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "lt1": {
-           "type": "time-local",
-           "value": "07:32:00"
-         },
-         "lt2": {
-           "type": "time-local",
-           "value": "00:32:00.999"
-         }
+           "lt1": {"type": "time-local", "value": "07:32:00"},
+           "lt2": {"type": "time-local", "value": "00:32:00.999"}
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -3098,19 +2520,19 @@ invalid tests: 298 passed, 73 failed
 
 <b>FAIL</b> <b>valid/string/escape-tricky</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
 <b> </b>        print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
 <b> </b>        addtoretval, sections = encoder.dump_sections(o, "")
 <b> </b>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 226, in dump_sections
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 226, in dump_sections
 <b> </b>        unicode(self.dump_value(o[section])) + '\n')
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 180, in dump_value
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 180, in dump_value
 <b> </b>        return dump_fn(v) if dump_fn is not None else self.dump_funcs[str](v)
 <b> </b>               ^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
 <b> </b>        v = [v[0] + joiner + v[1]] + v[2:]
 <b> </b>                             ~^^^
 <b> </b>    IndexError: list index out of range
@@ -3119,51 +2541,30 @@ invalid tests: 298 passed, 73 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "end_esc": {
-           "type": "string",
-           "value": "String does not end here\" but ends here\\"
-         },
-         "lit_end_esc": {
-           "type": "string",
-           "value": "String ends here\\"
-         },
-         "lit_multiline_end": {
-           "type": "string",
-           "value": "There is no escape\\"
-         },
-         "lit_multiline_not_unicode": {
-           "type": "string",
-           "value": "\\u007f"
-         },
-         "multiline_end_esc": {
-           "type": "string",
-           "value": "When will it end? \"\"\"...\"\"\" should be here\""
-         },
-         "multiline_not_unicode": {
-           "type": "string",
-           "value": "\\u0041"
-         },
-         "multiline_unicode": {
-           "type": "string",
-           "value": " "
-         }
+           "end_esc":                   {"type": "string", "value": "String does not end here\" but ends here\\"},
+           "lit_end_esc":               {"type": "string", "value": "String ends here\\"},
+           "lit_multiline_end":         {"type": "string", "value": "There is no escape\\"},
+           "lit_multiline_not_unicode": {"type": "string", "value": "\\u007f"},
+           "multiline_end_esc":         {"type": "string", "value": "When will it end? \"\"\"...\"\"\" should be here\""},
+           "multiline_not_unicode":     {"type": "string", "value": "\\u0041"},
+           "multiline_unicode":         {"type": "string", "value": " "}
        }
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
            print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
            addtoretval, sections = encoder.dump_sections(o, "")
                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 226, in dump_sections
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 226, in dump_sections
            unicode(self.dump_value(o[section])) + '\n')
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 180, in dump_value
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 180, in dump_value
            return dump_fn(v) if dump_fn is not None else self.dump_funcs[str](v)
                   ^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
            v = [v[0] + joiner + v[1]] + v[2:]
                                 ~^^^
        IndexError: list index out of range
@@ -3180,10 +2581,7 @@ invalid tests: 298 passed, 73 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "answer": {
-           "type": "string",
-           "value": "\\x64"
-         }
+           "answer": {"type": "string", "value": "\\x64"}
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -3199,58 +2597,19 @@ invalid tests: 298 passed, 73 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "backslash": {
-           "type": "string",
-           "value": "|\\."
-         },
-         "backspace": {
-           "type": "string",
-           "value": "|\u0008."
-         },
-         "carriage": {
-           "type": "string",
-           "value": "|\r."
-         },
-         "delete": {
-           "type": "string",
-           "value": "|."
-         },
-         "formfeed": {
-           "type": "string",
-           "value": "|\u000c."
-         },
-         "newline": {
-           "type": "string",
-           "value": "|\n."
-         },
-         "notunicode1": {
-           "type": "string",
-           "value": "|\\u."
-         },
-         "notunicode2": {
-           "type": "string",
-           "value": "|\\u."
-         },
-         "notunicode3": {
-           "type": "string",
-           "value": "|\\u0075."
-         },
-         "notunicode4": {
-           "type": "string",
-           "value": "|\\u."
-         },
-         "quote": {
-           "type": "string",
-           "value": "|\"."
-         },
-         "tab": {
-           "type": "string",
-           "value": "|\t."
-         },
-         "unitseparator": {
-           "type": "string",
-           "value": "|\u001f."
-         }
+           "backslash":     {"type": "string", "value": "|\\."},
+           "backspace":     {"type": "string", "value": "|\b."},
+           "carriage":      {"type": "string", "value": "|\r."},
+           "delete":        {"type": "string", "value": "|."},
+           "formfeed":      {"type": "string", "value": "|\f."},
+           "newline":       {"type": "string", "value": "|\n."},
+           "notunicode1":   {"type": "string", "value": "|\\u."},
+           "notunicode2":   {"type": "string", "value": "|\\u."},
+           "notunicode3":   {"type": "string", "value": "|\\u0075."},
+           "notunicode4":   {"type": "string", "value": "|\\u."},
+           "quote":         {"type": "string", "value": "|\"."},
+           "tab":           {"type": "string", "value": "|\t."},
+           "unitseparator": {"type": "string", "value": "|\u001f."}
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -3292,22 +2651,13 @@ invalid tests: 298 passed, 73 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "basic_string": {
-           "type": "string",
-           "value": "~  ÿ ퟿  ￿ 𐀀 􏿿"
-         },
-         "escaped_string": {
-           "type": "string",
-           "value": "\u0000 \u0008 \u000c A   ÿ ퟿  ￿ 𐀀 􏿿"
-         },
-         "literal_string": {
-           "type": "string",
-           "value": "~  ÿ ퟿  ￿ 𐀀 􏿿"
-         },
-         "not_escaped_string": {
-           "type": "string",
-           "value": "\\u0000 \\u0008 \\u000c \\U00000041 \\u007f \\u0080 \\u00ff \\ud7ff \\ue000 \\uffff \\U00010000 \\U0010ffff"
-         }
+           "basic_string":   {"type": "string", "value": "~  ÿ ퟿  ￿ 𐀀 􏿿"},
+           "escaped_string": {"type": "string", "value": "\u0000 \b \f A   ÿ ퟿  ￿ 𐀀 􏿿"},
+           "literal_string": {"type": "string", "value": "~  ÿ ퟿  ￿ 𐀀 􏿿"},
+           "not_escaped_string": {
+               "type":  "string",
+               "value": "\\u0000 \\u0008 \\u000c \\U00000041 \\u007f \\u0080 \\u00ff \\ud7ff \\ue000 \\uffff \\U00010000 \\U0010ffff"
+           }
        }
 
 <b>     output from parser-cmd (stdout):</b>
@@ -3326,19 +2676,19 @@ invalid tests: 298 passed, 73 failed
 
 <b>FAIL</b> <b>valid/string/unicode-escape</b>
 <b> </b>    Traceback (most recent call last):
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
 <b> </b>        print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
 <b> </b>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
 <b> </b>        addtoretval, sections = encoder.dump_sections(o, "")
 <b> </b>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 226, in dump_sections
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 226, in dump_sections
 <b> </b>        unicode(self.dump_value(o[section])) + '\n')
 <b> </b>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 180, in dump_value
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 180, in dump_value
 <b> </b>        return dump_fn(v) if dump_fn is not None else self.dump_funcs[str](v)
 <b> </b>               ^^^^^^^^^^
-<b> </b>      File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
+<b> </b>      File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
 <b> </b>        v = [v[0] + joiner + v[1]] + v[2:]
 <b> </b>                             ~^^^
 <b> </b>    IndexError: list index out of range
@@ -3347,79 +2697,37 @@ invalid tests: 298 passed, 73 failed
 
 <b>     input sent to parser-cmd:</b>
        {
-         "a": {
-           "type": "string",
-           "value": "a"
-         },
-         "b": {
-           "type": "string",
-           "value": "b"
-         },
-         "c": {
-           "type": "string",
-           "value": "c"
-         },
-         "delta-1": {
-           "type": "string",
-           "value": "δ"
-         },
-         "delta-2": {
-           "type": "string",
-           "value": "δ"
-         },
-         "ml-a": {
-           "type": "string",
-           "value": "a"
-         },
-         "ml-b": {
-           "type": "string",
-           "value": "b"
-         },
-         "ml-c": {
-           "type": "string",
-           "value": "c"
-         },
-         "ml-delta-1": {
-           "type": "string",
-           "value": "δ"
-         },
-         "ml-delta-2": {
-           "type": "string",
-           "value": "δ"
-         },
-         "ml-null-1": {
-           "type": "string",
-           "value": "\u0000"
-         },
-         "ml-null-2": {
-           "type": "string",
-           "value": "\u0000"
-         },
-         "null-1": {
-           "type": "string",
-           "value": "\u0000"
-         },
-         "null-2": {
-           "type": "string",
-           "value": "\u0000"
-         }
+           "a":          {"type": "string", "value": "a"},
+           "b":          {"type": "string", "value": "b"},
+           "c":          {"type": "string", "value": "c"},
+           "delta-1":    {"type": "string", "value": "δ"},
+           "delta-2":    {"type": "string", "value": "δ"},
+           "ml-a":       {"type": "string", "value": "a"},
+           "ml-b":       {"type": "string", "value": "b"},
+           "ml-c":       {"type": "string", "value": "c"},
+           "ml-delta-1": {"type": "string", "value": "δ"},
+           "ml-delta-2": {"type": "string", "value": "δ"},
+           "ml-null-1":  {"type": "string", "value": "\u0000"},
+           "ml-null-2":  {"type": "string", "value": "\u0000"},
+           "null-1":     {"type": "string", "value": "\u0000"},
+           "null-2":     {"type": "string", "value": "\u0000"}
        }
 
 <b>     output from parser-cmd (stderr):</b>
        Traceback (most recent call last):
-         File "/home/martin/code/toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
+         File "/home/martin/code/Toml/toml-test-matrix/./src/python-toml/tests/encoding_test.py", line 28, in <module>
            print(toml.dumps({k: convert(v) for (k, v) in j.items()}))
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 60, in dumps
            addtoretval, sections = encoder.dump_sections(o, "")
                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 226, in dump_sections
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 226, in dump_sections
            unicode(self.dump_value(o[section])) + '\n')
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 180, in dump_value
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 180, in dump_value
            return dump_fn(v) if dump_fn is not None else self.dump_funcs[str](v)
                   ^^^^^^^^^^
-         File "/home/martin/code/toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
+         File "/home/martin/code/Toml/toml-test-matrix/src/python-toml/toml/encoder.py", line 113, in _dump_str
            v = [v[0] + joiner + v[1]] + v[2:]
                                 ~^^^
        IndexError: list index out of range
@@ -3429,7 +2737,7 @@ invalid tests: 298 passed, 73 failed
 <b>     want:</b>
           <empty>
 
-toml-test v2024-05-23 [./src/python-toml/tests/encoding_test.py]: using embedded tests
+toml-test v2024-05-31 [./src/python-toml/tests/encoding_test.py]: using embedded tests
 encoder tests: 168 passed, 14 failed
 took 3.7 1.80
 </pre>
