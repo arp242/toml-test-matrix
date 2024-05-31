@@ -377,8 +377,10 @@ do_gen() {
 			table           { border-collapse:separate; border-spacing:0; margin-left:-1em; margin-right:-1em;
 			                  margin-bottom:-1em; }
 			td, th          { border:1px solid #d7d7d7; padding:.5em;  }
-			td:nth-child(2) { white-space:nowrap; }
-			td:nth-child(3) { white-space:nowrap; }
+			td:nth-child(2) { white-space:nowrap; } /* Language */
+			td:nth-child(3) { white-space:nowrap; } /* Name */
+			td:nth-child(7) { white-space:nowrap; } /* 15k file */
+			td:nth-child(8) { white-space:nowrap; } /* 5M file */
 			th              { position:sticky; top:0; padding:0 .5em; white-space:nowrap; text-align:left;
 			                  background:#f3f3f3; font-weight:normal; font-size:.9em; border-bottom:2px solid #000; }
 			th.noborder     { border-left:none; border-right:none; }
@@ -386,7 +388,6 @@ do_gen() {
 			.pass           { }
 			.fail           { float:right; }
 			.didfail        { font-weight:bold; color:red; }
-			.bench          { text-align:right; }
 			a               { text-decoration:none; }
 			a:hover         { text-decoration:underline; }
 			.ui:visited     { color:LinkText; text-decoration:none; }
@@ -402,6 +403,9 @@ do_gen() {
 			label:hover     { background:#eee; }
 			.on             { box-shadow:-1px -1px #000; background:#eee; }
 			input[type="checkbox"] { vertical-align:text-top; }
+			.good           { color:green; }
+			.slow           {}
+			.very-slow      { color:red; font-weight:bold; }
 		</style>
 		</head>
 		<body>
@@ -417,13 +421,16 @@ do_gen() {
 		Usually it's not a big deal to accept some technically invalid TOML;
 		almost all failing "invalid" tests are uncommon edge cases.</p>
 
-		<p>The benchmarks are a simple decode of a 15k and 5M file. Results
-		aren't necessarily fair as some implementations will parse numbers,
-		dates, etc. when reading the file, and others delay this parsing until
-		the data is used. It's only intended as a rough comparison and
-		demonstration that a parser isn't atrociously slow. If performance is of
-		prime concern then you should run your own benchmarks based on your
-		real-world use case in any case.</p>
+		<p>The benchmarks are a simple decode of a 15k and 5M file. Results are
+		displayed as "good", "slow", and "very slow" only. Doing a fully fair
+		comparison is not straight-forward as some implementations will parse
+		numbers, dates, etc. when reading the file, and others delay this
+		parsing until the data is used.
+
+		It's also not a contest on who can write the fastest parser – it's just
+		to establish that performance is within reasonable bounds. Some parsers
+		seem to be O(n²) or thereabouts and scale very poorly to large files.
+		</p>
 		</div>
 
 		<div class="page">
@@ -472,10 +479,23 @@ do_gen() {
 		iv=($(grep -a '^invalid tests:' $out))
 		e=($(grep -a '^encoder tests:' $out || print 'encoder tests:   0 passed,  0 failed'))
 
+		# grep -a took * | sort -nk2 | column -ts:
+		# grep -a took * | sort -nk3 | column -ts:
 		took10k=$(tail -n2 $out | grep '^took' | cut -d' ' -f2)
-		[[ $took10k != '(error)' ]] && took10k+=ms
+		desc10k=good
+		if [[ $took10k != '(error)' ]]; then
+			float n=$took10k
+			(( $n >= 50.0 )) && desc10k=slow
+		fi
+
 		took5M=$(tail -n2 $out | grep '^took' | cut -d' ' -f3)
-		[[ $took5M != '(error)' ]] && took5M+=s
+		desc5M=good
+		if [[ $took5M != '(error)' ]]; then
+			float n=$took5M
+			(( $n >= 2.0  )) && desc5M=slow
+			(( $n >= 40.0 )) && desc5M='very slow'
+		fi
+
 
 		[[ -z ${info[version]:-} ]] && info[version]=$(cd src/$name && git log -n1 --format=%h)
 
@@ -548,19 +568,19 @@ do_gen() {
 					<span class="fail $ifail">fail: $iv[5]</span>
 				</td>
 		EOF
-		if [[ $took10k = '0.0ms' ]]; then
-			print "<td class='bench'><em>(TODO)</em></td>" >>index.html
+		if [[ $took10k = '0.0' ]]; then
+			print "<td><em>(TODO)</em></td>" >>index.html
 		elif [[ $took10k = '(error)' ]]; then
-			print "<td class='bench'><em>$took10k</em></td>" >>index.html
+			print "<td><em>$took10k</em></td>" >>index.html
 		else
-			print "<td class='bench'>$took10k</td>" >>index.html
+			print "<td class='${desc10k/ /-}' title='$took10k milliseconds'>$desc10k</td>" >>index.html
 		fi
-		if [[ $took5M = '0.0s' ]]; then
-			print "<td class='bench'><em>(TODO)</em></td>" >>index.html
+		if [[ $took5M = '0.0' ]]; then
+			print "<td><em>(TODO)</em></td>" >>index.html
 		elif [[ $took5M = '(error)' ]]; then
-			print "<td class='bench'><em>$took5M</em></td>" >>index.html
+			print "<td><em>$took5M</em></td>" >>index.html
 		else
-			print "<td class='bench'>$took5M</td>"  >>index.html
+			print "<td class='${desc5M/ /-}' title='$took5M seconds'>$desc5M</td>"  >>index.html
 		fi
 
 		cat >>index.html <<-EOF

@@ -15,8 +15,10 @@ small, em       { font-size:.75em; }
 table           { border-collapse:separate; border-spacing:0; margin-left:-1em; margin-right:-1em;
                   margin-bottom:-1em; }
 td, th          { border:1px solid #d7d7d7; padding:.5em;  }
-td:nth-child(2) { white-space:nowrap; }
-td:nth-child(3) { white-space:nowrap; }
+td:nth-child(2) { white-space:nowrap; } /* Language */
+td:nth-child(3) { white-space:nowrap; } /* Name */
+td:nth-child(7) { white-space:nowrap; } /* 15k file */
+td:nth-child(8) { white-space:nowrap; } /* 5M file */
 th              { position:sticky; top:0; padding:0 .5em; white-space:nowrap; text-align:left;
                   background:#f3f3f3; font-weight:normal; font-size:.9em; border-bottom:2px solid #000; }
 th.noborder     { border-left:none; border-right:none; }
@@ -24,7 +26,6 @@ tr:hover        { background-color:#fffef1; }
 .pass           { }
 .fail           { float:right; }
 .didfail        { font-weight:bold; color:red; }
-.bench          { text-align:right; }
 a               { text-decoration:none; }
 a:hover         { text-decoration:underline; }
 .ui:visited     { color:LinkText; text-decoration:none; }
@@ -40,6 +41,9 @@ label           { white-space:nowrap; break-inside:avoid; margin-right:.4em; pad
 label:hover     { background:#eee; }
 .on             { box-shadow:-1px -1px #000; background:#eee; }
 input[type="checkbox"] { vertical-align:text-top; }
+.good           { color:green; }
+.slow           {}
+.very-slow      { color:red; font-weight:bold; }
 </style>
 </head>
 <body>
@@ -55,13 +59,16 @@ Implementations are marked as "compliant" (✅) if both the "valid" and
 Usually it's not a big deal to accept some technically invalid TOML;
 almost all failing "invalid" tests are uncommon edge cases.</p>
 
-<p>The benchmarks are a simple decode of a 15k and 5M file. Results
-aren't necessarily fair as some implementations will parse numbers,
-dates, etc. when reading the file, and others delay this parsing until
-the data is used. It's only intended as a rough comparison and
-demonstration that a parser isn't atrociously slow. If performance is of
-prime concern then you should run your own benchmarks based on your
-real-world use case in any case.</p>
+<p>The benchmarks are a simple decode of a 15k and 5M file. Results are
+displayed as "good", "slow", and "very slow" only. Doing a fully fair
+comparison is not straight-forward as some implementations will parse
+numbers, dates, etc. when reading the file, and others delay this
+parsing until the data is used.
+
+It's also not a contest on who can write the fastest parser – it's just
+to establish that performance is within reasonable bounds. Some parsers
+seem to be O(n²) or thereabouts and scale very poorly to large files.
+</p>
 </div>
 
 <div class="page">
@@ -120,8 +127,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 371</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>0.6ms</td>
-<td class='bench'>0.20s</td>
+<td class='good' title='0.6 milliseconds'>good</td>
+<td class='good' title='0.20 seconds'>good</td>
 <td><a href="output/c++-toml++.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="C++">
@@ -143,8 +150,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 371</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>7.7ms</td>
-<td class='bench'>3.73s</td>
+<td class='good' title='7.7 milliseconds'>good</td>
+<td class='slow' title='3.73 seconds'>slow</td>
 <td><a href="output/c++-toml11.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="C">
@@ -166,8 +173,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 350</small>
 <span class="fail didfail">fail: 21</span>
 </td>
-<td class='bench'>0.3ms</td>
-<td class='bench'>4.75s</td>
+<td class='good' title='0.3 milliseconds'>good</td>
+<td class='slow' title='4.75 seconds'>slow</td>
 <td><a href="output/c-toml-c.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="C">
@@ -189,8 +196,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 293</small>
 <span class="fail didfail">fail: 78</span>
 </td>
-<td class='bench'>0.3ms</td>
-<td class='bench'>12.76s</td>
+<td class='good' title='0.3 milliseconds'>good</td>
+<td class='slow' title='12.76 seconds'>slow</td>
 <td><a href="output/c-tomlc99.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="C#">
@@ -212,8 +219,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 366</small>
 <span class="fail didfail">fail: 5</span>
 </td>
-<td class='bench'>76.3ms</td>
-<td class='bench'>1.72s</td>
+<td class='slow' title='76.3 milliseconds'>slow</td>
+<td class='good' title='1.72 seconds'>good</td>
 <td><a href="output/cs-tomlyn.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Dart">
@@ -241,8 +248,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 332</small>
 <span class="fail didfail">fail: 39</span>
 </td>
-<td class='bench'>4.2ms</td>
-<td class='bench'>1.22s</td>
+<td class='good' title='4.2 milliseconds'>good</td>
+<td class='good' title='1.22 seconds'>good</td>
 <td><a href="output/dart-toml.dart.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Fortran">
@@ -270,8 +277,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 339</small>
 <span class="fail didfail">fail: 32</span>
 </td>
-<td class='bench'>1.2ms</td>
-<td class='bench'>145.63s</td>
+<td class='good' title='1.2 milliseconds'>good</td>
+<td class='very-slow' title='145.63 seconds'>very slow</td>
 <td><a href="output/fortran-toml-f.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Go">
@@ -299,8 +306,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 371</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>0.6ms</td>
-<td class='bench'>2.00s</td>
+<td class='good' title='0.6 milliseconds'>good</td>
+<td class='slow' title='2.00 seconds'>slow</td>
 <td><a href="output/go-go-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Go">
@@ -328,8 +335,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 356</small>
 <span class="fail didfail">fail: 15</span>
 </td>
-<td class='bench'>0.9ms</td>
-<td class='bench'>0.36s</td>
+<td class='good' title='0.9 milliseconds'>good</td>
+<td class='good' title='0.36 seconds'>good</td>
 <td><a href="output/go-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Guile">
@@ -357,8 +364,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 356</small>
 <span class="fail didfail">fail: 15</span>
 </td>
-<td class='bench'><em>(TODO)</em></td>
-<td class='bench'><em>(TODO)</em></td>
+<td><em>(TODO)</em></td>
+<td><em>(TODO)</em></td>
 <td><a href="output/guile-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Haskell">
@@ -386,8 +393,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 369</small>
 <span class="fail didfail">fail: 2</span>
 </td>
-<td class='bench'>2.7ms</td>
-<td class='bench'>0.97s</td>
+<td class='good' title='2.7 milliseconds'>good</td>
+<td class='good' title='0.97 seconds'>good</td>
 <td><a href="output/haskell-toml-parser.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Haskell">
@@ -409,8 +416,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 366</small>
 <span class="fail didfail">fail: 2</span>
 </td>
-<td class='bench'>6.6ms</td>
-<td class='bench'>1.40s</td>
+<td class='good' title='6.6 milliseconds'>good</td>
+<td class='good' title='1.40 seconds'>good</td>
 <td><a href="output/haskell-toml-reader.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="JS">
@@ -438,8 +445,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 357</small>
 <span class="fail didfail">fail: 14</span>
 </td>
-<td class='bench'>12.2ms</td>
-<td class='bench'>1.02s</td>
+<td class='good' title='12.2 milliseconds'>good</td>
+<td class='good' title='1.02 seconds'>good</td>
 <td><a href="output/js-j-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="JS">
@@ -467,8 +474,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 357</small>
 <span class="fail didfail">fail: 14</span>
 </td>
-<td class='bench'><em>(error)</em></td>
-<td class='bench'><em>(error)</em></td>
+<td><em>(error)</em></td>
+<td><em>(error)</em></td>
 <td><a href="output/js-smol-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="JS">
@@ -490,8 +497,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 362</small>
 <span class="fail didfail">fail: 9</span>
 </td>
-<td class='bench'>22.4ms</td>
-<td class='bench'>1.47s</td>
+<td class='good' title='22.4 milliseconds'>good</td>
+<td class='good' title='1.47 seconds'>good</td>
 <td><a href="output/js-toml-eslint-parser.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Lisp">
@@ -513,8 +520,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 371</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'><em>(TODO)</em></td>
-<td class='bench'><em>(TODO)</em></td>
+<td><em>(TODO)</em></td>
+<td><em>(TODO)</em></td>
 <td><a href="output/lisp-clop.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="OCAML">
@@ -542,8 +549,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 319</small>
 <span class="fail didfail">fail: 52</span>
 </td>
-<td class='bench'><em>(TODO)</em></td>
-<td class='bench'><em>(TODO)</em></td>
+<td><em>(TODO)</em></td>
+<td><em>(TODO)</em></td>
 <td><a href="output/ocaml-otoml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Python">
@@ -571,8 +578,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 298</small>
 <span class="fail didfail">fail: 73</span>
 </td>
-<td class='bench'>3.7ms</td>
-<td class='bench'>1.80s</td>
+<td class='good' title='3.7 milliseconds'>good</td>
+<td class='good' title='1.80 seconds'>good</td>
 <td><a href="output/python-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Python">
@@ -600,8 +607,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 371</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>2.6ms</td>
-<td class='bench'>1.27s</td>
+<td class='good' title='2.6 milliseconds'>good</td>
+<td class='good' title='1.27 seconds'>good</td>
 <td><a href="output/python-tomli.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Python">
@@ -629,8 +636,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 365</small>
 <span class="fail didfail">fail: 6</span>
 </td>
-<td class='bench'>90.4ms</td>
-<td class='bench'>55.34s</td>
+<td class='slow' title='90.4 milliseconds'>slow</td>
+<td class='very-slow' title='55.34 seconds'>very slow</td>
 <td><a href="output/python-tomlkit.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Python">
@@ -652,8 +659,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 371</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>3.3ms</td>
-<td class='bench'>1.18s</td>
+<td class='good' title='3.3 milliseconds'>good</td>
+<td class='good' title='1.18 seconds'>good</td>
 <td><a href="output/python-tomllib.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Racket">
@@ -681,8 +688,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 370</small>
 <span class="fail didfail">fail: 1</span>
 </td>
-<td class='bench'><em>(TODO)</em></td>
-<td class='bench'><em>(TODO)</em></td>
+<td><em>(TODO)</em></td>
+<td><em>(TODO)</em></td>
 <td><a href="output/racket-toml-racket.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Ruby">
@@ -710,8 +717,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 362</small>
 <span class="fail didfail">fail: 9</span>
 </td>
-<td class='bench'>1.7ms</td>
-<td class='bench'>0.76s</td>
+<td class='good' title='1.7 milliseconds'>good</td>
+<td class='good' title='0.76 seconds'>good</td>
 <td><a href="output/ruby-perfect_toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Ruby">
@@ -739,8 +746,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 281</small>
 <span class="fail didfail">fail: 90</span>
 </td>
-<td class='bench'><em>(TODO)</em></td>
-<td class='bench'><em>(TODO)</em></td>
+<td><em>(TODO)</em></td>
+<td><em>(TODO)</em></td>
 <td><a href="output/ruby-toml-rb.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Ruby">
@@ -762,8 +769,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 351</small>
 <span class="fail didfail">fail: 20</span>
 </td>
-<td class='bench'>7.6ms</td>
-<td class='bench'>5.04s</td>
+<td class='good' title='7.6 milliseconds'>good</td>
+<td class='slow' title='5.04 seconds'>slow</td>
 <td><a href="output/ruby-tomlrb.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Rust">
@@ -785,8 +792,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 367</small>
 <span class="fail didfail">fail: 4</span>
 </td>
-<td class='bench'>0.7ms</td>
-<td class='bench'>0.29s</td>
+<td class='good' title='0.7 milliseconds'>good</td>
+<td class='good' title='0.29 seconds'>good</td>
 <td><a href="output/rust-basic-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Rust">
@@ -808,8 +815,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 368</small>
 <span class="fail didfail">fail: 3</span>
 </td>
-<td class='bench'>1.5ms</td>
-<td class='bench'>52.15s</td>
+<td class='good' title='1.5 milliseconds'>good</td>
+<td class='very-slow' title='52.15 seconds'>very slow</td>
 <td><a href="output/rust-taplo.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Rust">
@@ -837,8 +844,8 @@ real-world use case in any case.</p>
 <small class="pass">pass: 371</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>0.5ms</td>
-<td class='bench'>0.17s</td>
+<td class='good' title='0.5 milliseconds'>good</td>
+<td class='good' title='0.17 seconds'>good</td>
 <td><a href="output/rust-toml.html" class="ui">output</a></td>
 </tr>
 <tr data-lang="Rust">
@@ -866,14 +873,14 @@ real-world use case in any case.</p>
 <small class="pass">pass: 371</small>
 <span class="fail ">fail: 0</span>
 </td>
-<td class='bench'>0.4ms</td>
-<td class='bench'>0.17s</td>
+<td class='good' title='0.4 milliseconds'>good</td>
+<td class='good' title='0.17 seconds'>good</td>
 <td><a href="output/rust-toml_edit.html" class="ui">output</a></td>
 </tr>
 </tbody></table>
 </div> <!-- page -->
 <footer><small>
-Generated on 2024-05-23;
+Generated on 2024-05-31;
 <a href="https://github.com/arp242/toml-test-matrix">https://github.com/arp242/toml-test-matrix</a>
 </small></footer>
 <script>
